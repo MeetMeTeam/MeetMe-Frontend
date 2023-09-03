@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+
+}
+
+code {
+  font-family: 'DM Sans'
+}
+
+div {
+  font-family: 'DM Sans', sans-serif , 'IBM Plex Sans Thai';
+/* font-family: 'IBM Plex Sans Thai', sans-serif; */
+}
