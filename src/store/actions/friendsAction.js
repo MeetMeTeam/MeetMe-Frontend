@@ -28,7 +28,7 @@ export const friendsActions = {
         const response = await api.sendFriendInvitation(data);
 
         if(response.error) {
-            dispatch(openAlertMessage(response.exception?.response?.data))
+            dispatch(openAlertMessage(response.exception?.response?.data.message))
         } else {
             dispatch(openAlertMessage('Invitaation has been sent!'))
             closeDialogHandler();

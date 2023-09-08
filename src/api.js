@@ -2,8 +2,12 @@ import axios from "axios";
 import { logout } from "./shared/utils/auth";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:5002/api",
-  timeout: 1000,
+  // baseURL: "http://localhost:5002/api",
+    baseURL: "https://c001-202-28-7-5.ngrok-free.app/api",
+    headers: {
+      // 'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': true,
+    },
 });
 
 apiClient.interceptors.request.use(
@@ -26,7 +30,7 @@ apiClient.interceptors.request.use(
 
 export const login = async (data) => {
   try {
-    return await apiClient.post("/auth/login", data);
+    return await apiClient.post("/login", data);
   } catch (exception) {
     return {
       error: true,
@@ -37,7 +41,7 @@ export const login = async (data) => {
 
 export const register = async (data) => {
   try {
-    return await apiClient.post("/auth/register", data);
+    return await apiClient.post("/register", data);
   } catch (exception) {
     return {
       error: true,
@@ -50,7 +54,10 @@ export const register = async (data) => {
 
 export const sendFriendInvitation = async (data) => {
   try {
-    return await apiClient.post("/friend-invitation/invite", data);
+    return await apiClient.post(
+      // "/friend-invitation/invite"
+      "/invitation/add"
+      , data);
   } catch (exception) {
     checkResponseCode(exception);
     return {
@@ -85,6 +92,7 @@ export const rejectFriendInvitation = async (data) => {
 }
 
 const checkResponseCode = (exception) => {
+  console.log(exception.response)
   const responseCode = exception?.response?.status;
 
   if (responseCode) {

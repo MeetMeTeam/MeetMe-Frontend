@@ -20,8 +20,9 @@ const LoginPage = ({ login }) => {
   }, [mail, password, setIsFormValid]);
 
   const handleLogin = () => {
+    const email = mail
     const userDetails = {
-      mail,
+      email,
       password,
     };
 

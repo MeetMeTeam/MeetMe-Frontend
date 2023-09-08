@@ -6,12 +6,11 @@ import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 let socket = null
 
 export const connectWithSocketServer = (userDetails) => {
-    console.log("test")
     const jwtToken = userDetails.token;
     socket = io('http://localhost:5002' , {
         auth: {
             token : jwtToken,
-            test: "hello"
+            userDetails : userDetails
         }
     })
 
