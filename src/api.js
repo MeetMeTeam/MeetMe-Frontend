@@ -5,7 +5,7 @@ const apiClient = axios.create({
   baseURL: process.env.REACT_APP_BASE_API,
 });
 
-console.log(process.env.REACT_APP_BASE_API)
+console.log('react env ' + process.env.REACT_APP_BASE_API)
 
 apiClient.interceptors.request.use(
   (config) => {
