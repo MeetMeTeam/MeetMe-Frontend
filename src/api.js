@@ -1,8 +1,9 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
+require('dotenv').config();
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:5002/api",
+  baseURL: process.env.base_api,
 });
 
 apiClient.interceptors.request.use(
