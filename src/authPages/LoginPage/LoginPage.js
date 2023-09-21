@@ -29,7 +29,9 @@ const LoginPage = ({ login }) => {
   };
 
   return (
-    <AuthBox>
+    <div >
+      
+       <AuthBox>
       <LoginPageHeader />
       <LoginPageInputs
         mail={mail}
@@ -39,6 +41,8 @@ const LoginPage = ({ login }) => {
       />
       <LoginPageFooter isFormValid={isFormValid} handleLogin={handleLogin} />
     </AuthBox>
+    </div>
+   
   );
 };
 
