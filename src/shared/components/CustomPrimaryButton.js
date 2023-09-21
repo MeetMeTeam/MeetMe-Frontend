@@ -18,6 +18,9 @@ const CustomPrimaryButton = ({
         fontWeight: 500,
         width: "100%",
         height: "40px",
+        "&:hover": {
+          bgcolor: "#FCF7CF",
+        },
       }}
       style={additionalStyles ? additionalStyles : {}}
       disabled={disabled}

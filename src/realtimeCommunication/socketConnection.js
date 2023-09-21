@@ -73,3 +73,6 @@ export const sendDirectMessage = (data) => {
     socket.emit("room-join", data);
   };
   
+  export const leaveRoom = (data) => {
+    socket.emit("room-leave", data);
+  };
