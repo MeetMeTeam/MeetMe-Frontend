@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 const AvatarPreview = styled("div")({
   height: "42px",
   width: "42px",
-  backgroundColor: "purple",
+  backgroundColor: "#B184E1",
   borderRadius: "42px",
   display: "flex",
   alignItems: "center",

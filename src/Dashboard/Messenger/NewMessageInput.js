@@ -12,7 +12,7 @@ const MainContainer = styled("div")({
 });
 
 const Input = styled("input")({
-  backgroundColor: "#2f3136",
+  backgroundColor: "white",
   width: "98%",
   height: "44px",
   color: "white",

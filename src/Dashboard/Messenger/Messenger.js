@@ -5,7 +5,8 @@ import WelcomeMessage from "./WelcomeMessage";
 import MessengerContent from "./MessengerContent";
 const MainContainer = styled("div")({
   flexGrow: 1,
-  backgroundColor: "gray",
+  background: "url('bgChat.png')",
+  backgroundSize: "cover",
   marginTop: "48px",
   display: "flex",
 });

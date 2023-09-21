@@ -11,7 +11,7 @@ const MainContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  backgroundColor: "#ebebeb",
+  backgroundColor: "#F7E66E",
   borderLeft: "1px solid gray",
 
 });

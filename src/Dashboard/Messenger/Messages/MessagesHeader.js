@@ -17,7 +17,7 @@ const MessagesHeader = ({ name = "" }) => {
         variant="h4"
         sx={{
           fontWeight: "bold",
-          color: "white",
+          color: "black",
           marginLeft: "5px",
           marginRight: "5px",
         }}

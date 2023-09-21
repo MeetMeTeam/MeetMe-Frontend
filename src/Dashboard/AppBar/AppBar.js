@@ -9,7 +9,7 @@ const MainContainer = styled("div")({
   top: "0",
   height: "48px",
   borderBottom: "1px solid white",
-  backgroundColor: "w",
+  backgroundColor: "#B184E1",
   width: "calc(100% - 326px)",
   display: "flex",
   alignItems: "center",

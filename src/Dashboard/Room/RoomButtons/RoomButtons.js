@@ -11,7 +11,7 @@ import MicButton from "./MicButton"
 const MainContainer = styled("div")({
     height: "15%",
     width: "100%",
-    backgroundColor: "#5865f2",
+    backgroundColor: "#B184E1",
     borderTopLeftRadius: "8px",
     borderTopRightRadius: "8px",
     display: "flex",
