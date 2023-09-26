@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/system";
 import FriendsListItem from "./FriendsListItem";
 import { connect } from "react-redux";
@@ -18,6 +18,13 @@ const checkOnlineUsers = (friends = [], onlineUsers = []) => {
 };
 
 const FriendsList = ({ friends, onlineUsers }) => {
+
+  useEffect(() => {
+
+console.log("friend coming")
+    }
+  , [friends]);
+
   return (
     <MainContainer>
       {checkOnlineUsers(friends, onlineUsers).map((f) => (

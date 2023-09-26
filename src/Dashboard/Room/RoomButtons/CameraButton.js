@@ -7,7 +7,7 @@ const CameraButton = ({localStream}) => {
     const [cameraEnabled, setCameraEnabled] = useState(true);
 
     const handleToggleCamera = () => {
-    //   localStream.getVideoTracks()[0].enabled = !cameraEnabled;
+      localStream.getVideoTracks()[0].enabled = !cameraEnabled;
       setCameraEnabled(!cameraEnabled);
     };
 
