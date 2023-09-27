@@ -28,6 +28,7 @@ import {
 
   export const newRoomCreated = (data) => {
     const { roomDetails } = data;
+    console.log(data)
     store.dispatch(setRoomDetails(roomDetails));
   };
   
@@ -39,18 +40,18 @@ import {
     const friends = store.getState().friends.friends;
     const rooms = [];
   
-    // const userId = store.getState().auth.userDetails?._id;
+    const userId = store.getState().auth.userDetails?._id;
     activeRooms.forEach((room) => {
 
-      // const isRoomCreatedByMe = room.roomCreator.userId === userId;
+      const isRoomCreatedByMe = room.roomCreator.userId === userId;
   
-      // if (isRoomCreatedByMe) {
-      //   rooms.push({ ...room, creatorUsername: "Me" });
-      // } else {
+      if (isRoomCreatedByMe) {
+        rooms.push({ ...room, creatorUsername: "Me" });
+      } else {
         // friends.forEach((f) => {
         //   if (f.id === room.roomCreator.userId) {
-            rooms.push({ ...room, creatorUsername: "f.username" });
-        //   }
+            rooms.push({ ...room, creatorUsername: "room" });
+         }
         // });
       // }
     });
@@ -63,8 +64,8 @@ import {
     const successCalbackFunc = () => {
       store.dispatch(setRoomDetails({ roomId }));
       store.dispatch(setOpenRoom(false, true));
-    //   const audioOnly = store.getState().room.audioOnly;
-    //   store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
+      const audioOnly = store.getState().room.audioOnly;
+      store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
       socketConnection.joinRoom({ roomId });
     };
   
