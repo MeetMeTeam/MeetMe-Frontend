@@ -10,6 +10,8 @@ import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import Dashboard from "./Dashboard/Dashboard";
 import AlertNotification from "./shared/components/AlertNotification";
 import "./App.css";
+import "./index.css"
+import 'animate.css';
 
 function App() {
   return (
