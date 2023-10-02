@@ -5,12 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import ReactDOM from "react-dom";
+import { ThemeProvider } from "@material-tailwind/react";
 
 ReactDOM.render(
   <React.StrictMode>
+   <ThemeProvider>   
     <Provider store={store}>
       <App />
     </Provider>
+    </ThemeProvider>
+
+  
   </React.StrictMode>,
   document.getElementById("root")
 );

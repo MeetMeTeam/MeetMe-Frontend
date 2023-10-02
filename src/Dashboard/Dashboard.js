@@ -9,11 +9,11 @@ import { connect } from "react-redux";
 import { getActions } from "../store/actions/authActions";
 import { connectWithSocketServer } from "../realtimeCommunication/socketConnection";
 import Room from "./Room/Room";
+import Chat from "./ChatAll/ChatAll";
 
 const Wrapper = styled("div")({
   width: "100%",
-  height: "100vh",
-  display: "flex",
+  height: "100%",
 });
 
 const Dashboard = ({ setUserDetails , isUserInRoom}) => {
@@ -29,11 +29,20 @@ const Dashboard = ({ setUserDetails , isUserInRoom}) => {
   }, []);
 
   return (
-    <Wrapper>
-      <SideBar />
-      <FriendsSideBar />
-      <Messenger />
-      <AppBar />
+    <Wrapper className="grid grid-cols-3 p-[32px] gap-4">
+      {/* <SideBar /> */}
+      <div className="flex flex-col space-y-4">
+        <FriendsSideBar />
+        <div>
+          <Chat/>
+        </div>
+      </div>
+      
+      <div className="col-span-2">
+        x
+      </div>
+      {/* <Messenger /> */}
+      {/* <AppBar /> */}
       {isUserInRoom && <Room />}
     </Wrapper>
   );

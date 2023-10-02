@@ -7,10 +7,9 @@ const OnlineIndicator = () => {
     <Box
       sx={{
         color: "#3ba55d",
-        display: "flex",
-        alignItems: "center",
+        bottom: "-10px",
         position: "absolute",
-        right: "5px",
+        right: "-10px",
       }}
     >
       <FiberManualRecordIcon />
