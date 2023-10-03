@@ -17,7 +17,7 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
       onClick={handleChooseActiveConversation}
       style={{
         width: "100%",
-        height: "85px",
+        height: "65px",
         marginBottom: "10px",
         display: "flex",
         alignItems: "center",
@@ -35,7 +35,7 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
    
       <div className="flex flex-row items-center justify-between w-full">
          <div
-       className="text-white flex flex-col text-[1.25rem] font-bold ml-2"
+       className="text-white flex flex-col text-[14px] font-bold ml-2"
       >
       <div> {username} </div>  
       <div>หาคนเล่นเกม DM </div>

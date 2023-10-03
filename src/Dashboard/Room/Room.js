@@ -5,7 +5,6 @@ import VideosContainer from "./VideosContainer";
 import RoomButtons from "./RoomButtons/RoomButtons";
 
 const MainContainer = styled("div")({
-    position: "absolute",
     borderRadius: "8px",
     display: "flex",
     flexDirection: "column",
@@ -22,7 +21,7 @@ const MainContainer = styled("div")({
   const minimizedRoomStyle = {
     bottom: "0px",
     right: "0px",
-    width: "30%",
+    width: "100%",
     height: "40vh",
   };
 

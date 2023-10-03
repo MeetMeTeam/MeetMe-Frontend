@@ -1,24 +1,16 @@
 import React from "react";
 import { styled } from "@mui/system";
-import MainPageButton from "./MainPageButton";
-import CreateRoomButton from "./CreateRoomButton";
+import MainPageButton from "./SideBar/MainPageButton";
+import CreateRoomButton from "./SideBar/CreateRoomButton";
 import { connect } from "react-redux";
-import ActiveRoomButton from "./ActiveRoomButton";
+import ActiveRoomButton from "./SideBar/ActiveRoomButton";
 
-const MainContainer = styled("div")({
-  width: "72px",
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  backgroundColor: "#FCF7CF",
-});
+
 
 const SideBar = ({ activeRooms, isUserInRoom }) => {
   return (
-    <MainContainer>
-      <MainPageButton />
-      <CreateRoomButton isUserInRoom={isUserInRoom} />
+    <div className="bg-purple-60 w-full rounded-2xl px-4">
+     <div className="text-white text-[32px] font-bold py-5">Room </div> 
       {activeRooms.map((room) => (
         <ActiveRoomButton
           roomId={room.roomId}
@@ -26,9 +18,11 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
           amountOfParticipants={room.participants.length}
           key={room.roomId}
           isUserInRoom={isUserInRoom}
+          roomName={room.roomCreator.data}
         />
+        
       ))}
-    </MainContainer>
+    </div>
   );
 };
 

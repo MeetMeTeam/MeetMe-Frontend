@@ -12,13 +12,13 @@ import {
   import * as webRTCHandler from "./webRTCHandler";
 
 
-  export const createNewRoom = () => {
+  export const createNewRoom = (name) => {
     const successCalbackFunc = () => {
       store.dispatch(setOpenRoom(true, true));
   
     //   const audioOnly = store.getState().room.audioOnly;
     //   store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-      socketConnection.createNewRoom();
+      socketConnection.createNewRoom("test add name room");
     };
   
     const audioOnly = store.getState().room.audioOnly;
@@ -50,6 +50,7 @@ import {
       } else {
         // friends.forEach((f) => {
         //   if (f.id === room.roomCreator.userId) {
+          console.log(data)
             rooms.push({ ...room, creatorUsername: "room" });
          }
         // });

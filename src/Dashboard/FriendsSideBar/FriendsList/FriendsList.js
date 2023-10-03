@@ -37,7 +37,7 @@ console.log("friend coming")
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <div className="text-[2.5rem] font-bold	text-white select-none">
+          <div className="text-[1.5rem] font-bold	text-white select-none">
       Friends
       </div>
       
@@ -52,7 +52,7 @@ console.log("friend coming")
       </div>
         </div>
       </div>
-      <div className="h-[290px] mt-4 overflow-auto pr-2 ">
+      <div className="h-[230px] mt-4 overflow-auto pr-2 ">
         {checkOnlineUsers(friends, onlineUsers).map((f) => (
         <FriendsListItem 
           username={f.username}

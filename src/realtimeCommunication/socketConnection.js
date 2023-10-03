@@ -73,7 +73,26 @@ export const connectWithSocketServer = (userDetails) => {
     webRTCHandler.handleParticipantLeftRoom(data);
   });
 
+  socket.on('chatter', (mess) => {
+    console.log(mess + ' this is socket . on')
+    // setChatList([...chatList,{text:mess,id:chatList.length+1}] )
+    // setText('')
+    })
+
 }
+
+export const sendMessage = (text) => {
+  // socket.emit('chatter', name + ' : ' +text);    
+  socket.emit('chatter', "name" + ' : ' +"text");    
+
+// socket.on('chatter', (mess) => {
+// console.log(mess + ' this is socket . on')
+// // setChatList([...chatList,{text:mess,id:chatList.length+1}] )
+// // setText('')
+// });
+
+}
+
 
 export const getDirectChatHistory = (data) => {
   console.log(data)
@@ -86,8 +105,8 @@ export const sendDirectMessage = (data) => {
     socket.emit("direct-message", data);
   };
   
-  export const createNewRoom = () => {
-    socket.emit("room-create");
+  export const createNewRoom = (data) => {
+    socket.emit("room-create",data);
   };
   
   export const joinRoom = (data) => {

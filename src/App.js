@@ -1,17 +1,17 @@
+import "animate.css";
 import React from "react";
 import {
+  Redirect,
+  Route,
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect,
 } from "react-router-dom";
+import "./App.css";
+import Dashboard from "./Dashboard/Dashboard";
 import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
-import Dashboard from "./Dashboard/Dashboard";
+import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
-import "./App.css";
-import "./index.css"
-import 'animate.css';
 
 function App() {
   return (
