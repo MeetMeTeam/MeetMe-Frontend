@@ -17,7 +17,7 @@ const ActiveRoomButton = ({
     }
   };
 
-  const activeRoomButtonDisabled = amountOfParticipants > 3;
+  const activeRoomButtonDisabled = amountOfParticipants > 7;
   const roomTitle = `Cretor: ${creatorUsername}. Connected: ${amountOfParticipants}`;
 
   return (
