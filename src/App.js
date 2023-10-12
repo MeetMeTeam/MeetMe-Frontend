@@ -12,10 +12,19 @@ import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+import { openAlertMessage } from './store/actions/alertActions'
+import { useDispatch } from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
   return (
     <div>
+       {/* <div>
+        <button onClick={()=>  dispatch(openAlertMessage("Hello world")  )}>Notify !</button>
+   
+      </div> */}
       <Router>
         <Switch>
           <Route exact path="/login">

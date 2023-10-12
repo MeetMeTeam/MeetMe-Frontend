@@ -44,7 +44,7 @@ console.log("friend coming")
         </AccordionSummary>
         <AccordionDetails>
         <div>
-        <div className="mt-[-5px] border border-1 w-full h-[2.6rem] border-blue-70 rounded-2xl flex flex-row justify-starts items-center px-4 py-2 space-x-2"> 
+        <div className="mt-[-5px] border border-1 w-full h-full border-blue-70 rounded-2xl flex flex-row justify-starts items-center px-4 py-2 space-x-2"> 
         <SearchIcon className="text-blue-90"/>
         <div className="relative z-0 w-full  group">
       <input type="text" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />

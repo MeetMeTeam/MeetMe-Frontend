@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import { connect } from "react-redux";
 import { getActions } from "../../store/actions/alertActions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { openAlertMessage } from '../../store/actions/alertActions'
+import { useDispatch } from 'react-redux';
 
 const AlertNotification = ({
   showAlertMessage,
   closeAlertMessage,
   alertMessageContent,
 }) => {
+  const notify = () => toast(`🦄 ${alertMessageContent}`, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(alertMessageContent){
+          notify()
+          dispatch(closeAlertMessage()  )
+    }
+    console.log("x")
+  },[showAlertMessage]);
   return (
-    <Snackbar
-      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      open={showAlertMessage}
-      onClose={closeAlertMessage}
-      autoHideDuration={6000}
-    >
-      <Alert severity="info">{alertMessageContent}</Alert>
-    </Snackbar>
+ 
+    <ToastContainer />
+
   );
 };
 

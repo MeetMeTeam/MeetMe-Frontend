@@ -1,21 +1,16 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import  store  from './store/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider } from "@material-tailwind/react";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import store from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-   <ThemeProvider>   
     <Provider store={store}>
       <App />
     </Provider>
-    </ThemeProvider>
-
-  
   </React.StrictMode>,
   document.getElementById("root")
 );

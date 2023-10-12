@@ -12,6 +12,7 @@ import Room from "./Room/Room";
 import Chat from "./ChatAll/ChatAll";
 import HeadBar from "./HeadBar/HeadBar";
 import BannerAdvert from "./BannerAdvert/BannerAdvert";
+import styles from "../shared/css/mainPage.module.css"
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -31,42 +32,43 @@ const Dashboard = ({ setUserDetails , isUserInRoom}) => {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <HeadBar/>
-       <Wrapper className="grid grid-cols-3 p-[32px] gap-4">
+       <div className="flex flex-row w-full justify-between gap-4">
      
-      <div className="flex flex-col space-y-4">
+      <div className="w-1/3 p-[32px] flex flex-col  space-y-4 h-full">
         <FriendsSideBar />
         <div>
-          <Chat/>
+          <Chat />
         </div>
-      </div>
-      
-      <div className="col-span-2 flex flex-col space-y-4">
-      <BannerAdvert/>
-      <div className="flex flex-row space-x-4 w-full">
-        <div className="
+      </div> 
+      <div className="p-[32px] w-2/3 flex flex-col h-full space-y-4">
+      <BannerAdvert className="h-1/3"/>
+      <div className={`flex flex-row space-x-6`}>
+        <div className={`
         bg-[#FF80A5] w-full rounded-2xl
         text-white
-        h-[570px]  
-        ">
-          <div className="text-[34px] font-bold px-4 py-6">
+        h-full
+        flex flex-col justify-between
+        ${styles.container}
+        `}>
+          <div className="text-[34px] h-full font-bold px-4 pt-6">
           Top 3 Rank
           </div>
-          <div className="flex justify-center items-center h-full pb-[150px]">
-            comming soon
+          <div className="flex justify-center items-center h-full ">
+            coming soon
           </div>
-           
+           <div>
+            
            </div>
-        <SideBar />
-      </div>
-      
-
+           </div>
+        <SideBar />   {/* //ไว้โชว์ห้อง */}
+        </div>
       </div>
       {/* <Messenger /> */}
       {/* <AppBar /> */}
       {isUserInRoom && <Room />}
-    </Wrapper>
+    </div>
     </div>
   );
 };
