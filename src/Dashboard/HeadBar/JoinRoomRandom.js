@@ -4,8 +4,10 @@ export default function JoinRoomRandom() {
   return (
     <div>
         <div className='flex flex-row items-center space-x-1 font-bold
-        justify-center bg-white rounded-2xl text-purple-70 cursor-pointer
+        justify-center bg-white rounded-2xl text-purple-70 
         px-6 py-4
+        opacity-40
+        cursor-not-allowed
         '
         >
             <MonitorIcon/>
