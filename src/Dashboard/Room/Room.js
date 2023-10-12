@@ -35,7 +35,7 @@ const MainContainer = styled("div")({
     
   return (
     <MainContainer
-    style={isRoomMinimized ? minimizedRoomStyle : fullScreenRoomStyle}
+    style={isRoomMinimized ? fullScreenRoomStyle : fullScreenRoomStyle}
   >
     <VideosContainer />
     <RoomButtons />

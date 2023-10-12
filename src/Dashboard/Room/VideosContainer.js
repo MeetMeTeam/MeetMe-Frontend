@@ -21,6 +21,7 @@ const VideosContainer = ({
         stream={screenSharingStream ? screenSharingStream : localStream}
         isLocalStream
       />
+      {console.log(remoteStreams)}
       {remoteStreams.map((stream) => (
         <Video stream={stream} key={stream.id} />
       ))}

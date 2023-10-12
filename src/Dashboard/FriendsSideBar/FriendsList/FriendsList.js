@@ -44,15 +44,15 @@ console.log("friend coming")
         </AccordionSummary>
         <AccordionDetails>
         <div>
-        <div className="mt-[-5px] border border-1 w-full h-full border-blue-70 rounded-2xl flex flex-row justify-starts items-center px-4 py-2 space-x-2"> 
+        <div className="mt-[-5px] border border-1 w-full h-[40px] border-blue-70 rounded-2xl flex flex-row justify-starts items-center px-4 py-2 space-x-2"> 
         <SearchIcon className="text-blue-90"/>
         <div className="relative z-0 w-full  group">
       <input type="text" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-      <label className="peer-focus:font-medium absolute text-[20px] font-bold text-blue-90  duration-300 transform -translate-y-1 scale-0 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-80  peer-focus:dark:text-blue-70 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-0 peer-focus:-translate-y-0">search</label>
+      <label className="peer-focus:font-medium absolute text-[1.25rem] font-bold text-blue-90  duration-300 transform -translate-y-1 scale-0 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-80  peer-focus:dark:text-blue-70 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-0 peer-focus:-translate-y-0">search</label>
       </div>
         </div>
       </div>
-      <div className="h-[230px] mt-4 overflow-auto pr-2 ">
+      <div className="h-[12.5rem] mt-4 overflow-auto pr-2 ">
         {checkOnlineUsers(friends, onlineUsers).map((f) => (
         <FriendsListItem 
           username={f.username}

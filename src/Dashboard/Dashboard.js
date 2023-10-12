@@ -33,9 +33,8 @@ const Dashboard = ({ setUserDetails , isUserInRoom}) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <HeadBar/>
-       <div className="flex flex-row w-full justify-between gap-4">
-     
+     {!isUserInRoom &&  <HeadBar/> }
+     {!isUserInRoom &&   <div className="flex flex-row w-full justify-between gap-4">
       <div className="w-1/3 p-[32px] flex flex-col  space-y-4 h-full">
         <FriendsSideBar />
         <div>
@@ -67,8 +66,9 @@ const Dashboard = ({ setUserDetails , isUserInRoom}) => {
       </div>
       {/* <Messenger /> */}
       {/* <AppBar /> */}
-      {isUserInRoom && <Room />}
-    </div>
+     
+    </div> }
+    {isUserInRoom && <Room />}
     </div>
   );
 };
