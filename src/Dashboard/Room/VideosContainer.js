@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { styled } from "@mui/system";
 import { connect } from "react-redux";
 import Video from "./Video";
@@ -15,15 +15,19 @@ const VideosContainer = ({
   remoteStreams,
   screenSharingStream,
 }) => {
+  useEffect(() => {
+   console.log(remoteStreams)
+  }, [remoteStreams]);
+
   return (
     <MainContainer>
       <Video
         stream={screenSharingStream ? screenSharingStream : localStream}
         isLocalStream
       />
-      {console.log(remoteStreams)}
+      
       {remoteStreams.map((stream) => (
-        <Video stream={stream} key={stream.id} />
+        <Video stream={stream.remoteStream} key={stream.remoteStream.id} id={stream.connUserSocketId} />
       ))}
     </MainContainer>
   );

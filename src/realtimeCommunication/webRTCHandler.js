@@ -78,7 +78,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
      console.log("remote stream came from other user");
      console.log("direct connection has been established");
      remoteStream.connUserSocketId = connUserSocketId;
-     addNewRemoteStream(remoteStream);
+     addNewRemoteStream(remoteStream,connUserSocketId);
    });
   };
 
@@ -90,9 +90,9 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     }
   };
 
-  const addNewRemoteStream = (remoteStream) => {
+  const addNewRemoteStream = (remoteStream , connUserSocketId) => {
     const remoteStreams = store.getState().room.remoteStreams;
-    const newRemoteStreams = [...remoteStreams, remoteStream];
+    const newRemoteStreams = [...remoteStreams, {remoteStream,connUserSocketId}];
   
     store.dispatch(setRemoteStreams(newRemoteStreams));
   };

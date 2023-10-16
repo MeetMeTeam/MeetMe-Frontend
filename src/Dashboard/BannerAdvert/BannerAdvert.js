@@ -16,7 +16,7 @@ const BannerAdvert = () => {
           </div>
 
           <div className="font-bold text-[20px] drop-shadow-md text-purple-80">
-            Comming Soon..
+            Coming Soon..
           </div>
         </div>
     </div>

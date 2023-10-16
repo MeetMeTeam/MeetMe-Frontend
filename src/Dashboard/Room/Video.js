@@ -13,7 +13,7 @@ const VideoEl = styled("video")({
   height: "100%",
 });
 
-const Video = ({ stream, isLocalStream }) => {
+const Video = ({ stream, isLocalStream , id }) => {
   const videoRef = useRef();
 
   useEffect(() => {

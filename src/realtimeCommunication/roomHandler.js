@@ -18,7 +18,8 @@ import {
   
     //   const audioOnly = store.getState().room.audioOnly;
     //   store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-      socketConnection.createNewRoom("test add name room");
+    //มาเขียน ชื่อห้อง , ส่งรูปตรงนี้
+      socketConnection.createNewRoom(name);
     };
   
     const audioOnly = store.getState().room.audioOnly;
@@ -67,7 +68,7 @@ import {
       store.dispatch(setOpenRoom(false, true));
       const audioOnly = store.getState().room.audioOnly;
       store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-      socketConnection.joinRoom({ roomId });
+      socketConnection.joinRoom({ roomId ,pic: "testdata" });
     };
   
     const audioOnly = store.getState().room.audioOnly;
