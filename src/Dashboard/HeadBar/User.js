@@ -26,7 +26,7 @@ import Typography from '@mui/material/Typography';
     <div>
         <div className='flex flex-row  items-center space-x-1 font-bold
         justify-between bg-blue-70 rounded-2xl text-white cursor-pointer
-        px-4 py-2 w-[170px]
+        px-4 py-2 min-w-[170px]
         '
         aria-describedby={id} variant="contained" onClick={handleClick}
         >
