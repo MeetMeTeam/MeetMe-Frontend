@@ -18,7 +18,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
           amountOfParticipants={room.participants.length}
           key={room.roomId}
           isUserInRoom={isUserInRoom}
-          roomName={room.roomCreator.data}
+          roomName={room.roomCreator.roomName}
         />
         
       ))}
