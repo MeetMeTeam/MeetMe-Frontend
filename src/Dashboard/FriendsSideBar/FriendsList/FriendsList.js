@@ -29,9 +29,13 @@ console.log("friend coming")
     }
   , [friends]);
 
+  const [expanded, setExpanded] = React.useState(true);
+  const handleChange = (panel) => (event, newExpanded) => {
+    setExpanded(!expanded);
+  };
   return (
       <div className={styles.scrollbar}>
-      <Accordion sx={{ backgroundColor: '#9EBCFA' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
+      <Accordion expanded={expanded === true}  onChange={handleChange()} sx={{ backgroundColor: '#9EBCFA' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon className='text-white'/>}
           aria-controls="panel1a-content"

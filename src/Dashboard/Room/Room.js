@@ -1,18 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { styled } from "@mui/system";
 import ResizeRoomButton from "./ResizeRoomButton";
 import VideosContainer from "./VideosContainer";
 import RoomButtons from "./RoomButtons/RoomButtons";
-
-const MainContainer = styled("div")({
-    borderRadius: "8px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#202225",
-  });
-  
+import { useSelector } from 'react-redux';
+import RoomHeadBar from "./RoomHeadBar";
+import User from "../HeadBar/User"
   const fullScreenRoomStyle = {
     width: "100%",
     height: "100vh",
@@ -27,23 +20,33 @@ const MainContainer = styled("div")({
 
  const Room = () => {
     const [isRoomMinimized, setIsRoomMinimized] = useState(true);
+    const roomDetail = useSelector(state => state.room.roomDetails);
 
     const roomResizeHandler = () => {
       setIsRoomMinimized(!isRoomMinimized);
     };
-
+    useEffect(() => {
+      console.log("roomDetail")
+    console.log(roomDetail)
+    }, [roomDetail]);
+  
     
   return (
-    <MainContainer
-    style={isRoomMinimized ? fullScreenRoomStyle : fullScreenRoomStyle}
+    <div
+    style={ fullScreenRoomStyle}
+    className="flex justify-center"
   >
-    <VideosContainer />
-    <RoomButtons />
-    <ResizeRoomButton
-      isRoomMinimized={isRoomMinimized}
-      handleRoomResize={roomResizeHandler}
-    />
-  </MainContainer>
+    <div className="absolute top-0 z-20 w-full flex flex-row justify-between  p-6"> 
+    <RoomHeadBar />
+    <User />
+    </div>
+    <img src={process.env.PUBLIC_URL + '/RoomBg.png'} className="w-full relative" />
+    <VideosContainer  />
+    <div className="absolute  bottom-6 bg-red-80 w-[300px] h-[70px] flex justify-center items-center rounded-md">
+    <RoomButtons  />
+    </div>
+    
+  </div>
   )
 }
 

@@ -13,9 +13,14 @@ export default function ChatAll() {
         {id:'4',name:'You',text:'ขอ Join ด้วยยยย' , color:'green'}
     ]);
 
+    const [expanded, setExpanded] = React.useState(true);
+    const handleChange = (panel) => (event, newExpanded) => {
+      setExpanded(!expanded);
+    };
+
   return (
     <div>
-      <Accordion sx={{ backgroundColor: '#FF9999' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
+      <Accordion expanded={expanded === true}  onChange={handleChange()} sx={{ backgroundColor: '#FF9999' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon className='text-white' />}
           aria-controls="panel1a-content"

@@ -39,7 +39,7 @@ const ActiveRoomButton = ({
             <div className="flex flex-row items-center space-x-2">
                       <img className='w-[40px]' src={process.env.PUBLIC_URL + '/friend-pic.png'} />
                       <div className="text-purple-60 font-bold">
-                        <div> Coming {roomName}</div>
+                        <div>  {roomName}</div>
                         <div className="text-[12px]"> Author : {creatorUsername}</div>
                         </div>
             </div>

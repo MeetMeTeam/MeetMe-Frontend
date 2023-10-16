@@ -9,7 +9,7 @@ const MainContainer = styled("div")({
 });
 
 const VideoEl = styled("video")({
-  width: "100%",
+  width: "300px",
   height: "100%",
 });
 
@@ -26,9 +26,9 @@ const Video = ({ stream, isLocalStream , id }) => {
   }, [stream]);
 
   return (
-    <MainContainer>
-      <VideoEl ref={videoRef} autoPlay muted={isLocalStream ? true : false} />
-    </MainContainer>
+    <div>
+      <VideoEl className="rounded-md" ref={videoRef} autoPlay muted={isLocalStream ? true : false}  style={{ transform: "scaleX(-1)" }}/>
+    </div>
   );
 };
 

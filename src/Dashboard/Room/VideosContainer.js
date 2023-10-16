@@ -19,17 +19,30 @@ const VideosContainer = ({
    console.log(remoteStreams)
   }, [remoteStreams]);
 
+  const divs = [];
+
+  for (let i = 0; i < 3; i++) {
+    divs.push(<div key={i}>
+       <Video
+      stream={localStream}
+      isLocalStream
+    /></div>);
+  }
+
   return (
-    <MainContainer>
+    <div className="absolute top-1/3 w-full grid grid-cols-4 px-12">
       <Video
-        stream={screenSharingStream ? screenSharingStream : localStream}
+        stream={localStream}
         isLocalStream
       />
       
-      {remoteStreams.map((stream) => (
+      {
+      remoteStreams.map((stream) => (
         <Video stream={stream.remoteStream} key={stream.remoteStream.id} id={stream.connUserSocketId} />
-      ))}
-    </MainContainer>
+      ))
+      // divs
+      }
+    </div>
   );
 };
 

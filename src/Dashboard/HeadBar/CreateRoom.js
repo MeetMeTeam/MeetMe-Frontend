@@ -70,7 +70,7 @@ const CreateRoom = () => {
             <div onClick={handleClose}  className="cursor-pointer w-full bg-purple-50 hover:bg-purple-40 border-2 border-yellow-50 rounded-2xl text-white px-4 py-2 text-center font-bold">
                 Cancel
               </div>
-              <div onClick={createNewRoomHandler} className="cursor-pointer w-full bg-yellow-60 hover:bg-yellow-40 text-purple-40 rounded-2xl px-4 py-2 text-center font-bold">
+              <div onClick={createNewRoomHandler} className="cursor-pointer w-full bg-yellow-60 hover:bg-yellow-40 text-purple-40 rounded-2xl px-4 py-2 flex justify-center items-center font-bold">
                 Done
               </div>
             </div>
