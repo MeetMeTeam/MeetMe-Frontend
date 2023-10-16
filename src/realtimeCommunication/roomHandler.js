@@ -10,6 +10,7 @@ import {
   } from "../store/actions/roomActions";
   import * as socketConnection from "./socketConnection";
   import * as webRTCHandler from "./webRTCHandler";
+  import { useSelector } from 'react-redux';
 
 
   export const createNewRoom = (name) => {
@@ -62,13 +63,14 @@ import {
     store.dispatch(setActiveRooms(rooms));
   };
 
-  export const joinRoom = (roomId) => {
+  export const joinRoom = (data) => {
+console.log(data)
     const successCalbackFunc = () => {
-      store.dispatch(setRoomDetails({ roomId }));
+      store.dispatch(setRoomDetails(data));
       store.dispatch(setOpenRoom(false, true));
       const audioOnly = store.getState().room.audioOnly;
       store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-      socketConnection.joinRoom({ roomId ,pic: "testdata" });
+      socketConnection.joinRoom({ roomId :data.roomId ,pic: "testdata" });
     };
   
     const audioOnly = store.getState().room.audioOnly;
