@@ -7,9 +7,9 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import MainPages from "./MainPages/HomePage";
-import LoginPage from "./authPages/LoginPage/LoginPage";
-import RegisterPage from "./authPages/RegisterPage/RegisterPage";
+import MainPages from "./pages/MainPages/HomePage";
+import LoginPage from "./pages/authPages/LoginPage/LoginPage";
+import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 // import { ToastContainer, toast } from 'react-toastify';
