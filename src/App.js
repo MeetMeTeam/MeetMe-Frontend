@@ -7,7 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./Dashboard/Dashboard";
+import Dashboard from "./Dashboard/HomePage";
 import LoginPage from "./authPages/LoginPage/LoginPage";
 import RegisterPage from "./authPages/RegisterPage/RegisterPage";
 import "./index.css";
@@ -33,11 +33,11 @@ function App() {
           <Route exact path="/register">
             <RegisterPage />
           </Route>
-          <Route exact path="/dashboard">
+          <Route exact path="/home">
             <Dashboard />
           </Route>
           <Route path="/">
-            <Redirect to="/dashboard" />
+            <Redirect to="/home" />
           </Route>
         </Switch>
       </Router>

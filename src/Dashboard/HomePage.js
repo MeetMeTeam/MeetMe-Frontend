@@ -19,7 +19,7 @@ const Wrapper = styled("div")({
   height: "100%",
 });
 
-const Dashboard = ({ setUserDetails , isUserInRoom}) => {
+const HomePage = ({ setUserDetails , isUserInRoom}) => {
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
 
@@ -85,4 +85,4 @@ const mapStoreStateToProps = ({ room }) => {
   };
 };
 
-export default connect(mapStoreStateToProps, mapActionsToProps)(Dashboard);
+export default connect(mapStoreStateToProps, mapActionsToProps)(HomePage);
