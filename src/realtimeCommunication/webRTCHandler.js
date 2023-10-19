@@ -34,6 +34,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
   
     if (turnIceServers) {
       // TODO use TURN server credentials
+      console.log("turnIceServers")
     } else {
       console.warn("Using only STUN server");
       return {
