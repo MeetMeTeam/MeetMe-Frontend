@@ -13,7 +13,7 @@ export default function ChatAll() {
         {id:'4',name:'You',text:'ขอ Join ด้วยยยย' , color:'green'}
     ]);
 
-    const [expanded, setExpanded] = React.useState(true);
+    const [expanded, setExpanded] = React.useState(false);
     const handleChange = (panel) => (event, newExpanded) => {
       setExpanded(!expanded);
     };
