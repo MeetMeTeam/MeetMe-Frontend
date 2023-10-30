@@ -1,5 +1,7 @@
 import io from 'socket.io-client'
 import { setPendingFriendsInvitations , setFriends ,setOnlineUsers } from '../store/actions/friendsAction'
+import { UpdateChatList  } from '../store/actions/allChatAction'
+
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 import * as roomHandler from "./roomHandler";
@@ -54,14 +56,15 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("conn-prepare", (data) => {
-    const { connUserSocketId } = data;
+    const { connUserSocketId , name } = data;
     console.log("prepare for connection")
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
-    socket.emit("conn-init", { connUserSocketId: connUserSocketId });
+    webRTCHandler.prepareNewPeerConnection(connUserSocketId, false , name);
+    socket.emit("conn-init", { connUserSocketId: connUserSocketId , name : store.getState().auth.userDetails.username });
   });
+
   socket.on("conn-init", (data) => {
-    const { connUserSocketId } = data;
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
+    const { connUserSocketId ,name } = data;
+    webRTCHandler.prepareNewPeerConnection(connUserSocketId, true , name);
   });
 
   socket.on("conn-signal", (data) => {
@@ -73,17 +76,16 @@ export const connectWithSocketServer = (userDetails) => {
     webRTCHandler.handleParticipantLeftRoom(data);
   });
 
-  socket.on('chatter', (mess) => {
-    console.log(mess + ' this is socket . on')
-    // setChatList([...chatList,{text:mess,id:chatList.length+1}] )
-    // setText('')
+  socket.on('chatter', (newChat) => {
+    console.log(newChat + ' this is socket . on')
+    store.dispatch(UpdateChatList(newChat))
     })
 
 }
 
-export const sendMessage = (text) => {
+export const sendMessage = (newChat) => {
   // socket.emit('chatter', name + ' : ' +text);    
-  socket.emit('chatter', "name" + ' : ' +"text");    
+  socket.emit('chatter',newChat);    
 
 // socket.on('chatter', (mess) => {
 // console.log(mess + ' this is socket . on')
