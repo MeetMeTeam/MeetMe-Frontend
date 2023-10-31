@@ -13,6 +13,7 @@ import Chat from "./ChatAll/ChatAll";
 import HeadBar from "./HeadBar/HeadBar";
 import BannerAdvert from "./BannerAdvert/BannerAdvert";
 import styles from "../../shared/css/mainPage.module.css"
+import SpriteAnimation from './SpriteAnimation';
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -66,7 +67,7 @@ const HomePage = ({ setUserDetails , isUserInRoom}) => {
       </div>
       {/* <Messenger /> */}
       {/* <AppBar /> */}
-     
+
     </div> }
     {isUserInRoom && <Room />}
     </div>

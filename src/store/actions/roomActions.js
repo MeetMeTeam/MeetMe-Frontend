@@ -7,6 +7,7 @@ export const roomActions = {
     SET_AUDIO_ONLY: "ROOM.SET_AUDIO_ONLY",
     SET_SCREEN_SHARE_STREAM: "ROOM.SET_SCREEN_SHARE_STREAM",
     SET_IS_USER_JOINED_WITH_ONLY_AUDIO: "ROOM.SET_IS_USER_JOINED_WITH_ONLY_AUDIO",
+    SET_OTHER_USER_ACTION_CAM : "ROOM.SET_OTHER_USER_ACTION_CAM"
   };
   
   export const setOpenRoom = (
@@ -20,12 +21,23 @@ export const roomActions = {
     };
   };
   
+  
   export const getActions = (dispatch) => {
     return {
       setAudioOnly: (audioOnly) => dispatch(setAudioOnly(audioOnly)),
       setScreenSharingStream: (stream) => {
         dispatch(setScreenSharingStream(stream));
       },
+      setOtherActionCam: (content) => dispatch(setOtherActionCam(content)),
+
+    };
+  };
+  
+    
+  export const setOtherActionCam = (content) => {
+    return {
+      type: roomActions.SET_OTHER_USER_ACTION_CAM,
+      content
     };
   };
   

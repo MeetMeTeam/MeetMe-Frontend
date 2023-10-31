@@ -4,12 +4,16 @@ import Tooltip from "@mui/material/Tooltip";
 import Avatar from "../../../shared/components/Avatar";
 import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+
 const ActiveRoomButton = ({
   creatorUsername,
   roomId,
   amountOfParticipants,
   isUserInRoom,
   roomName,
+  type,
   data
 }) => {
   const handleJoinActiveRoom = () => {
@@ -29,11 +33,17 @@ const ActiveRoomButton = ({
           disabled={activeRoomButtonDisabled || isUserInRoom}
         
         >
-          <div className="flex flex-row"> 
+          <div className="flex flex-row space-x-2"> 
           <div className="flex flex-row bg-green-70 rounded-xl text-white py-1 px-3 text-[12px] space-x-1 font-bold">
             <PersonOutlineIcon  style={{ fontSize: 16 }}/>
             <div>{amountOfParticipants}</div>
           </div>
+          <div className="bg-blue-40 rounded-xl pl-2 pr-3 items-center flex justify-center">
+              { type==="VOICE" && <div className="text-[12px] font-bold  text-white"><KeyboardVoiceIcon style={{ fontSize: 15 }}/> voice talk </div> }  
+          { type==="VIDEO" &&  <VideocamIcon className=" text-white" style={{ fontSize: 15 }}/>}  
+          </div>
+        
+
           </div>
 
           <div className="flex flex-row justify-between">

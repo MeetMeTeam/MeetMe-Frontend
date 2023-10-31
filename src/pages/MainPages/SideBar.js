@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "@mui/system";
 import MainPageButton from "./SideBar/MainPageButton";
-import CreateRoomButton from "./SideBar/CreateRoomButton";
 import { connect } from "react-redux";
 import ActiveRoomButton from "./SideBar/ActiveRoomButton";
 
@@ -19,6 +18,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
           key={room.roomId}
           isUserInRoom={isUserInRoom}
           roomName={room.roomCreator.roomName}
+          type={room.roomCreator.type}
           data={room}
         />
         

@@ -6,7 +6,7 @@ import Peer from "simple-peer";
 
 const onlyAudioConstraints = {
     audio: true,
-    video: false,
+    video: true,
   };
   
   const defaultConstraints = {
@@ -49,7 +49,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
 
   let peers = {};
 
-  export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
+  export const prepareNewPeerConnection = (connUserSocketId, isInitiator , name , pic , id) => {
     const localStream = store.getState().room.localStream;
   
     if (isInitiator) {
@@ -79,7 +79,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
      console.log("remote stream came from other user");
      console.log("direct connection has been established");
      remoteStream.connUserSocketId = connUserSocketId;
-     addNewRemoteStream(remoteStream,connUserSocketId);
+     addNewRemoteStream(remoteStream,connUserSocketId , name , pic , id);
    });
   };
 
@@ -91,9 +91,9 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     }
   };
 
-  const addNewRemoteStream = (remoteStream , connUserSocketId) => {
+  const addNewRemoteStream = (remoteStream , connUserSocketId , name , pic , id) => {
     const remoteStreams = store.getState().room.remoteStreams;
-    const newRemoteStreams = [...remoteStreams, {remoteStream,connUserSocketId}];
+    const newRemoteStreams = [...remoteStreams, {remoteStream,connUserSocketId , name , pic , id}];
   
     store.dispatch(setRemoteStreams(newRemoteStreams));
   };

@@ -20,7 +20,9 @@ import User from "../HeadBar/User"
 
  const Room = () => {
     const [isRoomMinimized, setIsRoomMinimized] = useState(true);
-    const roomDetail = useSelector(state => state.room.roomDetails);
+    const [cameraEnabled, setCameraEnabled] = useState(true);
+
+    let roomDetail = useSelector(state => state.room.roomDetails);
 
     const roomResizeHandler = () => {
       setIsRoomMinimized(!isRoomMinimized);
@@ -41,9 +43,10 @@ import User from "../HeadBar/User"
     <User />
     </div>
     <img src={process.env.PUBLIC_URL + '/RoomBg.png'} className="w-full relative" />
-    <VideosContainer  />
+    { roomDetail !== undefined && 
+    <VideosContainer cameraEnabled={cameraEnabled} roomId={roomDetail?.roomId}  /> }
     <div className="absolute  bottom-6 bg-red-80 w-[300px] h-[70px] flex justify-center items-center rounded-md">
-    <RoomButtons  />
+    <RoomButtons cameraEnabled={cameraEnabled} setCameraEnabled={setCameraEnabled}  />
     </div>
     
   </div>

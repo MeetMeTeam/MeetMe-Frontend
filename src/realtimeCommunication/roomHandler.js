@@ -13,14 +13,14 @@ import {
   import { useSelector } from 'react-redux';
 
 
-  export const createNewRoom = (name) => {
+  export const createNewRoom = (name , type) => {
     const successCalbackFunc = () => {
       store.dispatch(setOpenRoom(true, true));
   
     //   const audioOnly = store.getState().room.audioOnly;
     //   store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
     //มาเขียน ชื่อห้อง , ส่งรูปตรงนี้
-      socketConnection.createNewRoom(name);
+      socketConnection.createNewRoom(name , type);
     };
   
     const audioOnly = store.getState().room.audioOnly;
@@ -63,14 +63,17 @@ import {
     store.dispatch(setActiveRooms(rooms));
   };
 
+
   export const joinRoom = (data) => {
-console.log(data)
+      console.log(data)
     const successCalbackFunc = () => {
       store.dispatch(setRoomDetails(data));
       store.dispatch(setOpenRoom(false, true));
-      const audioOnly = store.getState().room.audioOnly;
+      // const audioOnly = store.getState().room.audioOnly;
+      
       store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-      socketConnection.joinRoom({ roomId :data.roomId ,pic: "testdata" });
+      //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+      socketConnection.joinRoom({ roomId :data.roomId , name: store.getState().auth.userDetails.username  , pic : "testpic" , id :store.getState().auth.userDetails._id});
     };
   
     const audioOnly = store.getState().room.audioOnly;

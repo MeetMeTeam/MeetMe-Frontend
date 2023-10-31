@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import { setPendingFriendsInvitations , setFriends ,setOnlineUsers } from '../store/actions/friendsAction'
 import { UpdateChatList  } from '../store/actions/allChatAction'
-
+import { setOtherActionCam  } from '../store/actions/roomActions'
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 import * as roomHandler from "./roomHandler";
@@ -16,8 +16,15 @@ export const connectWithSocketServer = (userDetails) => {
         auth: {
             token : jwtToken,
             test: "hello"
-        }
+        },
+        cors: {
+          origin: "*",
+          methods: ["GET", "POST"],
+        },
     })
+    socket.on("error", (error) => {
+      console.log("error")
+    });
 
     socket.on('connect', () => {
         console.log("suscess connect socket.io server")
@@ -56,15 +63,17 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("conn-prepare", (data) => {
-    const { connUserSocketId , name } = data;
+    const { connUserSocketId , name , pic , id} = data;
     console.log("prepare for connection")
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, false , name);
-    socket.emit("conn-init", { connUserSocketId: connUserSocketId , name : store.getState().auth.userDetails.username });
+    webRTCHandler.prepareNewPeerConnection(connUserSocketId, false , name , pic , id);
+    //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+    socket.emit("conn-init", { connUserSocketId: connUserSocketId , name : store.getState().auth.userDetails.username , pic : "testpic" , id : store.getState().auth.userDetails._id });
   });
 
   socket.on("conn-init", (data) => {
-    const { connUserSocketId ,name } = data;
-    webRTCHandler.prepareNewPeerConnection(connUserSocketId, true , name);
+    const { connUserSocketId ,name , pic ,id } = data;
+  //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+    webRTCHandler.prepareNewPeerConnection(connUserSocketId, true , name , pic , id);
   });
 
   socket.on("conn-signal", (data) => {
@@ -81,18 +90,16 @@ export const connectWithSocketServer = (userDetails) => {
     store.dispatch(UpdateChatList(newChat))
     })
 
+    socket.on('other-cam-change', (data) => {
+     console.log(data)
+     store.dispatch(setOtherActionCam(data))   
+      })
+  
+
 }
 
 export const sendMessage = (newChat) => {
-  // socket.emit('chatter', name + ' : ' +text);    
   socket.emit('chatter',newChat);    
-
-// socket.on('chatter', (mess) => {
-// console.log(mess + ' this is socket . on')
-// // setChatList([...chatList,{text:mess,id:chatList.length+1}] )
-// // setText('')
-// });
-
 }
 
 
@@ -107,7 +114,8 @@ export const sendDirectMessage = (data) => {
     socket.emit("direct-message", data);
   };
   
-  export const createNewRoom = (data) => {
+  export const createNewRoom = (name , type) => {
+    const data = { name : name , type : type}
     socket.emit("room-create",data);
   };
   
@@ -121,5 +129,9 @@ export const sendDirectMessage = (data) => {
 
   export const signalPeerData = (data) => {
     socket.emit("conn-signal", data);
+  };
+  
+  export const camChange = (data) => {
+    socket.emit("cam-change", data);
   };
   

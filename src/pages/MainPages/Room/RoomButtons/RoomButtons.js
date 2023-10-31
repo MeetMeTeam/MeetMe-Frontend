@@ -24,7 +24,12 @@ const RoomButtons = (props) => {
   return (
     <div >
       <MicButton localStream={localStream} />
-      {!isUserJoinedWithOnlyAudio && <CameraButton localStream={localStream} />}
+      {!isUserJoinedWithOnlyAudio &&
+       <CameraButton 
+       cameraEnabled={props.cameraEnabled} 
+       localStream={localStream}
+       setCameraEnabled={props.setCameraEnabled}
+        />}
 
       <CloseRoomButton />
     </div>
