@@ -30,7 +30,6 @@ const AlertNotification = ({
           notify()
           dispatch(closeAlertMessage()  )
     }
-    console.log("x")
   },[showAlertMessage]);
   return (
  

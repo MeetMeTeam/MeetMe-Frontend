@@ -1,6 +1,5 @@
 const allChatAction = {
     UPDATE_CHAT_LIST: "ALERT.UPDATE_CHAT_LIST",
-    CLOSE_ALERT_MESSAGE: "ALERT.CLOSE_ALERT_MESSAGE",
   };
   
   export const getActions = (dispatch) => {

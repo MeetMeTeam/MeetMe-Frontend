@@ -26,7 +26,7 @@ const login = (userDetails, history) => {
     const response = await api.login(userDetails);
     console.log(response);
     if (response.error) {
-      dispatch(openAlertMessage(response?.exception?.response?.data));
+      dispatch(openAlertMessage(response?.exception?.response?.data?.message));
     } else {
       const { userDetails } = response?.data;
       localStorage.setItem("user", JSON.stringify(userDetails));
@@ -44,11 +44,15 @@ const register = (userDetails, history) => {
     if (response.error) {
       dispatch(openAlertMessage(response?.exception?.response?.data));
     } else {
-      const { userDetails } = response?.data;
-      localStorage.setItem("user", JSON.stringify(userDetails));
-
-      dispatch(setUserDetails(userDetails));
-      history.push("/dashboard");
+      const userDetail = response?.data.data;
+      // localStorage.setItem("user", JSON.stringify(userDetails));
+      console.log()
+      const data = {
+        email : userDetail.email,
+        password : userDetails.password
+      }
+      dispatch(login(data,history));
+      // history.push("/dashboard");
     }
   };
 };

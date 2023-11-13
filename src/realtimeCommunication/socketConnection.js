@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { setPendingFriendsInvitations , setFriends ,setOnlineUsers } from '../store/actions/friendsAction'
+import { setPendingFriendsInvitations , setFriends ,setOnlineUsers , getInviteList } from '../store/actions/friendsAction'
 import { UpdateChatList  } from '../store/actions/allChatAction'
 import { setOtherActionCam  } from '../store/actions/roomActions'
 import store from "../store/store";
@@ -10,12 +10,11 @@ import * as webRTCHandler from "./webRTCHandler";
 let socket = null
 
 export const connectWithSocketServer = (userDetails) => {
-    console.log("test")
     const jwtToken = userDetails.token;
-    socket = io(process.env.REACT_APP_BASE_API , {
+    socket = io(process.env.REACT_APP_BASE_API_SOCKET , {
         auth: {
             token : jwtToken,
-            test: "hello"
+            userId: userDetails._id
         },
         cors: {
           origin: "*",
@@ -94,7 +93,11 @@ export const connectWithSocketServer = (userDetails) => {
      console.log(data)
      store.dispatch(setOtherActionCam(data))   
       })
-  
+
+      socket.on('sendFriendInvite', (data) => {
+        store.dispatch(getInviteList())   
+         })
+      
 
 }
 
@@ -102,6 +105,10 @@ export const sendMessage = (newChat) => {
   socket.emit('chatter',newChat);    
 }
 
+export const sendFriendInvite = (data) => {
+  console.log(data)
+  socket.emit('sendFriendInvite',data);    
+}
 
 export const getDirectChatHistory = (data) => {
   console.log(data)

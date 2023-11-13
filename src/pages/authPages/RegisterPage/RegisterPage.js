@@ -19,9 +19,13 @@ const RegisterPage = ({ register }) => {
 
   const handleRegister = () => {
     const userDetails = {
-      mail,
+      email : mail,
       password,
       username,
+      birthday : "2023-8-12",
+      image : "https://scontent.fbkk20-1.fna.fbcdn.net/v/t1.18169-9/10492251_463085203858201_6361870020470654759_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=be3454&_nc_ohc=LmCxicLFJtIAX8U-zNk&_nc_ht=scontent.fbkk20-1.fna&oh=00_AfA-lDZ4VFiVOds4c4tJDGylGyStEY8RY7CXRfbWbUiK3A&oe=6570232E",
+      firstname : "test",
+      lastname : "test"
     };
 
     register(userDetails, history);

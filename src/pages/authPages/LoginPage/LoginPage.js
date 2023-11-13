@@ -21,7 +21,7 @@ const LoginPage = ({ login }) => {
 
   const handleLogin = () => {
     const userDetails = {
-      mail,
+      email : mail,
       password,
     };
 

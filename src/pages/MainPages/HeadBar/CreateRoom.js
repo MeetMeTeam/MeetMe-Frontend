@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 import { useSelector } from "react-redux";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,7 +15,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   outline: "none",
-  borderRadius: "10px",
+  borderRadius: "10px"
 };
 
 const CreateRoom = () => {
@@ -39,9 +38,9 @@ const CreateRoom = () => {
   return (
     <div>
       <div
-        className="flex flex-row items-center space-x-1 font-bold
+        className="flex  flex-row items-center space-x-1 font-bold
         justify-center bg-purple-70 rounded-2xl text-white cursor-pointer
-        px-6 py-4
+        px-6 py-5
         hover:bg-purple-60
         "
         onClick={handleOpen}
@@ -56,7 +55,7 @@ const CreateRoom = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="bg-purple-60 p-4 rounded-md flex flex-col space-y-6">
+          <div className="bg-purple-60 p-4  rounded-md flex flex-col space-y-6">
             <div className="flex flex-row justify-between text-white font-bold">
               <div> Create room </div>
               <CloseIcon className="cursor-pointer" onClick={handleClose} />

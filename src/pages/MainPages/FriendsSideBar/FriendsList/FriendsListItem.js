@@ -35,16 +35,16 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
    
       <div className="flex flex-row items-center justify-between w-full">
          <div
-       className="text-white flex flex-col text-[20px] font-bold ml-2"
+       className="text-white flex flex-col space-y-[-7px] font-bold ml-2"
       >
-      <div> {username} </div>  
-      <div>หาคนเล่นเกม DM </div>
+      <div className="text-[18px]"> {username} </div>  
+      <div className="text-[14px]">หาคนเล่นเกม DM </div>
       </div>
      
-     <div className="flex space-x-1">
+     {/* <div className="flex space-x-1">
       <MailOutlineIcon className="text-white cursor-pointer hover:bg-blue-60 rounded-md" style={{ fontSize: 33 }}/>
       <PhoneInTalkIcon className="text-white cursor-not-allowed hover:bg-blue-60 rounded-md" style={{ fontSize: 33 }}/>
-     </div>
+     </div> */}
       </div>
       
     </div>
