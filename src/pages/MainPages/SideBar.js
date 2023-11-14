@@ -3,14 +3,15 @@ import { styled } from "@mui/system";
 import MainPageButton from "./SideBar/MainPageButton";
 import { connect } from "react-redux";
 import ActiveRoomButton from "./SideBar/ActiveRoomButton";
-
+import SafetyDividerIcon from '@mui/icons-material/SafetyDivider';
+import styles from "../../shared/css/mainPage.module.css"
 
 
 const SideBar = ({ activeRooms, isUserInRoom }) => {
   return (
-    <div className="bg-purple-60 w-full rounded-2xl px-4">
+    <div className={`bg-purple-60 w-full rounded-2xl px-4 h-full ${ activeRooms.length === 0 ? " justify-between ": " justify-start "} flex flex-col  ${styles.container}` }>
      <div className="text-white text-[32px] font-bold py-5">Room </div> 
-      {activeRooms.map((room) => (
+      {activeRooms && activeRooms.map((room) => (
         <ActiveRoomButton
           roomId={room.roomId}
           creatorUsername={room.creatorUsername}
@@ -23,6 +24,12 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
         />
         
       ))}
+      {activeRooms.length === 0 && 
+      <div className={ `w-full flex justify-center items-center h-full flex-col`}>
+        <SafetyDividerIcon className="text-white" sx={{ fontSize: "43px" }}/>
+        <div className="text-white">No room active now . Create room to invite friends !</div>
+        </div>}
+        <div/>
     </div>
   );
 };

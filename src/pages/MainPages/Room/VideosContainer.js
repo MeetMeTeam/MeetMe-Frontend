@@ -22,6 +22,7 @@ const VideosContainer = ({
   let otherUserActionCam = useSelector(
     (state) => state.room.otherUserActionCam
   );
+  let myImage = useSelector((state) => state.auth.userDetails?.image)
   let activeRooms = useSelector((state) => state.room.activeRooms);
   let [participants, setParticipants] = useState([]);
   const userId = useSelector((state) => state.auth.userDetails?._id);
@@ -65,6 +66,7 @@ const VideosContainer = ({
       userId: userId,
       isCameraEnabled: cameraEnabled,
       peopleInRoom: peopleInRoom ? peopleInRoom : participants,
+      image : myImage
     };
     socketConnection.camChange(data);
   }
@@ -73,12 +75,21 @@ const VideosContainer = ({
     const isCameraEnabled = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.isCameraEnabled;
+    const image =  otherUserActionCam.find(
+      (item) => item.userId === stream.id
+    )?.image;
 
     return (
       <div key={stream.remoteStream.id}>
         {isCameraEnabled || otherUserActionCam.length === 0 ? (
-          <Video stream={stream.remoteStream} id={stream.connUserSocketId} />
-        ) : null}
+          <Video size="300px" stream={stream.remoteStream} id={stream.connUserSocketId} />
+        ) :
+        <div>
+           <Video size="1px" stream={stream.remoteStream} id={stream.connUserSocketId} />
+            <img src={image}  className="rounded-full object-cover"
+      style={{ width: '100px', height: '100px' }}/>
+        </div> 
+      } 
         {participants.map((item) => (
           <div key={item.socketId}>
             {item.socketId === stream.connUserSocketId && stream.name}
@@ -96,9 +107,13 @@ const VideosContainer = ({
     <div className="absolute top-1/3 w-full grid grid-cols-4 px-12">
       <div>
         {cameraEnabled ? (
-          <Video stream={localStream} isLocalStream />
+          <Video size="300px" stream={localStream} isLocalStream />
         ) : (
-          <div>my pic</div>
+          <div>
+            <Video  size="1px" stream={localStream} isLocalStream />
+            <img src={myImage}  className="rounded-full object-cover"
+      style={{ width: '100px', height: '100px' }} />
+          </div>
         )}
         <div> Me</div>
       </div>
