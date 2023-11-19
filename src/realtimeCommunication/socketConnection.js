@@ -21,8 +21,10 @@ export const connectWithSocketServer = (userDetails) => {
           methods: ["GET", "POST"],
         },
     })
+    console.log(socket)
     socket.on("error", (error) => {
       console.log("error")
+      console.log("socket พัง socket พัง socket พัง socket พัง")
     });
 
     socket.on('connect', () => {
@@ -101,8 +103,12 @@ export const connectWithSocketServer = (userDetails) => {
 
 }
 
-export const sendMessage = (newChat) => {
-  socket.emit('chatter',newChat);    
+export const sendMessage = (newChat , people) => {
+const  data = {
+    message : newChat ,
+    people : people
+  }
+  socket.emit('chatter',data);    
 }
 
 export const sendFriendInvite = (data) => {

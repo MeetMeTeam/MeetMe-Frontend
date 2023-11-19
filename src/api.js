@@ -1,5 +1,6 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
+import { connectWithSocketServer } from "./realtimeCommunication/socketConnection"
 
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api`,
@@ -58,6 +59,8 @@ apiClient.interceptors.response.use(
           userDetails.token = response.data.accessToken;
           console.log(userDetails)
           localStorage.setItem("user", JSON.stringify(userDetails));
+          connectWithSocketServer(userDetails)
+
         }
 
         // Retry the original request with the new token

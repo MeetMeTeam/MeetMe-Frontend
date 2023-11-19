@@ -26,7 +26,7 @@ const Video = ({ stream, isLocalStream , id , size }) => {
 
   return (
     <div>
-      <VideoEl className={`rounded-md w-[${size}]`} ref={videoRef} autoPlay muted={isLocalStream ? true : false}  style={{ transform: "scaleX(-1)" }}/>
+      <VideoEl className={` rounded-md w-[${size}] `} ref={videoRef} autoPlay muted={isLocalStream ? true : false}  style={{ transform: "scaleX(-1)" }}/>
     </div>
   );
 };

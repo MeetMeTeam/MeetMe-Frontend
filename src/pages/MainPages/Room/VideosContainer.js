@@ -37,7 +37,7 @@ const VideosContainer = ({
       }
     }
   }, [activeRooms]);
-  console.log(typeof otherUserActionCam);
+  console.log( otherUserActionCam);
 
   useEffect(() => {
     console.log(otherUserActionCam);
@@ -104,8 +104,9 @@ const VideosContainer = ({
   };
 
   return (
-    <div className="absolute top-1/3 w-full grid grid-cols-4 px-12">
-      <div>
+    <div className="absolute top-1/4 w-full grid grid-cols-4 px-12">
+      <div  className="w-[300px] flex flex-col justify-center items-center">
+       
         {cameraEnabled ? (
           <Video size="300px" stream={localStream} isLocalStream />
         ) : (
@@ -115,7 +116,7 @@ const VideosContainer = ({
       style={{ width: '100px', height: '100px' }} />
           </div>
         )}
-        <div> Me</div>
+        <div> Me </div>
       </div>
 
       <RemoteStreams />

@@ -38,7 +38,7 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
        className="text-white flex flex-col space-y-[-7px] font-bold ml-2"
       >
       <div className="text-[18px]"> {username} </div>  
-      <div className="text-[14px]">หาคนเล่นเกม DM </div>
+      {/* <div className="text-[14px]">หาคนเล่นเกม DM </div> */}
       </div>
      
      {/* <div className="flex space-x-1">
