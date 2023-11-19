@@ -3,7 +3,7 @@ import InputWithLabel from "../../../shared/components/InputWithLabel";
 
 const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
   return (
-    <>
+    <div className="flex flex-col space-y-8">
       <InputWithLabel
         value={mail}
         setValue={setMail}
@@ -18,7 +18,7 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
         type="password"
         placeholder="Enter password"
       />
-    </>
+    </div>
   );
 };
 

@@ -113,7 +113,7 @@ const VideosContainer = ({
           <div>
             <Video  size="1px" stream={localStream} isLocalStream />
             <img src={myImage}  className="rounded-full object-cover"
-      style={{ width: '100px', height: '100px' }} />
+            style={{ width: '100px', height: '100px' }} />
           </div>
         )}
         <div> Me </div>

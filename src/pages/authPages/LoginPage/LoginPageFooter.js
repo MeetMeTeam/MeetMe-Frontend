@@ -21,24 +21,25 @@ const LoginPageFooter = ({ handleLogin, isFormValid }) => {
 
   return (
     <>
+     <RedirectInfo
+        text="Do not have an account ? "
+        redirectText="Create an account"
+        additionalStyles={{ marginTop: "32px" }}
+        redirectHandler={handlePushToRegisterPage}
+      />
       <Tooltip
         title={!isFormValid ? getFormNotValidMessage() : getFormValidMessage()}
       >
         <div>
           <CustomPrimaryButton
-            label="Log in"
-            additionalStyles={{ marginTop: "30px" ,color: "black"}}
+            label="Sign In 🠒"
+            additionalStyles={{ marginTop: "5px" ,color: "white"}}
             disabled={!isFormValid}
             onClick={handleLogin}
           />
         </div>
       </Tooltip>
-      <RedirectInfo
-        text="Need an account? "
-        redirectText="Create an account"
-        additionalStyles={{ marginTop: "5px" }}
-        redirectHandler={handlePushToRegisterPage}
-      />
+     
     </>
   );
 };

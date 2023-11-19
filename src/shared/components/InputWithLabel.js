@@ -9,17 +9,18 @@ const Wrapper = styled("div")({
 });
 
 const Label = styled("p")({
-  color: "white",
+  color: "#666666",
   textTransform: "uppercase",
   fontWeight: "600",
-  fontSize: "16px",
+  fontSize: "14px",
+  marginBottom: "4px"
 });
 
 const Input = styled("input")({
   flexGrow: 1,
   height: "40px",
   border: "1px solid white",
-  borderRadius: "5px",
+  borderRadius: "10px",
   color: "black",
   background: "white",
   margin: 0,
