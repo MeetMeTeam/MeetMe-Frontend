@@ -11,7 +11,6 @@ export default function ChatRoom({people}) {
   const randomIndex = Math.floor(Math.random() * inputValue.length);
 
   const sendText = () => {
-    console.log(chatList.length + 1);
     const newChat = {
       textId: chatList.length + 1,
       id: userDetail._id,
@@ -31,7 +30,7 @@ export default function ChatRoom({people}) {
         setInputValue={setInputValue}
         name="Rooms Chat"
         height={100}
-        width={500}
+        width={400}
         isExpanded={true}
       />
     </div>

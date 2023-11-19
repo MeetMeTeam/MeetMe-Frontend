@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SendIcon from '@mui/icons-material/Send';
 import styles from "./scollBarChat.module.css"
 
-export default function Chat({ sendText , chat , setInputValue , inputValue , name , height , isExpanded}) {
+export default function Chat({ sendText , chat , setInputValue , inputValue , name , height ,width , isExpanded}) {
   
     const [expanded, setExpanded] = React.useState(isExpanded);
     const handleChange = (panel) => (event, newExpanded) => {
@@ -16,7 +16,7 @@ export default function Chat({ sendText , chat , setInputValue , inputValue , na
 
   return (
     <div   className={styles.scrollbar}>
-      <Accordion expanded={expanded === true}  onChange={handleChange()} sx={{ backgroundColor: '#FF9999' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
+      <Accordion expanded={expanded === true}  onChange={handleChange()} sx={{ width: width, backgroundColor: '#FF9999' , borderRadius: '16px !important' , boxShadow: 'none !important' }} >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon className='text-white' />}
           aria-controls="panel1a-content"
@@ -28,7 +28,7 @@ export default function Chat({ sendText , chat , setInputValue , inputValue , na
       
         </AccordionSummary>
         <AccordionDetails className='flex flex-col space-y-4'>
-     <div className={`py-4 px-2 text-[14px] font-bold w-full h-[${height}px]  bg-red-90 rounded-2xl mt-[-20px] `}>
+     <div className={`py-4 px-2 text-[14px] font-bold w-full h-[200px]  bg-red-90 rounded-2xl mt-[-20px] `}>
       <div className={`overflow-auto h-[ h-[${height-30}px]`}>
           {chat.map((item) => (
        <div className="flex flex-row" key={item.textId}>
