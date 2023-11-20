@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-const LoginPageHeader = () => {
+export default function RegisterHeader() {
   return (
     <div className="flex flex-col space-y-6 mb-8">
     <div className="flex flex-row space-x-2 items-center">
@@ -10,16 +10,12 @@ const LoginPageHeader = () => {
       />
       <div className="text-[30px] font-bold">
         MeetMe
-      </div>
-      
+      </div>   
     </div>
-    
     <div className="text-[64px] font-extrabold">
-    Sign In
+    Sign Up
     </div>
 
     </div>
-  );
-};
-
-export default LoginPageHeader;
+  )
+}
