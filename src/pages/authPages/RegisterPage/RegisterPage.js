@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
-import { Typography } from "@mui/material";
-import AuthBox from "../../../shared/components/AuthBox";
 import RegisterPageInputs from "./RegisterPageInputs";
 import RegisterPageFooter from "./RegisterPageFooter";
 import RegisterHeader from "./RegisterHeader";
-
 import { validateRegisterForm } from "../../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/authActions";
@@ -24,15 +21,22 @@ const RegisterPage = ({ register }) => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const [character, setCharacter] = useState("PROFILE_1");
 
   const handleRegister = () => {
     const userDetails = {
       email: mail,
       password,
       username,
-      birthday: String(year + '-' + month + '-' + day),
+      birthday: String(year + "-" + month + "-" + day),
       image:
-        "https://scontent.fbkk20-1.fna.fbcdn.net/v/t1.18169-9/10492251_463085203858201_6361870020470654759_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=be3454&_nc_ohc=LmCxicLFJtIAX8U-zNk&_nc_ht=scontent.fbkk20-1.fna&oh=00_AfA-lDZ4VFiVOds4c4tJDGylGyStEY8RY7CXRfbWbUiK3A&oe=6570232E",
+        character === "PROFILE_1"
+          ? "https://drive.google.com/uc?export=view&id=1egJ7dIHOoE3Ao69mNBz5Hp44frolM8Qj"
+          : character === "PROFILE_2"
+          ? "https://drive.google.com/uc?export=view&id=1bBhMAYzWfzMApTI5WCd2JkTFnJTB_y7Y"
+          : character === "PROFILE_3"
+          ? "https://drive.google.com/uc?export=view&id=1IRa9KVpgM9S7c7_fs-nH4xzmcPLfsLOt"
+          : "https://drive.google.com/uc?export=view&id=1egJ7dIHOoE3Ao69mNBz5Hp44frolM8Qj",
       firstname: "test",
       lastname: "test",
       //displayname
@@ -71,8 +75,8 @@ const RegisterPage = ({ register }) => {
         class="absolute bottom-0 right-5 z-20"
       />
       <div className="relative w-full flex items-center justify-center">
-        <div className="absolute w-3/5 h-[550px] rounded-lg backdrop-blur-md bg-white/50 z-40"></div>
-        <div className="absolute w-3/5 h-[550px] z-40 p-6  flex flex-col">
+        {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  rounded-lg backdrop-blur-md bg-white/50 z-40"></div> */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  z-40 p-6  flex flex-col bg-white/50 rounded-xl drop-shadow-md">
           <RegisterHeader />
           <RegisterPageInputs
             mail={mail}
@@ -83,10 +87,16 @@ const RegisterPage = ({ register }) => {
             setPassword={setPassword}
             displayname={displayname}
             setDisplayname={setDisplayname}
-            rePassword={setRePassword}
-            day={setDay}
-            month={setMonth}
-            year={setYear}
+            rePassword={rePassword}
+            setRePassword={setRePassword}
+            day={day}
+            month={month}
+            year={year}
+            setDay={setDay}
+            setMonth={setMonth}
+            setYear={setYear}
+            character={character}
+            setCharacter={setCharacter}
           />
           <RegisterPageFooter
             handleRegister={handleRegister}
