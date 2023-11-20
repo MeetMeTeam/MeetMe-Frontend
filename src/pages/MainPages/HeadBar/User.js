@@ -38,7 +38,7 @@ import { useMediaQuery } from 'react-responsive'
                 <div className='font-medium text-[10px]'>Edit Profile</div>
             </div>
            } 
-            <img className='min-w-[40px]' src={process.env.PUBLIC_URL + '/friend-pic.png'} />
+            <img className='w-[50px] h-[45px] object-cover rounded-md' src={userDetails.image} />
         </div>
         <Popover
         id={id}
