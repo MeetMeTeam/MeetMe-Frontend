@@ -116,7 +116,7 @@ const RegisterPageInputs = (props) => {
         {characters.map((characters) => (
           <img
             key={characters.src}
-            src={"/RegisterPage/" + characters.src +".png"}
+            src={"/registerPage/" + characters.src +".png"}
             class={`transition  hover:scale-125  duration-200 cursor-pointer w-[100px] rounded-2xl drop-shadow-md ${character === characters.src ? " border-purple-60 border-2": ""}`}
             onClick={()=>setCharacter(characters.src)}
           />

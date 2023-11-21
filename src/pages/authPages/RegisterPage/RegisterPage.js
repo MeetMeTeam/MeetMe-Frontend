@@ -59,19 +59,19 @@ const RegisterPage = ({ register }) => {
     <div className="bg-purple-90 select-none relative w-screen h-screen flex items-center">
       <SnowAnimation />
       <img
-        src={process.env.PUBLIC_URL + "/RegisterPage/water1.png"}
+        src={process.env.PUBLIC_URL + "/registerPage/water1.png"}
         class="absolute z-10 bottom-0 w-full object-contain"
       />
       <img
-        src={process.env.PUBLIC_URL + "/RegisterPage/water2.png"}
+        src={process.env.PUBLIC_URL + "/registerPage/water2.png"}
         class="absolute z-0 bottom-0 w-full  object-contain"
       />
       <img
-        src={process.env.PUBLIC_URL + "/RegisterPage/tree.png"}
+        src={process.env.PUBLIC_URL + "/registerPage/tree.png"}
         class="absolute z-20 bottom-20 left-5"
       />
       <img
-        src={process.env.PUBLIC_URL + "/RegisterPage/nongRed.png"}
+        src={process.env.PUBLIC_URL + "/registerPage/nongRed.png"}
         class="absolute bottom-0 right-5 z-20"
       />
       <div className="relative w-full flex items-center justify-center">

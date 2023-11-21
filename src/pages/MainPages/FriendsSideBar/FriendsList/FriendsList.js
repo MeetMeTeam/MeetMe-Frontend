@@ -80,7 +80,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
           }] font-bold select-none  cursor-pointer relative`}
         >
           Request
-          {typePage === "FRIENDS" && inviteList.length > 0 && (
+          {typePage === "FRIENDS" && inviteList?.length > 0 && (
             <div className="bg-red-70 absolute top-[-2px] right-[-9px] w-[8px] h-[8px] rounded-full">
               ⠀
             </div>

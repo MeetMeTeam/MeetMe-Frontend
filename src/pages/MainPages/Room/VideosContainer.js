@@ -87,7 +87,7 @@ const VideosContainer = ({
         <div>
            <Video size="1px" stream={stream.remoteStream} id={stream.connUserSocketId} />
             <img src={image}  className="rounded-full object-cover"
-      style={{ width: '100px', height: '100px' }}/>
+      style={{ width: '200px', height: '200px' }}/>
         </div> 
       } 
         {participants.map((item) => (
@@ -113,10 +113,10 @@ const VideosContainer = ({
           <div>
             <Video  size="1px" stream={localStream} isLocalStream />
             <img src={myImage}  className="rounded-full object-cover"
-            style={{ width: '100px', height: '100px' }} />
+            style={{ width: '200px', height: '200px' }} />
           </div>
         )}
-        <div> Me </div>
+        <div className="mt-4 font-bold drop-shadow-md bg-gray-70 px-2 py-1 rounded-md"> Me </div>
       </div>
 
       <RemoteStreams />
