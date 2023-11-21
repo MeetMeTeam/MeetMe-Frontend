@@ -87,8 +87,8 @@ const InviteList = () => {
                   </div>
 
                   <div className="flex flex-row space-x-2">
-                  <CheckIcon className="cursor-pointer"  onClick={() => rejectFriends(item.inviteId)}/>
-                 <CloseIcon  className="cursor-pointer"  onClick={() => acceptFriends(item.inviteId)} /> 
+                  <CheckIcon className="cursor-pointer"  onClick={() =>  acceptFriends(item.inviteId)}/>
+                 <CloseIcon  className="cursor-pointer"  onClick={() =>  rejectFriends(item.inviteId)} /> 
             
                   </div>
                 </div>
