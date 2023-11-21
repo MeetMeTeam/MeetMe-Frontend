@@ -32,7 +32,7 @@ const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
       >
         <div>
           <CustomPrimaryButton
-            label="Create 🠒"
+            label="Create ->"
             additionalStyles={{ marginTop: "5px" }}
             disabled={!isFormValid}
             onClick={handleRegister}
