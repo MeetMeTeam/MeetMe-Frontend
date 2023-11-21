@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import Button from "@mui/material/Button";
 import Avatar from "../../../../shared/components/Avatar";
@@ -7,7 +8,7 @@ import { connect } from "react-redux";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 // import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
+const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails , image }) => {
   const handleChooseActiveConversation = () => {
     setChosenChatDetails({ id: id, name: username }, chatTypes.DIRECT);
   };
@@ -29,7 +30,8 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails }) => {
       className="bg-blue-70 rounded-2xl px-4"
     >
       <div className="relative">
-           <img src={process.env.PUBLIC_URL + '/friend-pic.png'} />
+      <img src={image} className="w-[50px] object-cover rounded-lg" />
+
       {isOnline && <OnlineIndicator />}
       </div>
    

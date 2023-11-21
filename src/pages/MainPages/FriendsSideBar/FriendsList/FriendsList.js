@@ -17,12 +17,12 @@ import AddFriends from "./AddFriends";
 import InviteList from "./InviteList";
 
 const checkOnlineUsers = (friends = [], onlineUsers = []) => {
-  // console.log(onlineUsers)
-  // console.log(friends)
-  // friends.forEach((f) => {
-  //   const isUserOnline = onlineUsers.find((user) => user.userId === f.id);
-  //   f.isOnline = isUserOnline ? true : false;
-  // });
+  console.log(onlineUsers)
+  console.log(friends)
+  friends.forEach((f) => {
+    const isUserOnline = onlineUsers.find((user) => user.userId === f.id);
+    f.isOnline = isUserOnline ? true : false;
+  });
 
   return friends;
 };
@@ -143,6 +143,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
                       id={f.id}
                       key={f.id}
                       isOnline={f.isOnline}
+                      image={f.image}
                     />
                   ))}
                 </div>
