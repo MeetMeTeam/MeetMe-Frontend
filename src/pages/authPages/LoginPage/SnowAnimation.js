@@ -14,28 +14,28 @@ const SnowAnimation = () => {
   <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
-  ❆
-  </div>
-  <div className={styles.snowflake}>
-  ❄
+  <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
   <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
-  ❆
-  </div>
-  <div className={styles.snowflake}>
-  ❄
+  <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
   <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
-  ❆
+  <AcUnitIcon />
   </div>
   <div className={styles.snowflake}>
-  ❄
+  <AcUnitIcon />
+  </div>
+  <div className={styles.snowflake}>
+  <AcUnitIcon />
+  </div>
+  <div className={styles.snowflake}>
+  <AcUnitIcon />
   </div>
 </div>
 
