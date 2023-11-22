@@ -75,7 +75,6 @@ apiClient.interceptors.response.use(
   }
 );
 // public routes
-const handleError = async (error, test) => {};
 
 export const login = async (data) => {
   try {
@@ -103,7 +102,7 @@ export const register = async (data) => {
 
 export const getFriends = async () => {
   try {
-    return await apiClient.get("/friends").catch(handleError);
+    return await apiClient.get("/friends");
   } catch (exception) {
     return {
       error: true,
@@ -115,7 +114,7 @@ export const getFriends = async () => {
 export const sendFriendInvitation = async (data) => {
   try {
     const content = { targetMailAddress: data };
-    return await apiClient.post("/invitations", content).catch(handleError);
+    return await apiClient.post("/invitations", content);
   } catch (exception) {
     return {
       error: true,
@@ -126,7 +125,7 @@ export const sendFriendInvitation = async (data) => {
 
 export const getInviteList = async () => {
   try {
-    return await apiClient.get("/invitations").catch(handleError);
+    return await apiClient.get("/invitations");
   } catch (exception) {
     return {
       error: true,
@@ -137,7 +136,7 @@ export const getInviteList = async () => {
 
 export const acceptFriendInvitation = async (data) => {
   try {
-    return await apiClient.put(`/invitations/${data}`).catch(handleError);
+    return await apiClient.put(`/invitations/${data}`);
   } catch (exception) {
     return {
       error: true,
@@ -148,7 +147,7 @@ export const acceptFriendInvitation = async (data) => {
 
 export const acceptFriendInvitationAll = async () => {
   try {
-    return await apiClient.put(`/invitations`).catch(handleError);
+    return await apiClient.put(`/invitations`);
   } catch (exception) {
     return {
       error: true,
@@ -159,7 +158,7 @@ export const acceptFriendInvitationAll = async () => {
 
 export const rejectFriendInvitation = async (data) => {
   try {
-    return await apiClient.delete(`/invitations/${data}`).catch(handleError);
+    return await apiClient.delete(`/invitations/${data}`);
   } catch (exception) {
     return {
       error: true,
@@ -170,7 +169,7 @@ export const rejectFriendInvitation = async (data) => {
 
 export const rejectFriendInvitationAll = async () => {
   try {
-    return await apiClient.delete(`/invitations`).catch(handleError);
+    return await apiClient.delete(`/invitations`);
   } catch (exception) {
     return {
       error: true,
