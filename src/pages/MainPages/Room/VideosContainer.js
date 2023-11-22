@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useRef, useState } from "react";
 import { styled } from "@mui/system";
 import { connect } from "react-redux";
@@ -80,7 +81,7 @@ const VideosContainer = ({
     )?.image;
 
     return (
-      <div key={stream.remoteStream.id}>
+      <div key={stream.remoteStream.id} className="flex flex-col items-center justify-center">
         {isCameraEnabled || otherUserActionCam.length === 0 ? (
           <Video size="300px" stream={stream.remoteStream} id={stream.connUserSocketId} />
         ) :
@@ -91,8 +92,8 @@ const VideosContainer = ({
         </div> 
       } 
         {participants.map((item) => (
-          <div key={item.socketId}>
-            {item.socketId === stream.connUserSocketId && stream.name}
+          <div key={item.socketId} >
+            {item.socketId === stream.connUserSocketId && <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">{stream.name}</div>}
           </div>
         ))}
       </div>
@@ -116,7 +117,7 @@ const VideosContainer = ({
             style={{ width: '200px', height: '200px' }} />
           </div>
         )}
-        <div className="mt-4 font-bold drop-shadow-md bg-gray-70 px-2 py-1 rounded-md"> Me </div>
+        <div className="mt-4 font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md"> Me </div>
       </div>
 
       <RemoteStreams />
