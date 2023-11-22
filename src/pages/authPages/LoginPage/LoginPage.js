@@ -33,7 +33,7 @@ const LoginPage = ({ login }) => {
 
   return (
     <div className="select-none relative bg-purple-90 w-screen h-screen ">
-      <SnowAnimation />
+      <SnowAnimation className="z-30" />
 
       <img
         src={process.env.PUBLIC_URL + "/loginPage/water1.png"}
@@ -44,21 +44,21 @@ const LoginPage = ({ login }) => {
         class="absolute z-0 bottom-0 w-full  object-contain"
       />
 
-      <div className="absolute w-screen h-screen z-30 flex lg:flex-row flex-col justify-center">
+      <div className="absolute w-screen h-screen flex lg:flex-row flex-col justify-center">
         <div className="lg:w-1/2 w-full flex justify-center items-center">
           {!isTabletOrMobile &&
           <img
             src={process.env.PUBLIC_URL + "/loginPage/tree.png"}
-            className="w-3/4 lg:block"
+            className="w-3/4 lg:block  z-20"
           />
           }
         </div>
 
-        <div className="relative lg:w-1/2 w-full flex items-center justify-center">
-          <div className="absolute xl:w-3/5 w-4/5 h-[530px] rounded-lg bg-white opacity-50">
+        <div className="relative  lg:w-1/2 w-full flex items-center justify-center">
+          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[530px] rounded-lg bg-white opacity-50">
           
           </div>
-          <div className="absolute xl:w-3/5 w-4/5 h-[530px] z-40 p-6  flex flex-col">
+          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[530px]  p-6  flex flex-col">
             <LoginPageHeader/>
             <LoginPageInputs
               mail={mail}
