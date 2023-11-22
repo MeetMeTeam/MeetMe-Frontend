@@ -34,12 +34,11 @@ export const friendsActions = {
   export const sendFriendInvitation = (data, closeDialogHandler) => {
     return async (dispatch) => {
         const response = await api.sendFriendInvitation(data);
-
-        if(response.error) {
+        if(response?.error) {
             dispatch(openAlertMessage(response.exception?.response?.data.message))
         } else {
             dispatch(openAlertMessage('Invitaation has been sent!'))
-            sendFriendInvite(response.data.data.id);
+            sendFriendInvite(response?.data?.data?.id);
         }
     }
   }
