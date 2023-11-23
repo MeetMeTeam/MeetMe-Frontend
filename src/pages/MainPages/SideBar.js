@@ -9,7 +9,7 @@ import styles from "../../shared/css/mainPage.module.css"
 
 const SideBar = ({ activeRooms, isUserInRoom }) => {
   return (
-    <div className={`bg-purple-60 w-full rounded-2xl px-4 h-full ${ activeRooms.length === 0 ? " justify-between ": " justify-start "} flex flex-col  ${styles.container}` }>
+    <div className={`bg-purple-60 w-full rounded-2xl px-4 h-full max-w-[822px] ${ activeRooms.length === 0 ? " justify-between ": " justify-start "} flex flex-col  ${styles.container}` }>
      <div className="text-white text-[32px] font-bold py-5">Room </div> 
       {activeRooms && activeRooms.map((room) => (
         <ActiveRoomButton

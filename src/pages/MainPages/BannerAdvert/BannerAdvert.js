@@ -14,9 +14,9 @@ const BannerAdvert = () => {
  
    setInterval(changeImage, 2000);
   return (
-    <div>
-        <div className="bg-yellow-90 h-[150px] rounded-2xl relative flex justify-center items-center">
-        <img className=' z-40 absolute w-[140px] top-[-60px] left-[-20px] z-20' src={process.env.PUBLIC_URL + '/logo_banner.svg'} />
+    <div className="max-w-[822px]">
+        <div className=" h-[150px] rounded-2xl relative flex justify-center items-center">
+        <img className=' z-40 absolute w-[140px] top-[-60px] left-[-20px]' src={process.env.PUBLIC_URL + '/logo_banner.svg'} />
         <div 
         className="bg-yellow-80 absolute
          py-2 px-8 drop-shadow-lg left-[85px]
@@ -28,7 +28,7 @@ const BannerAdvert = () => {
           News
           </div>
 
-          <img className=' h-[150px]  rounded-2xl z-0  top-[-60px] left-[-20px] z-20' 
+          <img className=' h-[150px]  rounded-2xl object-contain top-[-60px] left-[-20px] z-20' 
           src={process.env.PUBLIC_URL + '/banner-test.png'} />
 
         </div>

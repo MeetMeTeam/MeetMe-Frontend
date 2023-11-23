@@ -35,14 +35,14 @@ const HomePage = ({ setUserDetails , isUserInRoom}) => {
   return (
     <div className="min-h-screen flex flex-col">
      {!isUserInRoom &&  <HeadBar/> }
-     {!isUserInRoom &&   <div className="flex md:flex-row flex-col w-full justify-between">
-      <div className="md:w-1/3 p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
+     {!isUserInRoom &&   <div className="flex md:flex-row flex-col w-full justify-center">
+      <div className="md:w-1/3 max-w-[500px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
         <FriendsSideBar />
         <div>
           <Chat />
         </div>
       </div> 
-      <div className="p-[32px] md:w-2/3 flex flex-col h-full space-y-4">
+      <div className="p-[32px] md:w-2/3 max-w-[822px] flex flex-col h-full space-y-4">
       <BannerAdvert className="h-1/3"/>
       <div className={`flex flex-row md:space-x-6`}>
         {/* <div className={`
@@ -65,8 +65,7 @@ const HomePage = ({ setUserDetails , isUserInRoom}) => {
         <SideBar />   {/* //ไว้โชว์ห้อง */}
         </div>
       </div>
-      {/* <Messenger /> */}
-      {/* <AppBar /> */}
+   
 
     </div> }
     {isUserInRoom && <Room />}
