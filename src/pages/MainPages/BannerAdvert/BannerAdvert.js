@@ -29,7 +29,7 @@ const BannerAdvert = () => {
           </div>
 
           <img className=' h-[150px]  rounded-2xl object-contain top-[-60px] left-[-20px] z-20' 
-          src={process.env.PUBLIC_URL + '/banner-test.png'} />
+          src={process.env.PUBLIC_URL + '/Banner-test.png'} />
 
         </div>
     </div>
