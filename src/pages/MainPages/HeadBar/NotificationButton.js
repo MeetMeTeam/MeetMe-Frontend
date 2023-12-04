@@ -28,14 +28,16 @@ export default function Notification() {
         className="relative cursor-pointer border-purple-60 border-2 rounded-2xl text-purple-60 h-fit py-3 px-3.5"
       >
         <NotificationsNoneIcon />
-        { notiList?.length > 0 &&  <div className="w-[15px] h-[15px] rounded-full absolute top-[-7px] right-1 bg-purple-60" />}  
+        {notiList?.length > 0 && (
+          <div className="w-[15px] h-[15px] rounded-full absolute top-[-7px] right-1 bg-purple-60" />
+        )}
       </div>
       <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
-     className="mt-14"
+        className="mt-14"
       >
         <div className="bg-purple-80 w-[300px] p-3 text-white">
           <div className="font-bold mb-2"> Notifications</div>
@@ -53,13 +55,20 @@ export default function Notification() {
                 </div>
               </div>
 
-              <div onClick={()=> roomHandler.joinRoom({roomId : f.roomId})} className="cursor-pointer font-bold text-[12px] text-purple-60 bg-purple-90 py-2 px-3 rounded-2xl">
+              <div
+                onClick={() => roomHandler.joinRoom( f.room )}
+                className="cursor-pointer font-bold text-[12px] text-purple-60 bg-purple-90 py-2 px-3 rounded-2xl"
+              >
                 Join
               </div>
             </div>
           ))}
- {notiList.length === 0 && <div className="w-full flex justify-center text-[12px]">ยังไม่มีแจ้งเตือน </div> }
-          
+          {notiList.length === 0 && (
+            <div className="w-full flex justify-center text-[12px]">
+              ยังไม่มีแจ้งเตือน{" "}
+            </div>
+          )}
+
           <div></div>
         </div>
       </Popover>
