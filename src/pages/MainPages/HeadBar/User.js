@@ -34,11 +34,11 @@ import { useMediaQuery } from 'react-responsive'
         >
            { !isTabletOrMobile &&
             <div className='flex flex-col'>
-                <div>@{userDetails ? userDetails.username : ''} </div>
+                <div className='text-[14px]'>@{userDetails ? userDetails.username : ''} </div>
                 <div className='font-medium text-[10px]'>Edit Profile</div>
             </div>
            } 
-            <img className='w-[50px] h-[45px] object-cover rounded-md' src={userDetails?.image} />
+            <img className='w-[35px] h-[35px] object-cover rounded-md' src={userDetails?.image} />
         </div>
         <Popover
         id={id}

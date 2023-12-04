@@ -1,5 +1,5 @@
 import store from "../store/store";
-import { setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
+import { setLocalStream, setRemoteStreams , removeOtherActionCam } from "../store/actions/roomActions";
 // import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
 import Peer from "simple-peer";
@@ -122,7 +122,8 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     const newRemoteStreams = remoteStreams.filter(
       (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
     );
-  
+    console.log("some one left")
+    store.dispatch(removeOtherActionCam(connUserSocketId));
     store.dispatch(setRemoteStreams(newRemoteStreams));
   };
   

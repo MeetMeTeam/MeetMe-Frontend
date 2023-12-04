@@ -39,11 +39,11 @@ const LoginPage = ({ login }) => {
 
       <img
         src={process.env.PUBLIC_URL + "/loginPage/water1.png"}
-        class="absolute z-10 bottom-0 w-full object-contain"
+        className="absolute z-10 bottom-0 w-full object-contain"
       />
       <img
         src={process.env.PUBLIC_URL + "/loginPage/water2.png"}
-        class="absolute z-0 bottom-0 w-full  object-contain"
+        className="absolute z-0 bottom-0 w-full  object-contain"
       />
 
       <div className="absolute w-screen h-screen flex lg:flex-row flex-col justify-center">

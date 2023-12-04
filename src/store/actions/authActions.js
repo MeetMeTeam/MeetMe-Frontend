@@ -24,7 +24,6 @@ const setUserDetails = (userDetails) => {
 const login = (userDetails, history) => {
   return async (dispatch) => {
     const response = await api.login(userDetails);
-    console.log(response);
     if (response.error) {
       dispatch(openAlertMessage(response?.exception?.response?.data?.message));
     } else {
@@ -46,7 +45,6 @@ const register = (userDetails, history) => {
     } else {
       const userDetail = response?.data.data;
       // localStorage.setItem("user", JSON.stringify(userDetails));
-      console.log()
       const data = {
         email : userDetail.email,
         password : userDetails.password

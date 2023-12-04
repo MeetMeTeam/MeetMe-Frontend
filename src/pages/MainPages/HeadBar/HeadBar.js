@@ -2,7 +2,7 @@ import React from 'react'
 import JoinRoomRandom from './JoinRoomRandom'
 import CreateRoom from './CreateRoom'
 import User from './User'
-
+import Notification from './NotificationButton'
 
 export default function HeadBar() {
 
@@ -13,6 +13,7 @@ export default function HeadBar() {
           <div className='flex md:flex-row flex-col space-x-4'>
             {/* <JoinRoomRandom/> */}
              <CreateRoom/>
+             <Notification/>
           </div>
         
         <div className='md:block'>

@@ -6,7 +6,7 @@ const SnowAnimation = () => {
 
   return (
  
-<div class="snowflakes" aria-hidden="true">
+<div className="snowflakes" aria-hidden="true">
   <div className={styles.snowflake}>
   <AcUnitIcon />
   </div>

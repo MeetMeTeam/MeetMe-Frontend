@@ -11,26 +11,32 @@ const initState = {
   screenSharingStream: null,
   isScreenSharingActive: false,
   isUserJoinedWithOnlyAudio: false,
-  otherUserActionCam : []
+  otherUserActionCam: [],
 };
 
 const reducer = (state = initState, action) => {
-  switch (action.type) { 
-      case roomActions.SET_OTHER_USER_ACTION_CAM:
-        let newOtherUserActionCam = []
-        newOtherUserActionCam = [...state.otherUserActionCam]
-        const foundIndex = newOtherUserActionCam.findIndex(
-          otherUserActionCam => otherUserActionCam.userId === action.content.userId
-        );
-        if (foundIndex > -1) {
-          // แทนที่ object ที่มี id เดียวกัน
-          newOtherUserActionCam[foundIndex] = action.content;
-        } else {
-          // เพิ่ม object ใหม่
-          newOtherUserActionCam.push(action.content);
-        }
-        return  {...state,
-        otherUserActionCam : newOtherUserActionCam }
+  switch (action.type) {
+    case roomActions.REMOVE_OTHER_USER_ACTION_CAM:
+      let newOtherUserAction = [];
+      newOtherUserAction = [...state.otherUserActionCam];
+      const index = newOtherUserAction.findIndex((item) => item.id === action.content);
+      newOtherUserAction.splice(index, 1);
+      return { ...state, otherUserActionCam: newOtherUserAction };
+    case roomActions.SET_OTHER_USER_ACTION_CAM:
+      let newOtherUserActionCam = [];
+      newOtherUserActionCam = [...state.otherUserActionCam];
+      const foundIndex = newOtherUserActionCam.findIndex(
+        (otherUserActionCam) =>
+          otherUserActionCam.userId === action.content.userId
+      );
+      if (foundIndex > -1) {
+        // แทนที่ object ที่มี id เดียวกัน
+        newOtherUserActionCam[foundIndex] = action.content;
+      } else {
+        // เพิ่ม object ใหม่
+        newOtherUserActionCam.push(action.content);
+      }
+      return { ...state, otherUserActionCam: newOtherUserActionCam };
     case roomActions.OPEN_ROOM:
       return {
         ...state,

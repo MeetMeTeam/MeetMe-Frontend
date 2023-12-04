@@ -28,6 +28,7 @@ apiClient.interceptors.response.use(
 
     // If the error status is 401 and there is no originalRequest._retry flag,
     // it means the token has expired and we need to refresh it
+   
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
@@ -51,6 +52,7 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
+        console.log("hello")
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           console.log(response);
@@ -60,14 +62,15 @@ apiClient.interceptors.response.use(
           console.log(userDetails)
           localStorage.setItem("user", JSON.stringify(userDetails));
           connectWithSocketServer(userDetails)
-
+          
         }
+    
 
         // Retry the original request with the new token
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
         return axios(originalRequest);
       } catch (error) {
-        // Handle refresh token error or redirect to login
+          logout()
       }
     }
 

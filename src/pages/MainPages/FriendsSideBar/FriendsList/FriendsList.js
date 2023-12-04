@@ -17,8 +17,6 @@ import AddFriends from "./AddFriends";
 import InviteList from "./InviteList";
 
 const checkOnlineUsers = (friends = [], onlineUsers = []) => {
-  console.log(onlineUsers)
-  console.log(friends)
   friends.forEach((f) => {
     const isUserOnline = onlineUsers.find((user) => user.userId === f.id);
     f.isOnline = isUserOnline ? true : false;

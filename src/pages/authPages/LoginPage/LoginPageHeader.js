@@ -6,7 +6,7 @@ const LoginPageHeader = () => {
     <div className="flex flex-row space-x-2 items-center">
         <img
         src={process.env.PUBLIC_URL + "meetme_logo.svg"}
-        class="w-[50px]"
+        className="w-[50px]"
       />
       <div className="text-[30px] font-bold">
         MeetMe

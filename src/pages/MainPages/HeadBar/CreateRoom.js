@@ -40,7 +40,7 @@ const CreateRoom = () => {
       <div
         className="flex  flex-row items-center space-x-1 font-bold
         justify-center bg-purple-70 rounded-2xl text-white cursor-pointer
-        px-6 py-5
+        px-6 py-3.5
         hover:bg-purple-60
         "
         onClick={handleOpen}

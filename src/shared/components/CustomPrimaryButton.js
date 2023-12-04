@@ -21,7 +21,7 @@ const CustomPrimaryButton = ({
         "&:hover": {
           bgcolor: "#4B1E7A",
         },
-        borderRadius: "16px",
+        borderRadius: "12px",
       }}
       style={additionalStyles ? additionalStyles : {}}
       disabled={disabled}

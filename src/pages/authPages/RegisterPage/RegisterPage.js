@@ -37,9 +37,7 @@ const RegisterPage = ({ register }) => {
           : character === "PROFILE_3"
           ? "https://drive.google.com/uc?export=view&id=1IRa9KVpgM9S7c7_fs-nH4xzmcPLfsLOt"
           : "https://drive.google.com/uc?export=view&id=1egJ7dIHOoE3Ao69mNBz5Hp44frolM8Qj",
-      firstname: "test",
-      lastname: "test",
-      //displayname
+      displayName : displayname
     };
 
     register(userDetails, history);
@@ -52,27 +50,29 @@ const RegisterPage = ({ register }) => {
         username,
         password,
       })
+      && displayname
+      && rePassword === password
     );
-  }, [mail, username, password, setIsFormValid]);
+  }, [mail, displayname, username, password, setIsFormValid , rePassword]);
 
   return (
     <div className="bg-purple-90 select-none relative w-screen h-screen flex items-center">
       <SnowAnimation />
       <img
         src={process.env.PUBLIC_URL + "/registerPage/water1.png"}
-        class="absolute z-10 bottom-0 w-full object-contain"
+        className="absolute z-10 bottom-0 w-full object-contain"
       />
       <img
         src={process.env.PUBLIC_URL + "/registerPage/water2.png"}
-        class="absolute z-0 bottom-0 w-full  object-contain"
+        className="absolute z-0 bottom-0 w-full  object-contain"
       />
       <img
         src={process.env.PUBLIC_URL + "/registerPage/tree.png"}
-        class="absolute z-20 bottom-20 left-5"
+        className="absolute z-20 bottom-20 left-5"
       />
       <img
         src={process.env.PUBLIC_URL + "/registerPage/nongRed.png"}
-        class="absolute bottom-0 right-5 z-20"
+        className="absolute bottom-0 right-5 z-20"
       />
       <div className="relative w-full flex items-center justify-center">
         {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  rounded-lg backdrop-blur-md bg-white/50 z-40"></div> */}

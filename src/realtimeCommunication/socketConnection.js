@@ -7,6 +7,8 @@ import {
 } from "../store/actions/friendsAction";
 import { UpdateChatList } from "../store/actions/allChatAction";
 import { setOtherActionCam } from "../store/actions/roomActions";
+import { setNotification } from "../store/actions/alertActions";
+
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 import * as roomHandler from "./roomHandler";
@@ -124,6 +126,7 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("invite-room", (data) => {
    console.log(data)
+   store.dispatch(setNotification(data));
   });
   
 };
