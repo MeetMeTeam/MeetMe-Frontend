@@ -1,13 +1,13 @@
-import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import * as roomHandler from "../../../realtimeCommunication/roomHandler";
-import { useSelector } from "react-redux";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import VideocamIcon from '@mui/icons-material/Videocam';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import  { useState } from "react";
+import { useSelector } from "react-redux";
+import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,8 +20,8 @@ const style = {
 
 const CreateRoom = () => {
   const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
-  const [open, setOpen] = React.useState(false);
-  const [roomType, setRoomType] = React.useState("VOICE");
+  const [open, setOpen] = useState(false);
+  const [roomType, setRoomType] = useState("VOICE");
 
   const createNewRoomHandler = () => {
     if (!isUserInRoom) {

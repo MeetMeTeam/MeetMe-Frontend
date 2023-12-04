@@ -12,10 +12,17 @@ const initState = {
   isScreenSharingActive: false,
   isUserJoinedWithOnlyAudio: false,
   otherUserActionCam: [],
+  isModalCantJoinShow:null
 };
 
 const reducer = (state = initState, action) => {
+  
   switch (action.type) {
+    case roomActions.SET_MODAL_ERROR_SHOW:
+      return {
+        ...state,
+        isModalCantJoinShow: action.content,
+      };
     case roomActions.REMOVE_OTHER_USER_ACTION_CAM:
       let newOtherUserAction = [];
       newOtherUserAction = [...state.otherUserActionCam];

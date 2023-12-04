@@ -8,6 +8,12 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case alertActions.REMOVE_NOTIFICATION:
+      let newNotification = [];
+      newNotification = [...state.Notification];
+      const index = newNotification.findIndex((item) => item.roomId === action.roomId);
+      newNotification.splice(index, 1);
+      return { ...state, Notification: newNotification };
     case alertActions.UPDATE_NOTIFICATION:
       return {
         ...state,

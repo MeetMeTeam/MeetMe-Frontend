@@ -1,7 +1,8 @@
 const alertActions = {
   OPEN_ALERT_MESSAGE: "ALERT.OPEN_ALERT_MESSAGE",
   CLOSE_ALERT_MESSAGE: "ALERT.CLOSE_ALERT_MESSAGE",
-  UPDATE_NOTIFICATION: "ALERT.UPDATE_NOTIFICATION"
+  UPDATE_NOTIFICATION: "ALERT.UPDATE_NOTIFICATION",
+  REMOVE_NOTIFICATION : "ALERT.REMOVE_NOTIFICATION"
 };
 
 export const getActions = (dispatch) => {
@@ -14,6 +15,12 @@ export const setNotification = (content) => {
   return {
     type: alertActions.UPDATE_NOTIFICATION,
     content,
+  };
+};
+export const removeNotification = (content) => {
+  return {
+    type: alertActions.REMOVE_NOTIFICATION,
+    content
   };
 };
 

@@ -8,7 +8,8 @@ export const roomActions = {
     SET_SCREEN_SHARE_STREAM: "ROOM.SET_SCREEN_SHARE_STREAM",
     SET_IS_USER_JOINED_WITH_ONLY_AUDIO: "ROOM.SET_IS_USER_JOINED_WITH_ONLY_AUDIO",
     SET_OTHER_USER_ACTION_CAM : "ROOM.SET_OTHER_USER_ACTION_CAM",
-    REMOVE_OTHER_USER_ACTION_CAM: "ROOM.REMOVE_OTHER_USER_ACTION_CAM"
+    REMOVE_OTHER_USER_ACTION_CAM: "ROOM.REMOVE_OTHER_USER_ACTION_CAM",
+    SET_MODAL_ERROR_SHOW: "ROOM.SET_MODAL_ERROR_SHOW"
   };
   
   export const setOpenRoom = (
@@ -31,6 +32,7 @@ export const roomActions = {
       },
       setOtherActionCam: (content) => dispatch(setOtherActionCam(content)),
       removeOtherActionCam: (content) => dispatch(removeOtherActionCam(content)),
+      setErrorModal: (content) => dispatch(setErrorModal(content)),
 
     };
   };
@@ -39,6 +41,13 @@ export const roomActions = {
     console.log(content)
     return {
       type: roomActions.REMOVE_OTHER_USER_ACTION_CAM,
+      content
+    };
+  };
+
+  export const setErrorModal = (content) => {
+    return {
+      type: roomActions.SET_MODAL_ERROR_SHOW,
       content
     };
   };
