@@ -71,7 +71,7 @@ const InviteList = () => {
        
       </div>  */}
       <div className="bg-blue-80 p-4 pt-0 rounded-md flex flex-col space-y-6 h-[270px]">
-        <div className="h-[240px] space-y-4 overflow-auto pr-2 text-white">
+        <div className="h-[240px] space-y-4 flex items-center justify-center overflow-auto pr-2 text-white">
           {inviteList?.length > 0 &&
             inviteList?.map((item) => (
               <div className="bg-blue-70 rounded-md">

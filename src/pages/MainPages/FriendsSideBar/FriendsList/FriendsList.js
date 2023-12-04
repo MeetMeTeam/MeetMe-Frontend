@@ -32,6 +32,13 @@ const FriendsList = ({ friends, onlineUsers }) => {
   const [expanded, setExpanded] = React.useState(true);
   const [typePage, setTypePage] = React.useState("FRIENDS");
 
+  const setType = (type) => {
+    setTypePage(type)
+    if(!expanded) {
+      setExpanded(true)
+    }
+  };
+
   // const [isFriendAlready, setIsFriendAlready] = React.useState(false);
   const inviteList = useSelector((state) => state.friends.invites);
 
@@ -59,7 +66,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
     <div className={styles.scrollbar + " relative"}>
       <span className="absolute top-2 z-50 left-4  flex flex-row mb-[-10px] space-x-2">
         <div
-          onClick={() => setTypePage("FRIENDS")}
+          onClick={() =>{  setType("FRIENDS") }}
           className={`${
             typePage === "FRIENDS"
               ? "text-[2rem] text-white "
@@ -70,7 +77,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
         </div>
         <div className="mt-4 text-white">|</div>
         <div
-          onClick={() => setTypePage("INVITE")}
+          onClick={() => setType("INVITE")}
           className={`${
             typePage === "INVITE"
               ? "text-[2rem] text-white "
