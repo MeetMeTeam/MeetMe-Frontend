@@ -28,12 +28,12 @@ export default function Chat({ sendText , chat , setInputValue , inputValue , na
       
         </AccordionSummary>
         <AccordionDetails className='flex flex-col space-y-4'>
-     <div className={`py-4 px-2 text-[14px] font-bold w-full h-[200px]  bg-red-90 rounded-2xl mt-[-20px] `}>
+     <div className={`py-4 px-2 text-[14px] font-bold w-full h-[${height}px]  bg-red-90 rounded-2xl mt-[-20px] `}>
       <div className={`overflow-auto h-[ h-[${height-30}px]`}>
           {chat.map((item) => (
-       <div className="flex flex-row" key={item.textId}>
-        <div className={`text-${item.color}-500 mr-2`}>{item.name + ':'} </div>
-         <div className='text-white'>{item.text}</div>
+       <div className="flex flex-row" key={item?.textId}>
+        <div className={`text-${item?.color}-500 mr-2`}>{item?.name + ':'} </div>
+         <div className='text-white'>{item?.text}</div>
          </div>
       ))}
       </div>
@@ -43,6 +43,7 @@ export default function Chat({ sendText , chat , setInputValue , inputValue , na
         <div className="relative z-0 w-full flex flex-row items-center  group">
       <input 
       onChange={e => setInputValue(e.target.value)}
+      value={inputValue}
       onKeyDown={(e) => {
       if (e.key === 'Enter') {
         sendText();

@@ -3,11 +3,17 @@ import alertActions from "../actions/alertActions";
 const initState = {
   showAlertMessage: false,
   alertMessageContent: null,
-  Notification:[]
+  Notification:[],
+  isLoadingPage : false
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case alertActions.SET_LOADING_PAGE:
+      return {
+        ...state,
+        isLoadingPage: action.content  ,
+      };
     case alertActions.REMOVE_NOTIFICATION:
       let newNotificationRemove = [];
       newNotificationRemove = [...state.Notification];

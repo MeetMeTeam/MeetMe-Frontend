@@ -8,13 +8,18 @@ import {
   setScreenSharingStream,
   setIsUserJoinedOnlyWithAudio,
 } from "../store/actions/roomActions";
+import { clearChatList } from '../store/actions/allChatAction'
+import { setLoadingPage } from '../store/actions/alertActions'
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 import { useSelector } from "react-redux";
 
 export const createNewRoom = (name, type) => {
+  store.dispatch(setLoadingPage(true));
+
   const successCalbackFunc = () => {
     store.dispatch(setOpenRoom(true, true));
+    store.dispatch(clearChatList());
 
     //มาเขียน ชื่อห้อง , ส่งรูปตรงนี้
     socketConnection.createNewRoom(name, type);
@@ -27,6 +32,7 @@ export const createNewRoom = (name, type) => {
 export const newRoomCreated = (data) => {
   const { roomDetails } = data;
   store.dispatch(setRoomDetails(roomDetails));
+  store.dispatch(setLoadingPage(false));
 };
 
 export const updateActiveRooms = (data) => {
@@ -53,6 +59,7 @@ export const joinRoom = (data) => {
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
+    store.dispatch(clearChatList());
 
     store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
     //ส่งข้อมูลให้คนอื่นเห็นในห้อง

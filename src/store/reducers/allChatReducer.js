@@ -11,6 +11,11 @@ const reducer = (state = initState, action) => {
         ...state,
         chatList: [...state.chatList, action.content],   
        };
+       case allChatAction.CLEAR_CHAT_LIST:
+      return {
+        ...state,
+        chatList: [],   
+       };
     default:
       return state;
   }

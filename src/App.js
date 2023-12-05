@@ -1,5 +1,5 @@
 import "animate.css";
-import React from "react";
+import React, { useState , useEffect  } from "react";
 import {
   Redirect,
   Route,
@@ -12,18 +12,24 @@ import LoginPage from "./pages/authPages/LoginPage/LoginPage";
 import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-import { openAlertMessage } from './store/actions/alertActions'
+import { clearChatList } from './store/actions/allChatAction'
 import { useDispatch } from 'react-redux';
+import LoadingPage from './shared/components/LoadingPage'
+import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
+  const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
+
+  useEffect(() => {
+  console.log("clearChatList")
+  dispatch(clearChatList())
+  }, [])
   return (
-    <div>
+    <div className="relative">
+     {isShowLoadingPage &&  <LoadingPage/>} 
        {/* <div>
         <button onClick={()=>  dispatch(openAlertMessage("Hello world")  )}>Notify !</button>
-   
       </div> */}
       <Router>
         <Switch>

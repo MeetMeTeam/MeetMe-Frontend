@@ -6,14 +6,19 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ChairIcon from "@mui/icons-material/Chair";
 import { useSelector } from "react-redux";
 import * as roomHandler from "../../../realtimeCommunication/roomHandler";
-import InviteRoom from "./InviteRoom/InviteRoom";
+import InviteRoom from "./InviteRoom/InviteRoom"
+import { clearChatList } from '../../../store/actions/allChatAction'
+import { useDispatch } from 'react-redux';;
 export default function RoomHeadBar() {
   const roomDetail = useSelector((state) => state.room.roomDetails);
   const activeRoom = useSelector((state) => state.room.activeRooms);
   const [countPerson, setCountPerson] = useState(0);
+  const dispatch = useDispatch();
 
   const handleLeaveRoom = () => {
     roomHandler.leaveRoom();
+    dispatch(clearChatList())
+
   };
   const handleCount = () => {
     activeRoom.map((item) => {
