@@ -35,7 +35,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SnowAnimation className="z-10" />
+     {!isUserInRoom && <SnowAnimation className="z-10" />} 
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
         <div className="flex md:flex-row flex-col w-full justify-center z-20">
