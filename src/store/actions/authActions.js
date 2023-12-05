@@ -26,6 +26,7 @@ const login = (userDetails, history) => {
     dispatch(setLoadingPage(true));
     const response = await api.login(userDetails);
     if (response.error) {
+      dispatch(openAlertMessage("มีบางอย่างผิดพลาด"));
       dispatch(openAlertMessage(response?.exception?.response?.data?.message));
       dispatch(setLoadingPage(false));
 
@@ -45,19 +46,22 @@ const register = (userDetails, history) => {
 
   return async (dispatch) => {
     dispatch(setLoadingPage(true));
-    const response = await api.register(userDetails);
-    console.log(response);
-    if (response.error) {
-      dispatch(openAlertMessage(response?.exception?.response?.data));
-    } else {
-      const userDetail = response?.data.data;
-      // localStorage.setItem("user", JSON.stringify(userDetails));
-      const data = {
-        email : userDetail.email,
-        password : userDetails.password
+    try {
+      const response = await api.register(userDetails);
+      console.log(response);
+      if (response.error) {
+        dispatch(setLoadingPage(false));
+        dispatch(openAlertMessage(response?.exception?.response?.data.message));
+      } else {
+        const userDetail = response?.data.data;
+        const data = {
+          email: userDetail.email,
+          password: userDetails.password,
+        };
+        dispatch(login(data, history));
       }
-      dispatch(login(data,history));
-      // history.push("/dashboard");
-    }
+    } catch (exception) {
+      throw exception;
+    } 
   };
 };
