@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 import * as socketConnection from "../../../../realtimeCommunication/socketConnection";
+import SendIcon from '@mui/icons-material/Send';
 
 export default function Invite({id}) {
   const room = useSelector((state) => state.room.roomDetails);
@@ -17,10 +18,10 @@ export default function Invite({id}) {
     setIsset(true)
   }
   return (
-    <div>
+    <div className="select-none">
       <div onClick={()=>inviteFriend()}>
-           {isSend &&  <div>เชิญละ</div>  } 
-           {!isSend &&  <AddIcon/>  }  
+           {isSend &&  <div className="cursor-not-allowed text-purple-90">Sent</div>  } 
+           {!isSend &&  <div className="cursor-pointer flex items-center justify-center text-white  space-x-1"> <SendIcon sx={{fontSize:12}}/><div>Invite </div></div>  }  
  
       </div>
     </div>

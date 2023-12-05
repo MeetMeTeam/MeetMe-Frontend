@@ -31,7 +31,7 @@ export default function RoomHeadBar() {
     <div className="w-full flex justify-start space-x-4">
       <div
         onClick={handleLeaveRoom}
-        className="cursor-pointer flex  items-center justify-center bg-purple-80 text-purple-60 py-3 px-4 pr-5 rounded-2xl font-bold"
+        className="cursor-pointer flex  items-center justify-center bg-purple-80 hover:bg-purple-70 text-purple-60 py-3 px-4 pr-5 rounded-2xl font-bold"
       >
         <ArrowBackIosNewIcon /> Lobby
       </div>

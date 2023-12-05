@@ -33,20 +33,15 @@ const VideosContainer = ({
   useEffect(() => {
     for (let index = 0; index < activeRooms.length; index++) {
       if (activeRooms[index].roomId === roomId) {
-        console.log("match");
         setParticipants(activeRooms[index].participants);
       }
     }
   }, [activeRooms]);
-  console.log( otherUserActionCam);
 
   useEffect(() => {
-    console.log(otherUserActionCam);
-    console.log(typeof otherUserActionCam);
   }, [otherUserActionCam]);
 
   useEffect(() => {
-    console.log(participants);
   }, [participants]);
 
   useEffect(() => {
@@ -54,7 +49,6 @@ const VideosContainer = ({
   }, [remoteStreams]);
 
   useEffect(() => {
-    console.log(localStream);
   }, [localStream]);
 
   useEffect(() => {
@@ -62,7 +56,6 @@ const VideosContainer = ({
   }, [cameraEnabled]);
 
   function updateMyCamToOther(peopleInRoom) {
-    console.log("ส่งปิดกล้องไปหาคนอื่น")
     const data = {
       userId: userId,
       isCameraEnabled: cameraEnabled,

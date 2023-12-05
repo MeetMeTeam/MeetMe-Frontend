@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
-import CheckIcon from '@mui/icons-material/Check';
 import Invite from "./Invite";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 const style = {
   position: "absolute",
   top: "50%",
@@ -41,16 +39,15 @@ export default function InviteRoom() {
     return found ? true : false;
   };
 
-  
-
   return (
     <div className="cursor-pointer z-50">
       <div
-        className="bg-yellow-70 hover:bg-yellow-50 border text-white px-4 py-5 flex justify-center text-[16px] rounded-2xl font-bold"
+        className="bg-purple-70 border-purple-70 hover:bg-purple-50 border text-white px-4 py-5 flex justify-center text-[16px] rounded-2xl font-bold"
         onClick={handleOpen}
       >
-        <div className="text-[16px]">
-          Invite <AddIcon />
+        <div className="text-[16px] select-none">
+          <PersonOutlineIcon />
+          Friends
         </div>
       </div>
       <Modal
@@ -60,10 +57,15 @@ export default function InviteRoom() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="bg-blue-80 p-4 rounded-md max-w-[350px] flex flex-col space-y-1">
-            <div className=" text-white text-[20px] font-bold mb-4">
-              {" "}
-              Invite your friends
+          <div className="bg-purple-70 p-4 px-2 rounded-md max-w-[470px] flex flex-col space-y-1">
+            <div className=" text-white text-[24px] font-bold mb-2 ml-3">
+        
+              Online Friends
+            
+            </div>
+            <div className="w-full flex justify-end items-center space-x-1 pr-3">
+              <div className="w-[10px] h-[10px] bg-green-50 rounded-full"></div>
+              <span className="text-[12px] text-white">online   { `(${checkOnlineUsers(friends, onlineUsers).length})`}</span>
             </div>
             <div className="overflow-auto h-[200px] px-2">
               {checkOnlineUsers(friends, onlineUsers).map((f) => (
@@ -79,26 +81,35 @@ export default function InviteRoom() {
                     color: "black",
                     position: "relative",
                   }}
-                  className="bg-blue-70 rounded-2xl px-4"
+                  className="bg-purple-80 rounded-2xl px-3"
                 >
                   <div className="relative">
                     <img
                       src={f.image}
                       className="w-[50px] object-cover rounded-lg"
+                      alt="imageProfile"
                     />
                   </div>
 
-                  <div className="flex flex-row items-center justify-between w-full">
+                  <div className="flex flex-row items-center justify-between w-full ml-1">
                     <div className="text-white flex flex-col space-y-[-7px] font-bold ml-2">
                       <div className="text-[18px]"> {f.username} </div>
-                      <div className="text-[14px]"> {f.email}  </div>
+                      <div className="text-[14px]"> {f.email} </div>
                     </div>
 
-                    <div className="text-white rounded-lg p-1 bg-blue-60">
-                  {checkFriendInRoom(f.id) === true &&  <div className="cursor-not-allowed">อยู่ในห้อง</div>}  
-                  {!checkFriendInRoom(f.id) &&  <div className="cursor-pointer" ><Invite id={f.id}/></div>}    
-  
-                    </div>
+                    {checkFriendInRoom(f.id) === true && (
+                      <div className="text-white rounded-2xl p-1 px-4 bg-gray-70">
+                        {" "}
+                        <div className="cursor-not-allowed">In Room</div>
+                      </div>
+                    )}
+                    {!checkFriendInRoom(f.id) && (
+                      <div className="text-white rounded-2xl p-1 px-4  bg-purple-70">
+                        <div>
+                          <Invite id={f.id} />
+                        </div>{" "}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
