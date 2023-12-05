@@ -24,20 +24,34 @@ const setUserDetails = (userDetails) => {
 const login = (userDetails, history) => {
   return async (dispatch) => {
     dispatch(setLoadingPage(true));
-    const response = await api.login(userDetails);
-    if (response.error) {
-      dispatch(openAlertMessage("มีบางอย่างผิดพลาด"));
-      dispatch(openAlertMessage(response?.exception?.response?.data?.message));
+
+    try {
+      const response = await api.login(userDetails);
+      console.log(response);
+
+    if (response.exception.response.status===401) {
+        dispatch(
+          openAlertMessage(
+            response?.exception?.response?.data?.message ||
+              "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"
+          )
+        );
+        dispatch(setLoadingPage(false));
+      
+      }else
+        {
+        const { userDetails } = response?.data;
+
+        dispatch(setUserDetails(userDetails));
+        localStorage.setItem("user", JSON.stringify(userDetails));
+        history.push("/dashboard");
+        dispatch(setLoadingPage(false));
+      }
+    }
+     catch (exception) {
+      console.log(exception);
       dispatch(setLoadingPage(false));
-
-    } else {
-      const { userDetails } = response?.data;
-      localStorage.setItem("user", JSON.stringify(userDetails));
-
-      dispatch(setUserDetails(userDetails));
-      history.push("/dashboard");
-      dispatch(setLoadingPage(false));
-
+    
     }
   };
 };
@@ -48,7 +62,6 @@ const register = (userDetails, history) => {
     dispatch(setLoadingPage(true));
     try {
       const response = await api.register(userDetails);
-      console.log(response);
       if (response.error) {
         dispatch(setLoadingPage(false));
         dispatch(openAlertMessage(response?.exception?.response?.data.message));

@@ -7,7 +7,7 @@ import { validateRegisterForm } from "../../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
-import SnowAnimation from "../LoginPage/SnowAnimation";
+import SnowAnimation from "../../../shared/components/SnowAnimation";
 
 const RegisterPage = ({ register }) => {
   const history = useHistory();

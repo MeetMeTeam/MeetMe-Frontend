@@ -12,15 +12,16 @@ import Room from "./Room/Room";
 import Chat from "./ChatAll/ChatAll";
 import HeadBar from "./HeadBar/HeadBar";
 import BannerAdvert from "./BannerAdvert/BannerAdvert";
-import styles from "../../shared/css/mainPage.module.css"
-import SpriteAnimation from './SpriteAnimation';
+import styles from "../../shared/css/mainPage.module.css";
+import SpriteAnimation from "./SpriteAnimation";
+import SnowAnimation from "../../shared/components/SnowAnimation";
 
 const Wrapper = styled("div")({
   width: "100%",
   height: "100%",
 });
 
-const HomePage = ({ setUserDetails , isUserInRoom}) => {
+const HomePage = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
 
@@ -28,24 +29,26 @@ const HomePage = ({ setUserDetails , isUserInRoom}) => {
       logout();
     } else {
       setUserDetails(JSON.parse(userDetails));
-      connectWithSocketServer(JSON.parse(userDetails))
+      connectWithSocketServer(JSON.parse(userDetails));
     }
   }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
-     {!isUserInRoom &&  <HeadBar/> }
-     {!isUserInRoom &&   <div className="flex md:flex-row flex-col w-full justify-center">
-      <div className="md:w-1/3 max-w-[500px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
-        <FriendsSideBar />
-        <div>
-          <Chat />
-        </div>
-      </div> 
-      <div className="p-[32px] md:w-2/3 max-w-[822px] flex flex-col h-full space-y-4">
-      <BannerAdvert className="h-1/3"/>
-      <div className={`flex flex-row md:space-x-6`}>
-        {/* <div className={`
+      <SnowAnimation className="z-10" />
+      {!isUserInRoom && <HeadBar className="z-20" />}
+      {!isUserInRoom && (
+        <div className="flex md:flex-row flex-col w-full justify-center z-20">
+          <div className="md:w-1/3 max-w-[500px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
+            <FriendsSideBar />
+            <div>
+              <Chat />
+            </div>
+          </div>
+          <div className="p-[32px] md:w-2/3 max-w-[822px] flex flex-col h-full space-y-4">
+            <BannerAdvert className="h-1/3" />
+            <div className={`flex flex-row md:space-x-6`}>
+              {/* <div className={`
         bg-[#FF80A5] w-full rounded-2xl
         text-white
         h-full
@@ -62,13 +65,12 @@ const HomePage = ({ setUserDetails , isUserInRoom}) => {
             
            </div>
            </div> */}
-        <SideBar />   {/* //ไว้โชว์ห้อง */}
+              <SideBar /> {/* //ไว้โชว์ห้อง */}
+            </div>
+          </div>
         </div>
-      </div>
-   
-
-    </div> }
-    {isUserInRoom && <Room />}
+      )}
+      {isUserInRoom && <Room className="z-20" />}
     </div>
   );
 };

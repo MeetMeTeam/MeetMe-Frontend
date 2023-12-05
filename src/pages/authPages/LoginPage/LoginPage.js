@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
-import AuthBox from "../../../shared/components/AuthBox";
 import LoginPageFooter from "./LoginPageFooter";
 import LoginPageHeader from "./LoginPageHeader";
 import LoginPageInputs from "./LoginPageInputs";
-import SnowAnimation from "./SnowAnimation";
+import SnowAnimation from "../../../shared/components/SnowAnimation";
 import { validateLoginForm } from "../../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/authActions";
@@ -14,7 +13,6 @@ import styles from "../../../shared/css/animationBounce.module.css";
 
 const LoginPage = ({ login }) => {
   const history = useHistory();
-
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
@@ -24,7 +22,9 @@ const LoginPage = ({ login }) => {
     setIsFormValid(validateLoginForm({ mail, password }));
   }, [mail, password, setIsFormValid]);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(e)
     const userDetails = {
       email: mail,
       password,

@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "../../../shared/css/snow.module.css";
+import styles from "../css/snow.module.css";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 const SnowAnimation = () => {
   
 
   return (
  
-<div className="snowflakes" aria-hidden="true">
+<div className="snowflakes z-10" aria-hidden="true">
   <div className={styles.snowflake}>
   <AcUnitIcon />
   </div>
