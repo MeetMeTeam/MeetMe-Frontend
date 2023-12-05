@@ -17,7 +17,7 @@ export default function RoomHeadBar() {
   };
   const handleCount = () => {
     activeRoom.map((item) => {
-      if (item.roomId === roomDetail.roomId) {
+      if (item?.roomId === roomDetail?.roomId) {
         setCountPerson(item.participants.length);
       }
     });
