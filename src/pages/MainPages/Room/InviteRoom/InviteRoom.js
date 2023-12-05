@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
 import Invite from "./Invite";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
 const style = {
   position: "absolute",
   top: "50%",
@@ -59,15 +60,22 @@ export default function InviteRoom() {
         <Box sx={style}>
           <div className="bg-purple-70 p-4 px-2 rounded-md max-w-[470px] flex flex-col space-y-1">
             <div className=" text-white text-[24px] font-bold mb-2 ml-3">
-        
               Online Friends
-            
             </div>
             <div className="w-full flex justify-end items-center space-x-1 pr-3">
               <div className="w-[10px] h-[10px] bg-green-50 rounded-full"></div>
-              <span className="text-[12px] text-white">online   { `(${checkOnlineUsers(friends, onlineUsers).length})`}</span>
+              <span className="text-[12px] text-white">
+                online {`(${checkOnlineUsers(friends, onlineUsers).length})`}
+              </span>
             </div>
             <div className="overflow-auto h-[200px] px-2">
+              {checkOnlineUsers.length === 0 && (
+                <div className="text-white h-full w-full flex justify-center items-center flex-col space-y-2">
+                  <Diversity3Icon/>
+                  <div> no friends online now </div>
+                 
+                  </div>
+              )}
               {checkOnlineUsers(friends, onlineUsers).map((f) => (
                 <div
                   style={{
