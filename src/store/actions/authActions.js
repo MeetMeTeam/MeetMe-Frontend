@@ -29,7 +29,7 @@ const login = (userDetails, history) => {
       const response = await api.login(userDetails);
       console.log(response);
 
-    if (response.exception.response.status===401) {
+    if (response?.exception?.response?.status===401) {
         dispatch(
           openAlertMessage(
             response?.exception?.response?.data?.message ||
