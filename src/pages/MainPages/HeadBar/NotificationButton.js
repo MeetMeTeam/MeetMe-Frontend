@@ -127,7 +127,7 @@ export default function Notification() {
         
           {notiList.length === 0 && (
             <div className="w-full flex justify-center text-[12px]">
-              ยังไม่มีแจ้งเตือน{" "}
+              {"There is no notification yet."}
             </div>
           )}
 
