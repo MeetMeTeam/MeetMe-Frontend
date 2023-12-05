@@ -43,10 +43,10 @@ export default function InviteRoom() {
   return (
     <div className="cursor-pointer z-50">
       <div
-        className="bg-purple-70 border-purple-70 hover:bg-purple-50 border text-white px-4 py-5 flex justify-center text-[16px] rounded-2xl font-bold"
+        className="bg-red-80 border-red-80 hover:bg-red-70 border text-white md:px-4 py-5 flex justify-center text-[16px] rounded-2xl font-bold"
         onClick={handleOpen}
       >
-        <div className="text-[16px] select-none">
+        <div className="md:text-[16px] text-[12px] select-none">
           <PersonOutlineIcon />
           Friends
         </div>

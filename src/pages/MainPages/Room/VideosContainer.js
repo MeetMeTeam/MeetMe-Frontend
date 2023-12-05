@@ -23,7 +23,7 @@ const VideosContainer = ({
   let otherUserActionCam = useSelector(
     (state) => state.room.otherUserActionCam
   );
-  let myImage = useSelector((state) => state.auth.userDetails?.image)
+  let myImage = useSelector((state) => state.auth.userDetails?.image);
   let activeRooms = useSelector((state) => state.room.activeRooms);
   let [participants, setParticipants] = useState([]);
   const userId = useSelector((state) => state.auth.userDetails?._id);
@@ -38,18 +38,15 @@ const VideosContainer = ({
     }
   }, [activeRooms]);
 
-  useEffect(() => {
-  }, [otherUserActionCam]);
+  useEffect(() => {}, [otherUserActionCam]);
+
+  useEffect(() => {}, [participants]);
 
   useEffect(() => {
-  }, [participants]);
-
-  useEffect(() => {
-    updateMyCamToOther()
+    updateMyCamToOther();
   }, [remoteStreams]);
 
-  useEffect(() => {
-  }, [localStream]);
+  useEffect(() => {}, [localStream]);
 
   useEffect(() => {
     updateMyCamToOther();
@@ -60,7 +57,7 @@ const VideosContainer = ({
       userId: userId,
       isCameraEnabled: cameraEnabled,
       peopleInRoom: peopleInRoom ? peopleInRoom : participants,
-      image : myImage
+      image: myImage,
     };
     socketConnection.camChange(data);
   }
@@ -69,24 +66,42 @@ const VideosContainer = ({
     const isCameraEnabled = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.isCameraEnabled;
-    const image =  otherUserActionCam.find(
+    const image = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.image;
 
     return (
-      <div key={stream.remoteStream.id} className="flex flex-col items-center justify-center">
+      <div
+        key={stream.remoteStream.id}
+        className="flex flex-col items-center justify-center"
+      >
         {isCameraEnabled || otherUserActionCam.length === 0 ? (
-          <Video size="300px" stream={stream.remoteStream} id={stream.connUserSocketId} />
-        ) :
-        <div>
-           <Video size="1px" stream={stream.remoteStream} id={stream.connUserSocketId} />
-            <img src={image}  className="rounded-full object-cover"
-      style={{ width: '200px', height: '200px' }}/>
-        </div> 
-      } 
+          <Video
+            size="300px"
+            stream={stream.remoteStream}
+            id={stream.connUserSocketId}
+          />
+        ) : (
+          <div>
+            <Video
+              size="1px"
+              stream={stream.remoteStream}
+              id={stream.connUserSocketId}
+            />
+            <img
+              src={image}
+              className="rounded-full object-cover"
+              style={{ width: "150px", height: "150px" }}
+            />
+          </div>
+        )}
         {participants.map((item) => (
-          <div key={item.socketId} >
-            {item.socketId === stream.connUserSocketId && <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">{stream.name}</div>}
+          <div key={item.socketId}>
+            {item.socketId === stream.connUserSocketId && (
+              <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+                {stream.name}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -98,19 +113,24 @@ const VideosContainer = ({
   };
 
   return (
-    <div className="absolute top-1/4 w-full grid grid-cols-4 px-12">
-      <div  className="w-[300px] flex flex-col justify-center items-center">
-       
+    <div className="absolute top-1/4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12">
+      <div className="flex flex-col justify-center items-center">
         {cameraEnabled ? (
           <Video size="300px" stream={localStream} isLocalStream />
         ) : (
           <div>
-            <Video  size="1px" stream={localStream} isLocalStream />
-            <img src={myImage}  className="rounded-full object-cover"
-            style={{ width: '200px', height: '200px' }} />
+            <Video size="1px" stream={localStream} isLocalStream />
+            <img
+              src={myImage}
+              className="rounded-full object-cover"
+              style={{ width: "150px", height: "150px" }}
+            />
           </div>
         )}
-        <div className="mt-4 font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md"> Me </div>
+        <div className="mt-4 font-bold drop-shadow-md bg-purple-60 text-white px-2 py-1 rounded-md">
+          {"Me"}
+          
+        </div>
       </div>
 
       <RemoteStreams />

@@ -34,7 +34,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen min-w-screen flex flex-col">
      {!isUserInRoom && <SnowAnimation className="z-10" />} 
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
