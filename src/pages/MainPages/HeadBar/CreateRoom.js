@@ -42,11 +42,13 @@ const CreateRoom = () => {
         justify-center bg-purple-70 rounded-2xl text-white cursor-pointer
         px-6 py-3.5
         hover:bg-purple-60
+        sm:max-w-[1150px]
+        max-w-[100px]
         "
         onClick={handleOpen}
       >
         <AddIcon />
-        <div> Create Room</div>
+        <div className="sm:text-[16px] text-[10px]"> Create Room</div>
       </div>
       <Modal
         open={open}

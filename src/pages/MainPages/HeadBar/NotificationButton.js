@@ -76,7 +76,7 @@ export default function Notification() {
     <div className={"relative"}>
       <div
         onClick={handleClick}
-        className="relative cursor-pointer border-purple-60 border-2 rounded-2xl text-purple-60 h-fit py-3 px-3.5"
+        className="relative cursor-pointer border-purple-60 border-2 rounded-2xl text-purple-60 max-w-[55px] h-fit py-3 px-3.5"
       >
         <NotificationsNoneIcon />
         {notiList?.length > 0 && (
