@@ -79,11 +79,11 @@ const CreateRoom = () => {
               <div className="flex flex-row space-x-1">
                  <div className="bg-purple-50 rounded-md p-2 relative cursor-pointer"> 
                   <VideocamIcon onClick={()=>handleRoomType("VIDEO")} className="text-white"/ >
-                 { roomType==="VIDEO" &&  <CheckIcon className="absolute bottom-0 right-0 text-green-40" style={{ fontSize: 15 }}/>}  
+                 { roomType==="VIDEO" &&  <CheckIcon className="absolute bottom-0 right-[-5px] text-white" style={{ fontSize: 25 ,  fontWeight: "bold", }}/>}  
                      </div> 
                  <div onClick={()=>handleRoomType("VOICE")} className="cursor-pointer bg-purple-50 rounded-md p-2 relative"> 
                   <KeyboardVoiceIcon className="text-white"/>
-               { roomType==="VOICE" &&  <CheckIcon className="absolute bottom-0 right-0 text-green-40" style={{ fontSize: 15 }}/>}  
+               { roomType==="VOICE" &&  <CheckIcon className="absolute bottom-0 right-[-5px] text-white" style={{ fontSize: 25 ,  fontWeight: "bold", }}/>}  
                    </div>  
               </div>
          
