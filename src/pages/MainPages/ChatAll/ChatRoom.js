@@ -9,16 +9,21 @@ export default function ChatRoom({people}) {
   const color = ["purple", "yellow", "red", "blue", "green", "black", "orange"];
   const [inputValue, setInputValue] = useState("");
   const [colorText, setColorText] = useState("");
+  
   const sendText = () => {
-    const newChat = {
+    if(inputValue!==""){
+        const newChat = {
       textId: chatList.length + 1,
       id: userDetail._id,
       name: userDetail.username,
       text: inputValue,
       color: colorText,
     };
-    sendMessage(newChat , people);
+    sendMessage(newChat);
     setInputValue("")
+    }
+  
+
   };
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * inputValue.length);

@@ -11,8 +11,8 @@ export default function ChatAll() {
   const [colorText, setColorText] = useState("");
 
   const sendText = () => {
-    console.log(chatList.length + 1);
-    const newChat = {
+    if(inputValue!==""){
+        const newChat = {
       textId: chatList.length + 1,
       id: userDetail._id,
       name: userDetail.username,
@@ -20,6 +20,10 @@ export default function ChatAll() {
       color: colorText,
     };
     sendMessage(newChat);
+    setInputValue("")
+    }
+  
+
   };
 
   useEffect(() => {
@@ -35,7 +39,7 @@ export default function ChatAll() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         name="Chats"
-        height={200}
+        height={100}
         isExpanded={false}
 
       />
