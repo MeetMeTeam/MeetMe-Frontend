@@ -103,7 +103,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     Object.entries(peers).forEach((mappedObject) => {
       const connUserSocketId = mappedObject[0];
       if (peers[connUserSocketId]) {
-        peers[connUserSocketId].destroy();
+        // peers[connUserSocketId].destroy();
         delete peers[connUserSocketId];
       }
     });
@@ -113,8 +113,13 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     const { connUserSocketId } = data;
   
     if (peers[connUserSocketId]) {
-      peers[connUserSocketId].destroy();
+      console.log(peers)
+      // peers[connUserSocketId].destroy();
+      console.log(peers)
+
       delete peers[connUserSocketId];
+      console.log(peers)
+
     }
   
     const remoteStreams = store.getState().room.remoteStreams;
