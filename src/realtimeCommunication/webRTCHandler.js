@@ -114,6 +114,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
   
     if (peers[connUserSocketId]) {
       // peers[connUserSocketId].destroy()
+      
       delete peers[connUserSocketId];
 
     }
