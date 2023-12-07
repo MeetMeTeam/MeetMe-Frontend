@@ -64,7 +64,8 @@ const register = (userDetails, history) => {
       const response = await api.register(userDetails);
       if (response.error) {
         dispatch(setLoadingPage(false));
-        dispatch(openAlertMessage(response?.exception?.response?.data.message));
+        dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
+          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));
       } else {
         const userDetail = response?.data.data;
         const data = {
