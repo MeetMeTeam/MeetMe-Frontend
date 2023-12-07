@@ -4,6 +4,7 @@ import { setLocalStream, setRemoteStreams , removeOtherActionCam } from "../stor
 import * as socketConnection from "./socketConnection";
 import Peer from "simple-peer";
 
+
 const onlyAudioConstraints = {
     audio: true,
     video: true,
@@ -103,7 +104,9 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     Object.entries(peers).forEach((mappedObject) => {
       const connUserSocketId = mappedObject[0];
       if (peers[connUserSocketId]) {
-        // peers[connUserSocketId].destroy();
+       //  peers[connUserSocketId].destroy();
+       peers[connUserSocketId] = [];
+
         delete peers[connUserSocketId];
       }
     });
@@ -113,10 +116,13 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     const { connUserSocketId } = data;
   
     if (peers[connUserSocketId]) {
-      // peers[connUserSocketId].destroy()
-      
-      delete peers[connUserSocketId];
+      console.log(peers)
 
+       peers[connUserSocketId] = [];
+       console.log(peers)
+
+      delete peers[connUserSocketId];
+console.log(peers)
     }
   
     const remoteStreams = store.getState().room.remoteStreams;
