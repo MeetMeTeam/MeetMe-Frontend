@@ -45,6 +45,7 @@ const reducer = (state = initState, action) => {
       }
       return { ...state, otherUserActionCam: newOtherUserActionCam };
     case roomActions.OPEN_ROOM:
+      console.log(action.isUserInRoom)
       return {
         ...state,
         isUserInRoom: action.isUserInRoom,

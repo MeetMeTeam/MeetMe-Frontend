@@ -135,7 +135,7 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("notify-join", (data) => {
     console.log(data)
     store.dispatch( setErrorModal(null));
-    store.dispatch( setErrorModal(data));  
+    store.dispatch( setErrorModal(!data));  
    });
 };
 
@@ -190,5 +190,6 @@ export const InviteFriendToJoinRoom = (data) => {
 
 export const checkNotifyJoin = (data) => {
   socket.emit("notify-join", data);
+  console.log(data)
 };
 

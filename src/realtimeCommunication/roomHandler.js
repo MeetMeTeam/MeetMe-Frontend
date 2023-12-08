@@ -7,6 +7,7 @@ import {
   setRemoteStreams,
   setScreenSharingStream,
   setIsUserJoinedOnlyWithAudio,
+  setErrorModal
 } from "../store/actions/roomActions";
 import { clearChatList } from '../store/actions/allChatAction'
 import { setLoadingPage } from '../store/actions/alertActions'
@@ -56,6 +57,7 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
+  console.log("join rommmmmmmmmmmmmmmmmmmmmmm")
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
@@ -76,6 +78,7 @@ export const joinRoom = (data) => {
 };
 
 export const leaveRoom = () => {
+  store.dispatch( setErrorModal(null));
   const roomId = store.getState().room.roomDetails.roomId;
 
   const localStream = store.getState().room.localStream;
@@ -86,7 +89,6 @@ export const leaveRoom = () => {
 
   store.dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
-
   socketConnection.leaveRoom({ roomId });
   store.dispatch(setRoomDetails(null));
   store.dispatch(setOpenRoom(false, false));
