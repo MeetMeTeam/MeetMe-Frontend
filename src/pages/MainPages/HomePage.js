@@ -38,7 +38,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
      {!isUserInRoom && <SnowAnimation className="z-10" />} 
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
-        <div className="flex md:flex-row flex-col w-full justify-center z-20">
+        <div className="flex md:flex-row  flex-col w-full justify-center z-20">
           <div className="md:w-1/3 max-w-[500px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
             <FriendsSideBar />
             <div>

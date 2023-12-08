@@ -30,6 +30,8 @@ const AddFriends = () => {
   function addFriend () {
     if(validateMail(email)){
       store.dispatch(sendFriendInvitation(email));
+      setEmail("");
+
     }
   }
   return (

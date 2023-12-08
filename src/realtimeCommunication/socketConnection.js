@@ -29,7 +29,11 @@ export const connectWithSocketServer = (userDetails) => {
     },
   
   });
-  console.log(socket);
+
+    if(!socket.connected){
+
+    }
+
   socket.on("error", (error) => {
     console.log("error");
     console.log("socket พัง socket พัง socket พัง socket พัง");

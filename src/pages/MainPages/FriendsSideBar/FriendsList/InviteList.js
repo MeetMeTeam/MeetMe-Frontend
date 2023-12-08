@@ -71,15 +71,13 @@ const InviteList = () => {
        
       </div>  */}
       <div className="bg-blue-80 p-4 pt-0 rounded-md flex flex-col space-y-6 h-[270px]">
-        <div className="h-[240px] space-y-4 flex items-center justify-center overflow-auto pr-2 text-white">
+        <div className="h-[240px] pt-10 flex-col space-y-4 flex items-center justify-start overflow-auto pr-2 text-white">
           {inviteList?.length > 0 &&
             inviteList?.map((item) => (
-              <div className="bg-blue-70 rounded-md">
+              <div className="bg-blue-70 rounded-md w-full">
                 <div className="flex flex-row justify-between items-center space-x-4 p-2 ">
                   <div className="flex flex-row space-x-4">
-                    <div className="bg-blue-gray-900 rounded-full px-4 w-12 h-12 text-[12px]">
-                      .
-                    </div>
+                    <img src={item.image} className="rounded-full w-[40px]" />
                     <div className="flex flex-col">
                       <div className="text-[1rem]"> {item.username} </div>
                       <div className="text-[12px]"> {item.email} </div>
