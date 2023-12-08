@@ -7,7 +7,7 @@ import Peer from "simple-peer";
 
 const onlyAudioConstraints = {
     audio: true,
-    video: true,
+    video: false,
   };
   
   const defaultConstraints = {
@@ -25,8 +25,12 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
         callbackFunc();
       })
       .catch((err) => {
-        console.log(err);
-        console.log("Cannot get an access to local stream");
+        navigator.mediaDevices
+      .getUserMedia(onlyAudioConstraints)
+      .then((stream) => {
+        store.dispatch(setLocalStream(stream));
+        callbackFunc();
+      })
       });
   };
 
