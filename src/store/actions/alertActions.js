@@ -3,7 +3,8 @@ const alertActions = {
   CLOSE_ALERT_MESSAGE: "ALERT.CLOSE_ALERT_MESSAGE",
   UPDATE_NOTIFICATION: "ALERT.UPDATE_NOTIFICATION",
   REMOVE_NOTIFICATION : "ALERT.REMOVE_NOTIFICATION",
-  SET_LOADING_PAGE : "ALERT.SET_LOADING_PAGE"
+  SET_LOADING_PAGE : "ALERT.SET_LOADING_PAGE",
+  SET_MODAL_SOCKET_ERROR : "ALERT.SET_MODAL_SOCKET_ERROR"
 };
 
 export const getActions = (dispatch) => {
@@ -11,9 +12,18 @@ export const getActions = (dispatch) => {
     openAlertMessage: (content) => dispatch(openAlertMessage(content)),
     closeAlertMessage: () => dispatch(closeAlertMessage()),
     setLoadingPage: (content) => dispatch(setLoadingPage(content)),
+    setModalErrorSocket: (content) => dispatch(setModalErrorSocket(content)),
+
 
   };
 };
+export const setModalErrorSocket = (content) => {
+  return {
+    type: alertActions.SET_MODAL_SOCKET_ERROR,
+    content,
+  };
+};
+
 export const setLoadingPage = (content) => {
   return {
     type: alertActions.SET_LOADING_PAGE,

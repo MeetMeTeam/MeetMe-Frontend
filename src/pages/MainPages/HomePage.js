@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { styled } from "@mui/system";
 import SideBar from "./SideBar";
 import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
-import Messenger from "./Messenger/Messenger";
-import AppBar from "./AppBar/AppBar";
 import { logout } from "../../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
@@ -13,13 +11,7 @@ import Chat from "./ChatAll/ChatAll";
 import HeadBar from "./HeadBar/HeadBar";
 import BannerAdvert from "./BannerAdvert/BannerAdvert";
 import styles from "../../shared/css/mainPage.module.css";
-import SpriteAnimation from "./SpriteAnimation";
 import SnowAnimation from "../../shared/components/SnowAnimation";
-
-const Wrapper = styled("div")({
-  width: "100%",
-  height: "100%",
-});
 
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {

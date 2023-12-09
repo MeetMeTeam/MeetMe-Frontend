@@ -4,11 +4,17 @@ const initState = {
   showAlertMessage: false,
   alertMessageContent: null,
   Notification:[],
-  isLoadingPage : false
+  isLoadingPage : false,
+  isSocketErrorModal : false
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case alertActions.SET_MODAL_SOCKET_ERROR:
+      return {
+        ...state,
+        isSocketErrorModal: action.content  ,
+      };
     case alertActions.SET_LOADING_PAGE:
       return {
         ...state,

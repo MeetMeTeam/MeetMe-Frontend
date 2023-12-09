@@ -16,21 +16,39 @@ import { clearChatList } from './store/actions/allChatAction'
 import { useDispatch } from 'react-redux';
 import LoadingPage from './shared/components/LoadingPage'
 import { useSelector } from "react-redux";
+import ModalText from "./shared/components/ModalText";
 
 function App() {
   const dispatch = useDispatch();
+  const isShowModalErrorSocket = useSelector((state) => state.alert.isSocketErrorModal);
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
-
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
   useEffect(() => {
   console.log("clearChatList")
   dispatch(clearChatList())
   }, [])
+  useEffect(() => {
+  
+    if(isShowModalErrorSocket){
+      handleOpenModal()
+    }else{
+      handleCloseModal()
+    }
+    }, [isShowModalErrorSocket])
   return (
     <div className="relative">
      {isShowLoadingPage &&  <LoadingPage/>} 
-       {/* <div>
-        <button onClick={()=>  dispatch(openAlertMessage("Hello world")  )}>Notify !</button>
-      </div> */}
+     <ModalText
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+        closeModal={handleCloseModal}
+        headText={"Failed connect to Server"}
+        textDetailOne={"socket server have problem, Sorry"}
+        textDetailTwo={`please try to connect again later.`}
+        bgColor="bg-purple-50"
+      />
       <Router>
         <Switch>
           <Route exact path="/login">

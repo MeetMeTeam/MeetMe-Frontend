@@ -7,7 +7,7 @@ import {
 } from "../store/actions/friendsAction";
 import { UpdateChatList } from "../store/actions/allChatAction";
 import { setOtherActionCam , setErrorModal } from "../store/actions/roomActions";
-import { setNotification } from "../store/actions/alertActions";
+import { setNotification , setModalErrorSocket } from "../store/actions/alertActions";
 
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
@@ -31,7 +31,9 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
     if(!socket.connected){
+      store.dispatch(setModalErrorSocket(true));
 
+      
     }
 
   socket.on("error", (error) => {
@@ -60,13 +62,11 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("direct-chat-history", (data) => {
-    console.log(data);
     updateDirectChatHistoryIfActive(data);
   });
 
   socket.on("room-create", (data) => {
     roomHandler.newRoomCreated(data);
-    console.log(data);
     console.log("create room detail from server");
   });
 
@@ -110,17 +110,14 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("room-participant-left", (data) => {
-    console.log("user left room");
     webRTCHandler.handleParticipantLeftRoom(data);
   });
 
   socket.on("chatter", (newChat) => {
-    console.log(newChat + " this is socket . on");
     store.dispatch(UpdateChatList(newChat));
   });
 
   socket.on("other-cam-change", (data) => {
-    console.log(data);
     store.dispatch(setOtherActionCam(data));
   });
 
@@ -129,11 +126,9 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("invite-room", (data) => {
-   console.log(data)
    store.dispatch(setNotification(data));
   });
   socket.on("notify-join", (data) => {
-    console.log(data)
     store.dispatch( setErrorModal(null));
     store.dispatch( setErrorModal(!data));  
    });
