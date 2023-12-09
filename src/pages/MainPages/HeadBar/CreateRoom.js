@@ -5,9 +5,13 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import  { useState } from "react";
+import React, { useState , useEffect  } from "react";
 import { useSelector } from "react-redux";
 import * as roomHandler from "../../../realtimeCommunication/roomHandler";
+import {  setModalErrorSocket } from "../../../store/actions/alertActions";
+import store from "../../../store/store";
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,6 +23,7 @@ const style = {
 };
 
 const CreateRoom = () => {
+  const isShowModalErrorSocket = useSelector((state) => state.alert.isSocketErrorModal);
   const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
   const [open, setOpen] = useState(false);
   const [roomType, setRoomType] = useState("VOICE");
@@ -35,6 +40,17 @@ const CreateRoom = () => {
   const handleInputChange = (e) => {
     setRoomName(e.target.value);
   };
+
+  useEffect(() => {
+    if(isShowModalErrorSocket){
+      handleClose()
+      store.dispatch(setModalErrorSocket(null));
+      setTimeout(() => {
+      store.dispatch(setModalErrorSocket(true));
+    }, 500);
+
+    }
+  }, [open])
   return (
     <div>
       <div

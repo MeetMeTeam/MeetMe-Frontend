@@ -30,7 +30,7 @@ function App() {
   dispatch(clearChatList())
   }, [])
   useEffect(() => {
-  
+  console.log(isShowModalErrorSocket)
     if(isShowModalErrorSocket){
       handleOpenModal()
     }else{

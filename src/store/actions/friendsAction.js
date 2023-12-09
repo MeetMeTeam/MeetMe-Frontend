@@ -50,7 +50,7 @@ export const friendsActions = {
 
       if(response.error) {
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
         dispatch(openAlertMessage('Invitation has accept !'))
         dispatch(getFriends());
 
@@ -64,7 +64,7 @@ export const friendsActions = {
 
       if(response.error) {
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
         dispatch(openAlertMessage('Invitation has accept !'))
         dispatch(getFriends());
         dispatch(setInvite([]));
@@ -78,7 +78,7 @@ export const friendsActions = {
 
       if(response.error) {
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
         dispatch(openAlertMessage('Invitation has rejected !'))
         dispatch(getInviteList())   
     }
@@ -90,7 +90,7 @@ export const friendsActions = {
       const response = await api.rejectFriendInvitationAll();
       if(response.error) {
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));    } else {
         dispatch(openAlertMessage('Invitation has rejected !'))
         dispatch(setInvite([]));
     }
@@ -101,7 +101,10 @@ export const friendsActions = {
     return async (dispatch) => {
       const response = await api.getFriends();
       const friendList = response?.data?.data;
-  
+      if (response.error) {
+        dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));
+      }
       dispatch(setFriends(friendList));
       dispatch(setFriendsAlready(true));
     };
@@ -111,6 +114,10 @@ export const friendsActions = {
     return async (dispatch) => {
       const response = await api.getInviteList();
       const inviteList = response?.data?.data;
+      if (response.error) {
+        dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));
+      }
       if(inviteList?.length>0) {
         dispatch(openAlertMessage("มีบางคนแอดเพื่อนคุณมา กรุณาตรวจสอบ"))
       }

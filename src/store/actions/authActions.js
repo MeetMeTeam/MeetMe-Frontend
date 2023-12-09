@@ -29,11 +29,11 @@ const login = (userDetails, history) => {
       const response = await api.login(userDetails);
       console.log(response);
 
-    if (response?.exception?.response?.status===401) {
+    if (response.error) {
         dispatch(
           openAlertMessage(
             response?.exception?.response?.data?.message ||
-              "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"
+              "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"
           )
         );
         dispatch(setLoadingPage(false));
@@ -65,7 +65,7 @@ const register = (userDetails, history) => {
       if (response.error) {
         dispatch(setLoadingPage(false));
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"));
+          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));
       } else {
         const userDetail = response?.data.data;
         const data = {
