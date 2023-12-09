@@ -4,7 +4,7 @@ import { openAlertMessage  , setLoadingPage } from "./alertActions";
 export const authActions = {
   SET_USER_DETAILS: "AUTH.SET_USER_DETAILS",
 };
-
+const errorServerText = "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"
 export const getActions = (dispatch) => {
   return {
     login: (userDetails, history) => dispatch(login(userDetails, history)),
@@ -33,11 +33,10 @@ const login = (userDetails, history) => {
         dispatch(
           openAlertMessage(
             response?.exception?.response?.data?.message ||
-              "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"
+            errorServerText
           )
         );
-        dispatch(setLoadingPage(false));
-      
+        dispatch(setLoadingPage(false));     
       }else
         {
         const { userDetails } = response?.data;
@@ -65,7 +64,7 @@ const register = (userDetails, history) => {
       if (response.error) {
         dispatch(setLoadingPage(false));
         dispatch(openAlertMessage(response?.exception?.response?.data.message  ||
-          "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง"));
+          errorServerText));
       } else {
         const userDetail = response?.data.data;
         const data = {

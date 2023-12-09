@@ -22,7 +22,7 @@ const RoomButtons = (props) => {
   const { localStream, isUserJoinedWithOnlyAudio } = props;
 
   return (
-    <div >
+    <div className="flex">
       <MicButton localStream={localStream} />
       {!isUserJoinedWithOnlyAudio &&
        <CameraButton 

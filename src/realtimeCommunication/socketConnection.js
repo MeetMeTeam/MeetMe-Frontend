@@ -28,13 +28,15 @@ export const connectWithSocketServer = (userDetails) => {
       userId: userDetails._id,
     },
   
-  });
+  })
 
+  setTimeout(() => {
     if(!socket.connected){
       store.dispatch(setModalErrorSocket(true));
-
       
-    }
+    }  }, 500);
+
+   
 
   socket.on("error", (error) => {
     console.log("error");
