@@ -34,7 +34,7 @@ const Room = () => {
       </div>
       <img
         src={process.env.PUBLIC_URL + "/RoomBg.png"}
-        className="absolute lg:object-fill object-cover h-screen w-screen"
+        className="absolute lg:object-cover object-cover h-screen w-screen"
       />
       {roomDetail !== undefined && (
         <VideosContainer

@@ -73,8 +73,10 @@ const VideosContainer = ({
     return (
       <div
         key={stream.remoteStream.id}
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col justify-center items-center relative p-10"
       >
+                <div className="bg-white py-10 opacity-30 rounded-2xl w-full z-[0] h-full absolute">  </div>
+
         {isCameraEnabled || otherUserActionCam.length === 0 ? (
           <Video
             size="300px"
@@ -90,7 +92,7 @@ const VideosContainer = ({
             />
             <img
               src={image}
-              className="rounded-full object-cover"
+              className="rounded-full object-cover drop-shadow-xl border-4 border-white"
               style={{ width: "150px", height: "150px" }}
             />
           </div>
@@ -113,8 +115,9 @@ const VideosContainer = ({
   };
 
   return (
-    <div className="absolute top-1/4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12">
-      <div className="flex flex-col justify-center items-center">
+    <div className="absolute top-1/4 gap-4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12">
+      <div className="flex flex-col justify-center items-center relative p-10">
+        <div className="bg-white py-10 opacity-30 rounded-2xl w-full h-full absolute">  </div>
         {cameraEnabled ? (
           <Video size="300px" stream={localStream} isLocalStream />
         ) : (
@@ -122,7 +125,7 @@ const VideosContainer = ({
             <Video size="1px" stream={localStream} isLocalStream />
             <img
               src={myImage}
-              className="rounded-full object-cover"
+              className="rounded-full object-cover drop-shadow-xl border-4 border-white"
               style={{ width: "150px", height: "150px" }}
             />
           </div>

@@ -24,7 +24,7 @@ const CreateRoom = () => {
   const [roomType, setRoomType] = useState("VOICE");
 
   const createNewRoomHandler = () => {
-    if (!isUserInRoom) {
+    if (!isUserInRoom && roomName!=="") {
       roomHandler.createNewRoom(roomName , roomType);
     }
   };
