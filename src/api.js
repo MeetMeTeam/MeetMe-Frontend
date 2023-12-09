@@ -3,7 +3,7 @@ import { logout } from "./shared/utils/auth";
 import { connectWithSocketServer } from "./realtimeCommunication/socketConnection"
 
 const apiClient = axios.create({
-  baseURL: `${process.env.REACT_APP_BASE_API}/apis`,
+  baseURL: `${process.env.REACT_APP_BASE_API}/api`,
 });
 
 apiClient.interceptors.request.use(
