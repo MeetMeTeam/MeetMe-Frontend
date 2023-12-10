@@ -45,7 +45,10 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
       return {
         iceServers: [
           {
-            urls: "stun:stun.l.google.com:19302",
+            urls: [
+              'stun:stun.l.google.com:19302',
+              'turn:turn.l.google.com:3478?transport=udp',
+            ],
           },
         ],
       };
