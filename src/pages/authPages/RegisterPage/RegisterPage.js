@@ -8,9 +8,11 @@ import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
 import SnowAnimation from "../../../shared/components/SnowAnimation";
+import { useMediaQuery } from 'react-responsive'
 
 const RegisterPage = ({ register }) => {
   const history = useHistory();
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 960px)' })
 
   const [mail, setMail] = useState("");
   const [username, setUsername] = useState("");
@@ -58,7 +60,7 @@ const RegisterPage = ({ register }) => {
   return (
     <div className="bg-purple-90 select-none relative w-screen h-screen flex items-center">
       <SnowAnimation />
-      <img
+      {!isTabletOrMobile && <div>   <img
         src={process.env.PUBLIC_URL + "/registerPage/water1.png"}
         className="absolute z-10 bottom-0 w-full object-contain"
       />
@@ -73,10 +75,11 @@ const RegisterPage = ({ register }) => {
       <img
         src={process.env.PUBLIC_URL + "/registerPage/nongRed.png"}
         className="absolute bottom-0 right-5 z-20"
-      />
+      /> </div>}
+    
       <div className="relative w-full flex items-center justify-center">
         {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  rounded-lg backdrop-blur-md bg-white/50 z-40"></div> */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  z-40 p-6  flex flex-col bg-white/50 rounded-xl drop-shadow-md">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 md:mt-0 mt-56 -translate-y-1/2 md:w-3/5 w-4/5  z-40 p-6  flex flex-col bg-white/50 rounded-xl drop-shadow-md">
           <RegisterHeader />
           <RegisterPageInputs
             mail={mail}

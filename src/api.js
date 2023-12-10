@@ -53,11 +53,8 @@ apiClient.interceptors.response.use(
         console.log("hello")
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
-          console.log(response);
-
           let userDetails = JSON.parse(localStorage.getItem("user"));
           userDetails.token = response.data.accessToken;
-          console.log(userDetails)
           localStorage.setItem("user", JSON.stringify(userDetails));
           connectWithSocketServer(userDetails)
           

@@ -78,8 +78,8 @@ const RegisterPageInputs = (props) => {
   ];
   return (
     <div className="flex flex-col">
-      <div className="flex space-x-4">
-        <div className="w-1/2 space-y-4">
+      <div className="flex md:flex-row flex-col md:space-x-4">
+        <div className="md:w-1/2 w-full space-y-4">
           <InputWithLabel
             value={mail}
             setValue={setMail}
@@ -105,7 +105,7 @@ const RegisterPageInputs = (props) => {
           </div>
         </div>
 
-        <div className="w-1/2 space-y-4">
+        <div className="md:w-1/2 w-full space-y-4">
           <InputWithLabel
             value={username}
             setValue={setUsername}
@@ -195,12 +195,12 @@ const RegisterPageInputs = (props) => {
 
       <div className="mb-4 mt-2">
         <div className="text-[#666666] font-bold my-2"> CHARACTER </div>
-        <div className="flex space-x-4">
+        <div className="flex md:flex-row items-center flex-col md:space-x-4">
           {characters.map((characters) => (
             <img
               key={characters.src}
               src={"/registerPage/" + characters.src + ".png"}
-              className={`transition  hover:scale-125  duration-200 cursor-pointer w-[100px] rounded-2xl drop-shadow-md ${
+              className={`transition  hover:scale-125  duration-200 cursor-pointer md:w-[100px] w-[150px] rounded-2xl drop-shadow-md ${
                 character === characters.src ? " border-purple-60 border-2" : ""
               }`}
               onClick={() => setCharacter(characters.src)}
