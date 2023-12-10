@@ -22,7 +22,7 @@ const ActiveRoomButton = ({
     }
   };
 
-  const activeRoomButtonDisabled = amountOfParticipants > 7;
+  const activeRoomButtonDisabled = amountOfParticipants > 4;
   const roomTitle = `Cretor: ${creatorUsername}. Connected: ${amountOfParticipants}`;
 
   return (
@@ -55,15 +55,29 @@ const ActiveRoomButton = ({
                         </div>
             </div>
 
+        
+          {amountOfParticipants < 4 &&  
           <div className="bg-purple-60 px-4 py-1 rounded-3xl
+          text-white flex items-center justify-center
+          font-bold cursor-pointer
+          hover:bg-purple-50
+          "
+          onClick={handleJoinActiveRoom}
+          >
+           Join
+         </div>
+          }
+          {amountOfParticipants > 4 &&  
+            <div className="bg-gray-60 px-4 py-1 rounded-3xl
            text-white flex items-center justify-center
-           font-bold cursor-pointer
+           font-bold cursor-not-allowed
            hover:bg-purple-50
            "
-           onClick={handleJoinActiveRoom}
            >
-            Join
+            Full
           </div>
+          }
+        
           </div>
         </div>
       </div>
