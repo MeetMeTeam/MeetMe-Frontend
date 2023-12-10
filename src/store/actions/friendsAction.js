@@ -39,7 +39,7 @@ export const sendFriendInvitation = (data, closeDialogHandler) => {
         )
       );
     } else {
-      dispatch(openAlertMessage("Invitaation has been sent!"));
+      dispatch(openAlertMessage("Invitation has been sent!"));
       sendFriendInvite(response?.data?.data?.id);
     }
   };
