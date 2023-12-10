@@ -35,17 +35,26 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
   };
 
   const getConfiguration = () => {
-    const turnIceServers = null;
+    const turnIceServers = true;
   
     if (turnIceServers) {
       // TODO use TURN server credentials
       console.log("turnIceServers")
+      return {
+        iceServers: [
+          {
+            // urls: "stun:stun.l.google.com:19302",
+            urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' 
+          },
+        ],
+      };
     } else {
       console.warn("Using only STUN server");
       return {
         iceServers: [
           {
-            urls: "stun:stun.l.google.com:19302",
+            // urls: "stun:stun.l.google.com:19302",
+            urls: 'stun:freeturn.net:5349' 
           },
         ],
       };
