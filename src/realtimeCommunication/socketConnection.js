@@ -6,8 +6,11 @@ import {
   getInviteList,
 } from "../store/actions/friendsAction";
 import { UpdateChatList } from "../store/actions/allChatAction";
-import { setOtherActionCam , setErrorModal } from "../store/actions/roomActions";
-import { setNotification , setModalErrorSocket } from "../store/actions/alertActions";
+import { setOtherActionCam, setErrorModal } from "../store/actions/roomActions";
+import {
+  setNotification,
+  setModalErrorSocket,
+} from "../store/actions/alertActions";
 
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
@@ -27,16 +30,21 @@ export const connectWithSocketServer = (userDetails) => {
       token: jwtToken,
       userId: userDetails._id,
     },
-  
-  })
+  });
 
-  setTimeout(() => {
-    if(!socket.connected){
+  let retries = 0;
+
+  function checkError () {
+    retries++
+    if (!socket.connected && retries % 3 === 0) {
       store.dispatch(setModalErrorSocket(true));
-      
-    }  }, 500);
+    }
+    
+  }
+  setInterval(checkError, 1000);
 
-   
+
+ 
 
   socket.on("error", (error) => {
     console.log("error");
@@ -128,12 +136,12 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("invite-room", (data) => {
-   store.dispatch(setNotification(data));
+    store.dispatch(setNotification(data));
   });
   socket.on("notify-join", (data) => {
-    store.dispatch( setErrorModal(null));
-    store.dispatch( setErrorModal(!data));  
-   });
+    store.dispatch(setErrorModal(null));
+    store.dispatch(setErrorModal(!data));
+  });
 };
 
 export const sendMessage = (newChat, people) => {
@@ -187,6 +195,5 @@ export const InviteFriendToJoinRoom = (data) => {
 
 export const checkNotifyJoin = (data) => {
   socket.emit("notify-join", data);
-  console.log(data)
+  console.log(data);
 };
-
