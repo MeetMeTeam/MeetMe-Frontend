@@ -43,11 +43,36 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     } else {
       console.warn("Using only STUN server");
       return {
+        // iceServers: [
+        //   {
+        //     urls: "stun:stun.l.google.com:19302",
+        //   },
+        // ],
         iceServers: [
           {
-            urls: "stun:stun.l.google.com:19302",
+            urls: "stun:stun.relay.metered.ca:80",
           },
-        ],
+          {
+            urls: "turn:a.relay.metered.ca:80",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+          {
+            urls: "turn:a.relay.metered.ca:80?transport=tcp",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+          {
+            urls: "turn:a.relay.metered.ca:443",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+          {
+            urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+      ],
       };
     }
   };
