@@ -50,9 +50,6 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
         // ],
         iceServers: [
           {
-            urls: "stun:stun.relay.metered.ca:80",
-          },
-          {
             urls: "turn:a.relay.metered.ca:80",
             username: "de3ef18462dd38e33a457d5b",
             credential: "NK+chh3TNgM8LyrM",
