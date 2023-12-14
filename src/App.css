@@ -1,3 +1,8 @@
+body {
+  background-color: #E5D6F5;
+  font-family: "Inter", "IBM Plex Sans Thai";
+
+}
 .App {
   text-align: center;
 }
@@ -36,4 +41,23 @@
   100% {
     transform: translateY(0px);
   }
+}
+
+/* ScrollBarStyles.module.css */
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #6D9AF8;
+    border-radius: 5px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #CEDDFD;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #CEDDFD;
 }

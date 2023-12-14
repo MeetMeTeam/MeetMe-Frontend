@@ -1,8 +1,9 @@
 import store from "../store/store";
-import { setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
+import { setLocalStream, setRemoteStreams , removeOtherActionCam } from "../store/actions/roomActions";
 // import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
 import Peer from "simple-peer";
+
 
 const onlyAudioConstraints = {
     audio: true,
@@ -24,8 +25,12 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
         callbackFunc();
       })
       .catch((err) => {
-        console.log(err);
-        console.log("Cannot get an access to local stream");
+        navigator.mediaDevices
+      .getUserMedia(onlyAudioConstraints)
+      .then((stream) => {
+        store.dispatch(setLocalStream(stream));
+        callbackFunc();
+      })
       });
   };
 
@@ -34,21 +39,44 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
   
     if (turnIceServers) {
       // TODO use TURN server credentials
+      console.log("turnIceServers")
     } else {
       console.warn("Using only STUN server");
       return {
+        // iceServers: [
+        //   {
+        //     urls: "stun:stun.l.google.com:19302",
+        //   },
+        // ],
         iceServers: [
           {
-            urls: "stun:stun.l.google.com:19302",
+            urls: "turn:a.relay.metered.ca:80",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
           },
-        ],
+          {
+            urls: "turn:a.relay.metered.ca:80?transport=tcp",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+          {
+            urls: "turn:a.relay.metered.ca:443",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+          {
+            urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            username: "de3ef18462dd38e33a457d5b",
+            credential: "NK+chh3TNgM8LyrM",
+          },
+      ],
       };
     }
   };
 
   let peers = {};
 
-  export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
+  export const prepareNewPeerConnection = (connUserSocketId, isInitiator , name , pic , id) => {
     const localStream = store.getState().room.localStream;
   
     if (isInitiator) {
@@ -78,7 +106,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
      console.log("remote stream came from other user");
      console.log("direct connection has been established");
      remoteStream.connUserSocketId = connUserSocketId;
-     addNewRemoteStream(remoteStream);
+     addNewRemoteStream(remoteStream,connUserSocketId , name , pic , id);
    });
   };
 
@@ -90,9 +118,9 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     }
   };
 
-  const addNewRemoteStream = (remoteStream) => {
+  const addNewRemoteStream = (remoteStream , connUserSocketId , name , pic , id) => {
     const remoteStreams = store.getState().room.remoteStreams;
-    const newRemoteStreams = [...remoteStreams, remoteStream];
+    const newRemoteStreams = [...remoteStreams, {remoteStream,connUserSocketId , name , pic , id}];
   
     store.dispatch(setRemoteStreams(newRemoteStreams));
   };
@@ -103,6 +131,8 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
       const connUserSocketId = mappedObject[0];
       if (peers[connUserSocketId]) {
         peers[connUserSocketId].destroy();
+      //  peers[connUserSocketId] = [];
+
         delete peers[connUserSocketId];
       }
     });
@@ -112,7 +142,7 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     const { connUserSocketId } = data;
   
     if (peers[connUserSocketId]) {
-      peers[connUserSocketId].destroy();
+      peers[connUserSocketId].destroy()      
       delete peers[connUserSocketId];
     }
   
@@ -121,7 +151,8 @@ export const getLocalStreamPreview = (onlyAudio = false, callbackFunc) => {
     const newRemoteStreams = remoteStreams.filter(
       (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
     );
-  
+    console.log("some one left")
+    store.dispatch(removeOtherActionCam(connUserSocketId));
     store.dispatch(setRemoteStreams(newRemoteStreams));
   };
   

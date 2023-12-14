@@ -7,12 +7,16 @@ export const roomActions = {
     SET_AUDIO_ONLY: "ROOM.SET_AUDIO_ONLY",
     SET_SCREEN_SHARE_STREAM: "ROOM.SET_SCREEN_SHARE_STREAM",
     SET_IS_USER_JOINED_WITH_ONLY_AUDIO: "ROOM.SET_IS_USER_JOINED_WITH_ONLY_AUDIO",
+    SET_OTHER_USER_ACTION_CAM : "ROOM.SET_OTHER_USER_ACTION_CAM",
+    REMOVE_OTHER_USER_ACTION_CAM: "ROOM.REMOVE_OTHER_USER_ACTION_CAM",
+    SET_MODAL_ERROR_SHOW: "ROOM.SET_MODAL_ERROR_SHOW"
   };
   
   export const setOpenRoom = (
     isUserRoomCreator = false,
     isUserInRoom = false
   ) => {
+    console.log(isUserInRoom)
     return {
       type: roomActions.OPEN_ROOM,
       isUserRoomCreator,
@@ -20,12 +24,39 @@ export const roomActions = {
     };
   };
   
+  
   export const getActions = (dispatch) => {
     return {
       setAudioOnly: (audioOnly) => dispatch(setAudioOnly(audioOnly)),
       setScreenSharingStream: (stream) => {
         dispatch(setScreenSharingStream(stream));
       },
+      setOtherActionCam: (content) => dispatch(setOtherActionCam(content)),
+      removeOtherActionCam: (content) => dispatch(removeOtherActionCam(content)),
+      setErrorModal: (content) => dispatch(setErrorModal(content)),
+
+    };
+  };
+  
+  export const removeOtherActionCam = (content) => {
+    console.log(content)
+    return {
+      type: roomActions.REMOVE_OTHER_USER_ACTION_CAM,
+      content
+    };
+  };
+
+  export const setErrorModal = (content) => {
+    return {
+      type: roomActions.SET_MODAL_ERROR_SHOW,
+      content
+    };
+  };
+
+  export const setOtherActionCam = (content) => {
+    return {
+      type: roomActions.SET_OTHER_USER_ACTION_CAM,
+      content
     };
   };
   

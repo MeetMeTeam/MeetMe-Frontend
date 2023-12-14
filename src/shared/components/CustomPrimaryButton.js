@@ -11,16 +11,17 @@ const CustomPrimaryButton = ({
     <Button
       variant="contained"
       sx={{
-        bgcolor: "white",
+        bgcolor: "#985BD7",
         color: "white",
         textTransform: "none",
         fontSize: "16px",
-        fontWeight: 500,
+        fontWeight: 600,
         width: "100%",
         height: "40px",
         "&:hover": {
-          bgcolor: "#FCF7CF",
+          bgcolor: "#4B1E7A",
         },
+        borderRadius: "12px",
       }}
       style={additionalStyles ? additionalStyles : {}}
       disabled={disabled}
