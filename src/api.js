@@ -1,7 +1,8 @@
 import axios from "axios";
 import { logout } from "./shared/utils/auth";
-import { connectWithSocketServer } from "./realtimeCommunication/socketConnection"
+import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
+console.log(process.env.REACT_APP_BASE_API);
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api`,
 });
@@ -26,8 +27,11 @@ apiClient.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-   
-    if (error.response.status === 401 && !originalRequest._retry && error.response.data.message !== "Email or password incorrect." ) {
+    if (
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      error.response.data.message !== "Email or password incorrect."
+    ) {
       originalRequest._retry = true;
 
       try {
@@ -40,7 +44,7 @@ apiClient.interceptors.response.use(
 
             if (userDetails) {
               const RefreshToken = JSON.parse(userDetails).refreshToken;
-              console.log(RefreshToken)
+              console.log(RefreshToken);
               config.headers.Authorization = `Bearer ${RefreshToken}`;
             }
 
@@ -50,22 +54,20 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
-        console.log("hello")
+        console.log("hello");
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           let userDetails = JSON.parse(localStorage.getItem("user"));
           userDetails.token = response.data.accessToken;
           localStorage.setItem("user", JSON.stringify(userDetails));
-          connectWithSocketServer(userDetails)
-          
+          connectWithSocketServer(userDetails);
         }
-    
 
         // Retry the original request with the new token
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
         return axios(originalRequest);
       } catch (error) {
-          logout()
+        logout();
       }
     }
 
@@ -168,6 +170,17 @@ export const rejectFriendInvitation = async (data) => {
 export const rejectFriendInvitationAll = async () => {
   try {
     return await apiClient.delete(`/invitations`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getCoin = async () => {
+  try {
+    return await apiClient.get(`/users/coins`);
   } catch (exception) {
     return {
       error: true,
