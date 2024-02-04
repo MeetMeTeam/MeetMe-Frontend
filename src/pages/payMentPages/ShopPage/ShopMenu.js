@@ -1,9 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 
 const ShopMenu = () => {
+  const history = useHistory();
+
   return (
     <div className="w-full flex flex-col space-y-4 items-start bg-black/40 h-screen p-10 mx-6">
+      <div
+        onClick={() => history.push("/")}
+        className="bg-purple-70 text-white px-4 py-2 rounded-3xl font-medium cursor-pointer"
+      >
+        กลับไปหน้าหลัก
+      </div>
       <div className="text-[34px] ml-2 font-bold text-yellow-200">ร้านค้า</div>
       <div className="flex flex-row cursor-pointer">
         {" "}

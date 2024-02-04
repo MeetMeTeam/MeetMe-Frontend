@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import ShopMenu from "./ShopMenu";
+import UserCoin from "./UserCoin";
 import ShopCheckOut from "./ShopCheckOut/ShopCheckOut";
 import * as api from "../../../api";
 import { Plus } from "lucide-react";
@@ -23,19 +24,8 @@ const ShopPage = () => {
         <ShopMenu />
       </div>
       <div className="w-5/6">
-        <div className="flex justify-end items-start px-6 py-6">
-          <div className="relative bg-gray-40 flex flex-row items-center rounded-full  min-w-[70px]">
-            {" "}
-            <img
-              src={process.env.PUBLIC_URL + "/shopPage/coin_1.png"}
-              className={" w-[40px]"}
-              alt="coin"
-            />
-            <span className="text-white font-bold mr-8"> {coinUser}</span>
-            <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
-              <Plus className="text-gray-40  w-[15px] " />
-            </div>
-          </div>
+        <div className="flex justify-end items-start px-10 py-10">
+          <UserCoin />
         </div>
         <ShopCheckOut />
       </div>
