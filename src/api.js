@@ -188,3 +188,34 @@ export const getCoin = async () => {
     };
   }
 };
+export const getInventory = async () => {
+  try {
+    return await apiClient.get(`/inventories`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getAvatar = async (id) => {
+  try {
+    return await apiClient.get(`/users/avatars/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+export const changeAvatar = async (id) => {
+  try {
+    return await apiClient.put(`/users/avatars/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

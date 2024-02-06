@@ -1,5 +1,5 @@
 import "animate.css";
-import React, { useState , useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Redirect,
   Route,
@@ -7,40 +7,44 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
+import SuccessPage from "./pages/payMentPages/SuccessPage";
+import ShopPage from "./pages/payMentPages/ShopPage/ShopPage";
 import MainPages from "./pages/MainPages/HomePage";
 import LoginPage from "./pages/authPages/LoginPage/LoginPage";
 import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
-import { clearChatList } from './store/actions/allChatAction'
-import { useDispatch } from 'react-redux';
-import LoadingPage from './shared/components/LoadingPage'
+import { clearChatList } from "./store/actions/allChatAction";
+import { useDispatch } from "react-redux";
+import LoadingPage from "./shared/components/LoadingPage";
 import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
 
 function App() {
   const dispatch = useDispatch();
-  const isShowModalErrorSocket = useSelector((state) => state.alert.isSocketErrorModal);
+  const isShowModalErrorSocket = useSelector(
+    (state) => state.alert.isSocketErrorModal
+  );
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
   useEffect(() => {
-  console.log("clearChatList")
-  dispatch(clearChatList())
-  }, [])
+    console.log("clearChatList");
+    dispatch(clearChatList());
+  }, []);
   useEffect(() => {
-  console.log(isShowModalErrorSocket)
-    if(isShowModalErrorSocket){
-      handleOpenModal()
-    }else{
-      handleCloseModal()
+    console.log(isShowModalErrorSocket);
+    if (isShowModalErrorSocket) {
+      handleOpenModal();
+    } else {
+      handleCloseModal();
     }
-    }, [isShowModalErrorSocket])
+  }, [isShowModalErrorSocket]);
   return (
     <div className="relative">
-     {isShowLoadingPage &&  <LoadingPage/>} 
-     <ModalText
+      {isShowLoadingPage && <LoadingPage />}
+      <ModalText
         openModal={openModal}
         handleCloseModal={handleCloseModal}
         closeModal={handleCloseModal}
@@ -59,6 +63,12 @@ function App() {
           </Route>
           <Route exact path="/home">
             <MainPages />
+          </Route>
+          <Route exact path="/payment-success/:slug">
+            <SuccessPage />
+          </Route>
+          <Route exact path="/shop">
+            <ShopPage />
           </Route>
           <Route path="/">
             <Redirect to="/home" />
