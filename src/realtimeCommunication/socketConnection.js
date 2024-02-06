@@ -24,7 +24,7 @@ export const connectWithSocketServer = (userDetails) => {
   socket = io(process.env.REACT_APP_BASE_API_SOCKET, {
     secure: true,
     rejectUnauthorized: false,
-    path: "/socket.io/",
+    path: "/socket/",
     transport: ["websocket"],
     auth: {
       token: jwtToken,
@@ -34,17 +34,13 @@ export const connectWithSocketServer = (userDetails) => {
 
   let retries = 0;
 
-  function checkError () {
-    retries++
+  function checkError() {
+    retries++;
     if (!socket.connected && retries % 3 === 0) {
       store.dispatch(setModalErrorSocket(true));
     }
-    
   }
   setInterval(checkError, 1000);
-
-
- 
 
   socket.on("error", (error) => {
     console.log("error");
