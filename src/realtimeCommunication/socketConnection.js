@@ -24,7 +24,7 @@ export const connectWithSocketServer = (userDetails) => {
   socket = io(process.env.REACT_APP_BASE_API_SOCKET, {
     secure: true,
     rejectUnauthorized: false,
-    path: "/socket/",
+    path: "/socket",
     transport: ["websocket"],
     auth: {
       token: jwtToken,
