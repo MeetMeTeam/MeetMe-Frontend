@@ -34,13 +34,13 @@ export const connectWithSocketServer = (userDetails) => {
 
   let retries = 0;
 
-  function checkError() {
-    retries++;
-    if (!socket.connected && retries % 3 === 0) {
-      store.dispatch(setModalErrorSocket(true));
-    }
-  }
-  setInterval(checkError, 1000);
+  // function checkError() {
+  //   retries++;
+  //   if (!socket.connected && retries % 3 === 0) {
+  //     store.dispatch(setModalErrorSocket(true));
+  //   }
+  // }
+  // setInterval(checkError, 1000);
 
   socket.on("error", (error) => {
     console.log("error");
