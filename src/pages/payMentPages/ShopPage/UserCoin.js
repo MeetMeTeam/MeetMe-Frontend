@@ -13,14 +13,16 @@ const UserCoin = () => {
     getCoin();
   }, []);
   return (
-    <div className="relative bg-gray-40 flex flex-row items-center rounded-full  min-w-[70px]">
+    <div className="relative flex flex-row items-center rounded-full  min-w-[70px]">
       {" "}
       <img
-        src={process.env.PUBLIC_URL + "/shopPage/coin_1.png"}
-        className={" w-[40px]"}
+        src={
+          "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2F1.png?alt=media&token=3086c3ba-0513-4710-86d1-ebeb92389e00"
+        }
+        className={"mr-2 w-[20px]"}
         alt="coin"
       />
-      <span className="text-white font-bold mr-8"> {coinUser}</span>
+      <span className="text-black font-bold mr-8"> {coinUser} Coins</span>
       <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
         <Plus className="text-gray-40  w-[15px] " />
       </div>

@@ -37,8 +37,10 @@ const InventoryModal = () => {
   }
 
   async function changeAvatarPreview(item) {
-    setAvatarUserNew(item);
-    setAvatarUserShow(item);
+    if (item.preview) {
+      setAvatarUserNew(item);
+      setAvatarUserShow(item);
+    }
   }
 
   async function changeAvatar() {
@@ -58,58 +60,81 @@ const InventoryModal = () => {
   }, []);
 
   return (
-    <div className="select-none flex flex-row p-4 space-x-4 bg-white absolute h-[400px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] bg-background-paper rounded-lg shadow-24 ">
-      <div className="flex flex-col">
-        {isLoadingAvatar ? (
-          <div className="w-[400px] h-full flex items-center justify-center">
+    <div className="select-none px-6 p-4  bg-purple-90 absolute w-[820px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg shadow-24 ">
+      <div className="font-bold text-[26px] text-purple-10 mb-2">
+        เปลี่ยนตัวละคร
+      </div>
+      <div className="flex flex-row h-full space-x-6">
+        <div
+          className={
+            "flex flex-col  rounded-2xl " + (isLoadingAvatar ? "" : "bg-white")
+          }
+        >
+          {isLoadingAvatar ? (
+            <div className="w-[300px] h-[400px]  flex items-center justify-center">
+              <Loading />
+            </div>
+          ) : (
+            <AvatarPreview avatarUser={avatarUserShow} />
+          )}
+          {avatarUserNew && (
+            <div className="font-bold text-white flex flex-row w-full justify-center mt-4 space-x-2">
+              <div
+                className="bg-green-70 px-4 py-2 rounded-lg cursor-pointer"
+                onClick={() => changeAvatar()}
+              >
+                บันทึก
+              </div>
+              <div
+                className="bg-red-70 px-4 py-2 rounded-lg cursor-pointer"
+                onClick={() => cancelChange()}
+              >
+                ยกเลิก
+              </div>
+            </div>
+          )}
+        </div>
+        {isLoadingAvatarList ? (
+          <div className="w-[400px] h-[400px] flex items-center justify-center">
             <Loading />
           </div>
         ) : (
-          <AvatarPreview avatarUser={avatarUserShow} />
-        )}
-        {avatarUserNew && (
-          <div className="flex flex-row w-full justify-center mt-4 space-x-4">
-            <div
-              className="bg-green-80 px-4 py-2 rounded-lg cursor-pointer"
-              onClick={() => changeAvatar()}
-            >
-              เปลี่ยน
-            </div>
-            <div
-              className="bg-red-80 px-4 py-2 rounded-lg cursor-pointer"
-              onClick={() => cancelChange()}
-            >
-              ยกเลิก
-            </div>
+          <div className="grid grid-cols-3 gap-4">
+            {avatarList.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => changeAvatarPreview(item)}
+                className="flex flex-col items-center"
+              >
+                <div
+                  className={
+                    "p-4 w-[150px] rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-purple-70 " +
+                    (item.name ? "bg-purple-80" : "bg-purple-80/30")
+                  }
+                >
+                  {item.preview ? (
+                    <img
+                      src={item.preview}
+                      className="w-[100px] h-[70px] object-contain"
+                      alt="block"
+                    />
+                  ) : (
+                    <span className="w-[100px] h-[70px]"></span>
+                  )}
+                  <div
+                    className={
+                      "font-bold truncate " +
+                      (item.name ? "text-purple-10" : "text-purple-90")
+                    }
+                  >
+                    {item.name || "."}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>
-
-      {isLoadingAvatarList ? (
-        <div className="w-[400px] flex items-center justify-center">
-          <Loading />
-        </div>
-      ) : (
-        <div className="grid grid-cols-3 gap-4">
-          {avatarList.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => changeAvatarPreview(item)}
-              className="p-4 w-[150px] border rounded-md flex items-center justify-center cursor-pointer hover:bg-gray-100"
-            >
-              {item.preview ? (
-                <img
-                  src={item.preview}
-                  className="w-[100px] h-[70px] object-contain"
-                  alt="block"
-                />
-              ) : (
-                <span className="w-[100px] h-[70px]">empty</span>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };
