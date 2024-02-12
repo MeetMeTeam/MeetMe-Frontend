@@ -6,6 +6,7 @@ const CustomPrimaryButton = ({
   additionalStyles,
   disabled,
   onClick,
+  data
 }) => {
   return (
     <Button
@@ -26,6 +27,7 @@ const CustomPrimaryButton = ({
       style={additionalStyles ? additionalStyles : {}}
       disabled={disabled}
       onClick={onClick}
+      className={data}
     >
       {label}
     </Button>

@@ -38,7 +38,7 @@ const Input = styled("input")({
 });
 
 const InputWithLabel = (props) => {
-  const { value, setValue, label, type, placeholder, width , password } = props;
+  const { value, setValue, label, type, placeholder, width , password, data } = props;
 
   const handleValueChange = (event) => {
     setValue(event.target.value);
@@ -48,7 +48,6 @@ const InputWithLabel = (props) => {
     <Wrapper >
       <Label>{label}</Label>
       <Input
-     
         style={{
           width: width,
           borderColor: password && value ? password !== value ? "#FF9999" :"" : "",
@@ -57,6 +56,7 @@ const InputWithLabel = (props) => {
         onChange={handleValueChange}
         type={type}
         placeholder={placeholder}
+        className={data}
       />
     </Wrapper>
   );
