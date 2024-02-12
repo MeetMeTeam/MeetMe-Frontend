@@ -2,10 +2,16 @@ import axios from "axios";
 import { logout } from "./shared/utils/auth";
 import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
+
 console.log(process.env.REACT_APP_BASE_API);
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api`,
 });
+
+const apiChangePw = axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_API}/api/users/reset-password`,
+});
+
 
 apiClient.interceptors.request.use(
   (config) => {
@@ -22,6 +28,7 @@ apiClient.interceptors.request.use(
     return Promise.reject(err);
   }
 );
+
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -90,6 +97,45 @@ export const login = async (data) => {
 export const register = async (data) => {
   try {
     return await apiClient.post("/register", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const sendMailToResetPw = async (data) => {
+  try {
+    return await apiClient.put("/users/forgot-password", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const changePassword = async (data) => {
+  
+  try {
+    console.log(data)
+    apiChangePw.interceptors.request.use(
+      (config) => {
+        
+        if (data) {
+          config.headers.Authorization = `Bearer ${data.token}`;
+        }
+    
+        return config;
+      },
+      (err) => {
+        return Promise.reject(err);
+      }
+    );
+
+    return await apiChangePw.put("", data);
+
   } catch (exception) {
     return {
       error: true,
@@ -209,8 +255,11 @@ export const getAvatar = async (id) => {
     };
   }
 };
+
+
 export const changeAvatar = async (id) => {
   try {
+    
     return await apiClient.put(`/users/avatars/${id}`);
   } catch (exception) {
     return {

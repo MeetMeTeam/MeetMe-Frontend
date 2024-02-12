@@ -10,7 +10,7 @@ export const friendsActions = {
   SET_INVITES: "FRIENDS.SET_INVITES",
 };
 
-const errorServerText = "มีข้อผิดพลาดทางเซิฟเวอร์ โปรดลองใหม่อีกครั้งภายหลัง";
+const errorServerText = "There is an error on the server. Please try again later.";
 
 export const getActions = (dispatch) => {
   return {
@@ -141,7 +141,7 @@ export const getInviteList = () => {
       );
     }
     if (inviteList?.length > 0) {
-      dispatch(openAlertMessage("มีบางคนแอดเพื่อนคุณมา กรุณาตรวจสอบ"));
+      dispatch(openAlertMessage("Someone added you as a friend. Please check!"));
     }
     dispatch(setInvite(inviteList));
   };

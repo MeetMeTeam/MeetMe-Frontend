@@ -5,6 +5,10 @@ export const validateLoginForm = ({ mail, password }) => {
   return isMailValid && isPasswordValid;
 };
 
+export const validateResetPwForm = ({ mail }) => {
+  return validateMail(mail);
+};
+
 export const validateRegisterForm = ({ mail, password, username }) => {
   return (
     validateMail(mail) &&
