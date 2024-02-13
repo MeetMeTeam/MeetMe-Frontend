@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
-import RegisterPageInputs from "./RegisterPageInputs";
-import RegisterPageFooter from "./RegisterPageFooter";
-import RegisterHeader from "./RegisterHeader";
+import RegisterPageInputs from "./components/RegisterPageInputs";
+import RegisterPageFooter from "./components/RegisterPageFooter";
+import RegisterHeader from "./components/RegisterHeader";
 import { validateRegisterForm } from "../../../shared/utils/validators";
 import { connect } from "react-redux";
 import { getActions } from "../../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
 import SnowAnimation from "../../../shared/components/SnowAnimation";
 import { useMediaQuery } from "react-responsive";
+import * as api from "../../../api";
 
 const RegisterPage = ({ register }) => {
   const history = useHistory();
@@ -25,7 +26,7 @@ const RegisterPage = ({ register }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [character, setCharacter] = useState("PROFILE_1");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     const userDetails = {
       email: mail,
       password,
@@ -42,7 +43,17 @@ const RegisterPage = ({ register }) => {
       displayName: displayname,
     };
 
-    register(userDetails, history);
+    register(
+      userDetails,
+      history,
+      character === "PROFILE_1"
+        ? "65bf22ef04d88d9372a6ad5d"
+        : character === "PROFILE_2"
+        ? "65bf22ef04d88d9372a6ad5d"
+        : character === "PROFILE_3"
+        ? "65bf731fdef1b706cebf3572"
+        : "65bf731fdef1b706cebf3572"
+    );
   };
 
   useEffect(() => {

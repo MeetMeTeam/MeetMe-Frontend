@@ -1,6 +1,6 @@
 import React from "react";
-import CustomPrimaryButton from "../../../shared/components/CustomPrimaryButton";
-import RedirectInfo from "../../../shared/components/RedirectInfo";
+import CustomPrimaryButton from "../../../../shared/components/CustomPrimaryButton";
+import RedirectInfo from "../../../../shared/components/RedirectInfo";
 import { useHistory } from "react-router-dom";
 import { Tooltip } from "@mui/material";
 
@@ -21,7 +21,7 @@ const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
 
   return (
     <>
-     <RedirectInfo
+      <RedirectInfo
         text="Have an account ? "
         redirectText="Sign In"
         additionalStyles={{ marginTop: "5px" }}
@@ -40,7 +40,6 @@ const RegisterPageFooter = ({ handleRegister, isFormValid }) => {
           />
         </div>
       </Tooltip>
-     
     </>
   );
 };
