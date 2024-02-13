@@ -12,7 +12,7 @@ import Loading from "../../../shared/components/Loading";
 import { logout } from "../../../shared/utils/auth";
 import { setUserDetails } from "../../../store/actions/authActions";
 import store from "../../../store/store";
-
+import AvatarShop from "./AvatarShop/AvatarShop";
 const ShopPage = () => {
   const { slug } = useParams();
   const history = useHistory();
@@ -22,7 +22,14 @@ const ShopPage = () => {
   const [avatarList, setAvatarList] = useState([]);
   const [avatarUserShow, setAvatarUserShow] = useState({});
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
+  const [isLoadingAvatarShop, setIsloadingAvatarShop] = useState(true);
+
   const userDetail = useSelector((state) => state.auth.userDetails);
+  const menuList = [
+    { name: "ตัวละคร", menu: "AVATAR" },
+    { name: "รับ Flower", menu: "ADD_COIN" },
+  ];
+  const [menuNow, setMenuNow] = useState("AVATAR");
 
   async function getCoin() {
     const coinUser = await api.getCoin();
@@ -39,6 +46,26 @@ const ShopPage = () => {
     }
   }
 
+  async function getAvatarShop() {
+    const AvatarShop = await api.getAvatarShop();
+    console.log(AvatarShop?.data?.data);
+    if (AvatarShop) {
+      await setAvatarList(AvatarShop?.data?.data);
+      setIsloadingAvatarShop(false);
+    }
+  }
+
+  async function buyAvatar() {
+    console.log(avatarUserShow);
+    const data = {
+      item_id: avatarUserShow.id,
+      tem_type: "AVATAR",
+    };
+    const response = await api.buyAvatar(data);
+
+    console.log(response);
+  }
+
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
 
@@ -47,22 +74,23 @@ const ShopPage = () => {
     } else {
       store.dispatch(setUserDetails(JSON.parse(userDetails)));
       getCoin();
+      getAvatarShop();
       getAvatar(JSON.parse(userDetails)._id);
     }
   }, []);
 
   return (
-    <div className="relative  bg-purple-90 p-10 md:space-y-0 space-y-4  min-h-screen select-none flex md:flex-row flex-col">
+    <div className="scale-95  relative justify-center w-screen  bg-purple-90 p-10 md:space-y-0 space-y-4  min-h-screen select-none flex md:flex-row flex-col">
       <div
         onClick={() => history.push("/")}
-        className="absolute top-2 left-2 bg-purple-70 text-white px-4 py-2 rounded-3xl font-medium cursor-pointer"
+        className="absolute top-4 left-4 bg-purple-70 text-white px-4 py-2 rounded-3xl font-medium cursor-pointer"
       >
         {"<-"}
       </div>
-      <div className="md:w-2/6 px-6 flex flex-col space-y-4 ">
+      <div className="px-6 flex flex-col justify-center space-y-4 min-w-[500px]">
         <div
           className={
-            "flex flex-col items-center w-full h-[80%] justify-center rounded-2xl " +
+            "flex flex-col items-center w-full h-[500px] justify-center rounded-2xl " +
             (isLoadingAvatar ? "" : "bg-white")
           }
         >
@@ -82,13 +110,35 @@ const ShopPage = () => {
             <UserCoin />
           </div>
         </div>
-        <div className="font-bold bg-purple-50 py-2 rounded-full w-full text-white flex justify-center">
+        <div
+          onClick={buyAvatar}
+          className={
+            "font-bold  py-2 rounded-full w-full text-white flex justify-center " +
+            (avatarUserShow?.isOwner
+              ? "bg-purple-70 cursor-not-allowed"
+              : "bg-purple-50 cursor-pointer")
+          }
+        >
           Buy
         </div>
       </div>
-      <div className="md:w-5/6 flex flex-row ">
-        <ShopMenu />
-        <ShopCheckOut />
+      <div className="flex flex-row items-center">
+        <div className="flex flex-row">
+          <ShopMenu
+            menuList={menuList}
+            menuNow={menuNow}
+            setMenuNow={setMenuNow}
+          />
+          {menuNow === "ADD_COIN" && <ShopCheckOut />}
+
+          {menuNow === "AVATAR" && (
+            <AvatarShop
+              isLoadingAvatarShop={isLoadingAvatarShop}
+              avatarList={avatarList}
+              setAvatarUserShow={setAvatarUserShow}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -7,8 +7,8 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import SuccessPage from "./pages/PaymentPages/SuccessPage";
-import ShopPage from "./pages/PaymentPages/ShopPage/ShopPage";
+import SuccessPaymentPage from "./pages/payMentPages/SuccessPaymentPage";
+import ShopPage from "./pages/payMentPages/ShopPage/MainPage";
 import MainPages from "./pages/MainPages/HomePage";
 import LoginPage from "./pages/authPages/LoginPage/LoginPage";
 import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
@@ -77,7 +77,7 @@ function App() {
             <MainPages />
           </Route>
           <Route exact path="/payment-success/:slug">
-            <SuccessPage />
+            <SuccessPaymentPage />
           </Route>
           <Route exact path="/shop">
             <ShopPage />
@@ -85,7 +85,6 @@ function App() {
           <Route path="/">
             <Redirect to="/home" />
           </Route>
-          
         </Switch>
       </Router>
       <AlertNotification />

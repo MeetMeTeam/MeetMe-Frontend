@@ -2,7 +2,6 @@ import axios from "axios";
 import { logout } from "./shared/utils/auth";
 import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
-
 console.log(process.env.REACT_APP_BASE_API);
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api`,
@@ -11,7 +10,6 @@ const apiClient = axios.create({
 const apiChangePw = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api/users/reset-password`,
 });
-
 
 apiClient.interceptors.request.use(
   (config) => {
@@ -117,16 +115,14 @@ export const sendMailToResetPw = async (data) => {
 };
 
 export const changePassword = async (data) => {
-  
   try {
-    console.log(data)
+    console.log(data);
     apiChangePw.interceptors.request.use(
       (config) => {
-        
         if (data) {
           config.headers.Authorization = `Bearer ${data.token}`;
         }
-    
+
         return config;
       },
       (err) => {
@@ -135,7 +131,6 @@ export const changePassword = async (data) => {
     );
 
     return await apiChangePw.put("", data);
-
   } catch (exception) {
     return {
       error: true,
@@ -256,11 +251,30 @@ export const getAvatar = async (id) => {
   }
 };
 
-
 export const changeAvatar = async (id) => {
   try {
-    
     return await apiClient.put(`/users/avatars/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getAvatarShop = async (id) => {
+  try {
+    return await apiClient.get(`/avatars`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+export const buyAvatar = async (id) => {
+  try {
+    return await apiClient.post(`/inventories`);
   } catch (exception) {
     return {
       error: true,

@@ -31,8 +31,8 @@ const InventoryModal = () => {
   }
   async function getAvatar() {
     const inventoryUser = await api.getAvatar(userDetail._id);
-    await setAvatarUser(inventoryUser.data.data);
-    await setAvatarUserShow(inventoryUser.data.data);
+    await setAvatarUser(inventoryUser?.data?.data);
+    await setAvatarUserShow(inventoryUser?.data?.data);
     setIsloadingAvatar(false);
   }
 

@@ -47,10 +47,12 @@ const ShopCheckOut = () => {
     },
   ];
   return (
-    <div className="bg-purple-80  rounded-2xl grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 p-10">
-      {packageItem.map((item) => (
-        <CheckOutItem key={item.id} item={item} />
-      ))}
+    <div className="bg-purple-80  rounded-2xl lg:h-[620px]  w-[930px] p-10">
+      <div className="flex flex-wrap gap-4">
+        {packageItem.map((item) => (
+          <CheckOutItem key={item.id} item={item} />
+        ))}
+      </div>
     </div>
   );
 };

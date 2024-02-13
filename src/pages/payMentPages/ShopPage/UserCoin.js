@@ -13,7 +13,7 @@ const UserCoin = () => {
     getCoin();
   }, []);
   return (
-    <div className="relative flex flex-row items-center rounded-full  min-w-[70px]">
+    <div className="relative flex flex-row items-center rounded-full   min-w-[70px]">
       {" "}
       <img
         src={

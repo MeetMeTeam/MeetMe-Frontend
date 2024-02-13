@@ -45,7 +45,7 @@ const CheckOutItem = (prop) => {
           {" "}
           <img
             src={prop.item.img}
-            className={"h-[175px] w-[230px] object-contain"}
+            className={"h-[115px] w-[200px] object-contain"}
             alt="coin"
           />{" "}
         </div>
