@@ -8,20 +8,24 @@ const AvatarPreview = (prop) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentImageIndex(
-        (prevIndex) => (prevIndex + 1) % prop.avatarUser.assets.length
+        (prevIndex) => (prevIndex + 1) % prop?.avatarUser?.assets?.length
       );
-    }, 400);
+    }, 200);
 
     return () => clearInterval(intervalId);
-  }, [prop.avatarUser.assets]);
+  }, [prop?.avatarUser?.assets]);
 
   return (
-    <div className="w-[300px] h-[300px]">
-      <img
-        src={prop.avatarUser.assets[currentImageIndex]}
-        className="w-[300px] h-[300px]"
-        alt="avatar"
-      />
+    <div className="flex flex-col items-center justify-center">
+      <div className="w-[300px] h-[300px] flex flex-col justify-center items-center">
+        <img
+          src={prop?.avatarUser?.assets[currentImageIndex]}
+          className="w-[245px] h-[280px] object-contain scale-75"
+          alt="avatar"
+        />
+      </div>
+
+      <div>{prop?.avatarUser?.name} </div>
     </div>
   );
 };

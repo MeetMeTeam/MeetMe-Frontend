@@ -7,11 +7,14 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import SuccessPage from "./pages/payMentPages/SuccessPage";
-import ShopPage from "./pages/payMentPages/ShopPage/ShopPage";
+import SuccessPaymentPage from "./pages/payMentPages/SuccessPaymentPage";
+import ShopPage from "./pages/payMentPages/ShopPage/MainPage";
 import MainPages from "./pages/MainPages/HomePage";
 import LoginPage from "./pages/authPages/LoginPage/LoginPage";
 import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
+import ResetPasswordPage from "./pages/authPages/ForgotPasswordPage/ResetPassword";
+import ChangePasswordPage from "./pages/authPages/ForgotPasswordPage/ChangePasswordPage";
+import SentMailResetPassword from "./pages/authPages/ForgotPasswordPage/SentMailResetPassword";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 import { clearChatList } from "./store/actions/allChatAction";
@@ -55,6 +58,15 @@ function App() {
       />
       <Router>
         <Switch>
+          <Route exact path="/reset-password">
+            <ResetPasswordPage />
+          </Route>
+          <Route exact path="/sent-mail">
+            <SentMailResetPassword />
+          </Route>
+          <Route exact path="/reset-password/:token">
+            <ChangePasswordPage />
+          </Route>
           <Route exact path="/login">
             <LoginPage />
           </Route>
@@ -65,7 +77,7 @@ function App() {
             <MainPages />
           </Route>
           <Route exact path="/payment-success/:slug">
-            <SuccessPage />
+            <SuccessPaymentPage />
           </Route>
           <Route exact path="/shop">
             <ShopPage />

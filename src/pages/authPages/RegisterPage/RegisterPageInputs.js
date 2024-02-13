@@ -81,6 +81,7 @@ const RegisterPageInputs = (props) => {
       <div className="flex md:flex-row flex-col md:space-x-4">
         <div className="md:w-1/2 w-full space-y-4">
           <InputWithLabel
+            data="data-email"
             value={mail}
             setValue={setMail}
             label="E-mail address"
@@ -88,6 +89,7 @@ const RegisterPageInputs = (props) => {
             placeholder="Enter e-mail address"
           />
           <InputWithLabel
+            data="data-displayname"
             value={displayname}
             setValue={setDisplayname}
             label="Displayname"
@@ -96,6 +98,7 @@ const RegisterPageInputs = (props) => {
           />
           <div className="pt-2">
             <InputWithLabel
+              data="data-password"
               value={password}
               setValue={setPassword}
               label="Password"
@@ -107,6 +110,7 @@ const RegisterPageInputs = (props) => {
 
         <div className="md:w-1/2 w-full space-y-4">
           <InputWithLabel
+            data="data-username"
             value={username}
             setValue={setUsername}
             label="Username"
@@ -130,7 +134,7 @@ const RegisterPageInputs = (props) => {
                   value={day}
                   label="DD"
                   onChange={handleChangeDay}
-                  className="bg-white"
+                  className="data-birthdate bg-white"
                 >
                   {dateDay.map((number) => (
                     <MenuItem value={number}>{number}</MenuItem>
@@ -151,9 +155,9 @@ const RegisterPageInputs = (props) => {
                   value={month}
                   label="MM"
                   onChange={handleChangeMonth}
-                  className="bg-white"
+                  className="data-birthmonth bg-white"
                 >
-                   {dateMonth.map((number) => (
+                  {dateMonth.map((number) => (
                     <MenuItem value={number}>{number}</MenuItem>
                   ))}
                 </Select>
@@ -172,9 +176,9 @@ const RegisterPageInputs = (props) => {
                   value={year}
                   label="YYYY"
                   onChange={handleChangeYear}
-                  className="bg-white"
+                  className="data-birthyear bg-white"
                 >
-                   {dateYear.map((number) => (
+                  {dateYear.map((number) => (
                     <MenuItem value={number}>{number}</MenuItem>
                   ))}
                 </Select>
@@ -183,6 +187,7 @@ const RegisterPageInputs = (props) => {
           </div>
 
           <InputWithLabel
+            data="data-repassword"
             value={rePassword}
             setValue={setRePassword}
             label="Re-password"
@@ -200,9 +205,8 @@ const RegisterPageInputs = (props) => {
             <img
               key={characters.src}
               src={"/registerPage/" + characters.src + ".png"}
-              className={`transition  hover:scale-125  duration-200 cursor-pointer md:w-[100px] w-[150px] rounded-2xl drop-shadow-md ${
-                character === characters.src ? " border-purple-60 border-2" : ""
-              }`}
+              className={`transition  hover:scale-125  duration-200 cursor-pointer md:w-[100px] w-[150px] rounded-2xl drop-shadow-md ${character === characters.src ? " border-purple-60 border-2" : ""
+                }`}
               onClick={() => setCharacter(characters.src)}
             />
           ))}

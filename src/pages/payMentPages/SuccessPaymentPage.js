@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
-const SuccessPage = () => {
+const SuccessPaymentPage = () => {
   const { slug } = useParams();
   const history = useHistory();
 
@@ -28,4 +28,4 @@ const SuccessPage = () => {
   );
 };
 
-export default SuccessPage;
+export default SuccessPaymentPage;
