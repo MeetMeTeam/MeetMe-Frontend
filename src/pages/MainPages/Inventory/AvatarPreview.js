@@ -7,6 +7,7 @@ const AvatarPreview = (prop) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+      console.log("count");
       setCurrentImageIndex(
         (prevIndex) => (prevIndex + 1) % prop?.avatarUser?.assets?.length
       );

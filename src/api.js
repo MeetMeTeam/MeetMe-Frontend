@@ -282,3 +282,14 @@ export const buyAvatar = async (id) => {
     };
   }
 };
+
+export const addAvatarShop = async (data) => {
+  try {
+    return await apiClient.post(`/avatars`, data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

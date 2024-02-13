@@ -6,15 +6,15 @@
 
 @keyframes bounce {
   0% { transform: translateY(-5px)  }
-  50% { transform: translateY(10px) }
+  50% { transform: translateY(30px) }
   100% { transform: translateY(-5px) }
 }
 
 .imgBounce {
   
-  -webkit-animation: bounce 3s infinite ease-in-out;
-  -o-animation: bounce 3s infinite ease-in-out;
-  -ms-animation: bounce 3s infinite ease-in-out; 
-  -moz-animation: bounce 3s infinite ease-in-out; 
-  animation: bounce 3s infinite ease-in-out;
+  -webkit-animation: bounce 1s infinite ease-in-out;
+  -o-animation: bounce 1s infinite ease-in-out;
+  -ms-animation: bounce 1s infinite ease-in-out; 
+  -moz-animation: bounce 1s infinite ease-in-out; 
+  animation: bounce 1s infinite ease-in-out;
 }
