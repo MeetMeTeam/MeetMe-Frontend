@@ -73,18 +73,13 @@ const RegisterPage = ({ register }) => {
       <SnowAnimation />
       {!isTabletOrMobile && (
         <div>
-          {" "}
           <img
-            src={process.env.PUBLIC_URL + "/registerPage/water1.png"}
+            src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
             className="absolute z-10 bottom-0 w-full object-contain"
           />
           <img
-            src={process.env.PUBLIC_URL + "/registerPage/water2.png"}
-            className="absolute z-0 bottom-0 w-full  object-contain"
-          />
-          <img
-            src={process.env.PUBLIC_URL + "/registerPage/tree.png"}
-            className="absolute z-20 bottom-20 left-5"
+            src={process.env.PUBLIC_URL + "/loginPage/2024text.png"}
+            className={"top-0 right-0 absolute z-30 w-[20%]"}
           />
           <img
             src={process.env.PUBLIC_URL + "/registerPage/nongRed.png"}
@@ -93,9 +88,9 @@ const RegisterPage = ({ register }) => {
         </div>
       )}
 
-      <div className="relative w-full flex items-center justify-center">
+      <div className=" relative w-full flex items-center justify-center">
         {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/5  rounded-lg backdrop-blur-md bg-white/50 z-40"></div> */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 md:mt-0 mt-56 -translate-y-1/2 md:w-3/5 w-4/5  z-40 p-6  flex flex-col bg-white/50 rounded-xl drop-shadow-md">
+        <div className="scale-75 absolute top-1/2 left-1/2 transform -translate-x-1/2 md:mt-0 mt-56 -translate-y-1/2 md:w-3/5 w-4/5  z-40 p-6  flex flex-col bg-white/90 rounded-xl drop-shadow-md">
           <RegisterHeader />
           <RegisterPageInputs
             mail={mail}
