@@ -57,15 +57,37 @@ const RegisterPage = ({ register }) => {
   };
 
   useEffect(() => {
-    setIsFormValid(
-      validateRegisterForm({
-        mail,
-        username,
-        password,
-      }) &&
-        displayname &&
-        rePassword === password
-    );
+    if (
+      mail &&
+      username &&
+      displayname &&
+      password &&
+      rePassword &&
+      day &&
+      month &&
+      year
+    ) {
+      setIsFormValid(
+        validateRegisterForm({
+          mail,
+          username,
+          password,
+        }) &&
+          displayname &&
+          rePassword === password
+      );
+    } else {
+      setIsFormValid(false);
+
+      if (!mail) console.log("Mail is empty");
+      if (!username) console.log("Username is empty");
+      if (!displayname) console.log("Display Name is empty");
+      if (!password) console.log("Password is empty");
+      if (!rePassword) console.log("Confirm Password is empty");
+      if (!day) console.log("Day is empty");
+      if (!month) console.log("Month is empty");
+      if (!year) console.log("Year is empty");
+    }
   }, [mail, displayname, username, password, setIsFormValid, rePassword]);
 
   return (

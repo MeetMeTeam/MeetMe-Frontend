@@ -1,9 +1,11 @@
-import React from
- 
-"react";
-import { styled } from
- 
-"@mui/system";
+import React from "react";
+import { styled } from "@mui/system";
+import {
+  validateMail,
+  validateUsername,
+  validateDisplayName,
+  validatePassword,
+} from "../../shared/utils/validators";
 
 const Wrapper = styled("div")({
   display: "flex",
@@ -38,19 +40,44 @@ const Input = styled("input")({
 });
 
 const InputWithLabel = (props) => {
-  const { value, setValue, label, type, placeholder, width , password, data } = props;
+  const { value, setValue, label, type, placeholder, width, password, data } =
+    props;
 
   const handleValueChange = (event) => {
     setValue(event.target.value);
   };
 
   return (
-    <Wrapper >
-      <Label>{label}</Label>
+    <Wrapper>
+      <div className="flex space-x-2">
+        <Label>{label} </Label>
+        {label === "E-mail address" &&
+          !validateMail(value) &&
+          value.length > 0 && (
+            <div className="text-[12px] text-red-40"> เมลไม่ถูกต้อง </div>
+          )}
+
+        {label === "Username" &&
+          !validateUsername(value) &&
+          value.length > 0 && (
+            <div className="text-[12px] text-red-40"> ความยาว 2-15 </div>
+          )}
+        {label === "Displayname" &&
+          !validateDisplayName(value) &&
+          value.length > 0 && (
+            <div className="text-[12px] text-red-40"> ความยาว 6-15 </div>
+          )}
+        {label === "Password" &&
+          !validatePassword(value) &&
+          value.length > 0 && (
+            <div className="text-[12px] text-red-40"> ความยาว 6 ตัวขึ้นไป </div>
+          )}
+      </div>
       <Input
         style={{
           width: width,
-          borderColor: password && value ? password !== value ? "#FF9999" :"" : "",
+          borderColor:
+            password && value ? (password !== value ? "#FF9999" : "") : "",
         }}
         value={value}
         onChange={handleValueChange}
