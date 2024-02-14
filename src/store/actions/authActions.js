@@ -4,15 +4,18 @@ import { openAlertMessage, setLoadingPage } from "./alertActions";
 export const authActions = {
   SET_USER_DETAILS: "AUTH.SET_USER_DETAILS",
 };
-const errorServerText = "There is an error on the server. Please try again later.";
+const errorServerText =
+  "There is an error on the server. Please try again later.";
 export const getActions = (dispatch) => {
   return {
     login: (userDetails, history) => dispatch(login(userDetails, history)),
-    register: (userDetails, history) =>
-      dispatch(register(userDetails, history)),
+    register: (userDetails, history, id) =>
+      dispatch(register(userDetails, history, id)),
     setUserDetails: (userDetails) => dispatch(setUserDetails(userDetails)),
-    changePassword: (userDetails, history) => dispatch(changePassword(userDetails, history)),
-    sendMailToResetPassword: (userDetails,history) => dispatch(sendMailToResetPassword(userDetails,history))
+    changePassword: (userDetails, history) =>
+      dispatch(changePassword(userDetails, history)),
+    sendMailToResetPassword: (userDetails, history) =>
+      dispatch(sendMailToResetPassword(userDetails, history)),
   };
 };
 
@@ -39,7 +42,6 @@ const login = (userDetails, history) => {
         dispatch(setLoadingPage(false));
       } else {
         const { userDetails } = response?.data;
-
         dispatch(setUserDetails(userDetails));
         localStorage.setItem("user", JSON.stringify(userDetails));
         history.push("/dashboard");
@@ -52,10 +54,13 @@ const login = (userDetails, history) => {
   };
 };
 
-const register = (userDetails, history) => {
+const register = (userDetails, history, id) => {
+  console.log(id);
   return async (dispatch) => {
     dispatch(setLoadingPage(true));
     try {
+      userDetails.characterId = id;
+      console.log(userDetails);
       const response = await api.register(userDetails);
       if (response.error) {
         dispatch(setLoadingPage(false));
@@ -78,7 +83,6 @@ const register = (userDetails, history) => {
   };
 };
 
-
 const sendMailToResetPassword = (userDetails, history) => {
   return async (dispatch) => {
     dispatch(setLoadingPage(true));
@@ -94,7 +98,7 @@ const sendMailToResetPassword = (userDetails, history) => {
         dispatch(setLoadingPage(false));
       } else {
         const userDetail = response?.data;
-        history.push("/sent-mail")
+        history.push("/sent-mail");
         dispatch(setLoadingPage(false));
       }
     } catch (exception) {
@@ -112,12 +116,11 @@ const changePassword = (userDetails, history) => {
       const response = await api.changePassword(userDetails);
       if (response.error) {
         dispatch(setLoadingPage(false));
-        if (response?.exception?.response?.data.message === "Invalid Token: Token is expired"){
-          dispatch(
-            openAlertMessage(
-              "Please send mail request again."
-            )
-          );
+        if (
+          response?.exception?.response?.data.message ===
+          "Invalid Token: Token is expired"
+        ) {
+          dispatch(openAlertMessage("Please send mail request again."));
         }
         dispatch(
           openAlertMessage(
@@ -127,7 +130,7 @@ const changePassword = (userDetails, history) => {
       } else {
         const userDetail = response?.data;
         dispatch(setLoadingPage(false));
-        history.push("/login")
+        history.push("/login");
       }
     } catch (exception) {
       dispatch(setLoadingPage(false));

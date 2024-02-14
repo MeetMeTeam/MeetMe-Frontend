@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import InputWithLabel from "../../../shared/components/InputWithLabel";
+import InputWithLabel from "../../../../shared/components/InputWithLabel";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -205,8 +205,9 @@ const RegisterPageInputs = (props) => {
             <img
               key={characters.src}
               src={"/registerPage/" + characters.src + ".png"}
-              className={`transition  hover:scale-125  duration-200 cursor-pointer md:w-[100px] w-[150px] rounded-2xl drop-shadow-md ${character === characters.src ? " border-purple-60 border-2" : ""
-                }`}
+              className={`transition  hover:scale-125  duration-200 cursor-pointer md:w-[100px] w-[150px] rounded-2xl drop-shadow-md ${
+                character === characters.src ? " border-purple-60 border-2" : ""
+              }`}
               onClick={() => setCharacter(characters.src)}
             />
           ))}

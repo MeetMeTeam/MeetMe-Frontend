@@ -7,14 +7,15 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import SuccessPaymentPage from "./pages/payMentPages/SuccessPaymentPage";
-import ShopPage from "./pages/payMentPages/ShopPage/MainPage";
+import SuccessPaymentPage from "./pages/payMentPages/success-page";
+import ShopPage from "./pages/payMentPages/shop-page";
 import MainPages from "./pages/MainPages/HomePage";
-import LoginPage from "./pages/authPages/LoginPage/LoginPage";
-import RegisterPage from "./pages/authPages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/authPages/LoginPage/login-page";
+import RegisterPage from "./pages/authPages/RegisterPage/register-page";
 import ResetPasswordPage from "./pages/authPages/ForgotPasswordPage/ResetPassword";
 import ChangePasswordPage from "./pages/authPages/ForgotPasswordPage/ChangePasswordPage";
 import SentMailResetPassword from "./pages/authPages/ForgotPasswordPage/SentMailResetPassword";
+import AdminPage from "./pages/adminPages/admin-page";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 import { clearChatList } from "./store/actions/allChatAction";
@@ -78,6 +79,9 @@ function App() {
           </Route>
           <Route exact path="/payment-success/:slug">
             <SuccessPaymentPage />
+          </Route>
+          <Route exact path="/admin">
+            <AdminPage />
           </Route>
           <Route exact path="/shop">
             <ShopPage />

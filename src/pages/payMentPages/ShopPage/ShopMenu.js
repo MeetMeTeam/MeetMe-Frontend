@@ -5,8 +5,9 @@ import { useParams, useHistory } from "react-router-dom";
 const ShopMenu = (props) => {
   return (
     <div className="flex flex-col space-y-4 mt-4">
-      {props.menuList.map((item) => (
+      {props.menuList.map((item, index) => (
         <div
+          key={index}
           onClick={() => props.setMenuNow(item.menu)}
           className={
             "rounded-l-full px-4 font-medium py-2 truncate cursor-pointer " +

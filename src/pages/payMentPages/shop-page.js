@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import ShopMenu from "./ShopMenu";
-import UserCoin from "./UserCoin";
-import ShopCheckOut from "./ShopCheckOut/ShopCheckOut";
-import * as api from "../../../api";
+import ShopMenu from "./ShopPage/ShopMenu";
+import UserCoin from "./ShopPage/UserCoin";
+import ShopCheckOut from "./ShopPage/ShopCheckOut/ShopCheckOut";
+import * as api from "../../api";
 import { Plus } from "lucide-react";
 import { useSelector } from "react-redux";
-import AvatarPreview from "../../MainPages/Inventory/AvatarPreview";
-import Loading from "../../../shared/components/Loading";
-import { logout } from "../../../shared/utils/auth";
-import { setUserDetails } from "../../../store/actions/authActions";
-import store from "../../../store/store";
-import AvatarShop from "./AvatarShop/AvatarShop";
+import AvatarPreview from "../MainPages/Inventory/AvatarPreview";
+import Loading from "../../shared/components/Loading";
+import { logout } from "../../shared/utils/auth";
+import { setUserDetails } from "../../store/actions/authActions";
+import store from "../../store/store";
+import AvatarShop from "./ShopPage/AvatarShop/AvatarShop";
 const ShopPage = () => {
   const { slug } = useParams();
   const history = useHistory();

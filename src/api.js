@@ -274,7 +274,18 @@ export const getAvatarShop = async (id) => {
 };
 export const buyAvatar = async (id) => {
   try {
-    return await apiClient.post(`/inventories`);
+    return await apiClient.post(`/inventories?item_id=${id}&item_type=avatar`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const addAvatarShop = async (data) => {
+  try {
+    return await apiClient.post(`/avatars`, data);
   } catch (exception) {
     return {
       error: true,
