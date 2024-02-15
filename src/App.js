@@ -7,8 +7,8 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import SuccessPaymentPage from "./pages/PaymentPages/success-page";
-import ShopPage from "./pages/PaymentPages/shop-page";
+import SuccessPaymentPage from "./pages/payMentPages/success-page";
+import ShopPage from "./pages/payMentPages/shop-page";
 import MainPages from "./pages/MainPages/HomePage";
 import LoginPage from "./pages/authPages/LoginPage/login-page";
 import RegisterPage from "./pages/authPages/RegisterPage/register-page";
