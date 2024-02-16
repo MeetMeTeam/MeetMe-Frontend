@@ -65,7 +65,7 @@ const InputWithLabel = (props) => {
         {label === "Displayname" &&
           !validateDisplayName(value) &&
           value.length > 0 && (
-            <div className="text-[12px] text-red-40"> ความยาว 6-15 </div>
+            <div className="text-[12px] text-red-40"> ความยาว 2-15 </div>
           )}
         {label === "Password" &&
           !validatePassword(value) &&
