@@ -93,7 +93,7 @@ const RegisterPage = ({ register }) => {
   }, [mail, displayname, username, password, setIsFormValid, rePassword]);
 
   return (
-    <div className="bg-purple-90 select-none relative w-screen h-screen flex items-center">
+    <div className="bg-yellow-90 select-none relative w-screen h-screen flex items-center">
       {!isTabletOrMobile && (
         <div>
           <img
