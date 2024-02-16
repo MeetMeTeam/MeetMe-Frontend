@@ -59,8 +59,8 @@ const LoginPage = ({ login }) => {
         </div>
 
         <div className="relative  lg:w-1/2 w-full flex items-center justify-center">
-          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[530px] rounded-lg bg-white opacity-50"></div>
-          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[530px]  p-6  flex flex-col">
+          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[580px] rounded-lg bg-white opacity-70"></div>
+          <div className="absolute z-50 xl:w-4/5 w-4/5 h-[580px]  p-6  flex flex-col">
             <LoginPageHeader />
             <LoginPageInputs
               mail={mail}

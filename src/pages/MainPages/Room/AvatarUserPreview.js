@@ -26,11 +26,11 @@ export default function AvatarUserPreview({ id }) {
         }
       >
         {isLoadingAvatar ? (
-          <div className="w-[300px] h-[400px]  flex items-center justify-center">
+          <div className="  flex items-center justify-center">
             <Loading />
           </div>
         ) : (
-          <AvatarPreview avatarUser={avatarUserShow} />
+          <AvatarPreview height="350" width="300" avatarUser={avatarUserShow} />
         )}
       </div>
     </div>

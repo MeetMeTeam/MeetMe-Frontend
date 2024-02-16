@@ -13,6 +13,8 @@ import { logout } from "../../shared/utils/auth";
 import { setUserDetails } from "../../store/actions/authActions";
 import store from "../../store/store";
 import AvatarShop from "./ShopPage/AvatarShop/AvatarShop";
+import Inventory from "../MainPages//Inventory/InventoryButton";
+import ItemBuy from "./ShopPage/ItemBuy";
 const ShopPage = () => {
   const { slug } = useParams();
   const history = useHistory();
@@ -59,11 +61,16 @@ const ShopPage = () => {
     console.log(avatarUserShow);
     const data = {
       item_id: avatarUserShow.id,
-      tem_type: "AVATAR",
+      item_type: "avatar",
     };
     const response = await api.buyAvatar(data);
 
-    console.log(response);
+    if (response.status === 200) {
+      getAvatarShop();
+      return response;
+    } else {
+      return response;
+    }
   }
 
   useEffect(() => {
@@ -90,37 +97,36 @@ const ShopPage = () => {
       <div className="px-6 flex flex-col justify-center space-y-4 min-w-[500px]">
         <div
           className={
-            "flex flex-col items-center w-full h-[500px] justify-center rounded-2xl " +
-            (isLoadingAvatar ? "" : "bg-white")
+            "flex flex-col items-center w-fullg justify-center rounded-2xl " +
+            (isLoadingAvatar ? "" : "")
           }
         >
           {isLoadingAvatar ? (
-            <div className="w-[300px] h-[400px]  flex items-center justify-center">
+            <div className="w-[300px] h-[500px] bg-white rounded-lg flex items-center justify-center">
               <Loading />
             </div>
           ) : (
-            <AvatarPreview avatarUser={avatarUserShow} />
+            <AvatarPreview height="500" avatarUser={avatarUserShow} />
           )}
         </div>
         <div className="flex w-full font-bold flex-row space-x-2">
-          <div className="border-2 border-yellow-70 w-1/2 flex justify-center bg-yellow-90 py-2 rounded-full">
-            กระเป๋า
+          <div className="border-2 border-yellow-70 w-1/2 flex justify-center bg-yellow-90 py-2 rounded-full cursor-pointer hover:bg-yellow-50">
+            <Inventory
+              custom={true}
+              text={"เปิดกระเป๋า"}
+              styleCustom={"flex justify-center w-full"}
+            />
           </div>
           <div className="w-1/2 flex justify-center bg-yellow-70 py-2 rounded-full">
             <UserCoin />
           </div>
         </div>
-        <div
-          onClick={buyAvatar}
-          className={
-            "font-bold  py-2 rounded-full w-full text-white flex justify-center " +
-            (avatarUserShow?.isOwner
-              ? "bg-purple-70 cursor-not-allowed"
-              : "bg-purple-50 cursor-pointer")
-          }
-        >
-          Buy
-        </div>
+
+        <ItemBuy
+          getAvatarShop={getAvatarShop}
+          avatarUserShow={avatarUserShow}
+          buyAvatar={buyAvatar}
+        />
       </div>
       <div className="flex flex-row items-center">
         <div className="flex flex-row">

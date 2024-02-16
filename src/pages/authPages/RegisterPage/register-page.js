@@ -92,21 +92,12 @@ const RegisterPage = ({ register }) => {
 
   return (
     <div className="bg-purple-90 select-none relative w-screen h-screen flex items-center">
-      <SnowAnimation />
       {!isTabletOrMobile && (
         <div>
           <img
-            src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
+            src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
             className="absolute z-10 bottom-0 w-full object-contain"
           />
-          <img
-            src={process.env.PUBLIC_URL + "/loginPage/2024text.png"}
-            className={"top-0 right-0 absolute z-30 w-[20%]"}
-          />
-          <img
-            src={process.env.PUBLIC_URL + "/registerPage/nongRed.png"}
-            className="absolute bottom-0 right-5 z-20"
-          />{" "}
         </div>
       )}
 

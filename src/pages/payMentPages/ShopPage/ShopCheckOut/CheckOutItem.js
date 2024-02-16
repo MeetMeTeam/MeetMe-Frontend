@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import * as api from "../../../../apiPayement.";
+import * as api from "../../../../apiPayment";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
@@ -44,7 +44,7 @@ const CheckOutItem = (prop) => {
         <div className="">
           {" "}
           <img
-            src={prop.item.img}
+            src={prop.item.img + ".png"}
             className={"h-[115px] w-[200px] object-contain"}
             alt="coin"
           />{" "}

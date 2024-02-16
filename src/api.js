@@ -272,9 +272,11 @@ export const getAvatarShop = async (id) => {
     };
   }
 };
-export const buyAvatar = async (id) => {
+export const buyAvatar = async (data) => {
   try {
-    return await apiClient.post(`/inventories?item_id=${id}&item_type=avatar`);
+    return await apiClient.post(
+      `/inventories?item_id=${data.item_id}&item_type=${data.item_type}`
+    );
   } catch (exception) {
     return {
       error: true,

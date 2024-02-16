@@ -17,16 +17,23 @@ const AvatarPreview = (prop) => {
   }, [prop?.avatarUser?.assets]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="w-[300px] h-[300px] flex flex-col justify-center items-center">
+    <div
+      className={`flex relative h-[${prop.height || "500"}px] w-[${
+        prop.width
+      }px] flex-col items-center justify-center`}
+    >
+      <img
+        src={process.env.PUBLIC_URL + "/shopPage/bgShop.png"}
+        className="w-full h-full object-cover rounded-xl"
+        alt="background"
+      />
+      <div className="absolute mt-16 w-[300px] h-[300px] flex flex-col justify-center items-center">
         <img
           src={prop?.avatarUser?.assets[currentImageIndex]}
           className="w-[245px] h-[280px] object-contain scale-75"
           alt="avatar"
         />
       </div>
-
-      <div>{prop?.avatarUser?.name} </div>
     </div>
   );
 };

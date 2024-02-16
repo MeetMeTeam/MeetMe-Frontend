@@ -31,5 +31,5 @@ export const validateUsername = (username) => {
 };
 
 export const validateDisplayName = (username) => {
-  return username.length > 5 && username.length < 16;
+  return username.length > 2 && username.length < 16;
 };

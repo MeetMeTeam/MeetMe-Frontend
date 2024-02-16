@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import * as api from "../../../api";
 import { Plus } from "lucide-react";
+import { useParams, useHistory } from "react-router-dom";
 
 const UserCoin = () => {
+  const history = useHistory();
+
   const [coinUser, setCoinUser] = useState(0);
   async function getCoin() {
     const coinUser = await api.getCoin();
@@ -24,7 +27,10 @@ const UserCoin = () => {
       />
       <span className="text-black font-bold mr-8"> {coinUser} Coins</span>
       <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
-        <Plus className="text-gray-40  w-[15px] " />
+        <Plus
+          onClick={() => history.push("/shop")}
+          className="text-gray-40  w-[15px] cursor-pointer"
+        />
       </div>
     </div>
   );
