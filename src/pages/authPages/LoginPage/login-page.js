@@ -48,11 +48,13 @@ const LoginPage = ({ login }) => {
             <div className="z-20 w-full flex justify-center items-center">
               <img
                 src={process.env.PUBLIC_URL + "/loginPage/2024text.png"}
-                className={"top-0 right-0 absolute z-30 w-[50%]"}
+                className={"top-0 right-10 absolute z-30 w-[55%]"}
               />
               <img
                 src={process.env.PUBLIC_URL + "/loginPage/hpyMastcos.png"}
-                className={styles.imgBounce + " absolute z-30 w-[80%]"}
+                className={
+                  styles.imgBounce + " absolute z-30 mt-[100px] w-[80%]"
+                }
               />
             </div>
           )}
