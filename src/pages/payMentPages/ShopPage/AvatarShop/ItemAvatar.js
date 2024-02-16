@@ -8,9 +8,14 @@ const Item = (props) => {
         onClick={() => props.setAvatarUserShow(props.avatarList)}
         className={
           "relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl " +
-          (props.avatarList?.isOwner ? "opacity-50" : "")
+          (props.avatarList?.isOwner ? "bg-purple-70/40" : "")
         }
       >
+        {props.avatarList?.isOwner && (
+          <div className="scale-75 absolute top-14 border-white border bg-red-80 rounded-lg py-1 px-2">
+            ครอบครองแล้ว
+          </div>
+        )}
         <div className="">
           {" "}
           <img

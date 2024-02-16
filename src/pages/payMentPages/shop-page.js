@@ -49,6 +49,7 @@ const ShopPage = () => {
   }
 
   async function getAvatarShop() {
+    setIsloadingAvatarShop(true);
     const AvatarShop = await api.getAvatarShop();
     console.log(AvatarShop?.data?.data);
     if (AvatarShop) {
@@ -94,7 +95,7 @@ const ShopPage = () => {
       >
         {"<-"}
       </div>
-      <div className="px-6 flex flex-col justify-center space-y-4 min-w-[500px]">
+      <div className="px-6 flex flex-col justify-center space-y-4 w-[300px]">
         <div
           className={
             "flex flex-col items-center w-fullg justify-center rounded-2xl " +
@@ -113,12 +114,15 @@ const ShopPage = () => {
           <div className="border-2 border-yellow-70 w-1/2 flex justify-center bg-yellow-90 py-2 rounded-full cursor-pointer hover:bg-yellow-50">
             <Inventory
               custom={true}
-              text={"เปิดกระเป๋า"}
-              styleCustom={"flex justify-center w-full"}
+              text={"กระเป๋า"}
+              isShowIcon={true}
+              styleCustom={
+                "flex justify-center items-center w-full text-[14px]"
+              }
             />
           </div>
           <div className="w-1/2 flex justify-center bg-yellow-70 py-2 rounded-full">
-            <UserCoin />
+            {isLoadingAvatarShop ? <Loading /> : <UserCoin />}
           </div>
         </div>
 

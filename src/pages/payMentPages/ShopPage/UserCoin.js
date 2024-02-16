@@ -25,7 +25,10 @@ const UserCoin = () => {
         className={"mr-2 w-[20px]"}
         alt="coin"
       />
-      <span className="text-black font-bold mr-8"> {coinUser} Coins</span>
+      <span className="text-black font-bold text-[10px] mr-8">
+        {" "}
+        {coinUser} Coins
+      </span>
       <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
         <Plus
           onClick={() => history.push("/shop")}
