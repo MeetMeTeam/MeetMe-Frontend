@@ -7,6 +7,7 @@ function AdminPage() {
   const inputList = [
     { name: "ชื่อ avatar", type: "text", dataFor: "name" },
     { name: "ราคา", type: "number", dataFor: "price" },
+    { name: "ประเภท", type: "text", dataFor: "type" },
   ];
   const [avatarList, setAvatarList] = useState([]);
   const [images, setImages] = useState([]);
@@ -18,6 +19,7 @@ function AdminPage() {
   const [credentials, setCredentials] = useState({
     name: "",
     price: 0,
+    type: "",
   });
 
   async function submitForm() {
@@ -34,6 +36,7 @@ function AdminPage() {
         price: Number(credentials.price),
         assets: imageList,
         preview: imageList[0],
+        type: credentials.type,
       };
       const response = await api.addAvatarShop(data);
       if (response.status === 200) {

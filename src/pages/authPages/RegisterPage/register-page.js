@@ -25,7 +25,7 @@ const RegisterPage = ({ register }) => {
   const [year, setYear] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const [character, setCharacter] = useState("PROFILE_1");
-
+  const [defaultAvatar, setDefaultAvatar] = useState([]);
   const handleRegister = async () => {
     const userDetails = {
       email: mail,
@@ -47,15 +47,26 @@ const RegisterPage = ({ register }) => {
       userDetails,
       history,
       character === "PROFILE_1"
-        ? "65bf22ef04d88d9372a6ad5d"
+        ? defaultAvatar[0].ID
         : character === "PROFILE_2"
-        ? "65bf22ef04d88d9372a6ad5d"
+        ? defaultAvatar[1].ID
         : character === "PROFILE_3"
-        ? "65bf731fdef1b706cebf3572"
+        ? defaultAvatar[2].ID
         : "65bf731fdef1b706cebf3572"
     );
   };
+  async function getAvatarDefault() {
+    const response = await api.getAvatarDefault("C");
+    if (response.error) {
+      console.log(response?.exception?.response?.data.message);
+    } else {
+      setDefaultAvatar(response.data.data);
+    }
+  }
 
+  useEffect(() => {
+    getAvatarDefault();
+  }, []);
   useEffect(() => {
     if (
       mail &&
@@ -78,15 +89,6 @@ const RegisterPage = ({ register }) => {
       );
     } else {
       setIsFormValid(false);
-
-      if (!mail) console.log("Mail is empty");
-      if (!username) console.log("Username is empty");
-      if (!displayname) console.log("Display Name is empty");
-      if (!password) console.log("Password is empty");
-      if (!rePassword) console.log("Confirm Password is empty");
-      if (!day) console.log("Day is empty");
-      if (!month) console.log("Month is empty");
-      if (!year) console.log("Year is empty");
     }
   }, [mail, displayname, username, password, setIsFormValid, rePassword]);
 

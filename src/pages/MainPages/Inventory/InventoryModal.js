@@ -37,7 +37,7 @@ const InventoryModal = () => {
   }
 
   async function changeAvatarPreview(item) {
-    if (item.preview) {
+    if (item.preview && avatarUser.id !== item.id) {
       setAvatarUserNew(item);
       setAvatarUserShow(item);
     }

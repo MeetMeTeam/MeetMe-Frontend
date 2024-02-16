@@ -295,3 +295,14 @@ export const addAvatarShop = async (data) => {
     };
   }
 };
+
+export const getAvatarDefault = async (type) => {
+  try {
+    return await apiClient.get(`/avatars?type=${type}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

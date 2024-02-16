@@ -4,7 +4,7 @@ import Loading from "../../../../shared/components/Loading";
 import ItemAvatar from "./ItemAvatar";
 const AvatarShop = (props) => {
   return (
-    <div className="bg-purple-80 flex items-center justify-center  rounded-2xl lg:h-[620px]  w-[930px] p-10">
+    <div className="bg-purple-80 flex   rounded-2xl lg:h-[620px]  w-[930px] p-10">
       {props.isLoadingAvatarShop ? (
         <Loading />
       ) : (
