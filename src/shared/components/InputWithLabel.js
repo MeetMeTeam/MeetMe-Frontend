@@ -54,24 +54,25 @@ const InputWithLabel = (props) => {
         {label === "E-mail address" &&
           !validateMail(value) &&
           value.length > 0 && (
-            <div className="text-[12px] text-red-40"> เมลไม่ถูกต้อง </div>
+            <div className="validate-mail text-[12px] text-red-40">Invalid email</div>
           )}
 
         {label === "Username" &&
           !validateUsername(value) &&
           value.length > 0 && (
-            <div className="text-[12px] text-red-40"> ความยาว 2-15 </div>
+            <div className="validate-username text-[12px] text-red-40">Username must be 2-15 character.</div>
           )}
         {label === "Displayname" &&
           !validateDisplayName(value) &&
           value.length > 0 && (
-            <div className="text-[12px] text-red-40"> ความยาว 2-15 </div>
+            <div className="validate-displayname text-[12px] text-red-40">Displayname must be 2-15 character.</div>
           )}
         {label === "Password" &&
           !validatePassword(value) &&
           value.length > 0 && (
-            <div className="text-[12px] text-red-40"> ความยาว 6 ตัวขึ้นไป </div>
+            <div className="validate-password text-[12px] text-red-40">Please enter more than 6.</div>
           )}
+            {password && value ? (password !== value ?  <div className="validate-repassword text-[12px] text-red-40">Password does not match.</div> : "") : ""}
       </div>
       <Input
         style={{

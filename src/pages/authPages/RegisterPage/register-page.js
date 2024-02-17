@@ -68,6 +68,7 @@ const RegisterPage = ({ register }) => {
     getAvatarDefault();
   }, []);
   useEffect(() => {
+    console.log(isFormValid)
     if (
       mail &&
       username &&
@@ -90,7 +91,7 @@ const RegisterPage = ({ register }) => {
     } else {
       setIsFormValid(false);
     }
-  }, [mail, displayname, username, password, setIsFormValid, rePassword]);
+  }, [mail, displayname, username, password, setIsFormValid, rePassword,day,month,year]);
 
   return (
     <div className="bg-yellow-90 select-none relative w-screen h-screen flex items-center">
