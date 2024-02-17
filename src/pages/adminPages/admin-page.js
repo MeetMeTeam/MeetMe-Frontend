@@ -3,7 +3,13 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../Config";
 import * as api from "../../api";
 import Loading from "../../shared/components/Loading";
+import { logout } from "../../shared/utils/auth";
+import { setUserDetails } from "../../store/actions/authActions";
+import store from "../../store/store";
+import { useParams, useHistory } from "react-router-dom";
+
 function AdminPage() {
+  const history = useHistory();
   const inputList = [
     { name: "ชื่อ avatar", type: "text", dataFor: "name" },
     { name: "ราคา", type: "number", dataFor: "price" },
@@ -82,6 +88,19 @@ function AdminPage() {
   }
   useEffect(() => {
     getAvatarAll();
+  }, []);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
+
+    if (!userDetails) {
+      logout();
+    } else {
+      store.dispatch(setUserDetails(JSON.parse(userDetails)));
+      if (JSON.parse(userDetails).isAdmin !== true) {
+        history.push("/");
+      }
+    }
   }, []);
 
   return (
