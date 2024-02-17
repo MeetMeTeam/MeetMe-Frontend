@@ -125,6 +125,7 @@ function AdminPage() {
                     <span className="label-text">{item.name}</span>
 
                     <input
+                      min={0}
                       value={credentials[item.dataFor]}
                       onChange={(e) => {
                         setCredentials({

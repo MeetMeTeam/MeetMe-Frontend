@@ -68,7 +68,7 @@ const RegisterPage = ({ register }) => {
     getAvatarDefault();
   }, []);
   useEffect(() => {
-    console.log(isFormValid)
+    console.log(isFormValid);
     if (
       mail &&
       username &&
@@ -91,17 +91,25 @@ const RegisterPage = ({ register }) => {
     } else {
       setIsFormValid(false);
     }
-  }, [mail, displayname, username, password, setIsFormValid, rePassword,day,month,year]);
+  }, [
+    mail,
+    displayname,
+    username,
+    password,
+    setIsFormValid,
+    rePassword,
+    day,
+    month,
+    year,
+  ]);
 
   return (
     <div className="bg-yellow-90 select-none relative w-screen h-screen flex items-center">
       {!isTabletOrMobile && (
-        <div>
-          <img
-            src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
-            className="absolute z-10 bottom-0 w-full object-contain"
-          />
-        </div>
+        <img
+          src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
+          className="absolute top-0 w-screen h-screen object-cover"
+        />
       )}
 
       <div className=" relative w-full flex items-center justify-center">
