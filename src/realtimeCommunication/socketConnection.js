@@ -149,17 +149,14 @@ export const sendMessage = (newChat, people) => {
 };
 
 export const sendFriendInvite = (data) => {
-  console.log(data);
   socket.emit("sendFriendInvite", data);
 };
 
 export const getDirectChatHistory = (data) => {
-  console.log(data);
   socket.emit("direct-chat-history", data);
 };
 
 export const sendDirectMessage = (data) => {
-  console.log(data);
   socket.emit("direct-message", data);
 };
 
@@ -186,10 +183,8 @@ export const camChange = (data) => {
 
 export const InviteFriendToJoinRoom = (data) => {
   socket.emit("invite-room", data);
-  console.log(data);
 };
 
 export const checkNotifyJoin = (data) => {
   socket.emit("notify-join", data);
-  console.log(data);
 };

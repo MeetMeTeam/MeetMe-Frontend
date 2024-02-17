@@ -72,7 +72,6 @@ const VideosContainer = ({
     const id = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.userId;
-    console.log(id);
     return (
       <div
         key={stream.remoteStream.id}

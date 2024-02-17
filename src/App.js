@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import LoadingPage from "./shared/components/LoadingPage";
 import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
+import CancelPaymentPage from "./pages/payMentPages/payment-cancel";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,11 +35,9 @@ function App() {
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
   useEffect(() => {
-    console.log("clearChatList");
     dispatch(clearChatList());
   }, []);
   useEffect(() => {
-    console.log(isShowModalErrorSocket);
     if (isShowModalErrorSocket) {
       handleOpenModal();
     } else {
@@ -79,6 +78,9 @@ function App() {
           </Route>
           <Route exact path="/payment-success/:slug">
             <SuccessPaymentPage />
+          </Route>
+          <Route exact path="/payment-cancel/:slug">
+            <CancelPaymentPage />
           </Route>
           <Route exact path="/admin">
             <AdminPage />

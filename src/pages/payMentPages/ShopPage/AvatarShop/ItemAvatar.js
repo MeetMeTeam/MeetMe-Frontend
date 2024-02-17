@@ -30,9 +30,9 @@ const Item = (props) => {
         <span className="font-bold flex">
           <img
             src={
-              "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2F1.png?alt=media&token=3086c3ba-0513-4710-86d1-ebeb92389e00"
+              "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
             }
-            className={"mr-2 w-[20px]"}
+            className={"mr-2 w-[25px] "}
             alt="coin"
           />
           <div> {props.avatarList.price}</div>

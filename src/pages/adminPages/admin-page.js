@@ -30,7 +30,6 @@ function AdminPage() {
     ) {
       setIsLoading(true);
       await uploadFiles();
-      console.log(imageList);
       const data = {
         name: credentials.name,
         price: Number(credentials.price),
@@ -40,7 +39,6 @@ function AdminPage() {
       };
       const response = await api.addAvatarShop(data);
       if (response.status === 200) {
-        console.log("add สำเร็จ");
         setIsShowInput(false);
         setTimeout(() => {
           setIsShowInput(true);
@@ -71,10 +69,8 @@ function AdminPage() {
 
       const downloadURL = await getDownloadURL(imageRef);
 
-      console.log("File URL:", downloadURL);
       imageList.push(downloadURL);
     }
-    console.log(imageList);
     // imageList =  urlList
   };
 

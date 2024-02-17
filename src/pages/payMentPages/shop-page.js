@@ -28,10 +28,10 @@ const ShopPage = () => {
 
   const userDetail = useSelector((state) => state.auth.userDetails);
   const menuList = [
-    { name: "ตัวละคร", menu: "AVATAR" },
     { name: "รับ Flower", menu: "ADD_COIN" },
+    { name: "ตัวละคร", menu: "AVATAR" },
   ];
-  const [menuNow, setMenuNow] = useState("AVATAR");
+  const [menuNow, setMenuNow] = useState("ADD_COIN");
 
   async function getCoin() {
     const coinUser = await api.getCoin();

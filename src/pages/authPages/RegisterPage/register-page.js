@@ -47,11 +47,11 @@ const RegisterPage = ({ register }) => {
       userDetails,
       history,
       character === "PROFILE_1"
-        ? defaultAvatar[0].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_1").ID
         : character === "PROFILE_2"
-        ? defaultAvatar[1].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_2").ID
         : character === "PROFILE_3"
-        ? defaultAvatar[2].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_3").ID
         : "65bf731fdef1b706cebf3572"
     );
   };

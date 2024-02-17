@@ -13,7 +13,6 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
     setIsbuy(false);
   }
   const [textError, setTextError] = React.useState("");
-  console.log(avatarUserShow);
   async function enterAvatar() {
     setIsLoading(true);
     const response = await buyAvatar();
