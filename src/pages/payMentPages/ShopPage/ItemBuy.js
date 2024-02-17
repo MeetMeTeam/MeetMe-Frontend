@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Briefcase } from "lucide-react";
 import Modal from "@mui/material/Modal";
 import Loading from "../../../shared/components/Loading";
+import { useDispatch } from "react-redux";
+import { openAlertMessage } from "../../../store/actions/alertActions";
 export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
   const [open, setOpen] = React.useState(false);
   const [isBuy, setIsbuy] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-
+  const dispatch = useDispatch();
   const handleOpen = () => setOpen(true);
   function handleClose() {
     setOpen(false);
@@ -20,6 +22,7 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
       setTextError(response.exception.response.data.message);
     } else {
       setIsbuy(true);
+      dispatch(openAlertMessage("ซื้อสำเร็จ"));
     }
     setIsLoading(false);
   }
@@ -78,11 +81,11 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
               <div className="text-[25px] items-center text-white drop-shadow-md bg-purple-80/40 rounded-2xl px-4 py-1 font-extrabold flex">
                 <img
                   src={
-                    "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2F1.png?alt=media&token=3086c3ba-0513-4710-86d1-ebeb92389e00"
+                    "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
                   }
-                  className={" w-[25px] h-[25px] mr-2"}
+                  className={"mr-2 w-[25px] "}
                   alt="coin"
-                />{" "}
+                />
                 {avatarUserShow?.price}
               </div>
               <div className="text-red-500"> {textError} </div>
