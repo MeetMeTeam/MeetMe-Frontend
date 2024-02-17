@@ -7,9 +7,13 @@ import { logout } from "../../shared/utils/auth";
 import { setUserDetails } from "../../store/actions/authActions";
 import store from "../../store/store";
 import { useParams, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openAlertMessage } from "../../store/actions/alertActions";
 
 function AdminPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const inputList = [
     { name: "ชื่อ avatar", type: "text", dataFor: "name" },
     { name: "ราคา", type: "number", dataFor: "price" },
@@ -45,6 +49,8 @@ function AdminPage() {
       };
       const response = await api.addAvatarShop(data);
       if (response.status === 200) {
+        dispatch(openAlertMessage("เพิ่มตัวละครสำเร็จ"));
+
         setIsShowInput(false);
         setTimeout(() => {
           setIsShowInput(true);
