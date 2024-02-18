@@ -28,8 +28,8 @@ const ShopPage = () => {
 
   const userDetail = useSelector((state) => state.auth.userDetails);
   const menuList = [
-    { name: "รับ Flower", menu: "ADD_COIN" },
-    { name: "ตัวละคร", menu: "AVATAR" },
+    { name: "Flowers", menu: "ADD_COIN" },
+    { name: "Character", menu: "AVATAR" },
   ];
   const [menuNow, setMenuNow] = useState("ADD_COIN");
 
@@ -114,7 +114,7 @@ const ShopPage = () => {
           <div className="border-2 border-yellow-70 w-1/2 flex justify-center bg-yellow-90 py-2 rounded-full cursor-pointer hover:bg-yellow-50">
             <Inventory
               custom={true}
-              text={"กระเป๋า"}
+              text={"My bags"}
               isShowIcon={true}
               styleCustom={
                 "flex justify-center items-center w-full text-[14px]"

@@ -39,7 +39,7 @@ const CheckOutItem = (prop) => {
     <div>
       <div
         onClick={() => handleOpen()}
-        className="relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl"
+        className="button-flower relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl"
       >
         <div className="">
           {" "}
@@ -52,7 +52,7 @@ const CheckOutItem = (prop) => {
 
         {prop.item.free > 0 && (
           <div className="bg-red-80 left-[-10px] top-[-10px] flex flex-row px-2 items-center rounded-lg text-white absolute">
-            <div className="text-[12px]"> ของขวัญพิเศษ </div>
+            <div className="text-[12px]"> Special Gift ! </div>
 
             <img
               src={
@@ -97,15 +97,15 @@ const CheckOutItem = (prop) => {
             <div className="flex flex-row space-x-4">
               <div
                 onClick={() => checkOut()}
-                className="bg-purple-80 px-4 rounded-2xl cursor-pointer"
+                className="button-confirm bg-purple-80 px-4 rounded-2xl cursor-pointer"
               >
-                จ่ายเงิน
+                Confirm
               </div>
               <div
                 onClick={() => handleClose()}
-                className="bg-gray-80 px-4 rounded-2xl cursor-pointer"
+                className="button-cancel bg-gray-80 px-4 rounded-2xl cursor-pointer"
               >
-                ยกเลิก
+                Cancel
               </div>
             </div>
           </div>

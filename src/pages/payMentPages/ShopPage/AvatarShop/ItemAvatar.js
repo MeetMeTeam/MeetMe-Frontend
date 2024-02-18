@@ -13,7 +13,7 @@ const Item = (props) => {
       >
         {props.avatarList?.isOwner && (
           <div className="scale-75 absolute top-14 border-white border bg-red-80 rounded-lg py-1 px-2">
-            ครอบครองแล้ว
+            Already exist
           </div>
         )}
         <div className="">

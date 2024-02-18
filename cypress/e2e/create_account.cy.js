@@ -134,7 +134,7 @@ describe("TD-VALIDATE-CREATE-USER-DUPLICATE-EMAIL", ()=>{
    it("Fill correct form register but use e-mail as 'meetme.admin@gmail.com'. ", () => {
     cy.visit('/register')
     cy.get('.data-email').type("meetme.admin@gmail.com")
-    cy.get('.data-username').type("project")
+    cy.get('.data-username').type("projectt")
     cy.get('.data-displayname').type("final")
     cy.get('.data-password').type("finalpro123")
     cy.get('.data-repassword').type("finalpro123")
