@@ -9,6 +9,7 @@
 //     cy.get('.data-birthdate').type("9{enter}")
 //     cy.get('.data-birthmonth').type("March{enter}")
 //     cy.get('.data-birthyear').type("2002{enter}")
+//     cy.get('.data-character').eq(1).click()
 //     cy.get('.button-create').click()
 //   })
 // })

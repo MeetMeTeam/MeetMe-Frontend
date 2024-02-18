@@ -13,13 +13,15 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
   return (
     <div className="flex flex-col space-y-8">
       <InputWithLabel
+        data="data-email"
         value={mail}
         setValue={setMail}
-        label="E-mail"
+        label="E-mail address"
         type="text"
         placeholder="Enter e-mail address"
       />
       <InputWithLabel
+      data="data-password"
         value={password}
         setValue={setPassword}
         label="Password"
