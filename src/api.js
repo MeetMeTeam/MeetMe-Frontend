@@ -2,7 +2,6 @@ import axios from "axios";
 import { logout } from "./shared/utils/auth";
 import { connectWithSocketServer } from "./realtimeCommunication/socketConnection";
 
-console.log(process.env.REACT_APP_BASE_API);
 const apiClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API}/api`,
 });
@@ -49,7 +48,6 @@ apiClient.interceptors.response.use(
 
             if (userDetails) {
               const RefreshToken = JSON.parse(userDetails).refreshToken;
-              console.log(RefreshToken);
               config.headers.Authorization = `Bearer ${RefreshToken}`;
             }
 
@@ -116,7 +114,6 @@ export const sendMailToResetPw = async (data) => {
 
 export const changePassword = async (data) => {
   try {
-    console.log(data);
     apiChangePw.interceptors.request.use(
       (config) => {
         if (data) {

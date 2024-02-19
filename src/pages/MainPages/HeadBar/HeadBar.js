@@ -24,9 +24,9 @@ export default function HeadBar() {
           <Inventory />
           <div
             onClick={() => history.push("/shop")}
-            className="bg-purple-70 text-white px-4 py-3 rounded-xl font-medium cursor-pointer"
+            className=" bg-purple-70 text-white px-4 py-3 rounded-xl font-medium cursor-pointer"
           >
-            <ShoppingBasket />
+            <ShoppingBasket  className="button-shop"/>
           </div>
           <CreateRoom />
           <Notification />

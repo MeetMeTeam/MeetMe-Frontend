@@ -39,7 +39,7 @@ const CheckOutItem = (prop) => {
     <div>
       <div
         onClick={() => handleOpen()}
-        className="relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl"
+        className="button-flower relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl"
       >
         <div className="">
           {" "}
@@ -52,11 +52,11 @@ const CheckOutItem = (prop) => {
 
         {prop.item.free > 0 && (
           <div className="bg-red-80 left-[-10px] top-[-10px] flex flex-row px-2 items-center rounded-lg text-white absolute">
-            <div className="text-[12px]"> ของขวัญพิเศษ </div>
+            <div className="text-[12px]"> Special Gift ! </div>
 
             <img
               src={
-                "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2F1.png?alt=media&token=3086c3ba-0513-4710-86d1-ebeb92389e00"
+                "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
               }
               className={" w-[20px]"}
               alt="coin"
@@ -67,7 +67,17 @@ const CheckOutItem = (prop) => {
         )}
       </div>
       <div className="font-medium flex flex-col  w-full  justify-center items-center py-2 rounded-b-xl text-black ">
-        <span className="font-bold text-[22px]"> {prop.item.coin} Flower </span>
+        <span className="flex items-center font-bold text-[22px] bg-white/20 rounded-2xl px-3">
+          {" "}
+          {prop.item.coin} Flower{" "}
+          {/* <img
+            src={
+              "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
+            }
+            className={"ml-1 w-[25px] h-[25px]"}
+            alt="coin"
+          /> */}
+        </span>
         <span className="font-bold">THB {prop.item.price}.00 </span>
       </div>
       <Modal
@@ -87,15 +97,15 @@ const CheckOutItem = (prop) => {
             <div className="flex flex-row space-x-4">
               <div
                 onClick={() => checkOut()}
-                className="bg-purple-80 px-4 rounded-2xl cursor-pointer"
+                className="button-confirm bg-purple-80 px-4 rounded-2xl cursor-pointer"
               >
-                จ่ายเงิน
+                Confirm
               </div>
               <div
                 onClick={() => handleClose()}
-                className="bg-gray-80 px-4 rounded-2xl cursor-pointer"
+                className="button-cancel bg-gray-80 px-4 rounded-2xl cursor-pointer"
               >
-                ยกเลิก
+                Cancel
               </div>
             </div>
           </div>

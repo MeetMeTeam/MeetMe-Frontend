@@ -33,7 +33,7 @@ const AlertNotification = ({
   },[showAlertMessage]);
   return (
  
-    <ToastContainer />
+    <ToastContainer className="popup"/>
 
   );
 };

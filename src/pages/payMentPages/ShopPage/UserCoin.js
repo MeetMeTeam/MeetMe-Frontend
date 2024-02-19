@@ -20,15 +20,12 @@ const UserCoin = () => {
       {" "}
       <img
         src={
-          "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2F1.png?alt=media&token=3086c3ba-0513-4710-86d1-ebeb92389e00"
+          "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
         }
         className={"mr-2 w-[20px]"}
         alt="coin"
       />
-      <span className="text-black font-bold text-[10px] mr-8">
-        {" "}
-        {coinUser} Coins
-      </span>
+      <span className="text-black font-bold text-[10px] mr-8"> {coinUser}</span>
       <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
         <Plus
           onClick={() => history.push("/shop")}

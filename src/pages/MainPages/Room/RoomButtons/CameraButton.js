@@ -24,7 +24,6 @@ const CameraButton = ({ localStream, cameraEnabled, setCameraEnabled }) => {
   useEffect(() => {
     if (isAudioOnly === "VOICE") {
       handleToggleCamera();
-      console.log("toogle cam");
     }
   }, [isAudioOnly]);
 
@@ -36,9 +35,9 @@ const CameraButton = ({ localStream, cameraEnabled, setCameraEnabled }) => {
         </IconButton>
       )}
 
-{localStream.getVideoTracks().length === 0 && (
-        <IconButton  style={{ color: "white" }}>
-         <VideocamOffIcon />
+      {localStream.getVideoTracks().length === 0 && (
+        <IconButton style={{ color: "white" }}>
+          <VideocamOffIcon />
         </IconButton>
       )}
     </div>

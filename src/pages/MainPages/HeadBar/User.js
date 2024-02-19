@@ -27,7 +27,7 @@ const User = () => {
   return (
     <div>
       <div
-        className="flex flex-row  items-center space-x-1 font-bold
+        className="button-profile flex flex-row  items-center space-x-1 font-bold
         justify-between bg-blue-70 rounded-2xl text-white cursor-pointer
         px-4 py-2 md:min-w-[170px]
         "
@@ -57,7 +57,7 @@ const User = () => {
           horizontal: "right",
         }}
       >
-        <Typography className="cursor-pointer" onClick={logout} sx={{ p: 2 }}>
+        <Typography className="button-logout cursor-pointer" onClick={logout} sx={{ p: 2 }}>
           {" "}
           Log out
         </Typography>

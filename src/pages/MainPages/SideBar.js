@@ -6,6 +6,7 @@ import ActiveRoomButton from "./SideBar/ActiveRoomButton";
 import SafetyDividerIcon from "@mui/icons-material/SafetyDivider";
 import styles from "../../shared/css/mainPage.module.css";
 import Loading from "../../shared/components/Loading";
+import scollBarRoom from "../../shared/css/scollBarRoom.module.css";
 
 const SideBar = ({ activeRooms, isUserInRoom }) => {
   const [isShowLoading, setIsisShowLoading] = useState(true);
@@ -17,50 +18,62 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
   }, []);
 
   return (
-    <div
-      className={`bg-purple-60 h-[400px] w-full rounded-2xl px-4  max-w-[822px] ${
-        activeRooms.length === 0 ? " justify-between " : " justify-start "
-      } flex flex-col  ${styles.container}`}
-    >
-      <div className={`text-white text-[32px] font-bold py-5 `}>Room </div>
-      <div className={`${
-        activeRooms.length === 0 ? "" : " h-[350px] overflow-y-auto "
-      }`}>
-        {activeRooms &&
-        activeRooms.map((room) => (
-          <ActiveRoomButton
-            roomId={room.roomId}
-            creatorUsername={room.creatorUsername}
-            amountOfParticipants={room.participants.length}
-            key={room.roomId}
-            isUserInRoom={isUserInRoom}
-            roomName={room.roomCreator.roomName}
-            type={room.roomCreator.type}
-            data={room}
-          />
-        ))}
-      </div>
-      
-
-      {activeRooms.length === 0 && (
+    <div class={scollBarRoom.scrollbar + " w-full"}>
+      <div
+        className={`bg-purple-60 h-[400px] w-full rounded-2xl px-4 pb-4 max-w-[822px] ${
+          activeRooms.length === 0 ? " justify-between " : " justify-start "
+        } flex flex-col  ${styles.container}`}
+      >
+        <div className={`text-white text-[32px] font-bold py-5 `}>Room </div>
         <div
-          className={`w-full flex justify-center items-center h-full flex-col`}
+          className={`${
+            activeRooms.length === 0
+              ? ""
+              : " h-[350px] space-y-4 overflow-y-auto px-2  "
+          }`}
         >
-          {isShowLoading && <Loading />}
-          {!isShowLoading && (
-            <div className="w-full flex justify-center items-center h-full flex-col">
-              <SafetyDividerIcon
-                className="text-white"
-                sx={{ fontSize: "43px" }}
+          {activeRooms &&
+            activeRooms.map((room) => (
+              <ActiveRoomButton
+                roomId={room.roomId}
+                creatorUsername={room.creatorUsername}
+                amountOfParticipants={
+                  room.participants[0].userId === "" &&
+                  room.participants.length === 1
+                    ? 0
+                    : room.participants[0].userId === ""
+                    ? room.participants.length - 1
+                    : room.participants.length
+                }
+                key={room.roomId}
+                isUserInRoom={isUserInRoom}
+                roomName={room.roomCreator.roomName}
+                type={room.roomCreator.type}
+                data={room}
               />
-              <div className="text-white">
-                No room active now . Create room to invite friends !
-              </div>
-            </div>
-          )}
+            ))}
         </div>
-      )}
-      <div />
+
+        {activeRooms.length === 0 && (
+          <div
+            className={`w-full flex justify-center items-center h-full flex-col`}
+          >
+            {isShowLoading && <Loading />}
+            {!isShowLoading && (
+              <div className="w-full flex justify-center items-center h-full flex-col">
+                <SafetyDividerIcon
+                  className="text-white"
+                  sx={{ fontSize: "43px" }}
+                />
+                <div className="text-white">
+                  No room active now . Create room to invite friends !
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        <div />
+      </div>{" "}
     </div>
   );
 };

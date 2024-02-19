@@ -33,9 +33,9 @@ const FriendsList = ({ friends, onlineUsers }) => {
   const [typePage, setTypePage] = React.useState("FRIENDS");
 
   const setType = (type) => {
-    setTypePage(type)
-    if(!expanded) {
-      setExpanded(true)
+    setTypePage(type);
+    if (!expanded) {
+      setExpanded(true);
     }
   };
 
@@ -50,9 +50,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
     console.log(friends);
   }, [friends]);
 
-  useEffect(() => {
-    console.log(isFriendAlready);
-  }, [isFriendAlready]);
+  useEffect(() => {}, [isFriendAlready]);
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(!expanded);
@@ -66,7 +64,9 @@ const FriendsList = ({ friends, onlineUsers }) => {
     <div className={styles.scrollbar + " relative"}>
       <span className="absolute top-2 z-50 left-4  flex flex-row mb-[-10px] space-x-2">
         <div
-          onClick={() =>{  setType("FRIENDS") }}
+          onClick={() => {
+            setType("FRIENDS");
+          }}
           className={`${
             typePage === "FRIENDS"
               ? "text-[2rem] text-white "

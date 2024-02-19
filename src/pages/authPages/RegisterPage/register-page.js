@@ -47,11 +47,11 @@ const RegisterPage = ({ register }) => {
       userDetails,
       history,
       character === "PROFILE_1"
-        ? defaultAvatar[0].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_1").ID
         : character === "PROFILE_2"
-        ? defaultAvatar[1].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_2").ID
         : character === "PROFILE_3"
-        ? defaultAvatar[2].ID
+        ? defaultAvatar.find((avatar) => avatar.Type === "C_3").ID
         : "65bf731fdef1b706cebf3572"
     );
   };
@@ -68,6 +68,7 @@ const RegisterPage = ({ register }) => {
     getAvatarDefault();
   }, []);
   useEffect(() => {
+    console.log(isFormValid);
     if (
       mail &&
       username &&
@@ -90,17 +91,25 @@ const RegisterPage = ({ register }) => {
     } else {
       setIsFormValid(false);
     }
-  }, [mail, displayname, username, password, setIsFormValid, rePassword]);
+  }, [
+    mail,
+    displayname,
+    username,
+    password,
+    setIsFormValid,
+    rePassword,
+    day,
+    month,
+    year,
+  ]);
 
   return (
     <div className="bg-yellow-90 select-none relative w-screen h-screen flex items-center">
       {!isTabletOrMobile && (
-        <div>
-          <img
-            src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
-            className="absolute z-10 bottom-0 w-full object-contain"
-          />
-        </div>
+        <img
+          src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
+          className="absolute top-0 w-screen h-screen object-cover"
+        />
       )}
 
       <div className=" relative w-full flex items-center justify-center">

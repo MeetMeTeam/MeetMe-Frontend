@@ -6,13 +6,13 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ChairIcon from "@mui/icons-material/Chair";
 import { useSelector } from "react-redux";
 import * as roomHandler from "../../../realtimeCommunication/roomHandler";
-import InviteRoom from "./InviteRoom/InviteRoom"
-import { useMediaQuery } from 'react-responsive'
-import { clearChatList } from '../../../store/actions/allChatAction'
-import { useDispatch } from 'react-redux';;
+import InviteRoom from "./InviteRoom/InviteRoom";
+import { useMediaQuery } from "react-responsive";
+import { clearChatList } from "../../../store/actions/allChatAction";
+import { useDispatch } from "react-redux";
 
 export default function RoomHeadBar() {
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 760px)' })
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 760px)" });
   const roomDetail = useSelector((state) => state.room.roomDetails);
   const activeRoom = useSelector((state) => state.room.activeRooms);
   const [countPerson, setCountPerson] = useState(0);
@@ -20,13 +20,19 @@ export default function RoomHeadBar() {
 
   const handleLeaveRoom = () => {
     roomHandler.leaveRoom();
-    dispatch(clearChatList())
-
+    dispatch(clearChatList());
   };
   const handleCount = () => {
     activeRoom.map((item) => {
       if (item?.roomId === roomDetail?.roomId) {
-        setCountPerson(item.participants.length);
+        setCountPerson(
+          item.participants[0].userId === "" && item.participants.length === 1
+            ? 0
+            : item.participants[0].userId === ""
+            ? item.participants.length - 1
+            : item.participants.length
+        );
+        // setCountPerson(item.participants.length);
       }
     });
   };
@@ -44,10 +50,10 @@ export default function RoomHeadBar() {
         <ArrowBackIosNewIcon /> Lobby
       </div>
       <div className="bg-green-50 text-white md:px-7 px-3 py-2 flex justify-center items-center md:text-[20px] text-[10px] rounded-2xl font-bold">
-        <PersonOutlineIcon sx={{fontSize: isTabletOrMobile ? 12 : 20}} />
+        <PersonOutlineIcon sx={{ fontSize: isTabletOrMobile ? 12 : 20 }} />
         <div> {roomDetail ? countPerson : "0"} </div>
       </div>
-   {/* { !isTabletOrMobile && <div className="bg-[#FF80A5] text-white px-7 py-2 flex justify-center items-center text-[16px] rounded-2xl font-bold">
+      {/* { !isTabletOrMobile && <div className="bg-[#FF80A5] text-white px-7 py-2 flex justify-center items-center text-[16px] rounded-2xl font-bold">
         <ContentCopyIcon className="mr-2" />
         <div>
           {" "}
@@ -58,9 +64,9 @@ export default function RoomHeadBar() {
         <div className="md:mr-6">
           {roomDetail ? roomDetail.roomCreator.roomName : "room name"}{" "}
         </div>
-       {!isTabletOrMobile && <ChairIcon /> } 
+        {!isTabletOrMobile && <ChairIcon />}
       </div>
-      <InviteRoom/>
+      <InviteRoom />
     </div>
   );
 }

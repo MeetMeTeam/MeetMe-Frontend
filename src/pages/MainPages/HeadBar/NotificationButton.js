@@ -61,8 +61,6 @@ export default function Notification() {
   const id = open ? "simple-popover" : undefined;
 
   useEffect(() => {
-    console.log(checkErrorJoinRoom);
-
     if (checkErrorJoinRoom === false && checkErrorJoinRoom !== null) {
       joinRoom(roomDetail);
     } else if (checkErrorJoinRoom) {

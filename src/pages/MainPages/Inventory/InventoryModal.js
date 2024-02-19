@@ -67,7 +67,8 @@ const InventoryModal = () => {
       <div className="flex flex-row h-full space-x-6">
         <div
           className={
-            "flex flex-col  rounded-2xl " + (isLoadingAvatar ? "" : "bg-white")
+            "flex flex-col relative rounded-2xl " +
+            (isLoadingAvatar ? "" : "bg-white")
           }
         >
           {isLoadingAvatar ? (
@@ -78,7 +79,7 @@ const InventoryModal = () => {
             <AvatarPreview avatarUser={avatarUserShow} />
           )}
           {avatarUserNew && (
-            <div className="font-bold text-white flex flex-row w-full justify-center mt-4 space-x-2">
+            <div className="absolute bottom-5 font-bold text-white flex flex-row w-full justify-center mt-4 space-x-2">
               <div
                 className="bg-green-70 px-4 py-2 rounded-lg cursor-pointer"
                 onClick={() => changeAvatar()}

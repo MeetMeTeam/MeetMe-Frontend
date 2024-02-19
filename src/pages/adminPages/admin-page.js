@@ -3,7 +3,17 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../Config";
 import * as api from "../../api";
 import Loading from "../../shared/components/Loading";
+import { logout } from "../../shared/utils/auth";
+import { setUserDetails } from "../../store/actions/authActions";
+import store from "../../store/store";
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openAlertMessage } from "../../store/actions/alertActions";
+
 function AdminPage() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const inputList = [
     { name: "ชื่อ avatar", type: "text", dataFor: "name" },
     { name: "ราคา", type: "number", dataFor: "price" },
@@ -30,7 +40,6 @@ function AdminPage() {
     ) {
       setIsLoading(true);
       await uploadFiles();
-      console.log(imageList);
       const data = {
         name: credentials.name,
         price: Number(credentials.price),
@@ -40,7 +49,8 @@ function AdminPage() {
       };
       const response = await api.addAvatarShop(data);
       if (response.status === 200) {
-        console.log("add สำเร็จ");
+        dispatch(openAlertMessage("เพิ่มตัวละครสำเร็จ"));
+
         setIsShowInput(false);
         setTimeout(() => {
           setIsShowInput(true);
@@ -71,10 +81,8 @@ function AdminPage() {
 
       const downloadURL = await getDownloadURL(imageRef);
 
-      console.log("File URL:", downloadURL);
       imageList.push(downloadURL);
     }
-    console.log(imageList);
     // imageList =  urlList
   };
 
@@ -86,6 +94,19 @@ function AdminPage() {
   }
   useEffect(() => {
     getAvatarAll();
+  }, []);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
+
+    if (!userDetails) {
+      logout();
+    } else {
+      store.dispatch(setUserDetails(JSON.parse(userDetails)));
+      if (JSON.parse(userDetails).isAdmin !== true) {
+        history.push("/");
+      }
+    }
   }, []);
 
   return (
@@ -104,6 +125,7 @@ function AdminPage() {
                     <span className="label-text">{item.name}</span>
 
                     <input
+                      min={0}
                       value={credentials[item.dataFor]}
                       onChange={(e) => {
                         setCredentials({
