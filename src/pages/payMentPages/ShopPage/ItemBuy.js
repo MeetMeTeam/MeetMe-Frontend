@@ -44,8 +44,8 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
         }
       >
         {avatarUserShow?.isOwner || avatarUserShow?.isOwner === undefined
-          ? "ครอบครองแล้ว"
-          : "ซื้อ"}
+          ? "Already exist"
+          : "Buy"}
       </div>
       <Modal
         aria-labelledby="modal-modal-title"
