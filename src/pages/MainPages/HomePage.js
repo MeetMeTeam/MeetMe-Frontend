@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
 import SideBar from "./SideBar";
 import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
@@ -12,8 +12,24 @@ import HeadBar from "./HeadBar/HeadBar";
 import BannerAdvert from "./BannerAdvert/BannerAdvert";
 import styles from "../../shared/css/mainPage.module.css";
 import SnowAnimation from "../../shared/components/SnowAnimation";
-
+import AvatarPreview from "../MainPages/Inventory/AvatarPreview";
+import { useSelector } from "react-redux";
+import * as api from "../../api";
+import Loading from "../../shared/components/Loading";
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
+  const userDetail = useSelector((state) => state.auth.userDetails);
+  const avatarFetchCount = useSelector((state) => state.auth.avatarFetchCount);
+
+  async function getAvatar() {
+    if (userDetail) {
+      const response = await api.getAvatar(userDetail?._id);
+      setAvatarUserShow(response?.data?.data);
+      setIsloadingAvatar(false);
+    }
+  }
+
+  const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
+  const [avatarUserShow, setAvatarUserShow] = useState({});
   useEffect(() => {
     const userDetails = localStorage.getItem("user");
 
@@ -25,19 +41,44 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
     }
   }, []);
 
+  useEffect(() => {
+    getAvatar();
+  }, [userDetail]);
+
+  useEffect(() => {
+    getAvatar();
+  }, [avatarFetchCount]);
   return (
-    <div className="min-h-screen min-w-screen flex flex-col">
+    <div className="min-h-screen min-w-[1200px]  flex flex-col">
       {/* {!isUserInRoom && <SnowAnimation className="z-10" />}  */}
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
-        <div className="flex md:flex-row  flex-col w-full justify-center z-20">
-          <div className="md:w-1/3 max-w-[500px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
-            <FriendsSideBar />
+        <div className="flex flex-row  w-full justify-center z-20">
+          <div className=" mr-6 max-w-[400px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
+            {/* <FriendsSideBar />
             <div>
               <Chat />
+            </div> */}
+            <div
+              className={
+                "flex flex-col  rounded-2xl " +
+                (isLoadingAvatar ? "" : "bg-white")
+              }
+            >
+              {isLoadingAvatar ? (
+                <div className="  flex items-center justify-center">
+                  <Loading />
+                </div>
+              ) : (
+                <AvatarPreview
+                  height="500"
+                  width="400"
+                  avatarUser={avatarUserShow}
+                />
+              )}
             </div>
           </div>
-          <div className="p-[32px] md:w-2/3 max-w-[822px] flex flex-col h-full space-y-4">
+          <div className="p-[32px] max-w-[822px] flex flex-col h-full space-y-4">
             <BannerAdvert className="h-1/3" />
             <div className={`flex flex-row md:space-x-6`}>
               {/* <div className={`
@@ -57,6 +98,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
             
            </div>
            </div> */}
+              <Chat />
               <SideBar /> {/* //ไว้โชว์ห้อง */}
             </div>
           </div>

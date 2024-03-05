@@ -37,8 +37,9 @@ export default function ChatAll() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         name="World Chat"
-        height={100}
+        height={300}
         isExpanded={false}
+        width={300}
       />
     </div>
   );

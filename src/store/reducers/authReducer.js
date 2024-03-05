@@ -2,6 +2,7 @@ import { authActions } from "../actions/authActions";
 
 const initState = {
   userDetails: null,
+  avatarFetchCount: 0,
 };
 
 const reducer = (state = initState, action) => {
@@ -10,6 +11,12 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         userDetails: action.userDetails,
+      };
+    case authActions.SET_AVATAR_FETCH_COUNT:
+      console.log("count on reducer");
+      return {
+        ...state,
+        avatarFetchCount: state.avatarFetchCount + 1,
       };
     default:
       return state;

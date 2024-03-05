@@ -38,10 +38,10 @@ const User = () => {
         {!isTabletOrMobile && (
           <div className="flex flex-col">
             <div className="text-[14px]">
-              @{userDetails ? userDetails.username : ""}{" "}
+              {userDetails ? userDetails.displayName : ""}
             </div>
             <div className="font-medium text-[10px]">
-              {userDetails ? userDetails.mail : ""}
+              @{userDetails ? userDetails.username : ""}{" "}
             </div>
           </div>
         )}
@@ -57,7 +57,11 @@ const User = () => {
           horizontal: "right",
         }}
       >
-        <Typography className="button-logout cursor-pointer" onClick={logout} sx={{ p: 2 }}>
+        <Typography
+          className="button-logout cursor-pointer"
+          onClick={logout}
+          sx={{ p: 2 }}
+        >
           {" "}
           Log out
         </Typography>

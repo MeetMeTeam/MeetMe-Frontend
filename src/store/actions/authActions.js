@@ -3,6 +3,7 @@ import { openAlertMessage, setLoadingPage } from "./alertActions";
 
 export const authActions = {
   SET_USER_DETAILS: "AUTH.SET_USER_DETAILS",
+  SET_AVATAR_FETCH_COUNT: "AUTH.SET_AVATAR_FETCH_COUNT",
 };
 const errorServerText =
   "There is an error on the server. Please try again later.";
@@ -12,6 +13,7 @@ export const getActions = (dispatch) => {
     register: (userDetails, history, id) =>
       dispatch(register(userDetails, history, id)),
     setUserDetails: (userDetails) => dispatch(setUserDetails(userDetails)),
+    setAvatarFetchCount: (count) => dispatch(setAvatarFetchCount(count)),
     changePassword: (userDetails, history) =>
       dispatch(changePassword(userDetails, history)),
     sendMailToResetPassword: (userDetails, history) =>
@@ -24,6 +26,14 @@ export const setUserDetails = (userDetails) => {
   return {
     type: authActions.SET_USER_DETAILS,
     userDetails,
+  };
+};
+
+export const setAvatarFetchCount = (count) => {
+  console.log("count on action");
+  return {
+    type: authActions.SET_AVATAR_FETCH_COUNT,
+    count,
   };
 };
 

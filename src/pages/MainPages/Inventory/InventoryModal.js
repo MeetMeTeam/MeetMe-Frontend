@@ -4,7 +4,12 @@ import * as api from "../../../api";
 import { useSelector } from "react-redux";
 import Loading from "../../../shared/components/Loading";
 import AvatarPreview from "./AvatarPreview";
+import { setAvatarFetchCount } from "../../../store/actions/authActions";
+import { useDispatch } from "react-redux";
+
 const InventoryModal = () => {
+  const dispatch = useDispatch();
+
   const { slug } = useParams();
   const history = useHistory();
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
@@ -47,6 +52,7 @@ const InventoryModal = () => {
     setIsloadingAvatar(true);
     const response = await api.changeAvatar(avatarUserNew.id);
     console.log(response);
+    dispatch(setAvatarFetchCount(1));
     setAvatarUserNew(null);
     getAvatar();
   }

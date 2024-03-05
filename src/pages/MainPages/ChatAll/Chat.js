@@ -24,7 +24,7 @@ export default function Chat({
   return (
     <div className={styles.scrollbar}>
       <Accordion
-        expanded={expanded === true}
+        expanded={true}
         onChange={handleChange()}
         sx={{
           width: width,

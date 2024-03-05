@@ -20,7 +20,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
   return (
     <div class={scollBarRoom.scrollbar + " w-full"}>
       <div
-        className={`bg-purple-60 h-[400px] w-full rounded-2xl px-4 pb-4 max-w-[822px] ${
+        className={`bg-purple-60 h-[435px] w-full rounded-2xl px-4 pb-4 min-w-[422px] ${
           activeRooms.length === 0 ? " justify-between " : " justify-start "
         } flex flex-col  ${styles.container}`}
       >
