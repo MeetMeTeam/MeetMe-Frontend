@@ -16,6 +16,7 @@ import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
+import { useSelector } from "react-redux";
 
 let socket = null;
 
@@ -120,7 +121,27 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("chatter", (newChat) => {
-    store.dispatch(UpdateChatList(newChat));
+    console.log(newChat);
+    const isUserInRoom = store.getState().room.isUserInRoom;
+    const myUserId = store.getState().auth.userDetails._id;
+    const otherPeopleList = store.getState().room.otherUserActionCam;
+    const foundObject = otherPeopleList.find(
+      (person) => person.userId === newChat.id
+    );
+
+    if (isUserInRoom) {
+      console.log(foundObject);
+      if (foundObject) {
+        console.log("asdasd");
+        store.dispatch(UpdateChatList(newChat));
+      }
+
+      if (myUserId === newChat.id) {
+        store.dispatch(UpdateChatList(newChat));
+      }
+    } else {
+      store.dispatch(UpdateChatList(newChat));
+    }
   });
 
   socket.on("other-cam-change", (data) => {
