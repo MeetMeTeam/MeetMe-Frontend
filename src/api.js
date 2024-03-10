@@ -303,3 +303,14 @@ export const getAvatarDefault = async (type) => {
     };
   }
 };
+
+export const getThemeShop = async (type) => {
+  try {
+    return await apiClient.get(`/themes`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

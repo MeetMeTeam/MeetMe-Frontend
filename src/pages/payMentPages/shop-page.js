@@ -15,6 +15,7 @@ import store from "../../store/store";
 import AvatarShop from "./ShopPage/AvatarShop/AvatarShop";
 import Inventory from "../MainPages//Inventory/InventoryButton";
 import ItemBuy from "./ShopPage/ItemBuy";
+import ThemeShop from "./ShopPage/ThemeShop/ThemeShop";
 const ShopPage = () => {
   const { slug } = useParams();
   const history = useHistory();
@@ -22,14 +23,17 @@ const ShopPage = () => {
   const [avatarUser, setAvatarUser] = useState({});
   const [avatarUserNew, setAvatarUserNew] = useState(null);
   const [avatarList, setAvatarList] = useState([]);
+  const [themeList, setThemeList] = useState([]);
   const [avatarUserShow, setAvatarUserShow] = useState({});
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
   const [isLoadingAvatarShop, setIsloadingAvatarShop] = useState(true);
+  const [isLoadingThemeShop, setIsloadingThemeShop] = useState(true);
 
   const userDetail = useSelector((state) => state.auth.userDetails);
   const menuList = [
     { name: "Flowers", menu: "ADD_COIN" },
     { name: "Character", menu: "AVATAR" },
+    { name: "theme room", menu: "THEME" },
   ];
   const [menuNow, setMenuNow] = useState("ADD_COIN");
 
@@ -55,6 +59,16 @@ const ShopPage = () => {
     if (AvatarShop) {
       await setAvatarList(AvatarShop?.data?.data);
       setIsloadingAvatarShop(false);
+    }
+  }
+
+  async function getThemeShop() {
+    setIsloadingAvatarShop(true);
+    const ThemeShop = await api.getThemeShop();
+    console.log(ThemeShop?.data?.data);
+    if (ThemeShop) {
+      await setThemeList(ThemeShop?.data?.data);
+      setIsloadingThemeShop(false);
     }
   }
 
@@ -84,6 +98,7 @@ const ShopPage = () => {
       getCoin();
       getAvatarShop();
       getAvatar(JSON.parse(userDetails)._id);
+      getThemeShop();
     }
   }, []);
 
@@ -146,6 +161,12 @@ const ShopPage = () => {
               isLoadingAvatarShop={isLoadingAvatarShop}
               avatarList={avatarList}
               setAvatarUserShow={setAvatarUserShow}
+            />
+          )}
+          {menuNow === "THEME" && (
+            <ThemeShop
+              themeList={themeList}
+              isLoadingThemeShop={isLoadingThemeShop}
             />
           )}
         </div>

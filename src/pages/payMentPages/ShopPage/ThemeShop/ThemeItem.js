@@ -15,7 +15,7 @@ const style = {
   borderRadius: "10px",
 };
 
-const CheckOutItem = (prop) => {
+const ThemeItem = (prop) => {
   const userDetails = useSelector((state) => state.auth.userDetails);
 
   async function checkOut() {
@@ -37,12 +37,13 @@ const CheckOutItem = (prop) => {
     <div>
       <ItemModal
         item={prop.item}
-        textHeader={"คุณกำลังจะซื้อ coin"}
+        textHeader={`คุณกำลังจะซื้อ theme ${prop.item.name}`}
         checkOut={checkOut}
-        unit={"THB"}
+        unit={"Flower"}
+        type={"theme"}
       />
     </div>
   );
 };
 
-export default CheckOutItem;
+export default ThemeItem;

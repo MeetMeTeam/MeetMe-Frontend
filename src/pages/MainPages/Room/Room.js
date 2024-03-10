@@ -28,8 +28,12 @@ const Room = () => {
         <RoomHeadBar />
         <User />
       </div>
-      <img
+      {/* <img
         src={process.env.PUBLIC_URL + "/RoomBg.png"}
+        className="absolute lg:object-cover object-cover h-screen w-screen"
+      /> */}
+      <img
+        src={roomDetail.roomCreator.detail.theme.link}
         className="absolute lg:object-cover object-cover h-screen w-screen"
       />
       {roomDetail !== undefined && (

@@ -1,6 +1,6 @@
 import React from "react";
 import JoinRoomRandom from "./JoinRoomRandom";
-import CreateRoom from "./CreateRoom";
+import CreateRoom from "./CreateRoom/CreateRoom";
 import User from "./User";
 import Notification from "./NotificationButton";
 import { useParams, useHistory } from "react-router-dom";
@@ -26,7 +26,7 @@ export default function HeadBar() {
             onClick={() => history.push("/shop")}
             className=" bg-purple-70 text-white px-4 py-3 rounded-xl font-medium cursor-pointer"
           >
-            <ShoppingBasket  className="button-shop"/>
+            <ShoppingBasket className="button-shop" />
           </div>
           <CreateRoom />
           <Notification />

@@ -7,15 +7,15 @@ import {
   setRemoteStreams,
   setScreenSharingStream,
   setIsUserJoinedOnlyWithAudio,
-  setErrorModal
+  setErrorModal,
 } from "../store/actions/roomActions";
-import { clearChatList } from '../store/actions/allChatAction'
-import { setLoadingPage } from '../store/actions/alertActions'
+import { clearChatList } from "../store/actions/allChatAction";
+import { setLoadingPage } from "../store/actions/alertActions";
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 import { useSelector } from "react-redux";
 
-export const createNewRoom = (name, type) => {
+export const createNewRoom = (name, type, detail, password) => {
   store.dispatch(setLoadingPage(true));
 
   const successCalbackFunc = () => {
@@ -23,7 +23,7 @@ export const createNewRoom = (name, type) => {
     store.dispatch(clearChatList());
 
     //มาเขียน ชื่อห้อง , ส่งรูปตรงนี้
-    socketConnection.createNewRoom(name, type);
+    socketConnection.createNewRoom(name, type, detail, password);
   };
 
   const audioOnly = store.getState().room.audioOnly;
@@ -57,7 +57,7 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
-  console.log("join rommmmmmmmmmmmmmmmmmmmmmm")
+  console.log("join rommmmmmmmmmmmmmmmmmmmmmm");
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
@@ -78,7 +78,7 @@ export const joinRoom = (data) => {
 };
 
 export const leaveRoom = () => {
-  store.dispatch( setErrorModal(null));
+  store.dispatch(setErrorModal(null));
   const roomId = store.getState().room.roomDetails.roomId;
 
   const localStream = store.getState().room.localStream;

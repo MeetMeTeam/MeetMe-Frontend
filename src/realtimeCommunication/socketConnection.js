@@ -74,6 +74,7 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("room-create", (data) => {
     roomHandler.newRoomCreated(data);
+    console.log(data);
     console.log("create room detail from server");
   });
 
@@ -181,8 +182,8 @@ export const sendDirectMessage = (data) => {
   socket.emit("direct-message", data);
 };
 
-export const createNewRoom = (name, type) => {
-  const data = { name: name, type: type };
+export const createNewRoom = (name, type, detail, password) => {
+  const data = { name: name, type: type, detail: detail, password: password };
   socket.emit("room-create", data);
 };
 
