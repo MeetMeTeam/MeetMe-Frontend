@@ -7,3 +7,9 @@
     min-height: calc(100vh - 480px);
     
   } */
+
+
+  .containerLobby {
+    min-height: calc(100vh - 80px);
+    
+  }

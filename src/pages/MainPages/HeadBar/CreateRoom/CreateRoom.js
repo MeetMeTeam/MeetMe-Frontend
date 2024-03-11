@@ -11,6 +11,7 @@ import * as roomHandler from "../../../../realtimeCommunication/roomHandler";
 import { setModalErrorSocket } from "../../../../store/actions/alertActions";
 import store from "../../../../store/store";
 import ThemeSelect from "./ThemeSelect";
+import CategoriesSelect from "./CategoriesSelect";
 const style = {
   position: "absolute",
   top: "50%",
@@ -50,10 +51,12 @@ const CreateRoom = () => {
       link: "https://cdnb.artstation.com/p/assets/images/images/035/693/525/large/daryna-vladimirova-.jpg?1615642496",
     },
   ];
+  const [selectCategories, setSelectCategories] = useState([]);
+
   const createNewRoomHandler = () => {
     const detail = {
       theme: theme,
-      cate: "",
+      cate: selectCategories,
     };
     const password = "test";
     if (!isUserInRoom && roomName !== "") {
@@ -150,6 +153,13 @@ const CreateRoom = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div>
+              <div className="text-purple-40 text-[12px]">categories room</div>
+              <CategoriesSelect
+                selectCategories={selectCategories}
+                setSelectCategories={setSelectCategories}
+              />
             </div>
 
             <div className="flex flex-row justify-between w-full space-x-4">

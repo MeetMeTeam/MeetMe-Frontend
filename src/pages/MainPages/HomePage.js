@@ -16,9 +16,12 @@ import AvatarPreview from "../MainPages/Inventory/AvatarPreview";
 import { useSelector } from "react-redux";
 import * as api from "../../api";
 import Loading from "../../shared/components/Loading";
+import { useMediaQuery } from "react-responsive";
+
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
   const userDetail = useSelector((state) => state.auth.userDetails);
   const avatarFetchCount = useSelector((state) => state.auth.avatarFetchCount);
+  const notebook = useMediaQuery({ query: "(max-width: 1400px)" });
 
   async function getAvatar() {
     if (userDetail) {
@@ -48,40 +51,49 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
     getAvatar();
   }, [avatarFetchCount]);
+
+  useEffect(() => {
+    console.log(notebook);
+  }, [notebook]);
   return (
     <div className="min-h-screen min-w-[1200px]  flex flex-col">
       {/* {!isUserInRoom && <SnowAnimation className="z-10" />}  */}
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
-        <div className="flex flex-row  w-full justify-center z-20">
-          <div className=" mr-6 max-w-[400px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
-            {/* <FriendsSideBar />
+        <div className={"items-center flex " + styles.containerLobby}>
+          <div
+            className={
+              "flex flex-row  w-full justify-center z-20 xxl:scale-125 xxxxl:scale-150 scale-100"
+            }
+          >
+            <div className=" mr-6 max-w-[400px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
+              {/* <FriendsSideBar />
             <div>
               <Chat />
             </div> */}
-            <div
-              className={
-                "flex flex-col  rounded-2xl " +
-                (isLoadingAvatar ? "" : "bg-white")
-              }
-            >
-              {isLoadingAvatar ? (
-                <div className="  flex items-center justify-center">
-                  <Loading />
-                </div>
-              ) : (
-                <AvatarPreview
-                  height="500"
-                  width="400"
-                  avatarUser={avatarUserShow}
-                />
-              )}
+              <div
+                className={
+                  "flex flex-col  rounded-2xl " +
+                  (isLoadingAvatar ? "" : "bg-white")
+                }
+              >
+                {isLoadingAvatar ? (
+                  <div className="  flex items-center justify-center">
+                    <Loading />
+                  </div>
+                ) : (
+                  <AvatarPreview
+                    height="500"
+                    width="400"
+                    avatarUser={avatarUserShow}
+                  />
+                )}
+              </div>
             </div>
-          </div>
-          <div className="p-[32px] max-w-[822px] flex flex-col h-full space-y-4">
-            <BannerAdvert className="h-1/3" />
-            <div className={`flex flex-row md:space-x-6`}>
-              {/* <div className={`
+            <div className="p-[32px] max-w-[822px] flex flex-col h-full space-y-4">
+              <BannerAdvert className="h-1/3" />
+              <div className={`flex flex-row md:space-x-6`}>
+                {/* <div className={`
         bg-[#FF80A5] w-full rounded-2xl
         text-white
         h-full
@@ -98,8 +110,9 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
             
            </div>
            </div> */}
-              <Chat />
-              <SideBar /> {/* //ไว้โชว์ห้อง */}
+                <Chat />
+                <SideBar /> {/* //ไว้โชว์ห้อง */}
+              </div>
             </div>
           </div>
         </div>
