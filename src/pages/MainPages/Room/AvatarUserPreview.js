@@ -30,7 +30,7 @@ export default function AvatarUserPreview({ id }) {
             <Loading />
           </div>
         ) : (
-          <AvatarPreview height="350" width="300" avatarUser={avatarUserShow} />
+          <AvatarPreview height="400" width="300" avatarUser={avatarUserShow} />
         )}
       </div>
     </div>

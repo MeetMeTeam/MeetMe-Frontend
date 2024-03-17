@@ -21,7 +21,6 @@ const ActiveRoomButton = ({
       roomHandler.joinRoom(data);
     }
   };
-  console.log(data);
   const activeRoomButtonDisabled = amountOfParticipants > 4;
   const roomTitle = `Cretor: ${creatorUsername}. Connected: ${amountOfParticipants}`;
 

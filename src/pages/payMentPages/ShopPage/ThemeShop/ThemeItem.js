@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import * as api from "../../../../apiPayment";
+import * as api from "../../../../api";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
@@ -17,20 +17,23 @@ const style = {
 
 const ThemeItem = (prop) => {
   const userDetails = useSelector((state) => state.auth.userDetails);
-
-  async function checkOut() {
-    const data = {
-      user: {
-        userId: userDetails._id,
-      },
-      product: {
-        name: "ซื้อเหรียญเว็บ MeetMe",
-        price: prop.item.price,
-        quantity: 1,
-      },
-    };
-    const url = await api.checkOut(data);
-    window.location.href = url.data.url;
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorText, setErrorText] = useState("");
+  async function checkOut(id) {
+    setIsLoading(true);
+    const response = await api.buyAvatar({
+      item_id: prop.item.id,
+      item_type: "theme",
+    });
+    if (response.status === 200) {
+      setIsLoading(false);
+      setIsSuccess(true);
+      prop.getThemeShop();
+    } else {
+      setIsLoading(false);
+      setErrorText(response.exception.response.data.message);
+    }
   }
 
   return (
@@ -41,6 +44,10 @@ const ThemeItem = (prop) => {
         checkOut={checkOut}
         unit={"Flower"}
         type={"theme"}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        errorText={errorText}
+        setIsSuccess={setIsSuccess}
       />
     </div>
   );

@@ -226,9 +226,9 @@ export const getCoin = async () => {
     };
   }
 };
-export const getInventory = async () => {
+export const getInventory = async (type) => {
   try {
-    return await apiClient.get(`/inventories`);
+    return await apiClient.get(`/inventories?item_type=${type}`);
   } catch (exception) {
     return {
       error: true,

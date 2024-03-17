@@ -11,7 +11,11 @@ const ThemeShop = (props) => {
       ) : (
         <div className="flex flex-wrap gap-4">
           {props.themeList.map((item, index) => (
-            <ThemeItem ley={index} item={item} />
+            <ThemeItem
+              ley={index}
+              item={item}
+              getThemeShop={props.getThemeShop}
+            />
           ))}
         </div>
       )}

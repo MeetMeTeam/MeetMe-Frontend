@@ -167,6 +167,7 @@ const ShopPage = () => {
             <ThemeShop
               themeList={themeList}
               isLoadingThemeShop={isLoadingThemeShop}
+              getThemeShop={getThemeShop}
             />
           )}
         </div>

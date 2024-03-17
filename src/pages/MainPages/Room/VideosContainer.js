@@ -120,7 +120,7 @@ const VideosContainer = ({
   };
 
   return (
-    <div className="absolute top-1/4 gap-4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12">
+    <div className="absolute top-1/4 gap-4 w-full grid grid-cols-4  sm:px-12">
       <div className="flex flex-col justify-center items-center relative p-10">
         <div className="bg-white py-10 opacity-30 rounded-2xl w-full h-full absolute">
           {" "}

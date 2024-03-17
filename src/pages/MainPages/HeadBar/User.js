@@ -55,9 +55,16 @@ const User = () => {
 
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
   const [avatarUserShow, setAvatarUserShow] = useState({});
-
+  const [userDataDetail, setUserDataDetail] = useState({
+    username: "",
+    displayName: "",
+  });
+  function init() {
+    setUserDataDetail(userDetails);
+  }
   useEffect(() => {
     getAvatar();
+    init();
   }, [userDetail]);
 
   useEffect(() => {
@@ -84,33 +91,11 @@ const User = () => {
           </div>
         )}
         <KeyboardArrowDownIcon />
-        {/* <img className='w-[35px] h-[35px] object-cover rounded-md' src={userDetails?.image} /> */}
       </div>
-      {/* <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-      >
-        <Typography
-          className="button-logout cursor-pointer"
-          onClick={logout}
-          sx={{ p: 2 }}
-        >
-          {" "}
-          Log out
-        </Typography>
-      </Popover> */}
+
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-        <Box
-          sx={{ width: 500, backgroundColor: "#E5D6F5" }}
-          role="presentation"
-        >
-          <div className="bg-purple-90 items-center h-screen px-10 py-5 flex flex-col justify-between">
+        <Box sx={{ width: 500 }} role="presentation">
+          <div className="bg-purple-90 items-center xxl:h-screen h-full px-10 py-5 flex flex-col justify-between">
             <div className="w-full flex flex-col items-center justify-center">
               <div className="bg-blue-80 w-[350px] h-[435px] flex justify-center relative rounded-2xl">
                 <div
@@ -132,8 +117,13 @@ const User = () => {
                   )}
                 </div>
                 <div className="absolute text-blue-20 flex flex-col px-4 py-2 top-[250px] bg-blue-90 w-[310px] rounded-xl h-[170px]  ring-white ring">
-                  <div className="text-[16px] font-bold">น้องบิวพระนคร</div>
-                  <div className="text-[12px] mt-[-5px] ">n.ntww</div>
+                  <div className="text-[18px] mt-[-5px] font-bold">
+                    {userDataDetail?.displayName}
+                  </div>
+                  <div className="text-[12px] mt-[-2px] ">
+                    {" "}
+                    {userDataDetail?.username}
+                  </div>
                   <hr className="my-1"></hr>
                   <div className="font-bold text-[12px]">about me</div>
                   <div className="text-[12px]  line-clamp-3">
@@ -161,8 +151,16 @@ const User = () => {
                   Display name
                 </div>
                 <input
+                  value={userDataDetail?.displayName}
                   type="text"
-                  className="text-white w-full rounded-2xl bg-blue-80 py-2"
+                  maxlength="16"
+                  onChange={(e) => {
+                    setUserDataDetail({
+                      ...userDataDetail,
+                      displayName: e.target.value,
+                    });
+                  }}
+                  className="text-white px-2 w-full rounded-2xl bg-blue-80 py-2"
                 />
               </div>
               <div className="w-full">

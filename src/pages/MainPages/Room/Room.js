@@ -23,7 +23,7 @@ const Room = () => {
   useEffect(() => {}, [roomDetail]);
 
   return (
-    <div className="absolute flex justify-center w-screen md:h-screen h-full">
+    <div className="absolute flex justify-center w-screen min-w-[1900px] overflow-y-hidden overflow-x-auto md:h-screen h-full">
       <div className="absolute top-0 z-20 w-full flex flex-row md:justify-between  md:p-6 p-2">
         <RoomHeadBar />
         <User />
@@ -35,7 +35,8 @@ const Room = () => {
       {roomDetail?.roomCreator && (
         <img
           src={roomDetail?.roomCreator.detail.theme.link}
-          className="absolute lg:object-cover object-cover h-screen w-screen"
+          className="absolute lg:object-cover object-cover w-full"
+          alt="background"
         />
       )}
 

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../../../../apiPayment";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useSelector } from "react-redux";
-
+import Loading from "../../../../shared/components/Loading";
 const style = {
   position: "absolute",
   top: "50%",
@@ -17,8 +17,15 @@ const style = {
 
 const ItemModal = (prop) => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {
+    if (!prop.item.isOwner) {
+      setOpen(true);
+    }
+  };
+  const handleClose = () => {
+    prop.setIsSuccess(false);
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -26,6 +33,11 @@ const ItemModal = (prop) => {
         onClick={() => handleOpen()}
         className="button-flower relative py-6 transition ease-in-out delay-100 hover:scale-110 cursor-pointer flex flex-col items-center justify-between bg-purple-70 rounded-xl"
       >
+        {prop.item.isOwner && (
+          <div className="scale-75 absolute top-14 border-white border bg-red-80 rounded-lg py-1 px-2">
+            Already exist
+          </div>
+        )}
         <div className="">
           <img
             src={prop.item.img + ".png"}
@@ -58,7 +70,22 @@ const ItemModal = (prop) => {
             <div>{prop.item.name} </div>
           )}
         </span>
-        <span className="font-bold">THB {prop.item.price}.00 </span>
+        <span className="font-bold flex mt-1">
+          {prop.unit === "THB" ? (
+            <div>{prop.unit}</div>
+          ) : (
+            <div>
+              <img
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
+                }
+                className={"mr-2 w-[25px] "}
+                alt="coin"
+              />
+            </div>
+          )}{" "}
+          {prop.item.price}.00{" "}
+        </span>
       </div>
       <Modal
         open={open}
@@ -66,43 +93,69 @@ const ItemModal = (prop) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <div className="p-6 bg-blue-70 px-10 min-w-[400px] rounded-md flex flex-col justify-between items-center">
-            <div className="flex justify-center flex-col items-center text-[24px]">
-              <div className="text-white">{prop.textHeader} </div>
-              <div>
-                {" "}
-                <img
-                  src={prop.item.img + ".png"}
-                  className={
-                    "mb-2 ] object-contain " +
-                    (prop.type === "theme"
-                      ? "w-full max-w-[800px]"
-                      : "h-[115px] w-[200px]")
-                  }
-                  alt="coin"
-                />
-              </div>
-              <span className="drop-shadow-md text-white">
-                {prop.item.price} {prop.unit}
-              </span>
+        {prop.isLoading ? (
+          <Box sx={style}>
+            <div className="p-6 bg-blue-70 px-10 h-[300px] flex items-center min-w-[400px] rounded-md  justify-center ">
+              <Loading />
             </div>
-            <div className="flex flex-row space-x-4">
-              <div
-                onClick={() => prop.checkOut()}
-                className="button-confirm bg-purple-80 px-4 rounded-2xl cursor-pointer"
-              >
-                Confirm
+          </Box>
+        ) : (
+          <Box sx={style}>
+            {prop.isSuccess ? (
+              <div className="p-6 bg-blue-70 px-10 h-[300px] flex flex-col items-center min-w-[400px] rounded-md  justify-center ">
+                <div>
+                  <div className="text-[20px] font-bold text-white mb-4">
+                    Thank for buy{" "}
+                  </div>
+                  <div
+                    onClick={() => handleClose()}
+                    className="text-white w-full border bg-yellow-50 flex justify-center rounded-full py-2 cursor-pointer "
+                  >
+                    Ok
+                  </div>
+                </div>
               </div>
-              <div
-                onClick={() => handleClose()}
-                className="button-cancel bg-gray-80 px-4 rounded-2xl cursor-pointer"
-              >
-                Cancel
+            ) : (
+              <div className="p-6 bg-blue-70 px-10 min-w-[400px] rounded-md flex flex-col justify-between items-center">
+                <div className="flex justify-center flex-col items-center text-[24px]">
+                  <div className="text-white">{prop.textHeader} </div>
+                  <div>
+                    <img
+                      src={prop.item.img + ".png"}
+                      className={
+                        "mb-2 ] object-contain " +
+                        (prop.type === "theme"
+                          ? "w-full max-w-[800px]"
+                          : "h-[115px] w-[200px]")
+                      }
+                      alt="coin"
+                    />
+                  </div>
+                  <span className="drop-shadow-md text-white">
+                    {prop.item.price} {prop.unit}
+                  </span>
+                </div>
+                <div className="text-red-500 font-bold text-[20px]">
+                  {prop.errorText}
+                </div>
+                <div className="flex flex-row space-x-4">
+                  <div
+                    onClick={() => prop.checkOut()}
+                    className="button-confirm bg-purple-80 px-4 rounded-2xl cursor-pointer"
+                  >
+                    Confirm
+                  </div>
+                  <div
+                    onClick={() => handleClose()}
+                    className="button-cancel bg-gray-80 px-4 rounded-2xl cursor-pointer"
+                  >
+                    Cancel
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </Box>
+            )}
+          </Box>
+        )}
       </Modal>
     </div>
   );

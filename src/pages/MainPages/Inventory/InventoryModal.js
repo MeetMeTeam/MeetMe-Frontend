@@ -6,7 +6,8 @@ import Loading from "../../../shared/components/Loading";
 import AvatarPreview from "./AvatarPreview";
 import { setAvatarFetchCount } from "../../../store/actions/authActions";
 import { useDispatch } from "react-redux";
-
+import AvatarItem from "./AvatarItem";
+import ThemeItem from "./ThemeItem";
 const InventoryModal = () => {
   const dispatch = useDispatch();
 
@@ -19,9 +20,11 @@ const InventoryModal = () => {
   const [avatarUserNew, setAvatarUserNew] = useState(null);
   const [avatarList, setAvatarList] = useState([]);
   const [avatarUserShow, setAvatarUserShow] = useState({});
+  const [themeList, setThemeList] = useState([]);
+  const [menu, setMenu] = useState("avatar");
 
-  async function getInventory() {
-    const inventoryUser = await api.getInventory();
+  async function getInventoryAvatar() {
+    const inventoryUser = await api.getInventory("avatar");
     const receivedAvatarList = inventoryUser.data.data;
     if (receivedAvatarList.length < 9) {
       const numberOfEmptyAvatars = 9 - receivedAvatarList.length;
@@ -34,6 +37,21 @@ const InventoryModal = () => {
     }
     setIsloadingAvatarList(false);
   }
+
+  async function getInventoryTheme() {
+    const inventoryUser = await api.getInventory("theme");
+    const receivedAvatarList = inventoryUser.data.data;
+    if (receivedAvatarList.length < 9) {
+      const numberOfEmptyAvatars = 9 - receivedAvatarList.length;
+      const updatedAvatarList = receivedAvatarList.concat(
+        Array(numberOfEmptyAvatars).fill({})
+      );
+      setThemeList(updatedAvatarList);
+    } else {
+      setThemeList(receivedAvatarList);
+    }
+  }
+
   async function getAvatar() {
     const inventoryUser = await api.getAvatar(userDetail._id);
     await setAvatarUser(inventoryUser?.data?.data);
@@ -61,7 +79,8 @@ const InventoryModal = () => {
     setAvatarUserShow(avatarUser);
   }
   useEffect(() => {
-    getInventory();
+    getInventoryAvatar();
+    getInventoryTheme();
     getAvatar();
   }, []);
 
@@ -106,39 +125,40 @@ const InventoryModal = () => {
             <Loading />
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-4">
-            {avatarList.map((item, index) => (
+          <div>
+            <div className="mb-4 flex gap-4 rounded-xl  ring-white ">
               <div
-                key={index}
-                onClick={() => changeAvatarPreview(item)}
-                className="flex flex-col items-center"
+                onClick={() => setMenu("avatar")}
+                className={
+                  "px-8 cursor-pointer py-4 rounded-3xl " +
+                  (menu === "avatar"
+                    ? "bg-purple-80   text-purple-30 font-bold"
+                    : " bg-purple-80/40 text-purple-30 ")
+                }
               >
-                <div
-                  className={
-                    "p-4 w-[150px] rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-purple-70 " +
-                    (item.name ? "bg-purple-80" : "bg-purple-80/30")
-                  }
-                >
-                  {item.preview ? (
-                    <img
-                      src={item.preview}
-                      className="w-[100px] h-[70px] object-contain"
-                      alt="block"
-                    />
-                  ) : (
-                    <span className="w-[100px] h-[70px]"></span>
-                  )}
-                  <div
-                    className={
-                      "font-bold truncate " +
-                      (item.name ? "text-purple-10" : "text-purple-90")
-                    }
-                  >
-                    {item.name || "."}
-                  </div>
-                </div>
+                Avatar
               </div>
-            ))}
+              <div
+                onClick={() => setMenu("theme")}
+                className={
+                  "px-8 cursor-pointer rounded-3xl py-4 " +
+                  (menu === "theme"
+                    ? "bg-purple-80   text-purple-30 font-bold"
+                    : " bg-purple-80/40 text-purple-30 ")
+                }
+              >
+                theme room
+              </div>
+            </div>
+            <div>
+              {menu === "avatar" && (
+                <AvatarItem
+                  avatarList={avatarList}
+                  changeAvatarPreview={changeAvatarPreview}
+                />
+              )}
+              {menu === "theme" && <ThemeItem avatarList={themeList} />}
+            </div>
           </div>
         )}
       </div>

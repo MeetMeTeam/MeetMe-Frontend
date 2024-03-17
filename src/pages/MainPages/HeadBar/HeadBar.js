@@ -21,12 +21,12 @@ export default function HeadBar() {
         <div className="flex flex-row items-center space-x-4">
           {/* <JoinRoomRandom/> */}
 
-          <Inventory />
+          {/* <Inventory /> */}
           <div
             onClick={() => history.push("/shop")}
-            className=" bg-purple-70 text-white px-4 py-3 rounded-xl font-medium cursor-pointer"
+            className=" bg-purple-70 text-white flex gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer"
           >
-            <ShoppingBasket className="button-shop" />
+            <ShoppingBasket className="button-shop" /> Shop
           </div>
           <CreateRoom />
           <Notification />

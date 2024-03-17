@@ -12,6 +12,7 @@ import { setModalErrorSocket } from "../../../../store/actions/alertActions";
 import store from "../../../../store/store";
 import ThemeSelect from "./ThemeSelect";
 import CategoriesSelect from "./CategoriesSelect";
+import * as api from "../../../../api";
 const style = {
   position: "absolute",
   top: "50%",
@@ -21,6 +22,24 @@ const style = {
   outline: "none",
   borderRadius: "10px",
 };
+
+const initialThemeList = [
+  {
+    index: 0,
+    name: "halloween",
+    link: "https://static.vecteezy.com/system/resources/previews/003/230/647/original/cute-halloween-background-with-spooky-elements-free-vector.jpg",
+  },
+  {
+    index: 1,
+    name: "lobby",
+    link: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db935b0d-dc38-4b33-b784-38d334eb12af/deaddwc-3b08b1e2-b734-4062-b0ce-90bd0c581321.jpg/v1/fill/w_1024,h_576,q_75,strp/cinema_lobby___visual_novel_bg_by_gin_1994_deaddwc-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvZGI5MzViMGQtZGMzOC00YjMzLWI3ODQtMzhkMzM0ZWIxMmFmXC9kZWFkZHdjLTNiMDhiMWUyLWI3MzQtNDA2Mi1iMGNlLTkwYmQwYzU4MTMyMS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dpcjynKZtGxtOrCs-cMJAt1dtf_nN_lcZTSg3Mhd7Uc",
+  },
+  {
+    index: 2,
+    name: "bar",
+    link: "https://cdnb.artstation.com/p/assets/images/images/035/693/525/large/daryna-vladimirova-.jpg?1615642496",
+  },
+];
 
 const CreateRoom = () => {
   const isShowModalErrorSocket = useSelector(
@@ -34,25 +53,26 @@ const CreateRoom = () => {
     name: "halloween",
     link: "https://static.vecteezy.com/system/resources/previews/003/230/647/original/cute-halloween-background-with-spooky-elements-free-vector.jpg",
   });
-  const themeList = [
-    {
-      index: 0,
-      name: "halloween",
-      link: "https://static.vecteezy.com/system/resources/previews/003/230/647/original/cute-halloween-background-with-spooky-elements-free-vector.jpg",
-    },
-    {
-      index: 1,
-      name: "lobby",
-      link: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db935b0d-dc38-4b33-b784-38d334eb12af/deaddwc-3b08b1e2-b734-4062-b0ce-90bd0c581321.jpg/v1/fill/w_1024,h_576,q_75,strp/cinema_lobby___visual_novel_bg_by_gin_1994_deaddwc-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvZGI5MzViMGQtZGMzOC00YjMzLWI3ODQtMzhkMzM0ZWIxMmFmXC9kZWFkZHdjLTNiMDhiMWUyLWI3MzQtNDA2Mi1iMGNlLTkwYmQwYzU4MTMyMS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dpcjynKZtGxtOrCs-cMJAt1dtf_nN_lcZTSg3Mhd7Uc",
-    },
-    {
-      index: 2,
-      name: "bar",
-      link: "https://cdnb.artstation.com/p/assets/images/images/035/693/525/large/daryna-vladimirova-.jpg?1615642496",
-    },
-  ];
-  const [selectCategories, setSelectCategories] = useState([]);
 
+  const [selectCategories, setSelectCategories] = useState([]);
+  const [themeList, setThemeList] = useState(initialThemeList);
+
+  async function getInventoryTheme() {
+    const inventoryUser = await api.getInventory("theme");
+    const receivedAvatarList = inventoryUser.data.data;
+    const updatedThemeList = [...themeList]; // คัดลอก themeList เดิมเพื่อไม่ทับค่าเดิม
+
+    for (let index = 0; index < receivedAvatarList.length; index++) {
+      const theme = receivedAvatarList[index];
+      updatedThemeList.push({
+        index: updatedThemeList.length,
+        name: theme.name,
+        link: theme.img,
+      });
+    }
+    console.log(updatedThemeList);
+    setThemeList(updatedThemeList);
+  }
   const createNewRoomHandler = () => {
     const detail = {
       theme: theme,
@@ -80,6 +100,10 @@ const CreateRoom = () => {
       }, 500);
     }
   }, [open]);
+
+  useEffect(() => {
+    getInventoryTheme();
+  }, []);
   return (
     <div>
       <div

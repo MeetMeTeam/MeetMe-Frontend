@@ -17,6 +17,8 @@ import { useSelector } from "react-redux";
 import * as api from "../../api";
 import Loading from "../../shared/components/Loading";
 import { useMediaQuery } from "react-responsive";
+import CreateIcon from "@mui/icons-material/Create";
+import Inventory from "../MainPages/Inventory/InventoryButton";
 
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
   const userDetail = useSelector((state) => state.auth.userDetails);
@@ -56,17 +58,18 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
     console.log(notebook);
   }, [notebook]);
   return (
-    <div className="min-h-screen min-w-[1200px]  flex flex-col">
+    <div className="min-h-screen xl:overflow-x-hidden min-w-[1200px]  flex flex-col">
       {/* {!isUserInRoom && <SnowAnimation className="z-10" />}  */}
       {!isUserInRoom && <HeadBar className="z-20" />}
       {!isUserInRoom && (
         <div className={"items-center flex " + styles.containerLobby}>
           <div
             className={
-              "flex flex-row  w-full justify-center z-20 xxl:scale-125 xxxxl:scale-150 scale-100"
+              "flex flex-row  w-full justify-center z-20 xxl:scale-x-110 xxxxl:scale-125 scale-100"
             }
           >
-            <div className=" mr-6 max-w-[400px] p-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
+            {/*  */}
+            <div className=" pt-[16px] mr-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
               {/* <FriendsSideBar />
             <div>
               <Chat />
@@ -78,20 +81,47 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
                 }
               >
                 {isLoadingAvatar ? (
-                  <div className="  flex items-center justify-center">
+                  <div className="flex bg-white h-[400px] rounded-xl items-center justify-center">
                     <Loading />
                   </div>
                 ) : (
-                  <AvatarPreview
-                    height="500"
-                    width="400"
-                    avatarUser={avatarUserShow}
-                  />
+                  <div className="relative">
+                    <AvatarPreview
+                      height="450"
+                      width="400"
+                      avatarUser={avatarUserShow}
+                    />
+                    <div className="absolute top-5 right-10">
+                      <Inventory />
+                    </div>
+                  </div>
                 )}
               </div>
+              <div className="w-full flex justify-between items-center bg-white py-1 rounded-2xl text-purple-60 font-bold px-4 text-[20px]">
+                <span>
+                  {" "}
+                  {userDetail?.displayName && userDetail.displayName}{" "}
+                </span>
+                <CreateIcon className="cursor-pointer" />
+              </div>
+              <div className="relative w-[400px] bg-white py-2 rounded-2xl text-purple-60 h-[50px] font-bold px-4 text-[12px]">
+                <div className="z-10 relative line-clamp-2">
+                  ไมเกรนอุตสาหการ ฮอต ไฮเทค พุดดิ้งเปียโนงี้
+                  สต็อกเซ่นไหว้ซิมเมาท์ สะบึมส์ รีพอร์ทแอปเปิ้ล อุเทนภควัมปติ
+                  ไกด์อยุติธรรม พาร์ตเนอร์ความหมาย ป๊อปมาร์ค วอลนัทโจ๋ฮ็อตด็อก
+                  สโรชา แชเชือน ราชบัณฑิตยสถานแม็กกาซีนซัมเมอร์บึม
+                  ไลน์มอลล์เอฟเฟ็กต์บอยคอตต์
+                </div>
+                <div
+                  className="w-0 z-0 h-0 absolute top-[-12px] left-5
+  border-l-[15px] border-l-transparent
+  border-b-[25px] border-b-white
+  border-r-[15px] border-r-transparent"
+                ></div>
+              </div>
             </div>
-            <div className="p-[32px] max-w-[822px] flex flex-col h-full space-y-4">
-              <BannerAdvert className="h-1/3" />
+            <div className="pt-[16px] flex flex-col h-full space-y-4">
+              {/* <BannerAdvert className="h-1/3" /> */}
               <div className={`flex flex-row md:space-x-6`}>
                 {/* <div className={`
         bg-[#FF80A5] w-full rounded-2xl

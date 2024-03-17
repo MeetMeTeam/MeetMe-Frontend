@@ -15,11 +15,11 @@ const LoginPage = ({ login }) => {
   const history = useHistory();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 960px)" });
 
   useEffect(() => {
-    setIsFormValid(validateLoginForm({ mail, password }));
+    // setIsFormValid(validateLoginForm({ mail, password }));
   }, [mail, password, setIsFormValid]);
 
   const handleLogin = (e) => {
