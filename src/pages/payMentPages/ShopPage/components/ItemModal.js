@@ -70,7 +70,7 @@ const ItemModal = (prop) => {
             <div>{prop.item.name} </div>
           )}
         </span>
-        <span className="font-bold flex mt-1">
+        <span className="font-bold flex mt-1np">
           {prop.unit === "THB" ? (
             <div>{prop.unit}</div>
           ) : (

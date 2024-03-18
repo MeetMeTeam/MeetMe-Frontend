@@ -314,3 +314,15 @@ export const getThemeShop = async (type) => {
     };
   }
 };
+
+export const editUser = async (data) => {
+  console.log(data);
+  try {
+    return await apiClient.put(`/users`, data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

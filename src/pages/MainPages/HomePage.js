@@ -26,7 +26,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
   const notebook = useMediaQuery({ query: "(max-width: 1400px)" });
 
   async function getAvatar() {
-    if (userDetail) {
+    if (userDetail?._id) {
       const response = await api.getAvatar(userDetail?._id);
       setAvatarUserShow(response?.data?.data);
       setIsloadingAvatar(false);
@@ -98,19 +98,12 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
                 )}
               </div>
               <div className="w-full flex justify-between items-center bg-white py-1 rounded-2xl text-purple-60 font-bold px-4 text-[20px]">
-                <span>
-                  {" "}
-                  {userDetail?.displayName && userDetail.displayName}{" "}
-                </span>
+                <span>{userDetail?.displayName && userDetail.displayName}</span>
                 <CreateIcon className="cursor-pointer" />
               </div>
               <div className="relative w-[400px] bg-white py-2 rounded-2xl text-purple-60 h-[50px] font-bold px-4 text-[12px]">
                 <div className="z-10 relative line-clamp-2">
-                  ไมเกรนอุตสาหการ ฮอต ไฮเทค พุดดิ้งเปียโนงี้
-                  สต็อกเซ่นไหว้ซิมเมาท์ สะบึมส์ รีพอร์ทแอปเปิ้ล อุเทนภควัมปติ
-                  ไกด์อยุติธรรม พาร์ตเนอร์ความหมาย ป๊อปมาร์ค วอลนัทโจ๋ฮ็อตด็อก
-                  สโรชา แชเชือน ราชบัณฑิตยสถานแม็กกาซีนซัมเมอร์บึม
-                  ไลน์มอลล์เอฟเฟ็กต์บอยคอตต์
+                  {userDetail?.bio && userDetail.bio}
                 </div>
                 <div
                   className="w-0 z-0 h-0 absolute top-[-12px] left-5
