@@ -3,7 +3,7 @@ version: "3.9"
 services:
   fe:
       container_name: react-docker
-      build: .././MeetMe-Frontend/
+      build: .
       networks:  
         - meetme
       environment:
