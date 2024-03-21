@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  fe:
+      container_name: react-docker
+      build: .././MeetMe-Frontend/
+      networks:  
+        - meetme
+      environment:
+        REACT_APP_BASE_API: https://dev-meetme.com
+        REACT_APP_BASE_API_SOCKET: https://dev-meetme.com
+        REACT_APP_BASE_API_PAYMENT: https://dev-meetme.com
+networks:
+  meetme:  
+    external: true
