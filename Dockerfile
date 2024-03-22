@@ -1,8 +1,7 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --legacy-peer-deps --silent && \
-    npm cache clean --force
+RUN npm install --fetch-retries=0
 COPY . .
 RUN npm run build
 
