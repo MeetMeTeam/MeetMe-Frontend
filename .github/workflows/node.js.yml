@@ -48,4 +48,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: winnerkypt/meetme-backend:latest
+          tags: winnerkypt/meetme-frontend:latest
