@@ -18,7 +18,7 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
         setValue={setMail}
         label="USERNAME or e-mail address"
         type="text"
-        placeholder="Enter E-Mail Address"
+        placeholder="Enter e-mail address"
       />
       <InputWithLabel
         data="data-password"
@@ -26,7 +26,7 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
         setValue={setPassword}
         label="Password"
         type="password"
-        placeholder="Enter Password"
+        placeholder="Enter password"
       />
       <RedirectInfo
         redirectText="Forgot Password?"
