@@ -2,8 +2,8 @@ version: "3.9"
 
 services:
   fe:
+      image: winnerkypt/meetme-frontend:latest
       container_name: react-docker
-      image: meetme-frontend:latest
       networks:  
         - meetme
       environment:
