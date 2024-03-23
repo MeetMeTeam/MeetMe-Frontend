@@ -1,8 +1,8 @@
-FROM node:lts-alpine as build-stage
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --fetch-retries=0
-COPY . .
+COPY package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
+WORKDIR /opt/app
+COPY . /opt/app
 RUN npm run build
 
 # production stage
