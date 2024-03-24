@@ -161,7 +161,7 @@ const User = () => {
                     {userDataDetail?.username}
                   </div>
                   <hr className="my-1"></hr>
-                  <div className="font-bold text-[12px]">about me</div>
+                  <div className="font-bold text-[12px]">About Me</div>
                   <div className="text-[12px] h-[50px] w-[280px] break-words line-clamp-3">
                     {userDataDetail?.bio}
                   </div>
