@@ -54,6 +54,5 @@ jobs:
             cd MeetMe-Frontend/
             docker pull ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
             docker rm -f react-docker
-            REACT_APP_BASE_API=${{ secrets.REACT_APP_BASE_API }}
             docker compose -f docker-compose.yml up -d
             echo finish
