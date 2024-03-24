@@ -65,10 +65,22 @@ export const joinRoom = (data) => {
 
     store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
     //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+
+    const userDetailsWithoutSensitiveData = {
+      ...store.getState().auth.userDetails,
+    };
+    delete userDetailsWithoutSensitiveData.token;
+    delete userDetailsWithoutSensitiveData.refreshToken;
+    delete userDetailsWithoutSensitiveData.mail;
+    delete userDetailsWithoutSensitiveData.coin;
+
+    // นำ object ใหม่ไปใส่ในตัวแปรใหม่
+    const modifiedUserDetails = userDetailsWithoutSensitiveData;
+
     socketConnection.joinRoom({
       roomId: data.roomId,
-      name: store.getState().auth.userDetails.username,
-      pic: "testpic",
+      name: modifiedUserDetails,
+      pic: "testpic2",
       id: store.getState().auth.userDetails._id,
     });
   };

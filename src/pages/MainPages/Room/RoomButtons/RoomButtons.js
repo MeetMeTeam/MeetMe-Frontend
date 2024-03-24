@@ -22,17 +22,19 @@ const RoomButtons = (props) => {
   const { localStream, isUserJoinedWithOnlyAudio } = props;
 
   return (
-    <div className="flex">
-      <MicButton localStream={localStream} />
-      {!isUserJoinedWithOnlyAudio && (
-        <CameraButton
-          cameraEnabled={props.cameraEnabled}
-          localStream={localStream}
-          setCameraEnabled={props.setCameraEnabled}
-        />
-      )}
+    <div className="absolute left-2  flex flex-row justify-center items-center  bottom-6 bg-purple-80 w-[200px] h-[70px]  rounded-md">
+      <div className="flex">
+        <MicButton localStream={localStream} />
+        {!isUserJoinedWithOnlyAudio && (
+          <CameraButton
+            cameraEnabled={props.cameraEnabled}
+            localStream={localStream}
+            setCameraEnabled={props.setCameraEnabled}
+          />
+        )}
 
-      {/* <CloseRoomButton /> */}
+        {/* <CloseRoomButton /> */}
+      </div>
     </div>
   );
 };

@@ -2,9 +2,10 @@ const alertActions = {
   OPEN_ALERT_MESSAGE: "ALERT.OPEN_ALERT_MESSAGE",
   CLOSE_ALERT_MESSAGE: "ALERT.CLOSE_ALERT_MESSAGE",
   UPDATE_NOTIFICATION: "ALERT.UPDATE_NOTIFICATION",
-  REMOVE_NOTIFICATION : "ALERT.REMOVE_NOTIFICATION",
-  SET_LOADING_PAGE : "ALERT.SET_LOADING_PAGE",
-  SET_MODAL_SOCKET_ERROR : "ALERT.SET_MODAL_SOCKET_ERROR"
+  REMOVE_NOTIFICATION: "ALERT.REMOVE_NOTIFICATION",
+  SET_LOADING_PAGE: "ALERT.SET_LOADING_PAGE",
+  SET_MODAL_SOCKET_ERROR: "ALERT.SET_MODAL_SOCKET_ERROR",
+  SET_GIFT_NOTIFICATION: "ALERT.SET_GIFT_NOTIFICATION",
 };
 
 export const getActions = (dispatch) => {
@@ -13,8 +14,14 @@ export const getActions = (dispatch) => {
     closeAlertMessage: () => dispatch(closeAlertMessage()),
     setLoadingPage: (content) => dispatch(setLoadingPage(content)),
     setModalErrorSocket: (content) => dispatch(setModalErrorSocket(content)),
+    setGiftNotification: (content) => dispatch(setGiftNotification(content)),
+  };
+};
 
-
+export const setGiftNotification = (content) => {
+  return {
+    type: alertActions.SET_GIFT_NOTIFICATION,
+    content,
   };
 };
 export const setModalErrorSocket = (content) => {
@@ -40,7 +47,7 @@ export const setNotification = (content) => {
 export const removeNotification = (content) => {
   return {
     type: alertActions.REMOVE_NOTIFICATION,
-    content
+    content,
   };
 };
 

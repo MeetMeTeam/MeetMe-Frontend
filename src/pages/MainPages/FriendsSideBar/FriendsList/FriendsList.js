@@ -94,7 +94,6 @@ const FriendsList = ({ friends, onlineUsers }) => {
       </span>
       <Accordion
         expanded={expanded === true}
-        onChange={handleChange()}
         sx={{
           backgroundColor: "#9EBCFA",
           borderRadius: "16px !important",

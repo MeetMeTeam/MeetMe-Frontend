@@ -18,6 +18,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../../store/actions/authActions";
 import LoadingPage from "../../../shared/components/LoadingPage";
+import AvatarCard from "../../../shared/components/AvatarCard";
 const style = {
   position: "absolute",
   top: "50%",
@@ -51,14 +52,6 @@ const User = () => {
     setOpen(newOpen);
   };
 
-  async function getAvatar() {
-    if (userDetail?._id) {
-      const response = await api.getAvatar(userDetail?._id);
-      setAvatarUserShow(response?.data?.data);
-      setIsloadingAvatar(false);
-    }
-  }
-
   async function editUser() {
     setIsloading(true);
     const response = await api.editUser(userDataDetail);
@@ -73,8 +66,6 @@ const User = () => {
     setIsloading(false);
   }
 
-  const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
-  const [avatarUserShow, setAvatarUserShow] = useState({});
   const [userDataDetail, setUserDataDetail] = useState({
     username: "",
     displayName: "",
@@ -97,14 +88,10 @@ const User = () => {
   }
   useEffect(() => {
     init();
-    getAvatar();
   }, [userDetail]);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
-  useEffect(() => {
-    getAvatar();
-  }, [avatarFetchCount]);
 
   return (
     <div>
@@ -133,50 +120,8 @@ const User = () => {
         <Box sx={{ width: 500 }} role="presentation">
           <div className="bg-purple-90 items-center xxl:h-screen h-full px-10 py-5 flex flex-col justify-between">
             <div className="w-full flex flex-col items-center justify-center">
-              <div className="bg-blue-80 w-[350px] h-[435px] flex justify-center relative rounded-2xl">
-                <div
-                  className={
-                    "flex flex-col  absolute top-[-25px] scale-75 rounded-2xl " +
-                    (isLoadingAvatar ? "" : "bg-white")
-                  }
-                >
-                  {isLoadingAvatar ? (
-                    <div className="  flex items-center justify-center">
-                      <Loading />
-                    </div>
-                  ) : (
-                    <AvatarPreview
-                      height="300"
-                      width="420"
-                      avatarUser={avatarUserShow}
-                    />
-                  )}
-                </div>
-                <div className="absolute text-blue-20 flex flex-col px-4 py-2 top-[250px] bg-blue-90 w-[310px] rounded-xl h-[170px]  ring-white ring">
-                  <div className="text-[18px] mt-[-5px] font-bold">
-                    {userDataDetail?.displayName}
-                  </div>
-                  <div className="text-[12px] mt-[-2px] ">
-                    {" "}
-                    {userDataDetail?.username}
-                  </div>
-                  <hr className="my-1"></hr>
-                  <div className="font-bold text-[12px]">about me</div>
-                  <div className="text-[12px] h-[50px] w-[280px] break-words line-clamp-3">
-                    {userDataDetail?.bio}
-                  </div>
-                  <div className="flex  gap-2 flex-row mt-2">
-                    <div className="border bg-yellow-90 border-black rounded-md px-2 flex cursor-pointer flex-row gap-1 text-[10px] items-center">
-                      <FacebookIcon />
-                      nuttawat rodsomboon
-                    </div>
-                    <div className="border bg-yellow-90 border-black rounded-md px-2 flex cursor-pointer flex-row gap-1 text-[10px] items-center">
-                      <InstagramIcon />
-                      n.ntww
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <AvatarCard userDataDetail={userDataDetail} />
+
               <div className="w-full mt-4 mb-2 ">
                 <div className="text-blue-60 mb-1 font-bold text-[14px]">
                   Display name

@@ -10,6 +10,7 @@ import { setOtherActionCam, setErrorModal } from "../store/actions/roomActions";
 import {
   setNotification,
   setModalErrorSocket,
+  setGiftNotification,
 } from "../store/actions/alertActions";
 
 import store from "../store/store";
@@ -92,9 +93,21 @@ export const connectWithSocketServer = (userDetails) => {
       id
     );
     //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+
+    const userDetailsWithoutSensitiveData = {
+      ...store.getState().auth.userDetails,
+    };
+    delete userDetailsWithoutSensitiveData.token;
+    delete userDetailsWithoutSensitiveData.refreshToken;
+    delete userDetailsWithoutSensitiveData.mail;
+    delete userDetailsWithoutSensitiveData.coin;
+
+    // นำ object ใหม่ไปใส่ในตัวแปรใหม่
+    const modifiedUserDetails = userDetailsWithoutSensitiveData;
+
     socket.emit("conn-init", {
       connUserSocketId: connUserSocketId,
-      name: store.getState().auth.userDetails.username,
+      name: modifiedUserDetails,
       pic: "testpic",
       id: store.getState().auth.userDetails._id,
     });
@@ -129,6 +142,10 @@ export const connectWithSocketServer = (userDetails) => {
       (person) => person.userId === newChat.id
     );
 
+    if (newChat.isGift) {
+      store.dispatch(UpdateChatList(newChat));
+    }
+
     if (isUserInRoom) {
       console.log(foundObject);
       if (foundObject) {
@@ -158,6 +175,11 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("notify-join", (data) => {
     store.dispatch(setErrorModal(null));
     store.dispatch(setErrorModal(!data));
+  });
+
+  socket.on("other-send-gift", (data) => {
+    console.log(data);
+    store.dispatch(setGiftNotification(data));
   });
 };
 
@@ -208,4 +230,8 @@ export const InviteFriendToJoinRoom = (data) => {
 
 export const checkNotifyJoin = (data) => {
   socket.emit("notify-join", data);
+};
+
+export const sendGiftToOther = (data) => {
+  socket.emit("send-gift-to-other", data);
 };
