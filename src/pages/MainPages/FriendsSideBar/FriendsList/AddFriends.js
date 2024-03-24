@@ -62,14 +62,14 @@ const AddFriends = () => {
             <div className="flex flex-row justify-between w-full items-center space-x-4">
               <div>
                 <div className="text-blue-40 text-[12px] ml-0.5 mb-1">
-                  email
+                  E-mail
                 </div>
                 <input
                   className="w-full rounded-md bg-blue-50 px-4 py-2 text-white outline-none"
                   type="text"
                   value={email}
                   onChange={handleInputChange}
-                  placeholder="ป้อนอีเมล์"
+                  placeholder="Enter friend's e-mail"
                 />
               </div>
               <div onClick={()=> addFriend()} className={`w-[15%] text-white rounded-md  px-9 py-2 mt-5 flex items-center justify-center ${validateMail(email) ? ' cursor-pointer bg-yellow-50' : ' bg-yellow-80 cursor-not-allowed'}`}
