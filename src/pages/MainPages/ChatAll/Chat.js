@@ -52,7 +52,9 @@ export default function Chat({
                   <div className={`text-${item?.color}-500 mr-2`}>
                     {item?.name + ":"}{" "}
                   </div>
-                  <div className="text-white">{item?.text}</div>
+                  <div className={item.isGift ? "text-blue-30 " : "text-white"}>
+                    {item?.text}
+                  </div>
                 </div>
               ))}
             </div>

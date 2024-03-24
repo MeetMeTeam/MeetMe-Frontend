@@ -4,8 +4,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 const ThemeSelect = (props) => {
   function right() {
     const length = props.themeList.length;
-    console.log(length);
-    console.log(props.theme.index);
+
     if (length - 1 !== props.theme.index) {
       props.setTheme(props.themeList[props.theme.index + 1]);
     } else {

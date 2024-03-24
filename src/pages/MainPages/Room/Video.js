@@ -12,7 +12,7 @@ const VideoEl = styled("video")({
   height: "100%",
 });
 
-const Video = ({ stream, isLocalStream , id , size }) => {
+const Video = ({ stream, isLocalStream, id, size, userDetails }) => {
   const videoRef = useRef();
 
   useEffect(() => {
@@ -26,9 +26,13 @@ const Video = ({ stream, isLocalStream , id , size }) => {
 
   return (
     <div>
-      <VideoEl  className={` rounded-md  `} 
-      ref={videoRef} autoPlay muted={isLocalStream ? true : false} 
-       style={{ transform: "scaleX(-1)" ,width: size }}/>
+      <VideoEl
+        className={` rounded-md  `}
+        ref={videoRef}
+        autoPlay
+        muted={isLocalStream ? true : false}
+        style={{ transform: "scaleX(-1)", width: size }}
+      />
     </div>
   );
 };

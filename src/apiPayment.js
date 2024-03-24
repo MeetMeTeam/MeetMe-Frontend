@@ -85,3 +85,25 @@ export const checkOut = async (data) => {
     };
   }
 };
+
+export const getGiftList = async () => {
+  try {
+    return await apiClient.get("/gift/list");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const sendGift = async (data) => {
+  try {
+    return await apiClient.post("/gift/add", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

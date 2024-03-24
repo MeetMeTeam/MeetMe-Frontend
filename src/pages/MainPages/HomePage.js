@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
 import SideBar from "./SideBar";
-import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
 import { logout } from "../../shared/utils/auth";
 import { connect } from "react-redux";
 import { getActions } from "../../store/actions/authActions";
@@ -70,8 +69,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
           >
             {/*  */}
             <div className=" pt-[16px] mr-[32px] md:pr-0 flex flex-col  space-y-4 h-full">
-              {/* <FriendsSideBar />
-            <div>
+              {/* <div>
               <Chat />
             </div> */}
               <div
