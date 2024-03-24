@@ -1,6 +1,6 @@
 # build stage
 FROM node:lts-alpine as build-stage
-ENV REACT_APP_BASE_API=https://dev-meetme.com
+ENV REACT_APP_BASE_API=${REACT_APP_BASE_API}
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
