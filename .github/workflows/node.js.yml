@@ -37,7 +37,7 @@ jobs:
       #     context: .
       #     file: Dockerfile
       #     push: true
-      #     tags: winnerkypt/meetme-frontend:latest
+      #     tags: ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
   deploy:
     runs-on:
       - self-hosted
