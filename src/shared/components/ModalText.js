@@ -12,8 +12,6 @@ export default function ModalText(prop) {
     borderRadius: "10px",
   };
 
-
-
   return (
     <div>
       <Modal
@@ -23,16 +21,18 @@ export default function ModalText(prop) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className={`${prop.bgColor} rounded-[24px] flex flex-col space-y-6 p-10 items-center`}>
+          <div
+            className={`${prop.bgColor} rounded-[24px] flex flex-col space-y-6 p-10 items-center`}
+          >
             <div className="text-red-80 text-[20px] font-bold">
-             {prop.headText}
+              {prop.headText}
             </div>
             <div className="text-white font-bold text-center flex flex-col">
               {prop.textDetailOne}
               <span> {prop.textDetailTwo} </span>
             </div>
             <div
-              onClick={() => prop.closeModal()}
+              onClick={() => prop.handleCloseModal()}
               className="cursor-pointer hover:bg-yellow-50 bg-yellow-60 font-bold text-purple-40 px-12 py-2 rounded-3xl flex justify-center items-center"
             >
               Ok

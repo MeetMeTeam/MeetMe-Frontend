@@ -13,7 +13,7 @@ import * as api from "../../../api";
 import Lottie from "react-lottie";
 import animationData from "../../../lotties/email.json";
 import animationData2 from "../../../lotties/mailLoading.json";
-
+import ModalText from "../../../shared/components/ModalText";
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -48,7 +48,11 @@ const RegisterPage = ({ register }) => {
   const [otp, setOTP] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isShowVerifyEmail, setIsShowVerifyEmail] = useState(false);
-
+  const [openModal, setOpenModal] = useState(false);
+  const [errorText, setErrorText] = useState("");
+  function handleCloseModal() {
+    setOpenModal(false);
+  }
   const [refCode, setRefCode] = useState("");
 
   const handleRegister = async () => {
@@ -89,7 +93,10 @@ const RegisterPage = ({ register }) => {
     setIsLoading(true);
     const response = await api.verifyEmail(mail);
     if (response.error) {
-      console.log(response?.exception?.response?.data.message);
+      setErrorText(response?.exception?.response?.data.message);
+      setIsLoading(false);
+      setIsShowVerifyEmail(false);
+      setOpenModal(true);
     } else {
       setRefCode(response.data.data.refCode);
       setIsLoading(false);
@@ -145,6 +152,12 @@ const RegisterPage = ({ register }) => {
 
   return (
     <div className="bg-yellow-90 select-none relative w-screen h-screen flex items-center">
+      <ModalText
+        headText={errorText}
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+        bgColor={"bg-purple-40"}
+      />
       {!isTabletOrMobile && (
         <img
           src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
