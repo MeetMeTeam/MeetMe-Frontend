@@ -112,6 +112,7 @@ export default function GiftAction() {
       setIsLoading(true);
       const res = await apiPayment.sendGift({
         userId: userDetail._id,
+        receiverId: selectUser.id,
         giftId: selectGift._id,
         amount: 1,
       });

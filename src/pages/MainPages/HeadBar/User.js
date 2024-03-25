@@ -155,7 +155,7 @@ const User = () => {
                   className="p-2 text-white w-full  rounded-2xl bg-blue-80 py-2"
                 />
               </div>
-              <div className="w-full">
+              {/* <div className="w-full">
                 <div className="text-blue-60 mb-1 font-bold text-[14px]">
                   Social
                 </div>
@@ -175,7 +175,7 @@ const User = () => {
                     <div> Instagram </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div
                 onClick={() => editUser()}
                 className="mt-4 ring text-blue-80 cursor-pointer bg-yellow-80 hover:bg-yellow-70 text-center w-full py-2 rounded-3xl font-bold"

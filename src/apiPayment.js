@@ -107,3 +107,14 @@ export const sendGift = async (data) => {
     };
   }
 };
+
+export const getUserGift = async (data) => {
+  try {
+    return await apiClient.get(`/payment/gift/${data}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
