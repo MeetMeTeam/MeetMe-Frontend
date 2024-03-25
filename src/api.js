@@ -101,6 +101,17 @@ export const register = async (data) => {
   }
 };
 
+export const verifyEmail = async (data) => {
+  try {
+    return await apiClient.post("/verify-mail", { email: data });
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
 export const sendMailToResetPw = async (data) => {
   try {
     return await apiClient.put("/users/forgot-password", data);
