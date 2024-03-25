@@ -11,6 +11,7 @@ import {
   setNotification,
   setModalErrorSocket,
   setGiftNotification,
+  setCardTalkList,
 } from "../store/actions/alertActions";
 
 import store from "../store/store";
@@ -181,6 +182,11 @@ export const connectWithSocketServer = (userDetails) => {
     console.log(data);
     store.dispatch(setGiftNotification(data));
   });
+
+  socket.on("other-send-card-talk", (data) => {
+    console.log(data);
+    store.dispatch(setCardTalkList(data));
+  });
 };
 
 export const sendMessage = (newChat, people) => {
@@ -234,4 +240,9 @@ export const checkNotifyJoin = (data) => {
 
 export const sendGiftToOther = (data) => {
   socket.emit("send-gift-to-other", data);
+};
+
+export const sendCardTalk = (data) => {
+  console.log(data);
+  socket.emit("send-card-talk", data);
 };

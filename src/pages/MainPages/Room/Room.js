@@ -10,6 +10,7 @@ import Chat from "../ChatAll/ChatRoom";
 import { useMediaQuery } from "react-responsive";
 import RoomAction from "./RoomAction/RoomAction";
 import FireWorkAnimation from "../../../shared/components/FireworkAnimation";
+import Card from "./RoomAction/Actions/CardTalk/Card";
 const Room = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 660px)" });
   const [isRoomMinimized, setIsRoomMinimized] = useState(true);
@@ -48,7 +49,6 @@ const Room = () => {
           alt="background"
         />
       )} */}
-
       {roomDetail !== undefined && (
         <VideosContainer
           cameraEnabled={cameraEnabled}

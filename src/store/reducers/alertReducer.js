@@ -7,10 +7,16 @@ const initState = {
   isLoadingPage: false,
   isSocketErrorModal: false,
   otherSendGift: null,
+  cardTalkList: [],
 };
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case alertActions.SET_CARD_TALK_LIST:
+      return {
+        ...state,
+        cardTalkList: [...state.cardTalkList, action.content],
+      };
     case alertActions.SET_GIFT_NOTIFICATION:
       return {
         ...state,

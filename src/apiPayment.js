@@ -88,7 +88,7 @@ export const checkOut = async (data) => {
 
 export const getGiftList = async () => {
   try {
-    return await apiClient.get("/gift/list");
+    return await apiClient.get("/payment/gift/list");
   } catch (exception) {
     return {
       error: true,
@@ -99,7 +99,7 @@ export const getGiftList = async () => {
 
 export const sendGift = async (data) => {
   try {
-    return await apiClient.post("/gift/add", data);
+    return await apiClient.post("/payment/gift/add", data);
   } catch (exception) {
     return {
       error: true,

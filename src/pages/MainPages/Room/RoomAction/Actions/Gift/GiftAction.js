@@ -108,14 +108,14 @@ export default function GiftAction() {
   }
 
   async function sendGift() {
-    setIsLoading(true);
-    const res = await apiPayment.sendGift({
-      userId: userDetail._id,
-      giftId: selectGift._id,
-      amount: 1,
-    });
-    if (res.status === 200) {
-      if (validateSendGift()) {
+    if (validateSendGift()) {
+      setIsLoading(true);
+      const res = await apiPayment.sendGift({
+        userId: userDetail._id,
+        giftId: selectGift._id,
+        amount: 1,
+      });
+      if (res.status === 200) {
         getCoin();
         setGiftShow(selectGift);
         showGiftSnow();
@@ -128,8 +128,8 @@ export default function GiftAction() {
         });
         clearSlect();
       }
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   function validateSendGift() {
@@ -173,8 +173,11 @@ export default function GiftAction() {
       />
 
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 700 }} role="presentation">
-          <div className="bg-purple-90  gap-4 xxl:h-screen h-full px-10 py-5 items-center flex flex-col">
+        <Box
+          sx={{ backgroundColor: "#E5D6F5", width: 700 }}
+          role="presentation"
+        >
+          <div className="gap-4 xxl:h-screen h-full px-10 py-5 items-center flex flex-col">
             <div style={{ zoom: 0.8 }} className="flex flex-col gap-4 w-full">
               <div className="flex justify-between items-center mb-[-20px]">
                 <span className="text-purple-50 text-[65px] font-bold">

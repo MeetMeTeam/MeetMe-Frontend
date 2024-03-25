@@ -6,6 +6,7 @@ const alertActions = {
   SET_LOADING_PAGE: "ALERT.SET_LOADING_PAGE",
   SET_MODAL_SOCKET_ERROR: "ALERT.SET_MODAL_SOCKET_ERROR",
   SET_GIFT_NOTIFICATION: "ALERT.SET_GIFT_NOTIFICATION",
+  SET_CARD_TALK_LIST: "ALERT.SET_CARD_TALK_LIST",
 };
 
 export const getActions = (dispatch) => {
@@ -15,9 +16,16 @@ export const getActions = (dispatch) => {
     setLoadingPage: (content) => dispatch(setLoadingPage(content)),
     setModalErrorSocket: (content) => dispatch(setModalErrorSocket(content)),
     setGiftNotification: (content) => dispatch(setGiftNotification(content)),
+    setCardTalkList: (content) => dispatch(setCardTalkList(content)),
   };
 };
 
+export const setCardTalkList = (content) => {
+  return {
+    type: alertActions.SET_CARD_TALK_LIST,
+    content,
+  };
+};
 export const setGiftNotification = (content) => {
   return {
     type: alertActions.SET_GIFT_NOTIFICATION,
