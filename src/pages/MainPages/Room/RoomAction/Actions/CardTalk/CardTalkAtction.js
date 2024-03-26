@@ -13,6 +13,9 @@ import Loading from "../../../../../../shared/components/LoadingPage";
 import StyleIcon from "@mui/icons-material/Style";
 import Modal from "@mui/material/Modal";
 import Card from "./Card";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,6 +23,34 @@ const style = {
   transform: "translate(-50%, -50%)",
   outline: "none",
 };
+
+const mockCard = [
+  {
+    textTh: "เขียนคำถาม หรือ สุ่มคำถาม",
+    textEng: "Ask or Random question",
+  },
+  {
+    textTh: "เล่นเกม",
+    textEng: "Play game",
+  },
+  {
+    textTh: "อ่านหนังสือ",
+    textEng: "Read book",
+  },
+  {
+    textTh: "สั่งซื้อสินค้า",
+    textEng: "Buy product",
+  },
+];
+
+const cate = [
+  {
+    name: "เขียนคำถาม หรือ สุ่มคำถาม",
+  },
+  {
+    name: "เล่นเกม",
+  },
+];
 
 export default function CardTalkAction() {
   const [open, setOpen] = React.useState(false);
@@ -36,11 +67,18 @@ export default function CardTalkAction() {
   const [selectUser, setSelectUser] = React.useState(null);
   const [isShowGift, setIsShowGift] = React.useState(false);
   const [isNewJoin, setIsNewJoin] = React.useState(true);
+  const [isShowDropdown, setIsShowDropdown] = React.useState(false);
+  const [selectCate, setSelectCate] = React.useState("");
+  const [lang, setLang] = React.useState("th");
+
   const [coin, setCoin] = React.useState(0);
   const [giftShow, setGiftShow] = React.useState(null);
   const [giftList, setGiftList] = React.useState([]);
+  const [questionList, setQuestionList] = React.useState([]);
+  const [cateList, setCateList] = React.useState([]);
+
   const [cardDetail, setCardDetail] = useState({
-    text: "ใส่คำถามตรงนี้",
+    text: "เขียนคำถาม หรือ สุ่มคำถาม",
     cardSender: userDetail.displayName ? userDetail.displayName : "Anonymous",
   });
   const toggleDrawer = (newOpen) => () => {
@@ -61,6 +99,47 @@ export default function CardTalkAction() {
     handleOpen();
   }
 
+  function randomCard() {
+    let questionListFilter = [];
+    if (selectCate !== "") {
+      questionListFilter = questionList.filter(
+        (card) => card.category === selectCate
+      );
+    } else {
+      questionListFilter = questionList;
+    }
+
+    let availableCards = questionListFilter.filter((card) => {
+      return card.thai !== cardDetail.text && card.eng !== cardDetail.text;
+    });
+
+    if (availableCards.length > 0) {
+      let randomIndex = Math.floor(Math.random() * availableCards.length);
+      let randomCard = availableCards[randomIndex];
+      setCardDetail({
+        ...cardDetail,
+        text: lang === "th" ? randomCard.thai : randomCard.eng,
+      });
+    } else {
+      console.log("ไม่พบการ์ดที่ไม่ซ้ำกับ CardDetail ที่มีอยู่");
+    }
+  }
+
+  async function fetchQuestions() {
+    const res = await api.getQuestions();
+    if (res.status === 200) {
+      console.log(res.data.data);
+      setQuestionList(res.data.data);
+    }
+  }
+
+  async function fetchCate() {
+    const res = await api.getCateCard();
+    if (res.status === 200) {
+      console.log(res.data.data);
+      setCateList(res.data.data);
+    }
+  }
   useEffect(() => {
     if (otherCardTalk.length > 0) {
       setSelectCard(otherCardTalk[otherCardTalk.length - 1].cardDetail);
@@ -71,6 +150,11 @@ export default function CardTalkAction() {
       }, 1000);
     }
   }, [otherCardTalk?.length]);
+
+  useEffect(() => {
+    fetchCate();
+    fetchQuestions();
+  }, []);
   return (
     <div>
       <Button
@@ -82,43 +166,121 @@ export default function CardTalkAction() {
 
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         <Box
-          sx={{ width: 500, backgroundColor: "#FFB850" }}
+          sx={{ width: 500, backgroundColor: "#FCF7CF" }}
           role="presentation"
         >
-          <div className=" w-full h-screen px-10 py-5 items-center flex flex-col">
-            <div className="w-full mb-4 font-bold text-[40px]  text-[#E85D49]">
-              Card Talk
+          <div className=" w-full h-full xxxl:h-screen  px-10 py-5 justify-center items-center flex flex-col">
+            <div className="w-full flex justify-center  mb-6 font-bold text-[40px]  text-purple-30">
+              <StyleIcon sx={{ fontSize: "50px" }} /> Card Talk
             </div>
-            {/* <div className="w-full mb-2  font-bold text-[20px]  text-[#E85D49]">
-              คำถามทั้งหมด
-            </div>
-            <div className="p-2 text-black h-[150px] mb-2 w-full outline-none rounded-2xl bg-yellow-80 py-2">
-              ss
-            </div>
-            <div className="w-full font-bold text-[20px]  text-[#E85D49]">
-              สร้างคำถามใหม่
-            </div> */}
-
-            <div
-              style={{ zoom: 0.8 }}
-              class={
-                "bg-white w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl border-[10px] border-[#55C2BC] text-black"
-              }
-            >
-              <p class="mt-6 text-[20px]">คำถามทั่วไป</p>
-              <p className="text-[#403D44] font-bold">
-                {cardDetail.cardSender}
-              </p>
+            <div className="relative">
+              <img
+                src={process.env.PUBLIC_URL + "red_card.png"}
+                className="absolute left-[-90px] bottom-16 w-[100px] z-[110]"
+                alt="red"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "green_card.png"}
+                className="absolute right-[-85px] bottom-0 w-[120px] z-[110]"
+                alt="green"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "ball.png"}
+                className="absolute right-[-70px] top-20 w-[40px]  z-[110]"
+                alt="green"
+              />
+              <img
+                src={process.env.PUBLIC_URL + "ball.png"}
+                className="absolute left-[-40px] top-0 w-[20px]  z-[110]"
+                alt="green"
+              />
               <div
-                className="h-full w-[300px] break-words flex items-center justify-center text-center px-4 mt-[-40px]"
-                style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                style={{ zoom: 0.7 }}
+                class={
+                  "bg-white relative z-[100] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl border border-purple-60 text-black"
+                }
               >
-                {cardDetail.text}
+                <p class="mt-6 text-[24px] font-bold">Qusetion</p>
+                <p className="text-[#403D44] font-bold">
+                  {cardDetail.cardSender}
+                </p>
+                <div
+                  className="h-full w-[300px] break-words flex items-center justify-center text-center px-4 mt-[-40px]"
+                  style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                >
+                  {cardDetail.text}
+                </div>
+              </div>
+              <div
+                style={{ zoom: 0.7 }}
+                class={
+                  "bg-purple-90 absolute top-[-10px] right-[-15px]  z-[90] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl text-black"
+                }
+              ></div>
+              <div
+                style={{ zoom: 0.7 }}
+                class={
+                  "bg-purple-80 absolute top-[-20px] right-[-30px]  z-[80] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl text-black"
+                }
+              ></div>
+            </div>
+
+            <div className="mt-6 flex gap-4 text-[12px] select-none font-bold">
+              <div className="bg-purple-60 ring cursor-pointer  ring-purple-50 rounded-full   flex items-center  px-0.5   text-white">
+                <div
+                  onClick={() => setLang("th")}
+                  className={
+                    " h-full  rounded-full px-3  flex items-center " +
+                    (lang === "th" ? "bg-purple-40" : "bg-purple-60")
+                  }
+                >
+                  TH
+                </div>
+                <div
+                  onClick={() => setLang("en")}
+                  className={
+                    " h-full  rounded-full px-3  flex items-center " +
+                    (lang === "en" ? "bg-purple-40" : "bg-purple-60")
+                  }
+                >
+                  EN
+                </div>
+              </div>
+              <div
+                onClick={() => setIsShowDropdown(!isShowDropdown)}
+                className="relative bg-purple-60 ring cursor-pointer min-w-[100px] hover:bg-purple-40 ring-purple-50 rounded-full flex justify-center items-center pl-4 pr-2 py-2 text-white"
+              >
+                {selectCate ? selectCate : "Category"} <KeyboardArrowDownIcon />
+                {isShowDropdown && (
+                  <div className="absolute w-full max-h-[120px]  overflow-y-auto py-2 bg-purple-60 rounded-2xl top-[50px] left-0">
+                    <div
+                      onClick={() => setSelectCate("")}
+                      className="py-1 px-3 hover:bg-purple-50"
+                    >
+                      All
+                    </div>
+                    {cateList.map((item, index) => (
+                      <div
+                        onClick={() => setSelectCate(item.name)}
+                        className="py-1 px-3 hover:bg-purple-50"
+                      >
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div
+                onClick={randomCard}
+                className="bg-purple-60 select-none ring cursor-pointer hover:bg-purple-40 ring-purple-50 rounded-full px-4  py-2 text-white"
+              >
+                <RestartAltIcon /> Random Question
               </div>
             </div>
-            <div className="w-full">
-              <div className="w-full font-bold text-[20px]  text-[#E85D49]">
-                คำถาม
+
+            <div className="w-full mt-4">
+              <div className="w-full font-bold text-[20px]  text-black ">
+                Question
               </div>
               <textarea
                 value={cardDetail?.bio}
@@ -128,12 +290,12 @@ export default function CardTalkAction() {
                     text: e.target.value,
                   });
                 }}
-                className="p-2 text-black w-full outline-none rounded-xl bg-yellow-80 py-2"
+                className="p-2 text-black w-full outline-none rounded-xl bg-purple-90 mt-2 py-2"
               />
             </div>
             <div className="w-full">
-              <div className="w-full my-2 font-bold text-[20px]  text-[#E85D49]">
-                ผู้ส่ง
+              <div className="w-full my-2 font-bold text-[20px]  text-black">
+                Sender
               </div>
               <input
                 value={cardDetail?.cardSender}
@@ -143,14 +305,14 @@ export default function CardTalkAction() {
                     cardSender: e.target.value,
                   });
                 }}
-                className="p-2 text-black w-full py-3 mb-2 outline-none rounded-xl bg-yellow-80"
+                className="p-2 text-black w-full py-3 mb-2 outline-none rounded-xl bg-purple-90"
               />
             </div>
             <div
               onClick={openCardTalk}
-              className="bg-[#E85D49] mt-2 hover:bg-red-60 text-white cursor-pointer px-6 py-3 rounded-xl"
+              className="bg-purple-60 font-bold  mt-4 hover:bg-red-60 text-white cursor-pointer px-16 py-3 rounded-xl"
             >
-              ส่งคำถามให้กับทุกคน
+              Send
             </div>
           </div>
         </Box>
