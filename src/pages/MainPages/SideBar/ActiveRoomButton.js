@@ -6,6 +6,8 @@ import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import KeyboardVoiceIcon from "@mui/icons-material/KeyboardVoice";
+import { setLoadingPage } from "../../../store/actions/alertActions";
+import store from "../../../store/store";
 
 const ActiveRoomButton = ({
   creatorUsername,
@@ -18,6 +20,7 @@ const ActiveRoomButton = ({
 }) => {
   const handleJoinActiveRoom = () => {
     if (amountOfParticipants < 4) {
+      store.dispatch(setLoadingPage(true));
       roomHandler.joinRoom(data);
     }
   };

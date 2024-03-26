@@ -87,6 +87,9 @@ export const joinRoom = (data) => {
 
   const audioOnly = store.getState().room.audioOnly;
   webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
+  setTimeout(() => {
+    store.dispatch(setLoadingPage(false));
+  }, 2000);
 };
 
 export const leaveRoom = () => {

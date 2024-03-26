@@ -12,6 +12,11 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case alertActions.SET_CLEAR_CARD_TALK:
+      return {
+        ...state,
+        cardTalkList: [],
+      };
     case alertActions.SET_CARD_TALK_LIST:
       return {
         ...state,

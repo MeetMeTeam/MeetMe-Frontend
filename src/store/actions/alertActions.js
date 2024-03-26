@@ -7,6 +7,7 @@ const alertActions = {
   SET_MODAL_SOCKET_ERROR: "ALERT.SET_MODAL_SOCKET_ERROR",
   SET_GIFT_NOTIFICATION: "ALERT.SET_GIFT_NOTIFICATION",
   SET_CARD_TALK_LIST: "ALERT.SET_CARD_TALK_LIST",
+  SET_CLEAR_CARD_TALK: "ALERT.SET_CLEAR_CARD_TALK",
 };
 
 export const getActions = (dispatch) => {
@@ -17,9 +18,17 @@ export const getActions = (dispatch) => {
     setModalErrorSocket: (content) => dispatch(setModalErrorSocket(content)),
     setGiftNotification: (content) => dispatch(setGiftNotification(content)),
     setCardTalkList: (content) => dispatch(setCardTalkList(content)),
+    clearCardTalk: (content) => dispatch(clearCardTalk(content)),
   };
 };
 
+export const clearCardTalk = (content) => {
+  console.log("222222222222");
+  return {
+    type: alertActions.SET_CLEAR_CARD_TALK,
+    content,
+  };
+};
 export const setCardTalkList = (content) => {
   return {
     type: alertActions.SET_CARD_TALK_LIST,

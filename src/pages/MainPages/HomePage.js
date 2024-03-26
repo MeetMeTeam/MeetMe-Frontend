@@ -18,9 +18,12 @@ import Loading from "../../shared/components/Loading";
 import { useMediaQuery } from "react-responsive";
 import CreateIcon from "@mui/icons-material/Create";
 import Inventory from "../MainPages/Inventory/InventoryButton";
+import store from "../../store/store";
+import { clearCardTalk } from "../../store/actions/alertActions";
 
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
   const userDetail = useSelector((state) => state.auth.userDetails);
+
   const avatarFetchCount = useSelector((state) => state.auth.avatarFetchCount);
   const notebook = useMediaQuery({ query: "(max-width: 1400px)" });
 
@@ -56,6 +59,11 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
   useEffect(() => {
     console.log(notebook);
   }, [notebook]);
+
+  useEffect(() => {
+    console.log("111111111111");
+    store.dispatch(clearCardTalk());
+  }, [isUserInRoom]);
   return (
     <div className="min-h-screen xl:overflow-x-hidden min-w-[1200px]  flex flex-col">
       {/* {!isUserInRoom && <SnowAnimation className="z-10" />}  */}
