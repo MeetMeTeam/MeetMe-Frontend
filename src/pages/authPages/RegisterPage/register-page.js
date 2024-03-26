@@ -160,7 +160,9 @@ const RegisterPage = ({ register }) => {
       />
       {!isTabletOrMobile && (
         <img
-          src={process.env.PUBLIC_URL + "/registerPage/bg-register-china.png"}
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/web-image%2FSlide%2016_9%20-%2015.png?alt=media&token=8e6c25a9-ead0-446d-bb43-6594be75ee6f"
+          }
           className="absolute top-0 w-screen h-screen object-cover"
         />
       )}

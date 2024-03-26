@@ -33,7 +33,9 @@ const ChangePasswordPage = ({ changePassword }) => {
     <>
       <div className="relative  w-screen h-screen flex items-center justify-center">
         <img
-          src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
+          src={
+            "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/web-image%2FSlide%2016_9%20-%2015.png?alt=media&token=8e6c25a9-ead0-446d-bb43-6594be75ee6f"
+          }
           className="absolute z-10 bottom-0 w-full object-contain"
         />
         <div className="absolute z-50 xl:w-[617px] w-[617px] h-[530px] rounded-lg bg-white "></div>
