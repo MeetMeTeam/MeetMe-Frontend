@@ -51,6 +51,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            docker volume prune -a -f
             cd MeetMe-Frontend/
             docker pull ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
             docker rm -f react-docker
