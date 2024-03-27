@@ -37,7 +37,7 @@ const CheckOutItem = (prop) => {
     <div>
       <ItemModal
         item={prop.item}
-        textHeader={"คุณกำลังจะซื้อ coin"}
+        textHeader={"You will topup flower."}
         checkOut={checkOut}
         unit={"THB"}
       />

@@ -37,7 +37,7 @@ const CategoriesSelect = (props) => {
     );
 
     if (props.selectCategories.length === 3 && categoryIndex === -1) {
-      console.log("ไม่สามารถเพิ่มต่อได้ เพราะมี 3 ตัวแล้ว");
+      console.log("You can add just three categories.");
       return;
     }
 
@@ -65,11 +65,12 @@ const CategoriesSelect = (props) => {
         <div
           onClick={() => setIsShowSelect(!isShowSelect)}
           className={
-            "bg-purple-80 text-[12px] flex items-center cursor-pointer text-white px-2 mt-2 rounded-2xl"
+            "bg-purple-80 text-[12px] flex items-center cursor-pointer text-white px-2 p-1 mt-2 rounded-2xl"
           }
         >
-          add
-          <AddIcon />
+          <AddIcon fontSize="small"/>
+          ADD
+          
         </div>
         {props.selectCategories.map((category) => (
           <div

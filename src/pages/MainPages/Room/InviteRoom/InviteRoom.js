@@ -65,14 +65,14 @@ export default function InviteRoom() {
             <div className="w-full flex justify-end items-center space-x-1 pr-3">
               <div className="w-[10px] h-[10px] bg-green-50 rounded-full"></div>
               <span className="text-[12px] text-white">
-                online {`(${checkOnlineUsers(friends, onlineUsers).length})`}
+                Online {`(${checkOnlineUsers(friends, onlineUsers).length})`}
               </span>
             </div>
             <div className="overflow-auto h-[200px] px-2">
               {checkOnlineUsers(friends, onlineUsers).length === 0 && (
                 <div className="text-white h-full w-full flex justify-center items-center flex-col space-y-2">
                   <Diversity3Icon/>
-                  <div> no friends online now  </div>
+                  <div> No Friends Online Now  </div>
                  
                   </div>
               )}

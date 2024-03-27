@@ -23,7 +23,7 @@ const ThemeSelect = (props) => {
 
   return (
     <div>
-      <div className="text-purple-40 text-[12px]">Theme room</div>
+      <div className="text-purple-40 text-[12px]">Theme Room</div>
       <div className="relative w-[400px] h-[250px]">
         <img
           src={props.theme.link}

@@ -200,7 +200,7 @@ export default function CardTalkAction() {
                   "bg-white relative z-[100] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl border border-purple-60 text-black"
                 }
               >
-                <p class="mt-6 text-[24px] font-bold">Qusetion</p>
+                <p class="mt-6 text-[24px] font-bold">Question</p>
                 <p className="text-[#403D44] font-bold">
                   {cardDetail.cardSender}
                 </p>

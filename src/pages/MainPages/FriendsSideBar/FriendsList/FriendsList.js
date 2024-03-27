@@ -73,7 +73,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
               : "text-[1rem] text-blue-70 mt-4 "
           }] font-bold	 select-none cursor-pointer`}
         >
-          Friends
+          Friend
         </div>
         <div className="mt-4 text-white">|</div>
         <div

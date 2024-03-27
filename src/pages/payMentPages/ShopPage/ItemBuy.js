@@ -44,7 +44,7 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
         }
       >
         {avatarUserShow?.isOwner || avatarUserShow?.isOwner === undefined
-          ? "Already exist"
+          ? "Already Exist"
           : "Buy"}
       </div>
       <Modal

@@ -66,7 +66,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
                   sx={{ fontSize: "43px" }}
                 />
                 <div className="text-white">
-                  No room active now . Create room to invite friends !
+                No room active now, create room to invite friends!
                 </div>
               </div>
             )}

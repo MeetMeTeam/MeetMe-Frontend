@@ -124,7 +124,7 @@ const User = () => {
 
               <div className="w-full mt-4 mb-2 ">
                 <div className="text-blue-60 mb-1 font-bold text-[14px]">
-                  Display name
+                  Display Name
                 </div>
                 <input
                   value={userDataDetail?.displayName}
@@ -191,7 +191,7 @@ const User = () => {
               className="bg-red-70 hover:bg-red-60 cursor-pointer text-center w-full py-2 rounded-3xl font-bold text-white"
               onClick={logout}
             >
-              Log out
+              Logout
             </div>
           </div>
         </Box>
