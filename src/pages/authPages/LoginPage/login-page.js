@@ -10,7 +10,10 @@ import { getActions } from "../../../store/actions/authActions";
 import { useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import styles from "../../../shared/css/animationBounce.module.css";
-
+import Grow from "@mui/material/Grow";
+import Zoom from "@mui/material/Zoom";
+import FireworkAnimation from "../../../shared/components/FireworkAnimation";
+import GiftAnimetion from "../../../shared/components/GiftAnimation";
 const LoginPage = ({ login }) => {
   const history = useHistory();
   const [mail, setMail] = useState("");
@@ -33,18 +36,68 @@ const LoginPage = ({ login }) => {
     login(userDetails, history);
   };
 
+  const imgList = [
+    {
+      imgPath: "/loginPage/songkan/Union.png",
+      class: "absolute z-10 w-[80%]",
+      timeout: 700,
+    },
+    {
+      imgPath: "/loginPage/songkan/ground.png",
+      class: "absolute z-[20] bottom-10 w-[80%]",
+      timeout: 400,
+    },
+    {
+      imgPath: "/loginPage/songkan/elefen.png",
+      class: styles.imgBounce + " absolute z-[30] right-20 bottom-28 w-[30%]",
+      timeout: 800,
+    },
+    {
+      imgPath: "/loginPage/songkan/purple.png",
+      class: styles.imgBounce + " absolute z-[40] left-1/2 bottom-10 w-[20%]",
+      timeout: 900,
+    },
+    {
+      imgPath: "/loginPage/songkan/red.png",
+      class: styles.imgBounce + " absolute z-[50] right-1/2 bottom-20 w-[30%]",
+      timeout: 1000,
+    },
+    {
+      imgPath: "/loginPage/songkan/text.png",
+      class: " absolute z-[60] w-[60%]",
+      timeout: 1000,
+    },
+  ];
+
   return (
-    <div className="select-none relative bg-yellow-90 w-screen h-screen ">
-      <SnowAnimation className="z-30" />
+    <div className="select-none relative overflow-hidden bg-blue-80 w-screen h-screen ">
+      {/* <SnowAnimation className="z-30" /> */}
+      <GiftAnimetion
+        width={"w-[30px]"}
+        count={12}
+        img={process.env.PUBLIC_URL + "/loginPage/songkan/flower.svg"}
+      />
+      <FireworkAnimation
+        count={12}
+        img={process.env.PUBLIC_URL + "/loginPage/songkan/flower.svg"}
+      />
+      {/* <img
+        src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
+        className="absolute z-10 bottom-0 w-full object-contain"
+      /> */}
 
       <img
-        src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
+        src={process.env.PUBLIC_URL + "/loginPage/songkan/SignIn-Songkarn.png"}
         className="absolute z-10 bottom-0 w-full object-contain"
       />
 
+      <img
+        src={process.env.PUBLIC_URL + "/loginPage/songkan/top.png"}
+        className="absolute z-10 top-0 w-full  object-cover"
+      />
       <div className="absolute w-screen h-screen flex lg:flex-row flex-col justify-center">
         <div className="lg:w-1/2 relative w-full flex justify-center items-center">
-          {!isTabletOrMobile && (
+          {/* {!isTabletOrMobile && (
             <div className="z-20 w-full flex justify-center items-center">
               <img
                 src={process.env.PUBLIC_URL + "/loginPage/2024text.png"}
@@ -57,7 +110,15 @@ const LoginPage = ({ login }) => {
                 }
               />
             </div>
-          )}
+          )} */}
+          {imgList.map((e) => (
+            <Zoom in={true} {...{ timeout: e.timeout }}>
+              <img
+                src={process.env.PUBLIC_URL + e.imgPath}
+                className={e.class}
+              />
+            </Zoom>
+          ))}
         </div>
 
         <div className="relative  lg:w-1/2 w-full flex items-center justify-center">

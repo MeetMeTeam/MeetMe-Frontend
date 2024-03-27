@@ -337,3 +337,25 @@ export const editUser = async (data) => {
     };
   }
 };
+
+export const getCateCard = async (type) => {
+  try {
+    return await apiClient.get(`/questions/categories`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getQuestions = async (type) => {
+  try {
+    return await apiClient.get(`/questions`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

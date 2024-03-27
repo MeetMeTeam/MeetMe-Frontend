@@ -23,7 +23,9 @@ const ItemModal = (prop) => {
     }
   };
   const handleClose = () => {
-    prop.setIsSuccess(false);
+    if (prop?.setIsSuccess) {
+      prop?.setIsSuccess(false);
+    }
     setOpen(false);
   };
 
