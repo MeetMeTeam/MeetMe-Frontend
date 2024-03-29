@@ -29,9 +29,10 @@ export default function RoomHeadBar() {
     activeRoom.map((item) => {
       if (item?.roomId === roomDetail?.roomId) {
         setCountPerson(
-          item.participants[0].userId === "" && item.participants.length === 1
+          item.participants[0].userId === "default" &&
+            item.participants.length === 1
             ? 0
-            : item.participants[0].userId === ""
+            : item.participants[0].userId === "default"
             ? item.participants.length - 1
             : item.participants.length
         );
