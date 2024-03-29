@@ -38,10 +38,10 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
                 roomId={room.roomId}
                 creatorUsername={room.creatorUsername}
                 amountOfParticipants={
-                  room.participants[0].userId === "" &&
+                  room.participants[0].userId === "default" &&
                   room.participants.length === 1
                     ? 0
-                    : room.participants[0].userId === ""
+                    : room.participants[0].userId === "default"
                     ? room.participants.length - 1
                     : room.participants.length
                 }
@@ -66,7 +66,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
                   sx={{ fontSize: "43px" }}
                 />
                 <div className="text-white">
-                No room active now, create room to invite friends!
+                  No room active now, create room to invite friends!
                 </div>
               </div>
             )}
