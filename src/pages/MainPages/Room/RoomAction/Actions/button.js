@@ -9,7 +9,7 @@ const Button = (props) => {
         {props.icon}
         <div className="flex flex-col">
           <span className="text-[20px] mb-[-5px] font-bold">{props.name}</span>
-          <span className="text-[14px]">Send gifts to others</span>
+          <span className="text-[14px]">{props.des}</span>
         </div>
       </div>
     </div>

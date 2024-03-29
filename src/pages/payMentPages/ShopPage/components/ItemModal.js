@@ -68,14 +68,15 @@ const ItemModal = (prop) => {
         <span className="flex items-center  text-[22px] bg-white/20 rounded-2xl px-3">
           {prop.item.coin ? (
             <div className="text-[18px] flex">
-              {prop.item.coin}
+              
               <img
                 src={
                   "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
                 }
-                className={" w-[30px]"}
+                className={" w-[30px] mr-2"}
                 alt="coin"
               />
+              {prop.item.coin}
               {/* {prop.item.free > 0 && <span>(free {prop.item.free})</span>} */}
             </div>
           ) : (
@@ -83,6 +84,9 @@ const ItemModal = (prop) => {
           )}
         </span>
         <span className="font-bold flex mt-1np">
+          {prop.item.price}
+          &nbsp;
+          
           {prop.unit === "THB" ? (
             <div>{prop.unit}</div>
           ) : (
@@ -95,8 +99,7 @@ const ItemModal = (prop) => {
                 alt="coin"
               />
             </div>
-          )}{" "}
-          {prop.item.price}
+          )}
         </span>
       </div>
       <Modal
@@ -114,13 +117,13 @@ const ItemModal = (prop) => {
         ) : (
           <Box sx={style}>
             {prop.isSuccess ? (
-              <div className="p-6 bg-blue-70 px-10 h-[300px] flex flex-col items-center min-w-[400px] rounded-md  justify-center ">
+              <div className="select-none px-6 p-6 gap-4 flex flex-col items-center justify-center bg-purple-60 absolute w-[420px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg ">
                 <div>
                   <div className="text-[20px] font-bold text-white mb-4">
                     Thank for buy{" "}
                   </div>
                   <div
-                    onClick={() => handleClose()}
+                    onClick={handleClose}
                     className="text-white w-full border bg-yellow-50 flex justify-center rounded-full py-2 cursor-pointer "
                   >
                     Ok
@@ -128,10 +131,12 @@ const ItemModal = (prop) => {
                 </div>
               </div>
             ) : (
-              <div className="p-6 bg-blue-70 px-10 min-w-[400px] rounded-md flex flex-col justify-between items-center">
+              <div className="select-none px-6 p-6 gap-4 flex flex-col items-center justify-center bg-purple-60 absolute w-[600px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg ">
                 <div className="flex justify-center flex-col items-center text-[24px]">
-                  <div className="text-white">{prop.textHeader} </div>
-                  <div>
+                  <div className="text-white font-medium text-[20px]">
+                    {prop.textHeader}
+                  </div>
+                  <div className="text-[25px] items-center text-white drop-shadow-md bg-purple-80/40 rounded-2xl px-4 py-4 mt-4 font-extrabold flex">
                     <img
                       src={prop.item.img + ".png"}
                       className={
@@ -143,25 +148,34 @@ const ItemModal = (prop) => {
                       alt="coin"
                     />
                   </div>
-                  <span className="drop-shadow-md text-white">
-                    {prop.item.price} {prop.unit}
-                  </span>
+                  <div className="text-[25px] items-center text-white drop-shadow-md bg-purple-80/40 rounded-2xl px-4 py-1 mt-4 font-extrabold flex">
+                    <img
+                      src={
+                        "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
+                      }
+                      className={"mr-2 w-[25px] "}
+                      alt="coin"
+                    />
+                    {prop.item.price}
+                  </div>
+
                 </div>
                 <div className="text-red-500 font-bold text-[20px]">
                   {prop.errorText}
                 </div>
-                <div className="flex flex-row space-x-4">
-                  <div
-                    onClick={() => prop.checkOut()}
-                    className="button-confirm bg-purple-80 px-4 rounded-2xl cursor-pointer"
-                  >
-                    Confirm
-                  </div>
+                <div className="flex w-full space-x-4">
+
                   <div
                     onClick={() => handleClose()}
-                    className="button-cancel bg-gray-80 px-4 rounded-2xl cursor-pointer"
+                    className="text-white w-full border border-purple-50 flex justify-center rounded-full py-2 cursor-pointer hover:bg-purple-40"
                   >
                     Cancel
+                  </div>
+                  <div
+                    onClick={() => prop.checkOut()}
+                    className="w-full  flex justify-center rounded-full bg-yellow-60 hover:bg-yellow-40 font-bold py-2 cursor-pointer"
+                  >
+                    Confirm
                   </div>
                 </div>
               </div>
