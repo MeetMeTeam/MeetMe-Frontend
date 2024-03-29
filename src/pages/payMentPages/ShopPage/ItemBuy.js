@@ -29,6 +29,7 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
 
   function selectAvatar() {
     if (!avatarUserShow?.isOwner) {
+      setTextError("");
       handleOpen();
     }
   }
