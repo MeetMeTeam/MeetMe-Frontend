@@ -57,7 +57,7 @@ const Room = () => {
         />
       )}
       <div
-        style={{ zoom: 0.7 }}
+        style={{ zoom: 0.9 }}
         className="absolute right-2 bottom-6 flex flex-row gap-4 justify-end items-center w-[1000px]"
       >
         <RoomAction />
