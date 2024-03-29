@@ -49,8 +49,8 @@ const ItemModal = (prop) => {
         </div>
 
         {prop.item.free > 0 && (
-          <div className="bg-red-80 left-[-10px] top-[-10px] flex flex-row px-2 items-center rounded-lg text-white absolute">
-            <div className="text-[12px]"> Special Gift ! </div>
+          <div className="bg-red-80 font-bold scale-125 bottom-0 flex flex-row px-2 items-center rounded-lg text-white absolute">
+            <div className="text-[12px]"> Special Gift </div>
 
             <img
               src={
@@ -60,14 +60,24 @@ const ItemModal = (prop) => {
               alt="coin"
             />
 
-            <div>{prop.item.free}</div>
+            <div>+{prop.item.free}</div>
           </div>
         )}
       </div>
       <div className="font-medium flex flex-col  w-full  justify-center items-center py-2 rounded-b-xl text-black ">
-        <span className="flex items-center font-bold text-[22px] bg-white/20 rounded-2xl px-3">
+        <span className="flex items-center  text-[22px] bg-white/20 rounded-2xl px-3">
           {prop.item.coin ? (
-            <div>{prop.item.coin} Flower </div>
+            <div className="text-[18px] flex">
+              {prop.item.coin}
+              <img
+                src={
+                  "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
+                }
+                className={" w-[30px]"}
+                alt="coin"
+              />
+              {/* {prop.item.free > 0 && <span>(free {prop.item.free})</span>} */}
+            </div>
           ) : (
             <div>{prop.item.name} </div>
           )}
@@ -86,7 +96,7 @@ const ItemModal = (prop) => {
               />
             </div>
           )}{" "}
-          {prop.item.price}.00{" "}
+          {prop.item.price}
         </span>
       </div>
       <Modal
