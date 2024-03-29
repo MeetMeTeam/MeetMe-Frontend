@@ -27,6 +27,7 @@ const Room = () => {
     backgroundImage: `url("${roomDetail?.roomCreator.detail.theme.link}")`,
     backgroundSize: "cover",
   };
+
   return (
     <div
       style={divStyle}

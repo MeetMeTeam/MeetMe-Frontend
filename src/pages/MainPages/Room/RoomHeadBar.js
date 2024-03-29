@@ -10,8 +10,11 @@ import InviteRoom from "./InviteRoom/InviteRoom";
 import { useMediaQuery } from "react-responsive";
 import { clearChatList } from "../../../store/actions/allChatAction";
 import { useDispatch } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function RoomHeadBar() {
+  const history = useHistory();
+
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 760px)" });
   const roomDetail = useSelector((state) => state.room.roomDetails);
   const activeRoom = useSelector((state) => state.room.activeRooms);
@@ -36,7 +39,12 @@ export default function RoomHeadBar() {
       }
     });
   };
-
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up");
+      handleLeaveRoom();
+    };
+  }, []);
   useEffect(() => {
     handleCount();
   }, [activeRoom]);
@@ -44,7 +52,7 @@ export default function RoomHeadBar() {
   return (
     <div className="w-full flex flex-wrap h-[30px]  justify-start space-x-4">
       <div
-        onClick={handleLeaveRoom}
+        onClick={() => history.push("/")}
         className="md:text-[16px] text-[10px] cursor-pointer flex  items-center justify-center bg-purple-80 hover:bg-purple-70 text-purple-60 py-3 md:px-4 px-1 md:pr-5 rounded-2xl font-bold"
       >
         <ArrowBackIosNewIcon /> Lobby
