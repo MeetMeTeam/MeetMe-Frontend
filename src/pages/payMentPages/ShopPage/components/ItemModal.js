@@ -37,7 +37,7 @@ const ItemModal = (prop) => {
       >
         {prop.item.isOwner && (
           <div className="scale-75 absolute top-14 border-white border bg-red-80 rounded-lg py-1 px-2">
-            Already exist
+            Already Exist
           </div>
         )}
         <div className="">
@@ -56,7 +56,7 @@ const ItemModal = (prop) => {
               src={
                 "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
               }
-              className={" w-[20px]"}
+              className={" w-[20px] pl-1"}
               alt="coin"
             />
 

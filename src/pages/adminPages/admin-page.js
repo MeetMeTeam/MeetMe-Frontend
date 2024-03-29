@@ -157,13 +157,13 @@ function AdminPage() {
               onClick={submitForm}
               className="bg-blue-600 rounded-lg text-white mr-2 mt-4 py-2 px-2"
             >
-              add avatar
+              Add Avatar
             </button>
           </div>
         )}
       </div>
       <div>
-        ตัวละครทั้งหมด
+        All Avatar
         <div className="flex flex-wrap gap-4">
           {avatarList.length > 0 ? (
             avatarList.map((item) => (

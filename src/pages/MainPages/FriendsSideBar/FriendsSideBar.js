@@ -27,7 +27,7 @@ const FriendsSideBar = () => {
         className="bg-purple-70 py-3 cursor-pointer hover:bg-purple-60 font-bold rounded-2xl px-4 text-white"
         onClick={handleOpen}
       >
-        <PeopleIcon /> friend
+        <PeopleIcon /> Friend
       </div>
       <Modal
         open={open}

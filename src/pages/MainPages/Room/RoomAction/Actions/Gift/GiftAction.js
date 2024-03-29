@@ -186,7 +186,7 @@ export default function GiftAction() {
                 </span>
                 <div className="flex flex-col gap-2">
                   <span className="pl-5 text-blue-20 text-[14px] font-bold">
-                    my flower
+                  My Flower
                   </span>
                   <div className="bg-yellow-70 pl-6 scale-150 mr-7 rounded-2xl h-[30px] flex items-center justify-center">
                     <UserCoin coin={coin} hidePlus={true} />
@@ -194,7 +194,7 @@ export default function GiftAction() {
                 </div>
               </div>
               <div className="text-purple-50 text-[20px] font-bold ">
-                select user
+                Select User
               </div>
 
               <div className="bg-purple-80 flex flex-wrap gap-2 rounded-2xl p-6">
@@ -214,12 +214,12 @@ export default function GiftAction() {
                     </div>
                   ))
                 ) : (
-                  <div className="text-white"> waiting other users...</div>
+                  <div className="text-white"> Waiting Other Users...</div>
                 )}
               </div>
 
               <div className="text-purple-50 text-[20px] font-bold">
-                select gifts
+                Select Gifts
               </div>
               <div className="bg-purple-80 select-none gap-4 flex flex-wrap  overflow-y-auto rounded-2xl p-6">
                 {giftList.map((item, index) => (
@@ -286,7 +286,7 @@ export default function GiftAction() {
                           : " cursor-not-allowed bg-gray-70  opacity-50")
                       }
                     >
-                      send
+                      Send
                     </div>
                   )}
                 </div>

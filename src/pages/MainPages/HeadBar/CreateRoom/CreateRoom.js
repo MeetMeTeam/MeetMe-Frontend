@@ -26,17 +26,17 @@ const style = {
 const initialThemeList = [
   {
     index: 0,
-    name: "halloween",
+    name: "Halloween",
     link: "https://static.vecteezy.com/system/resources/previews/003/230/647/original/cute-halloween-background-with-spooky-elements-free-vector.jpg",
   },
   {
     index: 1,
-    name: "lobby",
+    name: "Lobby",
     link: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/db935b0d-dc38-4b33-b784-38d334eb12af/deaddwc-3b08b1e2-b734-4062-b0ce-90bd0c581321.jpg/v1/fill/w_1024,h_576,q_75,strp/cinema_lobby___visual_novel_bg_by_gin_1994_deaddwc-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvZGI5MzViMGQtZGMzOC00YjMzLWI3ODQtMzhkMzM0ZWIxMmFmXC9kZWFkZHdjLTNiMDhiMWUyLWI3MzQtNDA2Mi1iMGNlLTkwYmQwYzU4MTMyMS5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dpcjynKZtGxtOrCs-cMJAt1dtf_nN_lcZTSg3Mhd7Uc",
   },
   {
     index: 2,
-    name: "bar",
+    name: "Bar",
     link: "https://cdnb.artstation.com/p/assets/images/images/035/693/525/large/daryna-vladimirova-.jpg?1615642496",
   },
 ];
@@ -50,7 +50,7 @@ const CreateRoom = () => {
   const [roomType, setRoomType] = useState("VOICE");
   const [theme, setTheme] = useState({
     index: 0,
-    name: "halloween",
+    name: "Halloween",
     link: "https://static.vecteezy.com/system/resources/previews/003/230/647/original/cute-halloween-background-with-spooky-elements-free-vector.jpg",
   });
 
@@ -128,7 +128,7 @@ const CreateRoom = () => {
         <Box sx={style}>
           <div className="bg-purple-60 p-4  rounded-md flex flex-col space-y-6">
             <div className="flex flex-row justify-between text-white font-bold">
-              <div> Create room </div>
+              <div> Create Room </div>
               <CloseIcon className="cursor-pointer" onClick={handleClose} />
             </div>
             <ThemeSelect
@@ -138,18 +138,18 @@ const CreateRoom = () => {
             />
             <div className="flex flex-row items-center space-x-4">
               <div>
-                <div className="text-purple-40 text-[12px]">room name</div>
+                <div className="text-purple-40 text-[12px]">Room Name</div>
                 <input
-                  className="w-full rounded-md bg-purple-50 px-4 py-2 text-white outline-none"
+                  className="w-full rounded-md bg-purple-50 px-4 py-3 text-white outline-none text-xs"
                   type="text"
                   value={roomName}
                   onChange={handleInputChange}
-                  placeholder="ป้อนชื่อห้อง"
+                  placeholder="Enter Your Room Name."
                 />
               </div>
 
               <div>
-                <div className="text-purple-40 text-[12px]">talk type</div>
+                <div className="text-purple-40 text-[12px]">Talk Type</div>
                 <div className="flex flex-row space-x-1">
                   <div className="bg-purple-50 rounded-md p-2 relative cursor-pointer">
                     <VideocamIcon
@@ -179,7 +179,7 @@ const CreateRoom = () => {
               </div>
             </div>
             <div>
-              <div className="text-purple-40 text-[12px]">categories room</div>
+              <div className="text-purple-40 text-[12px]">Category Room</div>
               <CategoriesSelect
                 selectCategories={selectCategories}
                 setSelectCategories={setSelectCategories}

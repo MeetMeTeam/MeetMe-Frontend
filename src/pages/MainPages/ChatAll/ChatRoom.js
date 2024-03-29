@@ -38,7 +38,7 @@ export default function ChatRoom({ people }) {
         chat={chatList}
         inputValue={inputValue}
         setInputValue={setInputValue}
-        name="Rooms Chat"
+        name="Room Chat"
         height={100}
         width={400}
         isExpanded={true}

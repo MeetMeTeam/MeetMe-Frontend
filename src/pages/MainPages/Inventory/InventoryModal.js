@@ -87,7 +87,7 @@ const InventoryModal = () => {
   return (
     <div className="select-none px-6 p-4  bg-purple-90 absolute w-[820px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg shadow-24 ">
       <div className="font-bold text-[26px] text-purple-10 mb-2">
-        เปลี่ยนตัวละคร
+        My Bags
       </div>
       <div className="flex flex-row h-full space-x-6">
         <div
@@ -147,7 +147,7 @@ const InventoryModal = () => {
                     : " bg-purple-80/40 text-purple-30 ")
                 }
               >
-                theme room
+                Theme Room
               </div>
             </div>
             <div>

@@ -71,12 +71,12 @@ const AvatarCard = (props) => {
           {props.userDataDetail?.username}
         </div>
         <hr className="my-1"></hr>
-        <div className="font-bold text-[12px]">about me</div>
+        <div className="font-bold text-[12px]">About Me</div>
         <div className="text-[12px] h-[50px] w-[280px] break-words line-clamp-3">
           {props.userDataDetail?.bio}
         </div>
 
-        <div className="font-bold text-[12px]">gifts</div>
+        <div className="font-bold text-[12px]">Gifts</div>
 
         <div className="flex  gap-2 flex-row mt-2">
           {giftList.map((item) => {
