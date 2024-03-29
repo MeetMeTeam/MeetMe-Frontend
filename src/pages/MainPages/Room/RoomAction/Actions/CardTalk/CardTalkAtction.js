@@ -198,8 +198,7 @@ export default function CardTalkAction() {
                   style={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
-                    wordWrap: "break-word",
-                    hyphens: "auto",
+                    wordWrap: "anywhere",
                   }}
                 >
                   {cardDetail.text}
