@@ -5,7 +5,9 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
+  useLocation,
 } from "react-router-dom";
+
 import "./App.css";
 import SuccessPaymentPage from "./pages/payMentPages/success-page";
 import ShopPage from "./pages/payMentPages/shop-page";
@@ -24,8 +26,11 @@ import LoadingPage from "./shared/components/LoadingPage";
 import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
 import CancelPaymentPage from "./pages/payMentPages/payment-cancel";
+import { useParams, useHistory } from "react-router-dom";
 
 function App() {
+  const history = useHistory();
+  console.log("555555555555555555555555555");
   const dispatch = useDispatch();
   const isShowModalErrorSocket = useSelector(
     (state) => state.alert.isSocketErrorModal
@@ -44,6 +49,10 @@ function App() {
       handleCloseModal();
     }
   }, [isShowModalErrorSocket]);
+
+  useEffect(() => {
+    console.log("555555555555555555555555555");
+  }, []);
   return (
     <div className="relative">
       {isShowLoadingPage && <LoadingPage />}

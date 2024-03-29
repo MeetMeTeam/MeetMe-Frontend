@@ -14,7 +14,11 @@ import Grow from "@mui/material/Grow";
 import Zoom from "@mui/material/Zoom";
 import FireworkAnimation from "../../../shared/components/FireworkAnimation";
 import GiftAnimetion from "../../../shared/components/GiftAnimation";
+import { useLocation } from "react-router-dom";
+
 const LoginPage = ({ login }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const history = useHistory();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,6 +72,13 @@ const LoginPage = ({ login }) => {
       timeout: 1000,
     },
   ];
+
+  useEffect(() => {
+    const value = localStorage.getItem("user");
+    if (value) {
+      history.push("/home");
+    }
+  }, []);
 
   return (
     <div className="select-none relative overflow-hidden bg-blue-80 w-screen h-screen ">
