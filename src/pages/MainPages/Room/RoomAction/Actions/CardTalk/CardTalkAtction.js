@@ -67,7 +67,7 @@ export default function CardTalkAction() {
   const [cateList, setCateList] = React.useState([]);
 
   const [cardDetail, setCardDetail] = useState({
-    text: "เขียนคำถาม หรือ สุ่มคำถาม",
+    text: "Ask Question or Random Question",
     cardSender: userDetail.displayName ? userDetail.displayName : "Anonymous",
   });
   const toggleDrawer = (newOpen) => () => {

@@ -40,7 +40,7 @@ const ThemeItem = (prop) => {
     <div>
       <ItemModal
         item={prop.item}
-        textHeader={`You will buy "${prop.item.name}" theme.`}
+        textHeader={`Do you want to buy "${prop.item.name}" theme?`}
         checkOut={checkOut}
         unit={"Flower"}
         type={"theme"}
