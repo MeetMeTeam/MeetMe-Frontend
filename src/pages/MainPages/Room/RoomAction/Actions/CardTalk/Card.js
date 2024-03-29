@@ -33,7 +33,7 @@ export default function Card(props) {
           >
             <p class="mt-6 text-[20px]">
               {props.cardType}
-              คำถามทั่วไป
+              Question
             </p>
             <p className="text-[#403D44] font-bold">{props.cardSender}</p>
             <div className="text-center h-full flex items-center justify-center px-2 mt-[-40px]">
