@@ -88,7 +88,7 @@ const LoginPage = ({ login }) => {
 
       <img
         src={process.env.PUBLIC_URL + "/loginPage/songkan/SignIn-Songkarn.png"}
-        className="absolute z-10 bottom-0 w-full object-contain"
+        className="absolute z-10 bottom-0 w-full h-full object-cover"
       />
 
       <img
@@ -111,14 +111,15 @@ const LoginPage = ({ login }) => {
               />
             </div>
           )} */}
-          {imgList.map((e) => (
-            <Zoom in={true} {...{ timeout: e.timeout }}>
-              <img
-                src={process.env.PUBLIC_URL + e.imgPath}
-                className={e.class}
-              />
-            </Zoom>
-          ))}
+          {!isTabletOrMobile &&
+            imgList.map((e) => (
+              <Zoom in={true} {...{ timeout: e.timeout }}>
+                <img
+                  src={process.env.PUBLIC_URL + e.imgPath}
+                  className={e.class}
+                />
+              </Zoom>
+            ))}
         </div>
 
         <div className="relative  lg:w-1/2 w-full flex items-center justify-center">
