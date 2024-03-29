@@ -76,8 +76,8 @@ const User = () => {
 
   function validate() {
     if (
-      userDataDetail.displayName === "" ||
-      userDataDetail.displayName.length < 3
+      userDataDetail?.displayName === "" ||
+      userDataDetail?.displayName.length < 3
     ) {
       return false;
     } else {
