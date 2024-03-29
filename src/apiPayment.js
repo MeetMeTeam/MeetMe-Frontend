@@ -43,7 +43,6 @@ apiClient.interceptors.response.use(
 
             if (userDetails) {
               const RefreshToken = JSON.parse(userDetails).refreshToken;
-              console.log(RefreshToken);
               config.headers.Authorization = `Bearer ${RefreshToken}`;
             }
 
@@ -53,7 +52,6 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
-        console.log("hello");
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           let userDetails = JSON.parse(localStorage.getItem("user"));

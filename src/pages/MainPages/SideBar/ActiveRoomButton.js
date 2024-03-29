@@ -49,8 +49,9 @@ const ActiveRoomButton = ({
               <VideocamIcon className=" text-white" style={{ fontSize: 15 }} />
             )}
           </div> */}
-          {data.roomCreator.detail.cate.map((item) => (
+          {data.roomCreator.detail.cate.map((item, index) => (
             <div
+              key={index}
               className={`flex items-center text-[10px]  text-white px-2 rounded-2xl ${item.color}`}
             >
               {item.name}

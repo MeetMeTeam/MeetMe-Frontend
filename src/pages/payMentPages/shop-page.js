@@ -44,7 +44,6 @@ const ShopPage = () => {
 
   async function getAvatar(id) {
     const inventoryUser = await api.getAvatar(id);
-    console.log(inventoryUser);
     if (inventoryUser) {
       await setAvatarUser(inventoryUser?.data?.data);
       await setAvatarUserShow(inventoryUser?.data?.data);
@@ -55,7 +54,7 @@ const ShopPage = () => {
   async function getAvatarShop() {
     setIsloadingAvatarShop(true);
     const AvatarShop = await api.getAvatarShop();
-    console.log(AvatarShop?.data?.data);
+
     if (AvatarShop) {
       await setAvatarList(AvatarShop?.data?.data);
       setIsloadingAvatarShop(false);
@@ -65,7 +64,6 @@ const ShopPage = () => {
   async function getThemeShop() {
     setIsloadingAvatarShop(true);
     const ThemeShop = await api.getThemeShop();
-    console.log(ThemeShop?.data?.data);
     if (ThemeShop) {
       await setThemeList(ThemeShop?.data?.data);
       setIsloadingThemeShop(false);
@@ -73,7 +71,6 @@ const ShopPage = () => {
   }
 
   async function buyAvatar() {
-    console.log(avatarUserShow);
     const data = {
       item_id: avatarUserShow.id,
       item_type: "avatar",

@@ -46,9 +46,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
     init();
   }, []);
 
-  useEffect(() => {
-    console.log(friends);
-  }, [friends]);
+  useEffect(() => {}, [friends]);
 
   useEffect(() => {}, [isFriendAlready]);
 

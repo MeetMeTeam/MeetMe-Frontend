@@ -75,7 +75,6 @@ export default function GiftAction() {
   const getCoin = async () => {
     const res = await api.getCoin();
     if (res.status === 200) {
-      console.log(res);
       setCoin(res.data.data.coin);
     }
   };
@@ -146,7 +145,6 @@ export default function GiftAction() {
   }
 
   useEffect(() => {
-    console.log(isNewJoin);
     if (!isNewJoin) {
       if (otherGift) {
         setGiftShow(otherGift?.selectGift);
@@ -186,7 +184,7 @@ export default function GiftAction() {
                 </span>
                 <div className="flex flex-col gap-2">
                   <span className="pl-5 text-blue-20 text-[14px] font-bold">
-                  My Flower
+                    My Flower
                   </span>
                   <div className="bg-yellow-70 pl-6 scale-150 mr-7 rounded-2xl h-[30px] flex items-center justify-center">
                     <UserCoin coin={coin} hidePlus={true} />

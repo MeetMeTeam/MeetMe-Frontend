@@ -17,8 +17,6 @@ import GiftAnimetion from "../../../shared/components/GiftAnimation";
 import { useLocation } from "react-router-dom";
 
 const LoginPage = ({ login }) => {
-  const { pathname } = useLocation();
-  console.log(pathname);
   const history = useHistory();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +29,6 @@ const LoginPage = ({ login }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(e);
     const userDetails = {
       email: mail,
       password,

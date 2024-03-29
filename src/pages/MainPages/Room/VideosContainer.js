@@ -48,7 +48,6 @@ const VideosContainer = ({
   const [userDetailCard, setUserDetailCard] = React.useState(null);
   let [isShowAnimation, setIsShowAnimation] = useState(false);
   const handleOpen = (userDetail) => {
-    console.log(userDetail);
     setUserDetailCard(userDetail);
     setOpenModal(true);
   };
@@ -64,7 +63,9 @@ const VideosContainer = ({
 
   useEffect(() => {}, [otherUserActionCam]);
 
-  useEffect(() => {}, [participants]);
+  useEffect(() => {
+    console.log(participants);
+  }, [participants]);
 
   useEffect(() => {
     updateMyCamToOther();
@@ -160,7 +161,7 @@ const VideosContainer = ({
           key={stream.remoteStream.id}
           className="another-custom-class"
         >
-          {renderRemoteStream(stream)}
+          {participants.length > 0 && renderRemoteStream(stream)}
         </div>
       ))}
 

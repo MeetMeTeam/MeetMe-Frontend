@@ -13,12 +13,9 @@ const CameraButton = ({ localStream, cameraEnabled, setCameraEnabled }) => {
 
   const handleToggleCamera = () => {
     if (localStream) {
-      console.log(cameraEnabled);
       if (cameraEnabled) {
-        console.log();
         if (localStream.getVideoTracks().length > 0) {
           localStream.getVideoTracks()[0].enabled = false;
-          console.log(localStream.getVideoTracks()[0]);
         }
       } else {
         if (localStream.getVideoTracks().length > 0) {

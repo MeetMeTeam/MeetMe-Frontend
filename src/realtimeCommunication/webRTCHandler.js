@@ -112,8 +112,6 @@ export const prepareNewPeerConnection = (
   peers[connUserSocketId].on("stream", (remoteStream) => {
     //TODO
     // add new remote stream to our server store
-    console.log("remote stream came from other user");
-    console.log("direct connection has been established");
     remoteStream.connUserSocketId = connUserSocketId;
     addNewRemoteStream(remoteStream, connUserSocketId, name, pic, id);
   });
@@ -162,7 +160,6 @@ export const handleParticipantLeftRoom = (data) => {
   const newRemoteStreams = remoteStreams.filter(
     (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
   );
-  console.log("some one left");
   store.dispatch(removeOtherActionCam(connUserSocketId));
   store.dispatch(setRemoteStreams(newRemoteStreams));
 };

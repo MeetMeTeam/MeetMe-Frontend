@@ -69,7 +69,6 @@ const InventoryModal = () => {
   async function changeAvatar() {
     setIsloadingAvatar(true);
     const response = await api.changeAvatar(avatarUserNew.id);
-    console.log(response);
     dispatch(setAvatarFetchCount(1));
     setAvatarUserNew(null);
     getAvatar();
@@ -86,9 +85,7 @@ const InventoryModal = () => {
 
   return (
     <div className="select-none px-6 p-4  bg-purple-90 absolute w-[820px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg shadow-24 ">
-      <div className="font-bold text-[26px] text-purple-10 mb-2">
-        My Bags
-      </div>
+      <div className="font-bold text-[26px] text-purple-10 mb-2">My Bags</div>
       <div className="flex flex-row h-full space-x-6">
         <div
           className={

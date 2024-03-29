@@ -102,7 +102,6 @@ const CategoriesSelect = (props) => {
     );
 
     if (props.selectCategories.length === 3 && categoryIndex === -1) {
-      console.log("You can add just three categories.");
       return;
     }
 

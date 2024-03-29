@@ -13,7 +13,6 @@ const reducer = (state = initState, action) => {
         userDetails: action.userDetails,
       };
     case authActions.SET_AVATAR_FETCH_COUNT:
-      console.log("count on reducer");
       return {
         ...state,
         avatarFetchCount: state.avatarFetchCount + 1,

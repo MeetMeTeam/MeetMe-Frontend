@@ -23,7 +23,6 @@ export const getActions = (dispatch) => {
 };
 
 export const clearCardTalk = (content) => {
-  console.log("222222222222");
   return {
     type: alertActions.SET_CLEAR_CARD_TALK,
     content,

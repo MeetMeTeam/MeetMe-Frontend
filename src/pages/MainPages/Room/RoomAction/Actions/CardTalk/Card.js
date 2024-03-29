@@ -9,11 +9,11 @@ export default function Card(props) {
 
   return (
     <div className="">
-      <div class={styles.flipCard + props.widthCustom}>
-        <div class={styles.flipCardInner}>
+      <div className={styles.flipCard + props.widthCustom}>
+        <div className={styles.flipCardInner}>
           <div
             style={divStyle}
-            class={
+            className={
               styles.flipCardFront + " flex w-full flex-col items-start pl-6"
             }
           >
@@ -26,12 +26,12 @@ export default function Card(props) {
             </div>
           </div>
           <div
-            class={
+            className={
               styles.flipCardBack +
               "  bg-white rounded-2xl border-[10px] border-[#55C2BC] text-black"
             }
           >
-            <p class="mt-6 text-[20px] font-bold">Question</p>
+            <p className="mt-6 text-[20px] font-bold">Question</p>
             <p className="text-[#403D44] font-bold">{props.cardSender}</p>
             <div
               style={{

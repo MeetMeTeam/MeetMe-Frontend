@@ -22,7 +22,6 @@ export const getActions = (dispatch) => {
 };
 
 export const setUserDetails = (userDetails) => {
-  console.log(userDetails);
   return {
     type: authActions.SET_USER_DETAILS,
     userDetails,
@@ -30,7 +29,6 @@ export const setUserDetails = (userDetails) => {
 };
 
 export const setAvatarFetchCount = (count) => {
-  console.log("count on action");
   return {
     type: authActions.SET_AVATAR_FETCH_COUNT,
     count,
@@ -58,19 +56,16 @@ const login = (userDetails, history) => {
         dispatch(setLoadingPage(false));
       }
     } catch (exception) {
-      console.log(exception);
       dispatch(setLoadingPage(false));
     }
   };
 };
 
 const register = (userDetails, history, id) => {
-  console.log(id);
   return async (dispatch) => {
     dispatch(setLoadingPage(true));
     try {
       userDetails.characterId = id;
-      console.log(userDetails);
       const response = await api.register(userDetails);
       if (response.error) {
         dispatch(setLoadingPage(false));
@@ -112,7 +107,6 @@ const sendMailToResetPassword = (userDetails, history) => {
         dispatch(setLoadingPage(false));
       }
     } catch (exception) {
-      console.log(exception);
       dispatch(setLoadingPage(false));
     }
   };

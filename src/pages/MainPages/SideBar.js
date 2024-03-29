@@ -18,7 +18,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
   }, []);
 
   return (
-    <div class={scollBarRoom.scrollbar + " w-full"}>
+    <div className={scollBarRoom.scrollbar + " w-full"}>
       <div
         className={`bg-purple-60 h-[570px] w-full rounded-2xl px-4 pb-4 min-w-[652px] ${
           activeRooms.length === 0 ? " justify-between " : " justify-start "

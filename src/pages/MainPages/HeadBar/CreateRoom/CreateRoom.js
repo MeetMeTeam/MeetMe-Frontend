@@ -70,7 +70,6 @@ const CreateRoom = () => {
         link: theme.img,
       });
     }
-    console.log(updatedThemeList);
     setThemeList(updatedThemeList);
   }
   const createNewRoomHandler = () => {

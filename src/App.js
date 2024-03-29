@@ -30,7 +30,6 @@ import { useParams, useHistory } from "react-router-dom";
 
 function App() {
   const history = useHistory();
-  console.log("555555555555555555555555555");
   const dispatch = useDispatch();
   const isShowModalErrorSocket = useSelector(
     (state) => state.alert.isSocketErrorModal
@@ -50,9 +49,6 @@ function App() {
     }
   }, [isShowModalErrorSocket]);
 
-  useEffect(() => {
-    console.log("555555555555555555555555555");
-  }, []);
   return (
     <div className="relative">
       {isShowLoadingPage && <LoadingPage />}

@@ -51,7 +51,6 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("connect", () => {
-    console.log("suscess connect socket.io server");
     console.log(socket.id);
   });
 
@@ -76,7 +75,6 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("room-create", (data) => {
     roomHandler.newRoomCreated(data);
-    console.log("create room detail from server");
   });
 
   socket.on("active-rooms", (data) => {
@@ -85,7 +83,6 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("conn-prepare", (data) => {
     const { connUserSocketId, name, pic, id } = data;
-    console.log("prepare for connection");
     webRTCHandler.prepareNewPeerConnection(
       connUserSocketId,
       false,
@@ -135,7 +132,6 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("chatter", (newChat) => {
-    console.log(newChat);
     const isUserInRoom = store.getState().room.isUserInRoom;
     const myUserId = store.getState().auth.userDetails._id;
     const otherPeopleList = store.getState().room.otherUserActionCam;
@@ -148,9 +144,7 @@ export const connectWithSocketServer = (userDetails) => {
     }
 
     if (isUserInRoom) {
-      console.log(foundObject);
       if (foundObject) {
-        console.log("asdasd");
         store.dispatch(UpdateChatList(newChat));
       }
 
@@ -179,12 +173,10 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("other-send-gift", (data) => {
-    console.log(data);
     store.dispatch(setGiftNotification(data));
   });
 
   socket.on("other-send-card-talk", (data) => {
-    console.log(data);
     store.dispatch(setCardTalkList(data));
   });
 };
@@ -243,6 +235,5 @@ export const sendGiftToOther = (data) => {
 };
 
 export const sendCardTalk = (data) => {
-  console.log(data);
   socket.emit("send-card-talk", data);
 };

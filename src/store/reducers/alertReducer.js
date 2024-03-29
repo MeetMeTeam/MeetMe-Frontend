@@ -52,7 +52,6 @@ const reducer = (state = initState, action) => {
         (item) =>
           item.userDetail.username === action.content.userDetail.username
       );
-      console.log(indexNoti);
       if (indexNoti !== -1) {
         return {
           ...state,

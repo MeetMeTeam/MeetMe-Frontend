@@ -56,7 +56,6 @@ const RegisterPage = ({ register }) => {
   const [refCode, setRefCode] = useState("");
 
   const handleRegister = async () => {
-    console.log(otp);
     const userDetails = {
       email: mail,
       password,
@@ -115,7 +114,6 @@ const RegisterPage = ({ register }) => {
     getAvatarDefault();
   }, []);
   useEffect(() => {
-    console.log(isFormValid);
     if (
       mail &&
       username &&

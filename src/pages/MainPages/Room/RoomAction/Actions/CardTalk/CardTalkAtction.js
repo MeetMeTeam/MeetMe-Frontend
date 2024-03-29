@@ -110,14 +110,12 @@ export default function CardTalkAction() {
         text: lang === "th" ? randomCard.thai : randomCard.eng,
       });
     } else {
-      console.log("ไม่พบการ์ดที่ไม่ซ้ำกับ CardDetail ที่มีอยู่");
     }
   }
 
   async function fetchQuestions() {
     const res = await api.getQuestions();
     if (res.status === 200) {
-      console.log(res.data.data);
       setQuestionList(res.data.data);
     }
   }
@@ -125,7 +123,6 @@ export default function CardTalkAction() {
   async function fetchCate() {
     const res = await api.getCateCard();
     if (res.status === 200) {
-      console.log(res.data.data);
       setCateList(res.data.data);
     }
   }
@@ -185,11 +182,11 @@ export default function CardTalkAction() {
               />
               <div
                 style={{ zoom: 0.7 }}
-                class={
+                className={
                   "bg-white relative z-[100] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl border border-purple-60 text-black"
                 }
               >
-                <p class="mt-6 text-[24px] font-bold">Question</p>
+                <p className="mt-6 text-[24px] font-bold">Question</p>
                 <p className="text-[#403D44] font-bold">
                   {cardDetail.cardSender}
                 </p>
@@ -206,13 +203,13 @@ export default function CardTalkAction() {
               </div>
               <div
                 style={{ zoom: 0.7 }}
-                class={
+                className={
                   "bg-purple-90 absolute top-[-10px] right-[-15px]  z-[90] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl text-black"
                 }
               ></div>
               <div
                 style={{ zoom: 0.7 }}
-                class={
+                className={
                   "bg-purple-80 absolute top-[-20px] right-[-30px]  z-[80] w-[300px] flex justify-center flex-col items-center h-[400px] rounded-2xl text-black"
                 }
               ></div>

@@ -26,7 +26,6 @@ const AvatarCard = (props) => {
     const response = await apiPayment.getUserGift(props.userDataDetail?._id);
     if (response.status === 200) {
       setGiftList(response?.data?.data);
-      console.log(response?.data?.data);
     }
   }
 
@@ -35,7 +34,6 @@ const AvatarCard = (props) => {
   }, [avatarFetchCount]);
   useEffect(() => {
     getAvatar();
-    console.log(props.userDataDetail);
   }, [props.userDataDetail]);
 
   useEffect(() => {

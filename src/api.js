@@ -57,7 +57,6 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
-        console.log("hello");
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           let userDetails = JSON.parse(localStorage.getItem("user"));
@@ -327,7 +326,6 @@ export const getThemeShop = async (type) => {
 };
 
 export const editUser = async (data) => {
-  console.log(data);
   try {
     return await apiClient.put(`/users`, data);
   } catch (exception) {

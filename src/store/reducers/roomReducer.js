@@ -46,7 +46,6 @@ const reducer = (state = initState, action) => {
       }
       return { ...state, otherUserActionCam: newOtherUserActionCam };
     case roomActions.OPEN_ROOM:
-      console.log(action.isUserInRoom);
       return {
         ...state,
         isUserInRoom: action.isUserInRoom,
@@ -58,8 +57,6 @@ const reducer = (state = initState, action) => {
         roomDetails: action.roomDetails,
       };
     case roomActions.SET_ACTIVE_ROOMS:
-      console.log(action.activeRooms);
-
       const sortedActiveRooms = action.activeRooms.slice().sort((a, b) => {
         return b.participants.length - a.participants.length;
       });

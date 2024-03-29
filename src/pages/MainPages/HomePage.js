@@ -56,9 +56,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
     getAvatar();
   }, [avatarFetchCount]);
 
-  useEffect(() => {
-    console.log(notebook);
-  }, [notebook]);
+  useEffect(() => {}, [notebook]);
 
   useEffect(() => {
     store.dispatch(clearCardTalk());

@@ -10,7 +10,6 @@ const reducer = (state = initState, action) => {
       const test = state.chatList.some(
         (chatItem) => chatItem.textId === action.content.textId
       );
-      console.log(test);
       if (test) {
         return state;
       } else {

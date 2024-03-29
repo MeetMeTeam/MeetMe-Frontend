@@ -38,7 +38,6 @@ export const newRoomCreated = (data) => {
 
 export const updateActiveRooms = (data) => {
   const { activeRooms } = data;
-  console.log("new active room come from store");
   const friends = store.getState().friends.friends;
   const rooms = [];
 
@@ -57,7 +56,6 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
-  console.log("join rommmmmmmmmmmmmmmmmmmmmmm");
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
