@@ -29,6 +29,71 @@ const CategoriesSelect = (props) => {
       name: "⚽ Hobbies",
       color: "bg-blue-80",
     },
+    {
+      id: 6,
+      name: "💪 Health",
+      color: "bg-red-70",
+    },
+    {
+      id: 7,
+      name: "💬 consult",
+      color: "bg-blue-60",
+    },
+    {
+      id: 8,
+      name: "🎵 Music",
+      color: "bg-green-60",
+    },
+    {
+      id: 9,
+      name: "🎨 Art",
+      color: "bg-yellow-60",
+    },
+    {
+      id: 10,
+      name: "🏳️‍🌈 LGBTQ+",
+      color: "bg-purple-60",
+    },
+    {
+      id: 11,
+      name: "🎮 Gaming",
+      color: "bg-red-60",
+    },
+    {
+      id: 12,
+      name: "🏛️ Politics",
+      color: "bg-yellow-30",
+    },
+    {
+      id: 13,
+      name: "🎭 Creativity",
+      color: "bg-purple-30",
+    },
+    {
+      id: 14,
+      name: "🔥 Trend",
+      color: "bg-blue-70",
+    },
+    {
+      id: 15,
+      name: "🖥️ Technology",
+      color: "bg-green-70",
+    },
+    {
+      id: 16,
+      name: "👨‍💼 Adult",
+      color: "bg-yellow-70",
+    },
+    {
+      id: 17,
+      name: "👦 teenager",
+      color: "bg-pink-400",
+    },
+    {
+      id: 18,
+      name: "😡 Vulgar words",
+      color: "bg-red-70",
+    },
   ];
 
   const addOrReplaceCategory = (newCategory) => {
@@ -68,9 +133,8 @@ const CategoriesSelect = (props) => {
             "bg-purple-80 text-[12px] flex items-center cursor-pointer text-white px-2 p-1 mt-2 rounded-2xl"
           }
         >
-          <AddIcon fontSize="small"/>
+          <AddIcon fontSize="small" />
           ADD
-          
         </div>
         {props.selectCategories.map((category) => (
           <div

@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../../store/actions/authActions";
 import LoadingPage from "../../../shared/components/LoadingPage";
 import AvatarCard from "../../../shared/components/AvatarCard";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -33,9 +34,12 @@ const User = () => {
   const userDetails = useSelector((state) => state.auth.userDetails);
   const userDetail = useSelector((state) => state.auth.userDetails);
   const avatarFetchCount = useSelector((state) => state.auth.avatarFetchCount);
+  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const [isLoading, setIsloading] = useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,7 +53,9 @@ const User = () => {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+    if (!isUserInRoom) {
+      setOpen(newOpen);
+    }
   };
 
   async function editUser() {
@@ -114,7 +120,7 @@ const User = () => {
             </div>
           </div>
         )}
-        <KeyboardArrowDownIcon />
+        {!isUserInRoom && <KeyboardArrowDownIcon />}
       </div>
 
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>

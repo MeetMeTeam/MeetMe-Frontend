@@ -31,12 +31,16 @@ export default function Card(props) {
               "  bg-white rounded-2xl border-[10px] border-[#55C2BC] text-black"
             }
           >
-            <p class="mt-6 text-[20px]">
-              {props.cardType}
-              Question
-            </p>
+            <p class="mt-6 text-[20px] font-bold">Question</p>
             <p className="text-[#403D44] font-bold">{props.cardSender}</p>
-            <div className="text-center h-full flex items-center justify-center px-2 mt-[-40px]">
+            <div
+              style={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                wordWrap: "anywhere",
+              }}
+              className="text-center h-full flex items-center justify-center px-2 mt-[-40px]"
+            >
               {props.cardText}
             </div>
           </div>
