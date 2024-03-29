@@ -122,7 +122,7 @@ const VideosContainer = ({
         )}
         {participants.map((item) => (
           <div key={item.socketId}>
-            {item.socketId === stream.connUserSocketId && (
+            {item.userId === stream.id && (
               <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
                 {stream.name.displayName}
               </div>
