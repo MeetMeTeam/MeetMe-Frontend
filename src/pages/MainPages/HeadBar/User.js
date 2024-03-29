@@ -53,36 +53,37 @@ const User = () => {
   };
 
   async function editUser() {
-    setIsloading(true);
-    const response = await api.editUser(userDataDetail);
+    if (validate()) {
+      setIsloading(true);
+      const response = await api.editUser(userDataDetail);
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+      const storedUser = JSON.parse(localStorage.getItem("user"));
 
-    const mergedUserData = { ...storedUser, ...response?.data?.data };
+      const mergedUserData = { ...storedUser, ...response?.data?.data };
 
-    dispatch(setUserDetails(mergedUserData));
+      dispatch(setUserDetails(mergedUserData));
 
-    localStorage.setItem("user", JSON.stringify(mergedUserData));
-    setIsloading(false);
+      localStorage.setItem("user", JSON.stringify(mergedUserData));
+      setIsloading(false);
+    }
   }
 
   const [userDataDetail, setUserDataDetail] = useState({
     username: "",
     displayName: "",
     bio: "",
-    social: [
-      {
-        link: "",
-        name: "",
-        type: "fb",
-      },
-      {
-        link: "",
-        name: "",
-        type: "ig",
-      },
-    ],
   });
+
+  function validate() {
+    if (
+      userDataDetail.displayName === "" ||
+      userDataDetail.displayName.length < 3
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   function init() {
     setUserDataDetail(userDetails);
   }
@@ -145,6 +146,7 @@ const User = () => {
                 </div>
                 <div></div>
                 <textarea
+                  maxlength="120"
                   value={userDataDetail?.bio}
                   onChange={(e) => {
                     setUserDataDetail({
@@ -178,15 +180,19 @@ const User = () => {
               </div> */}
               <div
                 onClick={() => editUser()}
-                className="mt-4 ring text-blue-80 cursor-pointer bg-yellow-80 hover:bg-yellow-70 text-center w-full py-2 rounded-3xl font-bold"
+                className={
+                  (validate()
+                    ? "bg-yellow-80 hover:bg-yellow-70"
+                    : "bg-gray-70 ") +
+                  " mt-4 mb-4 ring text-blue-80 cursor-pointer  text-center w-full py-2 rounded-3xl font-bold"
+                }
               >
                 Save
               </div>
-              <div className="mt-3 mb-2 hover:bg-gray-70 text-blue-70 cursor-pointer bg-gray-80 text-center w-full py-2 rounded-3xl font-bold">
+              {/* <div className="mt-3 mb-2 hover:bg-gray-70 text-blue-70 cursor-pointer bg-gray-80 text-center w-full py-2 rounded-3xl font-bold">
                 <SettingsIcon /> Setting
-              </div>
+              </div> */}
             </div>
-
             <div
               className="bg-red-70 hover:bg-red-60 cursor-pointer text-center w-full py-2 rounded-3xl font-bold text-white"
               onClick={logout}
@@ -196,89 +202,6 @@ const User = () => {
           </div>
         </Box>
       </Drawer>
-      <Modal
-        open={openModal}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="w-full mt-4 mb-2 ">
-                <div className="text-blue-60 mb-1 font-bold text-[14px]">
-                  Facebook
-                </div>
-                <input
-                  value={userDataDetail?.displayName}
-                  type="text"
-                  maxlength="16"
-                  onChange={(e) => {
-                    setUserDataDetail({
-                      ...userDataDetail,
-                      displayName: e.target.value,
-                    });
-                  }}
-                  className="text-white px-2 w-full rounded-2xl bg-blue-80 py-2"
-                />
-              </div>
-              <div className="w-full mt-4 mb-2 ">
-                <div className="text-blue-60 mb-1 font-bold text-[14px]">
-                  Link
-                </div>
-                <input
-                  value={userDataDetail?.displayName}
-                  type="text"
-                  maxlength="16"
-                  onChange={(e) => {
-                    setUserDataDetail({
-                      ...userDataDetail,
-                      displayName: e.target.value,
-                    });
-                  }}
-                  className="text-white px-2 w-full rounded-2xl bg-blue-80 py-2"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="w-full mt-4 mb-2 ">
-                <div className="text-red-70 mb-1 font-bold text-[14px]">
-                  Instagram
-                </div>
-                <input
-                  value={userDataDetail?.displayName}
-                  type="text"
-                  maxlength="16"
-                  onChange={(e) => {
-                    setUserDataDetail({
-                      ...userDataDetail,
-                      displayName: e.target.value,
-                    });
-                  }}
-                  className="text-white px-2 w-full rounded-2xl bg-red-80/80 py-2"
-                />
-              </div>
-              <div className="w-full mt-4 mb-2 ">
-                <div className="text-red-70 mb-1 font-bold text-[14px]">
-                  Link
-                </div>
-                <input
-                  value={userDataDetail?.displayName}
-                  type="text"
-                  maxlength="16"
-                  onChange={(e) => {
-                    setUserDataDetail({
-                      ...userDataDetail,
-                      displayName: e.target.value,
-                    });
-                  }}
-                  className="text-white px-2 w-full rounded-2xl bg-red-80/80 py-2"
-                />
-              </div>
-            </div>
-          </div>
-        </Box>
-      </Modal>
     </div>
   );
 };
