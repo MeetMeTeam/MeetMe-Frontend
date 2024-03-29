@@ -8,7 +8,7 @@ const AvatarShop = (props) => {
       {props.isLoadingAvatarShop ? (
         <Loading />
       ) : (
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2 w-[1030px]  overflow-auto">
           {props.avatarList.map((item, index) => (
             <ItemAvatar
               key={index}

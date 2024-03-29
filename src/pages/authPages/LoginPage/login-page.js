@@ -14,7 +14,11 @@ import Grow from "@mui/material/Grow";
 import Zoom from "@mui/material/Zoom";
 import FireworkAnimation from "../../../shared/components/FireworkAnimation";
 import GiftAnimetion from "../../../shared/components/GiftAnimation";
+import { useLocation } from "react-router-dom";
+
 const LoginPage = ({ login }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const history = useHistory();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +73,13 @@ const LoginPage = ({ login }) => {
     },
   ];
 
+  useEffect(() => {
+    const value = localStorage.getItem("user");
+    if (value) {
+      history.push("/home");
+    }
+  }, []);
+
   return (
     <div className="select-none relative overflow-hidden bg-blue-80 w-screen h-screen ">
       {/* <SnowAnimation className="z-30" /> */}
@@ -88,7 +99,7 @@ const LoginPage = ({ login }) => {
 
       <img
         src={process.env.PUBLIC_URL + "/loginPage/songkan/SignIn-Songkarn.png"}
-        className="absolute z-10 bottom-0 w-full object-contain"
+        className="absolute z-10 bottom-0 w-full h-full object-cover"
       />
 
       <img
@@ -111,14 +122,15 @@ const LoginPage = ({ login }) => {
               />
             </div>
           )} */}
-          {imgList.map((e) => (
-            <Zoom in={true} {...{ timeout: e.timeout }}>
-              <img
-                src={process.env.PUBLIC_URL + e.imgPath}
-                className={e.class}
-              />
-            </Zoom>
-          ))}
+          {!isTabletOrMobile &&
+            imgList.map((e) => (
+              <Zoom in={true} {...{ timeout: e.timeout }}>
+                <img
+                  src={process.env.PUBLIC_URL + e.imgPath}
+                  className={e.class}
+                />
+              </Zoom>
+            ))}
         </div>
 
         <div className="relative  lg:w-1/2 w-full flex items-center justify-center">

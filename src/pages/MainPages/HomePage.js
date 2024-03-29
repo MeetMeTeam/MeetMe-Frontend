@@ -61,7 +61,6 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
   }, [notebook]);
 
   useEffect(() => {
-    console.log("111111111111");
     store.dispatch(clearCardTalk());
   }, [isUserInRoom]);
   return (
@@ -105,7 +104,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
               </div>
               <div className="w-full flex justify-between items-center bg-white py-1 rounded-2xl text-purple-60 font-bold px-4 text-[20px]">
                 <span>{userDetail?.displayName && userDetail.displayName}</span>
-                <CreateIcon className="cursor-pointer" />
+                {/* <CreateIcon className="cursor-pointer" /> */}
               </div>
               <div className="relative w-[400px] bg-white py-2 rounded-2xl text-purple-60 h-[50px] font-bold px-4 text-[12px]">
                 <div className="z-10 relative line-clamp-2">

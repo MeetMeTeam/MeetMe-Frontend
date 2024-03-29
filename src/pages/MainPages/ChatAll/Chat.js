@@ -47,8 +47,8 @@ export default function Chat({
             className={`py-4 px-2 text-[14px] font-bold w-full h-[${height}px]  bg-red-90 rounded-2xl mt-[-20px] `}
           >
             <div className={`overflow-auto h-[${height - 30}px]`}>
-              {chat.map((item) => (
-                <div className="flex flex-row" key={item?.textId}>
+              {chat.map((item, index) => (
+                <div key={index} className="flex flex-row">
                   <div className={`text-${item?.color}-500 mr-2`}>
                     {item?.name + ":"}{" "}
                   </div>

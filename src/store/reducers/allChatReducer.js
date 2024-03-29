@@ -7,13 +7,11 @@ const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case allChatAction.UPDATE_CHAT_LIST:
-      console.log(
-        state.chatList.some((chatItem) => {
-          console.log(chatItem);
-          console.log(action.content);
-        })
+      const test = state.chatList.some(
+        (chatItem) => chatItem.textId === action.content.textId
       );
-      if (state.chatList.some((chatItem) => chatItem === action.content)) {
+      console.log(test);
+      if (test) {
         return state;
       } else {
         return {

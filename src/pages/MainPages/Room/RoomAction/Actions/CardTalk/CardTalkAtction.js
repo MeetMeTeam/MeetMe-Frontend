@@ -55,25 +55,14 @@ const cate = [
 export default function CardTalkAction() {
   const [open, setOpen] = React.useState(false);
   let otherPeople = useSelector((state) => state.room.remoteStreams);
-  let otherGift = useSelector((state) => state.alert.otherSendGift);
   let userDetail = useSelector((state) => state.auth.userDetails);
-  const chatList = useSelector((state) => state.allChat.chatList);
 
   let otherCardTalk = useSelector((state) => state.alert.cardTalkList);
 
-  const [isLoading, setIsLoading] = React.useState(false);
-
-  const [selectGift, setSelectGift] = React.useState(null);
-  const [selectUser, setSelectUser] = React.useState(null);
-  const [isShowGift, setIsShowGift] = React.useState(false);
-  const [isNewJoin, setIsNewJoin] = React.useState(true);
   const [isShowDropdown, setIsShowDropdown] = React.useState(false);
   const [selectCate, setSelectCate] = React.useState("");
   const [lang, setLang] = React.useState("th");
 
-  const [coin, setCoin] = React.useState(0);
-  const [giftShow, setGiftShow] = React.useState(null);
-  const [giftList, setGiftList] = React.useState([]);
   const [questionList, setQuestionList] = React.useState([]);
   const [cateList, setCateList] = React.useState([]);
 
@@ -206,7 +195,11 @@ export default function CardTalkAction() {
                 </p>
                 <div
                   className="h-full w-[300px] break-words flex items-center justify-center text-center px-4 mt-[-40px]"
-                  style={{ overflow: "hidden", textOverflow: "ellipsis" }}
+                  style={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    wordWrap: "anywhere",
+                  }}
                 >
                   {cardDetail.text}
                 </div>
@@ -283,6 +276,7 @@ export default function CardTalkAction() {
                 Question
               </div>
               <textarea
+                maxLength={"200"}
                 value={cardDetail?.bio}
                 onChange={(e) => {
                   setCardDetail({
