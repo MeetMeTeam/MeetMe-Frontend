@@ -132,12 +132,14 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("chatter", (newChat) => {
+    console.log(newChat);
     const isUserInRoom = store.getState().room.isUserInRoom;
     const myUserId = store.getState().auth.userDetails._id;
     const otherPeopleList = store.getState().room.otherUserActionCam;
     const foundObject = otherPeopleList.find(
       (person) => person.userId === newChat.id
     );
+    console.log(foundObject);
 
     if (newChat.isGift) {
       store.dispatch(UpdateChatList(newChat));

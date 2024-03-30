@@ -6,9 +6,26 @@ import animationDataBox from "../../../../lotties/gift.json";
 import animationDataCandy1 from "../../../../lotties/candy1.json";
 import animationDataCandy2 from "../../../../lotties/candy2.json";
 import styles from "../../../../shared/css/animationBounce.module.css";
+import sheep from "../../../../lotties/sheep.json";
+import icecream from "../../../../lotties/icecream.json";
 
 import { useSelector } from "react-redux";
-
+const defaultOptionsIcecream = {
+  loop: true,
+  autoplay: true,
+  animationData: icecream,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
+const defaultOptionsSheep = {
+  loop: true,
+  autoplay: true,
+  animationData: sheep,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -126,6 +143,31 @@ export default function GiftAnimation(props) {
                     options={defaultOptionsCandy2}
                     height={200}
                     width={200}
+                  />
+                </div>
+              )}
+
+              {otherGift?.selectGift._id === "65feeff38ebc3b328d47e8c9" && (
+                <div
+                  className="absolute bottom-0  transform  left-[-70px]
+                z-[1000000]"
+                >
+                  <Lottie
+                    options={defaultOptionsSheep}
+                    height={300}
+                    width={300}
+                  />
+                </div>
+              )}
+              {otherGift?.selectGift._id === "65feef548ebc3b328d47e8c8" && (
+                <div
+                  className="absolute bottom-[-70px] left-1/2 transform  -translate-x-1/2 
+                z-[1000000]"
+                >
+                  <Lottie
+                    options={defaultOptionsIcecream}
+                    height={400}
+                    width={400}
                   />
                 </div>
               )}
