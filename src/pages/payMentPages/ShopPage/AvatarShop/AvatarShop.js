@@ -14,6 +14,7 @@ const AvatarShop = (props) => {
               key={index}
               avatarList={item}
               setAvatarUserShow={props.setAvatarUserShow}
+              setIsloadingAvatarShop={props.setIsloadingAvatarShop}
             />
           ))}
         </div>

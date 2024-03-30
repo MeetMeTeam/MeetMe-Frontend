@@ -62,7 +62,6 @@ const ShopPage = () => {
   }
 
   async function getThemeShop() {
-    setIsloadingAvatarShop(true);
     const ThemeShop = await api.getThemeShop();
     if (ThemeShop) {
       await setThemeList(ThemeShop?.data?.data);
@@ -79,6 +78,8 @@ const ShopPage = () => {
 
     if (response.status === 200) {
       getAvatarShop();
+      getCoin();
+
       return response;
     } else {
       return response;
@@ -134,7 +135,11 @@ const ShopPage = () => {
             />
           </div>
           <div className="w-1/2 flex justify-center bg-yellow-70 py-2 rounded-full">
-            {isLoadingAvatarShop ? <Loading /> : <UserCoin />}
+            {isLoadingAvatarShop && isLoadingThemeShop ? (
+              <Loading />
+            ) : (
+              <UserCoin coin={coinUser} />
+            )}
           </div>
         </div>
 
@@ -156,6 +161,7 @@ const ShopPage = () => {
           {menuNow === "AVATAR" && (
             <AvatarShop
               isLoadingAvatarShop={isLoadingAvatarShop}
+              setIsloadingAvatarShop={setIsloadingAvatarShop}
               avatarList={avatarList}
               setAvatarUserShow={setAvatarUserShow}
             />
@@ -165,6 +171,8 @@ const ShopPage = () => {
               themeList={themeList}
               isLoadingThemeShop={isLoadingThemeShop}
               getThemeShop={getThemeShop}
+              setIsloadingThemeShop={setIsloadingThemeShop}
+              getCoin={getCoin}
             />
           )}
         </div>

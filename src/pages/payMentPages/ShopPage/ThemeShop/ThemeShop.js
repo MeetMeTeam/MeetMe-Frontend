@@ -15,6 +15,9 @@ const ThemeShop = (props) => {
               ley={index}
               item={item}
               getThemeShop={props.getThemeShop}
+              isLoadingThemeShop={props.isLoadingThemeShop}
+              setIsloadingThemeShop={props.setIsloadingThemeShop}
+              getCoin={props.getCoin}
             />
           ))}
         </div>

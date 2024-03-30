@@ -22,6 +22,7 @@ const ThemeItem = (prop) => {
   const [errorText, setErrorText] = useState("");
   async function checkOut(id) {
     setIsLoading(true);
+    prop.setIsloadingThemeShop(true);
     const response = await api.buyAvatar({
       item_id: prop.item.id,
       item_type: "theme",
@@ -30,10 +31,12 @@ const ThemeItem = (prop) => {
       setIsLoading(false);
       setIsSuccess(true);
       prop.getThemeShop();
+      prop.getCoin();
     } else {
       setIsLoading(false);
       setErrorText(response.exception.response.data.message);
     }
+    prop.setIsloadingThemeShop(false);
   }
 
   return (
