@@ -105,7 +105,10 @@ const VideosContainer = ({
 
   useEffect(() => {
     handleUniqueStreams();
+    console.log(uniqueRemoteStreams);
+    console.log("is new 1");
   }, [remoteStreams]);
+
   const renderRemoteStream = (stream) => {
     const isCameraEnabled = otherUserActionCam.find(
       (item) => item.userId === stream.id
@@ -139,15 +142,17 @@ const VideosContainer = ({
             <AvatarUserPreview id={id} />
           </div>
         )}
-        {participants.map((item) => (
+        <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+          {stream.name.displayName}
+        </div>
+        {/* {participants.map((item) => (
           <div key={item.socketId}>
-            {item.userId === stream.id && (
-              <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
-                {stream.name.displayName}
-              </div>
-            )}
+            <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+              {stream.name.displayName}
+            </div>
+            )
           </div>
-        ))}
+        ))} */}
       </div>
     );
   };
