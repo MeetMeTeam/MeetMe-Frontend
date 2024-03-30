@@ -16,6 +16,7 @@ const style = {
 };
 
 const ItemModal = (prop) => {
+  console.log(prop.type)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     if (!prop.item.isOwner) {
@@ -65,10 +66,12 @@ const ItemModal = (prop) => {
         )}
       </div>
       <div className="font-medium flex flex-col  w-full  justify-center items-center py-2 rounded-b-xl text-black ">
-        <span className="flex items-center  text-[22px] bg-white/20 rounded-2xl px-3">
-          {prop.item.coin ? (
+
+        {prop.item.coin ? (
+          <span className="flex  text-[22px] bg-white/20 rounded-2xl px-2">
+
             <div className="text-[18px] flex">
-              
+
               <img
                 src={
                   "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/coin%2FwebCoinLogo.png?alt=media&token=c44adc87-a3db-4cfd-a6d8-73f4b66d4189"
@@ -76,17 +79,18 @@ const ItemModal = (prop) => {
                 className={" w-[30px] mr-2"}
                 alt="coin"
               />
+
               {prop.item.coin}
               {/* {prop.item.free > 0 && <span>(free {prop.item.free})</span>} */}
             </div>
-          ) : (
-            <div>{prop.item.name} </div>
-          )}
-        </span>
+          </span>
+        ) : (
+          <span className="flex items-center  text-[22px] rounded-2xl px-2 font-bold">
+            <div>{prop.item.name} </div></span>
+        )}
+
         <span className="font-bold flex mt-1np">
-          {prop.item.price}
-          &nbsp;
-          
+
           {prop.unit === "THB" ? (
             <div>{prop.unit}</div>
           ) : (
@@ -99,7 +103,9 @@ const ItemModal = (prop) => {
                 alt="coin"
               />
             </div>
-          )}
+          )}&nbsp;
+          {prop.item.price}
+
         </span>
       </div>
       <Modal
