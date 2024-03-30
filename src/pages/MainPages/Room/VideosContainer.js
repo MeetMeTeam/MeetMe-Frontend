@@ -64,11 +64,12 @@ const VideosContainer = ({
   useEffect(() => {}, [otherUserActionCam]);
 
   useEffect(() => {
-    console.log(participants);
+    // console.log(participants);
   }, [participants]);
 
   useEffect(() => {
     updateMyCamToOther();
+    console.log(remoteStreams);
   }, [remoteStreams]);
 
   useEffect(() => {}, [localStream]);
@@ -87,6 +88,24 @@ const VideosContainer = ({
     socketConnection.camChange(data);
   }
 
+  const [uniqueRemoteStreams, setUniqueRemoteStreams] = useState([]);
+
+  const handleUniqueStreams = () => {
+    const uniqueStreams = [];
+    remoteStreams.forEach((stream) => {
+      const isDuplicate = uniqueStreams.some(
+        (uniqueStream) => uniqueStream.id === stream.remoteStream.id
+      );
+      if (!isDuplicate) {
+        uniqueStreams.push(stream);
+      }
+    });
+    setUniqueRemoteStreams(uniqueStreams);
+  };
+
+  useEffect(() => {
+    handleUniqueStreams();
+  }, [remoteStreams]);
   const renderRemoteStream = (stream) => {
     const isCameraEnabled = otherUserActionCam.find(
       (item) => item.userId === stream.id
@@ -155,7 +174,7 @@ const VideosContainer = ({
         </div>
       </div>
 
-      {remoteStreams.map((stream) => (
+      {uniqueRemoteStreams.map((stream) => (
         <div
           onClick={() => handleOpen(stream.name)}
           key={stream.remoteStream.id}
