@@ -103,17 +103,18 @@ const InventoryModal = () => {
           {avatarUserNew && (
             <div className="absolute bottom-5 font-bold text-white flex flex-row w-full justify-center mt-4 space-x-2">
               <div
-                className="bg-green-70 px-4 py-2 rounded-lg cursor-pointer"
-                onClick={() => changeAvatar()}
-              >
-                บันทึก
-              </div>
-              <div
                 className="bg-red-70 px-4 py-2 rounded-lg cursor-pointer"
                 onClick={() => cancelChange()}
               >
-                ยกเลิก
+                Cancel
               </div>
+              <div
+                className="bg-green-70 px-4 py-2 rounded-lg cursor-pointer"
+                onClick={() => changeAvatar()}
+              >
+                Save
+              </div>
+              
             </div>
           )}
         </div>
