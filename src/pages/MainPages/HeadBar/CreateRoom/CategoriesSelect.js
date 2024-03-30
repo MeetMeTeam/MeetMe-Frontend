@@ -94,6 +94,11 @@ const CategoriesSelect = (props) => {
       name: "😡 Vulgar words",
       color: "bg-red-70",
     },
+    {
+      id: 19,
+      name: "🎬 Movies",
+      color: "bg-blue-70",
+    },
   ];
 
   const addOrReplaceCategory = (newCategory) => {
