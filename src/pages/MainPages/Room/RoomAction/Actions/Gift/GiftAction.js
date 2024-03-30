@@ -10,6 +10,7 @@ import * as apiPayment from "../../../../../../apiPayment";
 import * as api from "../../../../../../api";
 import UserCoin from "../../../../../payMentPages/ShopPage/UserCoin";
 import Loading from "../../../../../../shared/components/LoadingPage";
+import { makeStyles } from "@mui/styles";
 
 const gift = [
   {
@@ -55,7 +56,11 @@ const gift = [
     img: "https://storage.streamdps.com/iblock/f28/f2886812bc78d33eab9d70e86b665753/b97d8bfa0bc6d960cad3bfcf5716be12.png",
   },
 ];
-
+const useStyles = makeStyles({
+  paper: {
+    background: "#E5D6F5",
+  },
+});
 export default function GiftAction() {
   const [open, setOpen] = React.useState(false);
   let otherPeople = useSelector((state) => state.room.remoteStreams);
@@ -159,6 +164,9 @@ export default function GiftAction() {
     getGiftList();
     getCoin();
   }, []);
+
+  const classes = useStyles();
+
   return (
     <div>
       {isShowGift && (
@@ -171,7 +179,12 @@ export default function GiftAction() {
         Click={toggleDrawer(true)}
       />
 
-      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+        classes={{ paper: classes.paper }}
+        anchor="right"
+        open={open}
+        onClose={toggleDrawer(false)}
+      >
         <Box
           sx={{ backgroundColor: "#E5D6F5", width: 700 }}
           role="presentation"

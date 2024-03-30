@@ -15,6 +15,7 @@ import Modal from "@mui/material/Modal";
 import Card from "./Card";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { makeStyles } from "@mui/styles";
 
 const style = {
   position: "absolute",
@@ -23,7 +24,11 @@ const style = {
   transform: "translate(-50%, -50%)",
   outline: "none",
 };
-
+const useStyles = makeStyles({
+  paper: {
+    background: "#FCF7CF",
+  },
+});
 const mockCard = [
   {
     textTh: "เขียนคำถาม หรือ สุ่มคำถาม",
@@ -141,6 +146,9 @@ export default function CardTalkAction() {
     fetchCate();
     fetchQuestions();
   }, []);
+
+  const classes = useStyles();
+
   return (
     <div>
       <Button
@@ -150,7 +158,12 @@ export default function CardTalkAction() {
         Click={toggleDrawer(true)}
       />
 
-      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+        classes={{ paper: classes.paper }}
+        anchor="right"
+        open={open}
+        onClose={toggleDrawer(false)}
+      >
         <Box
           sx={{ width: 500, backgroundColor: "#FCF7CF" }}
           role="presentation"

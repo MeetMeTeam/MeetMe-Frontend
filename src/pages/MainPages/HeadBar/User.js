@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../../store/actions/authActions";
 import LoadingPage from "../../../shared/components/LoadingPage";
 import AvatarCard from "../../../shared/components/AvatarCard";
-
+import { makeStyles } from "@mui/styles";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,6 +29,11 @@ const style = {
   p: 4,
   borderRadius: "10px",
 };
+const useStyles = makeStyles({
+  paper: {
+    background: "#E5D6F5",
+  },
+});
 
 const User = () => {
   const userDetails = useSelector((state) => state.auth.userDetails);
@@ -100,6 +105,8 @@ const User = () => {
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
 
+  const classes = useStyles();
+
   return (
     <div>
       {isLoading && <LoadingPage />}
@@ -123,9 +130,14 @@ const User = () => {
         {!isUserInRoom && <KeyboardArrowDownIcon />}
       </div>
 
-      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 500 }} role="presentation">
-          <div className="bg-purple-90 items-center xxl:h-screen h-full px-10 py-5 flex flex-col justify-between">
+      <Drawer
+        classes={{ paper: classes.paper }}
+        anchor="right"
+        open={open}
+        onClose={toggleDrawer(false)}
+      >
+        <Box sx={{ width: 500, bgcolor: "" }} role="presentation">
+          <div className="items-center h-screen px-10 py-5 flex flex-col justify-between">
             <div className="w-full flex flex-col items-center justify-center">
               <AvatarCard userDataDetail={userDataDetail} />
 
