@@ -22,7 +22,7 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
       setTextError(response.exception.response.data.message);
     } else {
       setIsbuy(true);
-      dispatch(openAlertMessage("ซื้อสำเร็จ"));
+      dispatch(openAlertMessage("The product has been purchased."));
     }
     setIsLoading(false);
   }
