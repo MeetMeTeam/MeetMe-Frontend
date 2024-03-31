@@ -8,7 +8,8 @@ import { connect } from "react-redux";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 // import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails , image }) => {
+const FriendsListItem = ({ id, username, isOnline, setChosenChatDetails, image }) => {
+  console.log(image)
   const handleChooseActiveConversation = () => {
     setChosenChatDetails({ id: id, name: username }, chatTypes.DIRECT);
   };
@@ -30,25 +31,25 @@ const FriendsListItem = ({ id, username, isOnline , setChosenChatDetails , image
       className="bg-blue-70 rounded-2xl px-4"
     >
       <div className="relative">
-      <img src={image} className="w-[50px] object-cover rounded-lg" />
+        <img src={image} className="w-[50px]  object-cover" />
 
-      {isOnline && <OnlineIndicator />}
+        {isOnline && <OnlineIndicator />}
       </div>
-   
+
       <div className="flex flex-row items-center justify-between w-full">
-         <div
-       className="text-white flex flex-col space-y-[-7px] font-bold ml-2"
-      >
-      <div className="text-[18px]"> {username} </div>  
-      {/* <div className="text-[14px]">หาคนเล่นเกม DM </div> */}
-      </div>
-     
-     {/* <div className="flex space-x-1">
+        <div
+          className="text-white flex flex-col space-y-[-7px] font-bold ml-2"
+        >
+          <div className="text-[18px]"> {username} </div>
+          {/* <div className="text-[14px]">หาคนเล่นเกม DM </div> */}
+        </div>
+
+        {/* <div className="flex space-x-1">
       <MailOutlineIcon className="text-white cursor-pointer hover:bg-blue-60 rounded-md" style={{ fontSize: 33 }}/>
       <PhoneInTalkIcon className="text-white cursor-not-allowed hover:bg-blue-60 rounded-md" style={{ fontSize: 33 }}/>
      </div> */}
       </div>
-      
+
     </div>
   );
 };
