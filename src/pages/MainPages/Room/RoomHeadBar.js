@@ -18,6 +18,9 @@ export default function RoomHeadBar() {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 760px)" });
   const roomDetail = useSelector((state) => state.room.roomDetails);
   const activeRoom = useSelector((state) => state.room.activeRooms);
+  const other = useSelector((state) => state.room.otherUserActionCam);
+  const userId = useSelector((state) => state.auth?.userDetails?._id);
+
   const [countPerson, setCountPerson] = useState(0);
   const dispatch = useDispatch();
 
@@ -49,6 +52,16 @@ export default function RoomHeadBar() {
   useEffect(() => {
     handleCount();
   }, [activeRoom]);
+
+  useEffect(() => {
+    console.log(other);
+    for (let index = 0; index < other.length; index++) {
+      console.log(other[index].userId);
+      if (other[index].userId === userId) {
+        handleLeaveRoom();
+      }
+    }
+  }, [other]);
 
   return (
     <div className="w-full flex flex-wrap h-[30px]  justify-start space-x-4">
