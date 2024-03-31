@@ -34,7 +34,7 @@ export default function Chat({
         }}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon className="text-white" />}
+          // expandIcon={<ExpandMoreIcon className="text-white" />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
