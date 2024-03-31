@@ -56,6 +56,7 @@ const CreateRoom = () => {
 
   const [selectCategories, setSelectCategories] = useState([]);
   const [themeList, setThemeList] = useState(initialThemeList);
+  const [errorText, setErrorText] = useState("");
 
   async function getInventoryTheme() {
     const inventoryUser = await api.getInventory("theme");
@@ -80,6 +81,8 @@ const CreateRoom = () => {
     const password = "test";
     if (!isUserInRoom && roomName !== "") {
       roomHandler.createNewRoom(roomName, roomType, detail, password);
+    } else {
+      setErrorText("Room name doesn't empty");
     }
   };
   const handleRoomType = (type) => setRoomType(type);
@@ -100,6 +103,12 @@ const CreateRoom = () => {
     }
   }, [open]);
 
+  useEffect(() => {
+    setErrorText("");
+    if (roomName.length >= 50) {
+      setErrorText("Room name must be in 50 characters");
+    }
+  }, [roomName]);
   useEffect(() => {
     getInventoryTheme();
   }, []);
@@ -135,10 +144,16 @@ const CreateRoom = () => {
               setTheme={setTheme}
               themeList={themeList}
             />
+
             <div className="flex flex-row items-center space-x-4">
-              <div>
+              <div className="relative">
+                <div className="text-red-60 w-[500px] text-[14px] absolute bottom-[-20px]">
+                  {errorText}
+                </div>
+
                 <div className="text-purple-40 text-[12px]">Room Name</div>
                 <input
+                  maxLength={"50"}
                   className="w-full rounded-md bg-purple-50 px-4 py-3 text-white outline-none text-xs"
                   type="text"
                   value={roomName}
@@ -146,7 +161,6 @@ const CreateRoom = () => {
                   placeholder="Enter Your Room Name."
                 />
               </div>
-
               <div>
                 <div className="text-purple-40 text-[12px]">Talk Type</div>
                 <div className="flex flex-row space-x-1">
@@ -177,6 +191,7 @@ const CreateRoom = () => {
                 </div>
               </div>
             </div>
+
             <div>
               <div className="text-purple-40 text-[12px]">Category Room</div>
               <CategoriesSelect
