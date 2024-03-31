@@ -264,7 +264,7 @@ export default function CardTalkAction() {
               >
                 {selectCate ? selectCate : "Category"} <KeyboardArrowDownIcon />
                 {isShowDropdown && (
-                  <div className="absolute w-full max-h-[120px]  overflow-y-auto py-2 bg-purple-60 rounded-2xl top-[50px] left-0">
+                  <div className="absolute z-[100000] w-full max-h-[120px]  overflow-y-auto py-2 bg-purple-60 rounded-2xl top-[50px] left-0">
                     <div
                       onClick={() => setSelectCate("")}
                       className="py-1 px-3 hover:bg-purple-50"
