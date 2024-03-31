@@ -21,7 +21,6 @@ import AdminPage from "./pages/adminPages/admin-page";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 import { clearChatList } from "./store/actions/allChatAction";
-import { getFriends } from "./store/actions/friendsAction";
 
 import { useDispatch } from "react-redux";
 import LoadingPage from "./shared/components/LoadingPage";
@@ -41,7 +40,6 @@ function App() {
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
   useEffect(() => {
-    dispatch(getFriends());
     dispatch(clearChatList());
   }, []);
   useEffect(() => {

@@ -20,6 +20,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import Inventory from "../MainPages/Inventory/InventoryButton";
 import store from "../../store/store";
 import { clearCardTalk } from "../../store/actions/alertActions";
+import { getFriends } from "../../store/actions/friendsAction";
 
 const HomePage = ({ setUserDetails, isUserInRoom }) => {
   const userDetail = useSelector((state) => state.auth.userDetails);
@@ -60,7 +61,9 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
 
   useEffect(() => {
     store.dispatch(clearCardTalk());
+    store.dispatch(getFriends());
   }, [isUserInRoom]);
+
   return (
     <div className="min-h-screen xl:overflow-x-hidden min-w-[1200px]  flex flex-col">
       {/* {!isUserInRoom && <SnowAnimation className="z-10" />}  */}
