@@ -66,21 +66,21 @@ function App() {
     }, 500);
   }, [isUserInRoom]);
 
-  useEffect(() => {
-    if (activeRoom.length > 0) {
-      for (let index = 0; index < activeRoom.length; index++) {
-        for (
-          let index2 = 0;
-          index2 < activeRoom[index].participants.length;
-          index2++
-        ) {
-          if (activeRoom[index].participants[index2].userId === userId) {
-            checkUserInRoom({ isUserInRoom, userId });
-          }
-        }
-      }
-    }
-  }, [activeRoom]);
+  // useEffect(() => {
+  //   if (activeRoom.length > 0) {
+  //     for (let index = 0; index < activeRoom.length; index++) {
+  //       for (
+  //         let index2 = 0;
+  //         index2 < activeRoom[index].participants.length;
+  //         index2++
+  //       ) {
+  //         if (activeRoom[index].participants[index2].userId === userId) {
+  //           checkUserInRoom({ isUserInRoom, userId });
+  //         }
+  //       }
+  //     }
+  //   }
+  // }, [activeRoom]);
 
   return (
     <div className="relative">
