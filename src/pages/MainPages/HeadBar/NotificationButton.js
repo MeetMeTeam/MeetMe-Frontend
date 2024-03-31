@@ -92,11 +92,6 @@ export default function Notification() {
             {notiList.map((f) => (
               <div className="flex justify-between flex-row items-center space-x-2 bg-purple-70 rounded-[8px] p-2">
                 <div className="flex flex-row space-x-2 items-center">
-                  <img
-                    src={f.userDetail.image}
-                    className="rounded-full w-[30px]"
-                    alt="profile pic"
-                  />
                   <div className="text-[10px]">
                     <span className="font-bold">{f.userDetail.username} </span>{" "}
                     invited room to join their room
