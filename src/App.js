@@ -39,7 +39,7 @@ function App() {
 
   const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
   const userId = useSelector((state) => state.auth.userDetails?._id);
-  const activeRoom = useSelector((state) => state.auth.room?.activeRooms);
+  const activeRoom = useSelector((state) => state.room?.activeRooms);
 
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
   const [openModal, setOpenModal] = React.useState(false);
@@ -65,6 +65,22 @@ function App() {
       }
     }, 500);
   }, [isUserInRoom]);
+
+  useEffect(() => {
+    if (activeRoom.length > 0) {
+      for (let index = 0; index < activeRoom.length; index++) {
+        for (
+          let index2 = 0;
+          index2 < activeRoom[index].participants.length;
+          index2++
+        ) {
+          if (activeRoom[index].participants[index2].userId === userId) {
+            checkUserInRoom({ isUserInRoom, userId });
+          }
+        }
+      }
+    }
+  }, [activeRoom]);
 
   return (
     <div className="relative">
