@@ -94,6 +94,10 @@ export default function CardTalkAction() {
       socketConnection.sendCardTalk({ cardDetail, otherPeople });
 
       setOpen(false);
+      setCardDetail({
+        ...cardDetail,
+        text: "Ask Question or Random Question",
+      });
       handleOpen();
     }
   }
@@ -327,6 +331,12 @@ export default function CardTalkAction() {
                 {cardDetail.cardSender.length} / 25{" "}
               </div>
             </div>
+            {(cardDetail.text === "" ||
+              cardDetail.text === "Ask Question or Random Question") && (
+              <div className="mt-5 text-[12px]">
+                please Ask Question or Random Question
+              </div>
+            )}
             <div
               onClick={openCardTalk}
               className={
