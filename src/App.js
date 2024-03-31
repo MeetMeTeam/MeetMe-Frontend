@@ -28,6 +28,7 @@ import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
 import CancelPaymentPage from "./pages/payMentPages/payment-cancel";
 import { useParams, useHistory } from "react-router-dom";
+import { checkUserInRoom } from "./realtimeCommunication/socketConnection";
 
 function App() {
   const history = useHistory();
@@ -35,6 +36,11 @@ function App() {
   const isShowModalErrorSocket = useSelector(
     (state) => state.alert.isSocketErrorModal
   );
+
+  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
+  const userId = useSelector((state) => state.auth.userDetails?._id);
+  const activeRoom = useSelector((state) => state.auth.room?.activeRooms);
+
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -49,6 +55,16 @@ function App() {
       handleCloseModal();
     }
   }, [isShowModalErrorSocket]);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
+
+    setTimeout(() => {
+      if (userDetails) {
+        checkUserInRoom({ isUserInRoom, userId });
+      }
+    }, 500);
+  }, [isUserInRoom]);
 
   return (
     <div className="relative">

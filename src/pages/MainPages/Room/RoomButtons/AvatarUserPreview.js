@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AvatarPreview from "../Inventory/AvatarPreview";
-import * as api from "../../../api";
-import Loading from "../../../shared/components/Loading";
+import AvatarPreview from "../../Inventory/AvatarPreview";
+import * as api from "../../../../api";
+import Loading from "../../../../shared/components/Loading";
 
 export default function AvatarUserPreview({ id }) {
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);

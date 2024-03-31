@@ -81,6 +81,17 @@ export const connectWithSocketServer = (userDetails) => {
     roomHandler.updateActiveRooms(data);
   });
 
+  socket.on("remove-from-room", (data) => {
+    if (data.userId === store.getState().auth.userDetails._id) {
+      console.log("โดนเตะ");
+      console.log(socket.id);
+      console.log(data.socketId);
+      if (data.socketId !== socket.id) {
+        window.location.reload();
+      }
+    }
+  });
+
   socket.on("conn-prepare", (data) => {
     const { connUserSocketId, name, pic, id } = data;
     webRTCHandler.prepareNewPeerConnection(
@@ -238,4 +249,8 @@ export const sendGiftToOther = (data) => {
 
 export const sendCardTalk = (data) => {
   socket.emit("send-card-talk", data);
+};
+
+export const checkUserInRoom = (data) => {
+  socket.emit("check-user-in-room", data);
 };

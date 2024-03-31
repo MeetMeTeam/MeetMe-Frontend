@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Video from "./Video";
 import { useSelector } from "react-redux";
 import * as socketConnection from "../../../realtimeCommunication/socketConnection";
-import AvatarUserPreview from "./AvatarUserPreview";
+import AvatarUserPreview from "./RoomButtons/AvatarUserPreview";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
