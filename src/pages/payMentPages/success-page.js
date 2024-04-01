@@ -19,7 +19,7 @@ const SuccessPaymentPage = () => {
         className={" absolute z-30 w-[200px] left-10 bottom-5"}
       />
       <div
-        onClick={() => history.push("/shop")}
+        onClick={() => history.push("/")}
         className="bg-purple-70 text-white px-4 py-2 rounded-3xl font-medium cursor-pointer"
       >
         Go Back to Enjoying

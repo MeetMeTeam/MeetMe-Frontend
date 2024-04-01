@@ -32,11 +32,11 @@ const UserCoin = (props) => {
       {props.hidePlus ? (
         <div></div>
       ) : (
-        <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
-          <Plus
+        <div className="absolute right-1 rounded-full w-[20px] h-[20px] items-center flex justify-center">
+          {/* <Plus
             onClick={() => history.push("/shop")}
             className="text-gray-40  w-[15px] cursor-pointer"
-          />
+          /> */}
         </div>
       )}
     </div>

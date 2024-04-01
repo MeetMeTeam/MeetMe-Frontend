@@ -21,7 +21,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ShoppingBasket } from "lucide-react";
-
+import CloseIcon from "@mui/icons-material/Close";
 const style = {
   position: "absolute",
   top: "50%",
@@ -132,7 +132,13 @@ const ShopPage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className=" justify-center   bg-purple-90 p-10 md:space-y-0 space-y-4   select-none flex md:flex-row flex-col">
+          <div className="relative justify-center   bg-purple-90 p-10 md:space-y-0 space-y-4   select-none flex md:flex-row flex-col">
+            <div
+              onClick={handleClose}
+              className="bg-white rounded-full p-2 w-[40px] h-[40px] flex justify-center items-center cursor-pointer"
+            >
+              <CloseIcon />
+            </div>
             <div className="px-6 flex flex-col justify-center space-y-4 w-[300px]">
               <div
                 className={
