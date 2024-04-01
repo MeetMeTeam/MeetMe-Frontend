@@ -3,7 +3,6 @@
 
 name: Node.js CI
 
-
 on: [push]
 
 jobs:
@@ -51,6 +50,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            docker system prune -a -f
             docker volume prune -a -f
             cd MeetMe-Frontend/
             docker pull ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
