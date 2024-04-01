@@ -48,6 +48,7 @@ const VideosContainer = ({
   const [userDetailCard, setUserDetailCard] = React.useState(null);
   let [isShowAnimation, setIsShowAnimation] = useState(false);
   const handleOpen = (userDetail) => {
+    console.log(userDetail);
     setUserDetailCard(userDetail);
     setOpenModal(true);
   };
@@ -63,13 +64,10 @@ const VideosContainer = ({
 
   useEffect(() => {}, [otherUserActionCam]);
 
-  useEffect(() => {
-    // console.log(participants);
-  }, [participants]);
+  useEffect(() => {}, [participants]);
 
   useEffect(() => {
     updateMyCamToOther();
-    console.log(remoteStreams);
   }, [remoteStreams]);
 
   useEffect(() => {}, [localStream]);
@@ -79,6 +77,8 @@ const VideosContainer = ({
   }, [cameraEnabled]);
 
   function updateMyCamToOther(peopleInRoom) {
+    console.log("kuy");
+    console.log(participants);
     const data = {
       userId: userId,
       isCameraEnabled: cameraEnabled,
@@ -87,30 +87,6 @@ const VideosContainer = ({
     };
     socketConnection.camChange(data);
   }
-
-  const [uniqueRemoteStreams, setUniqueRemoteStreams] = useState([]);
-
-  const handleUniqueStreams = () => {
-    const uniqueStreams = [];
-    remoteStreams.forEach((stream) => {
-      const isDuplicate = uniqueStreams.some(
-        (uniqueStream) => uniqueStream.name._id === stream.name._id
-      );
-      const test = uniqueStreams.some((uniqueStream) => {
-        console.log("=============== ");
-
-        console.log(uniqueStream.name._id);
-        console.log(stream.name._id);
-        console.log("=============== ");
-      });
-      if (!isDuplicate) {
-        uniqueStreams.push(stream);
-      }
-    });
-    setUniqueRemoteStreams(uniqueStreams);
-  };
-
-  useEffect(() => {}, [remoteStreams]);
 
   const renderRemoteStream = (stream) => {
     const isCameraEnabled = otherUserActionCam.find(
@@ -145,17 +121,15 @@ const VideosContainer = ({
             <AvatarUserPreview id={id} />
           </div>
         )}
-        <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
-          {stream.name.displayName}
-        </div>
-        {/* {participants.map((item) => (
+        {participants.map((item) => (
           <div key={item.socketId}>
-            <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
-              {stream.name.displayName}
-            </div>
-            )
+            {item.socketId === stream.connUserSocketId && (
+              <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+                {stream.name.displayName}
+              </div>
+            )}
           </div>
-        ))} */}
+        ))}
       </div>
     );
   };
@@ -188,7 +162,7 @@ const VideosContainer = ({
           key={stream.remoteStream.id}
           className="another-custom-class"
         >
-          {participants.length > 0 && renderRemoteStream(stream)}
+          {renderRemoteStream(stream)}
         </div>
       ))}
 

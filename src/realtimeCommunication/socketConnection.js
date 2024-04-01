@@ -173,6 +173,8 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("other-cam-change", (data) => {
+    console.log(data);
+    console.log("มีคนปิดกล้องโว้ยยยยยยยยยยยยยย");
     store.dispatch(setOtherActionCam(data));
   });
 
