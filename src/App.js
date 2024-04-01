@@ -89,9 +89,9 @@ function App() {
         openModal={openModal}
         handleCloseModal={handleCloseModal}
         closeModal={handleCloseModal}
-        headText={"Failed connect to Server"}
-        textDetailOne={"socket server have problem, Sorry"}
-        textDetailTwo={`please try to connect again later.`}
+        headText={"There is a duplicate entry between the two browsers."}
+        textDetailOne={"Please use only one browser."}
+        textDetailTwo={``}
         bgColor="bg-purple-50"
       />
       <Router>

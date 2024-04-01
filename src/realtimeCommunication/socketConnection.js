@@ -40,7 +40,6 @@ export const connectWithSocketServer = (userDetails) => {
   // function checkError() {
   //   retries++;
   //   if (!socket.connected && retries % 3 === 0) {
-  //     store.dispatch(setModalErrorSocket(true));
   //   }
   // }
   // setInterval(checkError, 1000);
@@ -89,6 +88,7 @@ export const connectWithSocketServer = (userDetails) => {
       if (data.socketId !== socket.id) {
         // window.location.reload();
         roomHandler.leaveRoom();
+        store.dispatch(setModalErrorSocket(true));
       }
     }
   });
