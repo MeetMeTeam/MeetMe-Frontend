@@ -59,14 +59,14 @@ export default function RoomHeadBar() {
 
   useEffect(() => {
     console.log(other);
-    for (let index = 0; index < other.length; index++) {
-      console.log(other[index].userId);
-      if (other[index].userId === userId) {
-        console.log("ซ้ำ");
-        handleLeaveRoom();
-        dispatch(removeAllOtherActionCam([]));
-      }
-    }
+    // for (let index = 0; index < other.length; index++) {
+    //   console.log(other[index].userId);
+    //   if (other[index].userId === userId) {
+    //     console.log("ซ้ำ");
+    //     handleLeaveRoom();
+    //     dispatch(removeAllOtherActionCam([]));
+    //   }
+    // }
   }, [other]);
 
   return (
