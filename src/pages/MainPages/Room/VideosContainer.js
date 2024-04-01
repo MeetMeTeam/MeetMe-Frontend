@@ -121,13 +121,9 @@ const VideosContainer = ({
             <AvatarUserPreview id={id} />
           </div>
         )}
-        {participants.map((item) => (
-          <div key={item.socketId}>
-            <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
-              {stream.name.displayName}
-            </div>
-          </div>
-        ))}
+        <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+          {stream.name.displayName}
+        </div>
       </div>
     );
   };
