@@ -8,7 +8,7 @@ import Inventory from "../Inventory/InventoryButton";
 import { ShoppingBasket } from "lucide-react";
 import UserCoin from "../../payMentPages/ShopPage/UserCoin";
 import FriendsSideBar from "../FriendsSideBar/FriendsSideBar";
-
+import ShopPage from "../../../pages/payMentPages/shop-page";
 export default function HeadBar() {
   const history = useHistory();
 
@@ -24,12 +24,13 @@ export default function HeadBar() {
           {/* <JoinRoomRandom/> */}
 
           {/* <Inventory /> */}
-          <div
+          {/* <div
             onClick={() => history.push("/shop")}
             className=" bg-[#8379FD] text-white flex gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer"
           >
             <ShoppingBasket className="button-shop" /> Shop
-          </div>
+          </div> */}
+          <ShopPage />
           <CreateRoom />
           <FriendsSideBar />
           <Notification />

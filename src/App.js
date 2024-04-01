@@ -123,9 +123,9 @@ function App() {
           <Route exact path="/admin">
             <AdminPage />
           </Route>
-          <Route exact path="/shop">
+          {/* <Route exact path="/shop">
             <ShopPage />
-          </Route>
+          </Route> */}
           <Route path="/">
             <Redirect to="/home" />
           </Route>
