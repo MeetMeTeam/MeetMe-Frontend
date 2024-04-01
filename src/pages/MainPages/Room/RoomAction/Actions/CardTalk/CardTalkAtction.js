@@ -296,7 +296,7 @@ export default function CardTalkAction() {
               </div>
               <textarea
                 maxLength={"200"}
-                value={cardDetail?.bio}
+                value={cardDetail?.text}
                 onChange={(e) => {
                   setCardDetail({
                     ...cardDetail,
