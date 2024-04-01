@@ -35,20 +35,20 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
           {activeRooms &&
             activeRooms.map((room) => (
               <ActiveRoomButton
-                roomId={room.roomId}
-                creatorUsername={room.creatorUsername}
+                roomId={room?.roomId}
+                creatorUsername={room?.creatorUsername}
                 amountOfParticipants={
-                  room.participants[0].userId === "default" &&
-                  room.participants.length === 1
+                  room?.participants[0]?.userId === "default" &&
+                  room?.participants?.length === 1
                     ? 0
-                    : room.participants[0].userId === "default"
-                    ? room.participants.length - 1
-                    : room.participants.length
+                    : room?.participants[0]?.userId === "default"
+                    ? room?.participants?.length - 1
+                    : room?.participants?.length
                 }
-                key={room.roomId}
+                key={room?.roomId}
                 isUserInRoom={isUserInRoom}
-                roomName={room.roomCreator.roomName}
-                type={room.roomCreator.type}
+                roomName={room?.roomCreator?.roomName}
+                type={room?.roomCreator?.type}
                 data={room}
               />
             ))}
