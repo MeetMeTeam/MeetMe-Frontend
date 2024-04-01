@@ -27,6 +27,7 @@ export default function RoomHeadBar() {
   const dispatch = useDispatch();
 
   const handleLeaveRoom = () => {
+    history.push("/");
     roomHandler.leaveRoom();
     dispatch(clearChatList());
     dispatch(removeAllOtherActionCam([]));
@@ -72,7 +73,7 @@ export default function RoomHeadBar() {
   return (
     <div className="w-full flex flex-wrap h-[30px]  justify-start space-x-4">
       <div
-        onClick={() => history.push("/")}
+        onClick={() => handleLeaveRoom()}
         className="md:text-[16px] text-[10px] cursor-pointer flex  items-center justify-center bg-purple-80 hover:bg-purple-70 text-purple-60 py-3 md:px-4 px-1 md:pr-5 rounded-2xl font-bold"
       >
         <ArrowBackIosNewIcon /> Lobby
