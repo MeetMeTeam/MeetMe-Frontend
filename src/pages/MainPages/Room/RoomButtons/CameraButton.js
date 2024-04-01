@@ -13,6 +13,7 @@ const CameraButton = ({ localStream, cameraEnabled, setCameraEnabled }) => {
 
   const handleToggleCamera = () => {
     if (localStream) {
+      console.log(localStream);
       if (cameraEnabled) {
         if (localStream.getVideoTracks().length > 0) {
           localStream.getVideoTracks()[0].enabled = false;
@@ -34,13 +35,13 @@ const CameraButton = ({ localStream, cameraEnabled, setCameraEnabled }) => {
 
   return (
     <div>
-      {localStream.getVideoTracks().length !== 0 && (
+      {localStream?.getVideoTracks().length !== 0 && (
         <IconButton onClick={handleToggleCamera} style={{ color: "white" }}>
           {cameraEnabled ? <VideocamIcon /> : <VideocamOffIcon />}
         </IconButton>
       )}
 
-      {localStream.getVideoTracks().length === 0 && (
+      {localStream?.getVideoTracks().length === 0 && (
         <IconButton style={{ color: "white" }}>
           <VideocamOffIcon />
         </IconButton>

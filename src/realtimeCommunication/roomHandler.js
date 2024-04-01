@@ -93,6 +93,7 @@ export const leaveRoom = () => {
   const roomId = store.getState().room?.roomDetails?.roomId;
 
   const localStream = store.getState().room.localStream;
+  console.log(localStream);
   if (localStream) {
     localStream.getTracks().forEach((track) => track.stop());
     store.dispatch(setLocalStream(null));

@@ -87,7 +87,8 @@ export const connectWithSocketServer = (userDetails) => {
       console.log(socket.id);
       console.log(data.socketId);
       if (data.socketId !== socket.id) {
-        window.location.reload();
+        // window.location.reload();
+        roomHandler.leaveRoom();
       }
     }
   });

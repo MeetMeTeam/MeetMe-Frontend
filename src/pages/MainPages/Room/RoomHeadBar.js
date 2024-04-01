@@ -43,12 +43,12 @@ export default function RoomHeadBar() {
       }
     });
   };
-  useEffect(() => {
-    return () => {
-      console.log("cleaned up");
-      handleLeaveRoom();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     console.log("cleaned up");
+  //     handleLeaveRoom();
+  //   };
+  // }, []);
   useEffect(() => {
     handleCount();
   }, [activeRoom]);
@@ -88,7 +88,7 @@ export default function RoomHeadBar() {
         </div>
         {!isTabletOrMobile && <ChairIcon />}
       </div>
-      <InviteRoom />
+      {/* <InviteRoom /> */}
     </div>
   );
 }
