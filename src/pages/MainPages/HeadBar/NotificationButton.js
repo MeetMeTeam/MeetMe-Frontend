@@ -54,13 +54,15 @@ export default function Notification() {
     setRoomDetail(data);
     setUserDetail(username);
   };
+  let count = 0;
   const joinRoom = (data) => {
-    console.log(data);
-    let count = 0;
     if (count === 0) {
       count++;
       roomHandler.joinRoom(data);
     }
+    setTimeout(() => {
+      count = 0;
+    }, 2000);
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
