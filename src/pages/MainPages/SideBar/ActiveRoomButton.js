@@ -83,7 +83,7 @@ const ActiveRoomButton = ({
               Join
             </div>
           )}
-          {amountOfParticipants > 4 && (
+          {amountOfParticipants >= 4 && (
             <div
               className="bg-gray-60 px-4 py-1 rounded-3xl
            text-white flex items-center justify-center

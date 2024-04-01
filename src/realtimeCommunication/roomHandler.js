@@ -56,13 +56,13 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
+  console.log(data);
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
     store.dispatch(clearChatList());
 
     store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-    //ส่งข้อมูลให้คนอื่นเห็นในห้อง
 
     const userDetailsWithoutSensitiveData = {
       ...store.getState().auth.userDetails,
@@ -72,13 +72,11 @@ export const joinRoom = (data) => {
     delete userDetailsWithoutSensitiveData.mail;
     delete userDetailsWithoutSensitiveData.coin;
 
-    // นำ object ใหม่ไปใส่ในตัวแปรใหม่
     const modifiedUserDetails = userDetailsWithoutSensitiveData;
 
     socketConnection.joinRoom({
       roomId: data.roomId,
       name: modifiedUserDetails,
-      pic: "testpic2",
       id: store.getState().auth.userDetails._id,
     });
   };
@@ -92,7 +90,7 @@ export const joinRoom = (data) => {
 
 export const leaveRoom = () => {
   store.dispatch(setErrorModal(null));
-  const roomId = store.getState().room.roomDetails.roomId;
+  const roomId = store.getState().room?.roomDetails?.roomId;
 
   const localStream = store.getState().room.localStream;
   if (localStream) {
@@ -102,7 +100,9 @@ export const leaveRoom = () => {
 
   store.dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
-  socketConnection.leaveRoom({ roomId });
+  if (roomId) {
+    socketConnection.leaveRoom({ roomId });
+  }
   store.dispatch(setRoomDetails(null));
   store.dispatch(setOpenRoom(false, false));
 };

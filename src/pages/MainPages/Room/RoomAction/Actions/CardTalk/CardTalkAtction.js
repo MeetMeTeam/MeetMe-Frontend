@@ -86,11 +86,20 @@ export default function CardTalkAction() {
   const handleClose = () => setOpenModal(false);
 
   function openCardTalk() {
-    setSelectCard(cardDetail);
-    socketConnection.sendCardTalk({ cardDetail, otherPeople });
+    if (
+      cardDetail.text !== "Ask Question or Random Question" &&
+      cardDetail.text !== ""
+    ) {
+      setSelectCard(cardDetail);
+      socketConnection.sendCardTalk({ cardDetail, otherPeople });
 
-    setOpen(false);
-    handleOpen();
+      setOpen(false);
+      setCardDetail({
+        ...cardDetail,
+        text: "Ask Question or Random Question",
+      });
+      handleOpen();
+    }
   }
 
   function randomCard() {
@@ -255,7 +264,7 @@ export default function CardTalkAction() {
               >
                 {selectCate ? selectCate : "Category"} <KeyboardArrowDownIcon />
                 {isShowDropdown && (
-                  <div className="absolute w-full max-h-[120px]  overflow-y-auto py-2 bg-purple-60 rounded-2xl top-[50px] left-0">
+                  <div className="absolute z-[100000] w-full max-h-[120px]  overflow-y-auto py-2 bg-purple-60 rounded-2xl top-[50px] left-0">
                     <div
                       onClick={() => setSelectCate("")}
                       className="py-1 px-3 hover:bg-purple-50"
@@ -281,7 +290,7 @@ export default function CardTalkAction() {
               </div>
             </div>
 
-            <div className="w-full mt-4">
+            <div className="w-full mt-4 relative">
               <div className="w-full font-bold text-[20px]  text-black ">
                 Question
               </div>
@@ -296,12 +305,19 @@ export default function CardTalkAction() {
                 }}
                 className="p-2 text-black w-full outline-none rounded-xl bg-purple-90 mt-2 py-2"
               />
+              <div className="absolute right-3 text-[14px]">
+                {cardDetail.text === "Ask Question or Random Question"
+                  ? 0
+                  : cardDetail.text.length}{" "}
+                / 200{" "}
+              </div>
             </div>
-            <div className="w-full">
+            <div className="w-full relative">
               <div className="w-full my-2 font-bold text-[20px]  text-black">
                 Sender
               </div>
               <input
+                maxLength={"25"}
                 value={cardDetail?.cardSender}
                 onChange={(e) => {
                   setCardDetail({
@@ -311,10 +327,25 @@ export default function CardTalkAction() {
                 }}
                 className="p-2 text-black w-full py-3 mb-2 outline-none rounded-xl bg-purple-90"
               />
+              <div className="absolute right-3 text-[14px]">
+                {cardDetail.cardSender.length} / 25{" "}
+              </div>
             </div>
+            {(cardDetail.text === "" ||
+              cardDetail.text === "Ask Question or Random Question") && (
+              <div className="mt-5 text-[12px]">
+                please Ask Question or Random Question
+              </div>
+            )}
             <div
               onClick={openCardTalk}
-              className="bg-purple-60 font-bold  mt-4 hover:bg-red-60 text-white cursor-pointer px-16 py-3 rounded-xl"
+              className={
+                (cardDetail.text !== "" &&
+                cardDetail.text !== "Ask Question or Random Question"
+                  ? "bg-purple-60 cursor-pointer"
+                  : "bg-gray-60 cursor-not-allowed") +
+                "   font-bold  mt-4  text-white  px-16 py-3 rounded-xl"
+              }
             >
               Send
             </div>

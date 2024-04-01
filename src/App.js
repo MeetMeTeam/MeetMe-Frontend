@@ -21,12 +21,14 @@ import AdminPage from "./pages/adminPages/admin-page";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 import { clearChatList } from "./store/actions/allChatAction";
+
 import { useDispatch } from "react-redux";
 import LoadingPage from "./shared/components/LoadingPage";
 import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
 import CancelPaymentPage from "./pages/payMentPages/payment-cancel";
 import { useParams, useHistory } from "react-router-dom";
+import { checkUserInRoom } from "./realtimeCommunication/socketConnection";
 
 function App() {
   const history = useHistory();
@@ -34,6 +36,11 @@ function App() {
   const isShowModalErrorSocket = useSelector(
     (state) => state.alert.isSocketErrorModal
   );
+
+  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
+  const userId = useSelector((state) => state.auth.userDetails?._id);
+  const activeRoom = useSelector((state) => state.room?.activeRooms);
+
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -48,6 +55,32 @@ function App() {
       handleCloseModal();
     }
   }, [isShowModalErrorSocket]);
+
+  useEffect(() => {
+    const userDetails = localStorage.getItem("user");
+
+    setTimeout(() => {
+      if (userDetails) {
+        checkUserInRoom({ isUserInRoom, userId });
+      }
+    }, 500);
+  }, [isUserInRoom]);
+
+  // useEffect(() => {
+  //   if (activeRoom.length > 0) {
+  //     for (let index = 0; index < activeRoom.length; index++) {
+  //       for (
+  //         let index2 = 0;
+  //         index2 < activeRoom[index].participants.length;
+  //         index2++
+  //       ) {
+  //         if (activeRoom[index].participants[index2].userId === userId) {
+  //           checkUserInRoom({ isUserInRoom, userId });
+  //         }
+  //       }
+  //     }
+  //   }
+  // }, [activeRoom]);
 
   return (
     <div className="relative">

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Video from "./Video";
 import { useSelector } from "react-redux";
 import * as socketConnection from "../../../realtimeCommunication/socketConnection";
-import AvatarUserPreview from "./AvatarUserPreview";
+import AvatarUserPreview from "./RoomButtons/AvatarUserPreview";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -94,8 +94,16 @@ const VideosContainer = ({
     const uniqueStreams = [];
     remoteStreams.forEach((stream) => {
       const isDuplicate = uniqueStreams.some(
-        (uniqueStream) => uniqueStream.id === stream.remoteStream.id
+        (uniqueStream) =>
+          uniqueStream.remoteStream.id === stream.remoteStream.id
       );
+      const test = uniqueStreams.some((uniqueStream) => {
+        console.log("=============== ");
+
+        console.log(uniqueStream.remoteStream.id);
+        console.log(stream.remoteStream.id);
+        console.log("=============== ");
+      });
       if (!isDuplicate) {
         uniqueStreams.push(stream);
       }
@@ -105,6 +113,7 @@ const VideosContainer = ({
 
   useEffect(() => {
     handleUniqueStreams();
+    console.log("uniqueRemoteStreams ");
     console.log(uniqueRemoteStreams);
     console.log("is new 1");
   }, [remoteStreams]);
