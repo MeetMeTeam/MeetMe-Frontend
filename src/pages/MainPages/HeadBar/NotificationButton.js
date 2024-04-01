@@ -12,6 +12,7 @@ import styles from "../../../shared/css/scollBarFreind.module.css";
 import ModalText from "../../../shared/components/ModalText";
 import store from "../../../store/store";
 import { removeNotification } from "../../../store/actions/alertActions";
+import { setLoadingPage } from "../../../store/actions/alertActions";
 
 const style = {
   position: "absolute",
@@ -56,6 +57,8 @@ export default function Notification() {
   };
   let count = 0;
   const joinRoom = (data) => {
+    store.dispatch(setLoadingPage(true));
+
     if (count === 0) {
       count++;
       roomHandler.joinRoom(data);

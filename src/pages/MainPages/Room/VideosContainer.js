@@ -94,14 +94,13 @@ const VideosContainer = ({
     const uniqueStreams = [];
     remoteStreams.forEach((stream) => {
       const isDuplicate = uniqueStreams.some(
-        (uniqueStream) =>
-          uniqueStream.remoteStream.id === stream.remoteStream.id
+        (uniqueStream) => uniqueStream.name._id === stream.name._id
       );
       const test = uniqueStreams.some((uniqueStream) => {
         console.log("=============== ");
 
-        console.log(uniqueStream.remoteStream.id);
-        console.log(stream.remoteStream.id);
+        console.log(uniqueStream.name._id);
+        console.log(stream.name._id);
         console.log("=============== ");
       });
       if (!isDuplicate) {
