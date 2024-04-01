@@ -9,6 +9,8 @@ import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 import InviteRoom from "./InviteRoom/InviteRoom";
 import { useMediaQuery } from "react-responsive";
 import { clearChatList } from "../../../store/actions/allChatAction";
+import { removeAllOtherActionCam } from "../../../store/actions/roomActions";
+
 import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 
@@ -27,6 +29,7 @@ export default function RoomHeadBar() {
   const handleLeaveRoom = () => {
     roomHandler.leaveRoom();
     dispatch(clearChatList());
+    dispatch(removeAllOtherActionCam([]));
   };
   const handleCount = () => {
     activeRoom.map((item) => {
@@ -47,6 +50,7 @@ export default function RoomHeadBar() {
   //   return () => {
   //     console.log("cleaned up");
   //     handleLeaveRoom();
+  //     dispatch(removeAllOtherActionCam([]));
   //   };
   // }, []);
   useEffect(() => {
@@ -58,7 +62,9 @@ export default function RoomHeadBar() {
     for (let index = 0; index < other.length; index++) {
       console.log(other[index].userId);
       if (other[index].userId === userId) {
+        console.log("ซ้ำ");
         handleLeaveRoom();
+        dispatch(removeAllOtherActionCam([]));
       }
     }
   }, [other]);

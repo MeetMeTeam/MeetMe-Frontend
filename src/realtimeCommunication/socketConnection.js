@@ -82,11 +82,12 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("remove-from-room", (data) => {
     if (data.userId === store.getState().auth.userDetails._id) {
-      console.log("โดนเตะ");
       console.log(socket.id);
       console.log(data.socketId);
       if (data.socketId !== socket.id) {
         // window.location.reload();
+        console.log("โดนเตะ");
+
         roomHandler.leaveRoom();
         store.dispatch(setModalErrorSocket(true));
       }

@@ -56,15 +56,15 @@ function App() {
     }
   }, [isShowModalErrorSocket]);
 
-  useEffect(() => {
-    const userDetails = localStorage.getItem("user");
+  // useEffect(() => {
+  //   const userDetails = localStorage.getItem("user");
 
-    setTimeout(() => {
-      if (userDetails) {
-        checkUserInRoom({ isUserInRoom, userId });
-      }
-    }, 500);
-  }, [isUserInRoom]);
+  //   setTimeout(() => {
+  //     if (userDetails) {
+  //       checkUserInRoom({ isUserInRoom, userId });
+  //     }
+  //   }, 500);
+  // }, [isUserInRoom]);
 
   // useEffect(() => {
   //   if (activeRoom.length > 0) {

@@ -10,6 +10,7 @@ export const roomActions = {
   SET_OTHER_USER_ACTION_CAM: "ROOM.SET_OTHER_USER_ACTION_CAM",
   REMOVE_OTHER_USER_ACTION_CAM: "ROOM.REMOVE_OTHER_USER_ACTION_CAM",
   SET_MODAL_ERROR_SHOW: "ROOM.SET_MODAL_ERROR_SHOW",
+  SET_REMOVE_ALL_ACTION: "ROOM.SET_REMOVE_ALL_ACTION",
 };
 
 export const setOpenRoom = (
@@ -32,6 +33,15 @@ export const getActions = (dispatch) => {
     setOtherActionCam: (content) => dispatch(setOtherActionCam(content)),
     removeOtherActionCam: (content) => dispatch(removeOtherActionCam(content)),
     setErrorModal: (content) => dispatch(setErrorModal(content)),
+    removeAllOtherActionCam: (content) =>
+      dispatch(removeAllOtherActionCam(content)),
+  };
+};
+
+export const removeAllOtherActionCam = (content) => {
+  return {
+    type: roomActions.SET_REMOVE_ALL_ACTION,
+    content,
   };
 };
 

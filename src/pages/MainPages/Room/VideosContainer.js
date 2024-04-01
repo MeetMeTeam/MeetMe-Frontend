@@ -110,12 +110,7 @@ const VideosContainer = ({
     setUniqueRemoteStreams(uniqueStreams);
   };
 
-  useEffect(() => {
-    handleUniqueStreams();
-    console.log("uniqueRemoteStreams ");
-    console.log(uniqueRemoteStreams);
-    console.log("is new 1");
-  }, [remoteStreams]);
+  useEffect(() => {}, [remoteStreams]);
 
   const renderRemoteStream = (stream) => {
     const isCameraEnabled = otherUserActionCam.find(
@@ -187,7 +182,7 @@ const VideosContainer = ({
         </div>
       </div>
 
-      {uniqueRemoteStreams.map((stream) => (
+      {remoteStreams.map((stream) => (
         <div
           onClick={() => handleOpen(stream.name)}
           key={stream.remoteStream.id}

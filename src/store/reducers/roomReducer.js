@@ -17,6 +17,13 @@ const initState = {
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
+    case roomActions.SET_REMOVE_ALL_ACTION:
+      console.log(action.content);
+
+      return {
+        ...state,
+        otherUserActionCam: action.content,
+      };
     case roomActions.SET_MODAL_ERROR_SHOW:
       return {
         ...state,
