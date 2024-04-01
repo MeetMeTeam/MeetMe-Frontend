@@ -56,13 +56,13 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
+  console.log(data);
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
     store.dispatch(clearChatList());
 
     store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-    //ส่งข้อมูลให้คนอื่นเห็นในห้อง
 
     const userDetailsWithoutSensitiveData = {
       ...store.getState().auth.userDetails,
@@ -72,13 +72,11 @@ export const joinRoom = (data) => {
     delete userDetailsWithoutSensitiveData.mail;
     delete userDetailsWithoutSensitiveData.coin;
 
-    // นำ object ใหม่ไปใส่ในตัวแปรใหม่
     const modifiedUserDetails = userDetailsWithoutSensitiveData;
 
     socketConnection.joinRoom({
       roomId: data.roomId,
       name: modifiedUserDetails,
-      pic: "testpic2",
       id: store.getState().auth.userDetails._id,
     });
   };

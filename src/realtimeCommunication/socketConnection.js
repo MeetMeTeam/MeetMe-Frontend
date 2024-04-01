@@ -93,6 +93,7 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("conn-prepare", (data) => {
+    console.log("มีคนขอเชื่อมต่อ");
     const { connUserSocketId, name, pic, id } = data;
     webRTCHandler.prepareNewPeerConnection(
       connUserSocketId,

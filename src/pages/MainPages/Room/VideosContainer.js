@@ -94,7 +94,8 @@ const VideosContainer = ({
     const uniqueStreams = [];
     remoteStreams.forEach((stream) => {
       const isDuplicate = uniqueStreams.some(
-        (uniqueStream) => uniqueStream.id === stream.remoteStream.id
+        (uniqueStream) =>
+          uniqueStream.remoteStream.id === stream.remoteStream.id
       );
       if (!isDuplicate) {
         uniqueStreams.push(stream);
