@@ -97,6 +97,13 @@ const VideosContainer = ({
         (uniqueStream) =>
           uniqueStream.remoteStream.id === stream.remoteStream.id
       );
+      const test = uniqueStreams.some((uniqueStream) => {
+        console.log("=============== ");
+
+        console.log(uniqueStream.remoteStream.id);
+        console.log(stream.remoteStream.id);
+        console.log("=============== ");
+      });
       if (!isDuplicate) {
         uniqueStreams.push(stream);
       }
@@ -106,6 +113,7 @@ const VideosContainer = ({
 
   useEffect(() => {
     handleUniqueStreams();
+    console.log("uniqueRemoteStreams ");
     console.log(uniqueRemoteStreams);
     console.log("is new 1");
   }, [remoteStreams]);
