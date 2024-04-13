@@ -8,7 +8,9 @@ import RoomHeadBar from "./RoomHeadBar";
 import User from "../HeadBar/User";
 import Chat from "../ChatAll/ChatRoom";
 import { useMediaQuery } from "react-responsive";
-
+import RoomAction from "./RoomAction/RoomAction";
+import FireWorkAnimation from "../../../shared/components/FireworkAnimation";
+import Card from "./RoomAction/Actions/CardTalk/Card";
 const Room = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 660px)" });
   const [isRoomMinimized, setIsRoomMinimized] = useState(true);
@@ -21,32 +23,50 @@ const Room = () => {
     setIsRoomMinimized(!isRoomMinimized);
   };
   useEffect(() => {}, [roomDetail]);
+  const divStyle = {
+    backgroundImage: `url("${roomDetail?.roomCreator.detail.theme.link}")`,
+    backgroundSize: "cover",
+  };
 
   return (
-    <div className="absolute flex justify-center w-screen md:h-screen h-full">
+    <div
+      style={divStyle}
+      className="absolute flex justify-center w-screen  overflow-y-hidden overflow-x-auto md:h-screen h-full"
+    >
+      {/* <FireWorkAnimation /> */}
+
       <div className="absolute top-0 z-20 w-full flex flex-row md:justify-between  md:p-6 p-2">
         <RoomHeadBar />
         <User />
       </div>
-      <img
+      {/* <img
         src={process.env.PUBLIC_URL + "/RoomBg.png"}
         className="absolute lg:object-cover object-cover h-screen w-screen"
-      />
+      /> */}
+      {/* {roomDetail?.roomCreator && (
+        <img
+          src={roomDetail?.roomCreator.detail.theme.link}
+          className="absolute lg:object-cover object-cover w-full"
+          alt="background"
+        />
+      )} */}
       {roomDetail !== undefined && (
         <VideosContainer
           cameraEnabled={cameraEnabled}
           roomId={roomDetail?.roomId}
         />
       )}
-      <div className="absolute right-2 bottom-6 flex flex-row justify-end items-center w-[1000px]">
+      <div
+        style={{ zoom: 0.9 }}
+        className="absolute right-2 bottom-6 flex flex-row gap-4 justify-end items-center w-[1000px]"
+      >
+        <RoomAction />
         {!isTabletOrMobile && <Chat people={people} />}
       </div>
-      <div className="absolute left-2  flex flex-row justify-center items-center  bottom-6 bg-purple-80 w-[200px] h-[70px]  rounded-md">
-        <RoomButtons
-          cameraEnabled={cameraEnabled}
-          setCameraEnabled={setCameraEnabled}
-        />
-      </div>
+      <RoomButtons
+        cameraEnabled={cameraEnabled}
+        setCameraEnabled={setCameraEnabled}
+      />
     </div>
   );
 };

@@ -12,12 +12,18 @@ const initState = {
   isScreenSharingActive: false,
   isUserJoinedWithOnlyAudio: false,
   otherUserActionCam: [],
-  isModalCantJoinShow:null
+  isModalCantJoinShow: null,
 };
 
 const reducer = (state = initState, action) => {
-  
   switch (action.type) {
+    case roomActions.SET_REMOVE_ALL_ACTION:
+      console.log(action.content);
+
+      return {
+        ...state,
+        otherUserActionCam: action.content,
+      };
     case roomActions.SET_MODAL_ERROR_SHOW:
       return {
         ...state,
@@ -26,7 +32,9 @@ const reducer = (state = initState, action) => {
     case roomActions.REMOVE_OTHER_USER_ACTION_CAM:
       let newOtherUserAction = [];
       newOtherUserAction = [...state.otherUserActionCam];
-      const index = newOtherUserAction.findIndex((item) => item.id === action.content);
+      const index = newOtherUserAction.findIndex(
+        (item) => item.id === action.content
+      );
       newOtherUserAction.splice(index, 1);
       return { ...state, otherUserActionCam: newOtherUserAction };
     case roomActions.SET_OTHER_USER_ACTION_CAM:
@@ -45,7 +53,6 @@ const reducer = (state = initState, action) => {
       }
       return { ...state, otherUserActionCam: newOtherUserActionCam };
     case roomActions.OPEN_ROOM:
-      console.log(action.isUserInRoom)
       return {
         ...state,
         isUserInRoom: action.isUserInRoom,
@@ -57,9 +64,13 @@ const reducer = (state = initState, action) => {
         roomDetails: action.roomDetails,
       };
     case roomActions.SET_ACTIVE_ROOMS:
+      const sortedActiveRooms = action.activeRooms.slice().sort((a, b) => {
+        return b.participants.length - a.participants.length;
+      });
+
       return {
         ...state,
-        activeRooms: action.activeRooms,
+        activeRooms: sortedActiveRooms,
       };
     case roomActions.SET_LOCAL_STREAM:
       return {

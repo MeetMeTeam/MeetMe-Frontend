@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Briefcase } from "lucide-react";
 import Modal from "@mui/material/Modal";
 import InventoryModal from "./InventoryModal";
-
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 const InventoryButton = ({ custom, text, styleCustom, isShowIcon }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -15,15 +15,17 @@ const InventoryButton = ({ custom, text, styleCustom, isShowIcon }) => {
           <div onClick={handleOpen} className={styleCustom}>
             {text}{" "}
             {isShowIcon && (
-              <Briefcase className="text-black scale-75 ml-1 cursor-pointer" />
+              <BusinessCenterIcon className="text-black scale-75 ml-1 cursor-pointer" />
             )}
           </div>
         ) : (
-          <div className="bg-purple-70  p-3 rounded-lg">
-            <Briefcase
+          <div className="bg-white/70 justify-center items-center flex flex-col gap-1 p-3 px-4 rounded-lg">
+            <BusinessCenterIcon
               onClick={handleOpen}
-              className="text-white cursor-pointer"
+              className="text-purple-50 cursor-pointer"
+              sx={{ fontSize: 30 }}
             />
+            <span className="text-[10px] my-[-5px] text-purple-50"> Bag </span>
           </div>
         )}
 

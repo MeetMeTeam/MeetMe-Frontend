@@ -7,15 +7,15 @@ import {
   setRemoteStreams,
   setScreenSharingStream,
   setIsUserJoinedOnlyWithAudio,
-  setErrorModal
+  setErrorModal,
 } from "../store/actions/roomActions";
-import { clearChatList } from '../store/actions/allChatAction'
-import { setLoadingPage } from '../store/actions/alertActions'
+import { clearChatList } from "../store/actions/allChatAction";
+import { setLoadingPage } from "../store/actions/alertActions";
 import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 import { useSelector } from "react-redux";
 
-export const createNewRoom = (name, type) => {
+export const createNewRoom = (name, type, detail, password) => {
   store.dispatch(setLoadingPage(true));
 
   const successCalbackFunc = () => {
@@ -23,7 +23,7 @@ export const createNewRoom = (name, type) => {
     store.dispatch(clearChatList());
 
     //มาเขียน ชื่อห้อง , ส่งรูปตรงนี้
-    socketConnection.createNewRoom(name, type);
+    socketConnection.createNewRoom(name, type, detail, password);
   };
 
   const audioOnly = store.getState().room.audioOnly;
@@ -38,7 +38,6 @@ export const newRoomCreated = (data) => {
 
 export const updateActiveRooms = (data) => {
   const { activeRooms } = data;
-  console.log("new active room come from store");
   const friends = store.getState().friends.friends;
   const rooms = [];
 
@@ -57,31 +56,44 @@ export const updateActiveRooms = (data) => {
 };
 
 export const joinRoom = (data) => {
-  console.log("join rommmmmmmmmmmmmmmmmmmmmmm")
+  console.log(data);
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails(data));
     store.dispatch(setOpenRoom(false, true));
     store.dispatch(clearChatList());
 
     store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
-    //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+
+    const userDetailsWithoutSensitiveData = {
+      ...store.getState().auth.userDetails,
+    };
+    delete userDetailsWithoutSensitiveData.token;
+    delete userDetailsWithoutSensitiveData.refreshToken;
+    delete userDetailsWithoutSensitiveData.mail;
+    delete userDetailsWithoutSensitiveData.coin;
+
+    const modifiedUserDetails = userDetailsWithoutSensitiveData;
+
     socketConnection.joinRoom({
       roomId: data.roomId,
-      name: store.getState().auth.userDetails.username,
-      pic: "testpic",
+      name: modifiedUserDetails,
       id: store.getState().auth.userDetails._id,
     });
   };
 
   const audioOnly = store.getState().room.audioOnly;
   webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
+  setTimeout(() => {
+    store.dispatch(setLoadingPage(false));
+  }, 2000);
 };
 
 export const leaveRoom = () => {
-  store.dispatch( setErrorModal(null));
-  const roomId = store.getState().room.roomDetails.roomId;
+  store.dispatch(setErrorModal(null));
+  const roomId = store.getState().room?.roomDetails?.roomId;
 
   const localStream = store.getState().room.localStream;
+  console.log(localStream);
   if (localStream) {
     localStream.getTracks().forEach((track) => track.stop());
     store.dispatch(setLocalStream(null));
@@ -89,7 +101,9 @@ export const leaveRoom = () => {
 
   store.dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
-  socketConnection.leaveRoom({ roomId });
+  if (roomId) {
+    socketConnection.leaveRoom({ roomId });
+  }
   store.dispatch(setRoomDetails(null));
   store.dispatch(setOpenRoom(false, false));
 };

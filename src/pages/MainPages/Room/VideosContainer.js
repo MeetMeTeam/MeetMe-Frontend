@@ -5,13 +5,27 @@ import { connect } from "react-redux";
 import Video from "./Video";
 import { useSelector } from "react-redux";
 import * as socketConnection from "../../../realtimeCommunication/socketConnection";
-import AvatarUserPreview from "./AvatarUserPreview";
+import AvatarUserPreview from "./RoomButtons/AvatarUserPreview";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import AvatarCard from "../../../shared/components/AvatarCard";
+import GiftAnimation from "./RoomButtons/GiftAnimation";
 const MainContainer = styled("div")({
   height: "85%",
   width: "100%",
   display: "flex",
   flexWrap: "wrap",
 });
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  outline: "none",
+};
 
 const VideosContainer = ({
   localStream,
@@ -27,8 +41,18 @@ const VideosContainer = ({
   let activeRooms = useSelector((state) => state.room.activeRooms);
   let [participants, setParticipants] = useState([]);
   const userId = useSelector((state) => state.auth.userDetails?._id);
+
   let remoteStream = null;
   let [oldRemoteStreams, setOldRemoteStreams] = useState([]);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [userDetailCard, setUserDetailCard] = React.useState(null);
+  let [isShowAnimation, setIsShowAnimation] = useState(false);
+  const handleOpen = (userDetail) => {
+    console.log(userDetail);
+    setUserDetailCard(userDetail);
+    setOpenModal(true);
+  };
+  const handleClose = () => setOpenModal(false);
 
   useEffect(() => {
     for (let index = 0; index < activeRooms.length; index++) {
@@ -53,6 +77,8 @@ const VideosContainer = ({
   }, [cameraEnabled]);
 
   function updateMyCamToOther(peopleInRoom) {
+    console.log("kuy");
+    console.log(participants);
     const data = {
       userId: userId,
       isCameraEnabled: cameraEnabled,
@@ -66,24 +92,22 @@ const VideosContainer = ({
     const isCameraEnabled = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.isCameraEnabled;
-    const image = otherUserActionCam.find(
-      (item) => item.userId === stream.id
-    )?.image;
     const id = otherUserActionCam.find(
       (item) => item.userId === stream.id
     )?.userId;
     return (
       <div
         key={stream.remoteStream.id}
-        className="flex flex-col justify-center items-center relative p-10"
+        style={{ zoom: 0.8 }}
+        className="flex flex-col hover:ring-purple-60 rounded-2xl hover:ring cursor-pointer justify-center items-center relative p-10"
       >
-        <div className="bg-white py-10 opacity-30 rounded-2xl w-full z-[0] h-full absolute">
-          {" "}
-        </div>
+        <GiftAnimation id={stream.id} />
+
+        <div className="bg-white  py-10 opacity-30 rounded-2xl w-full z-[0] h-full absolute"></div>
 
         {isCameraEnabled || otherUserActionCam.length === 0 ? (
           <Video
-            size="300px"
+            size=""
             stream={stream.remoteStream}
             id={stream.connUserSocketId}
           />
@@ -94,47 +118,30 @@ const VideosContainer = ({
               stream={stream.remoteStream}
               id={stream.connUserSocketId}
             />
-            {/* <img
-              src={image}
-              className="rounded-full object-cover drop-shadow-xl border-4 border-white"
-              style={{ width: "150px", height: "150px" }}
-            /> */}
             <AvatarUserPreview id={id} />
           </div>
         )}
-        {participants.map((item) => (
-          <div key={item.socketId}>
-            {item.socketId === stream.connUserSocketId && (
-              <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
-                {stream.name}
-              </div>
-            )}
-          </div>
-        ))}
+        <div className="mt-4 w-fit font-bold drop-shadow-md bg-gray-90 px-2 py-1 rounded-md">
+          {stream.name.displayName}
+        </div>
       </div>
     );
   };
 
-  const RemoteStreams = () => {
-    return remoteStreams.map(renderRemoteStream);
-  };
-
   return (
-    <div className="absolute top-1/4 gap-4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12">
-      <div className="flex flex-col justify-center items-center relative p-10">
-        <div className="bg-white py-10 opacity-30 rounded-2xl w-full h-full absolute">
-          {" "}
-        </div>
+    <div className="absolute top-[20%] gap-4 w-full grid grid-cols-4  sm:px-12">
+      <div
+        style={{ zoom: 0.8 }}
+        className="flex flex-col  justify-center items-center relative p-10"
+      >
+        <GiftAnimation id={userId} />
+
+        <div className="bg-white py-10  opacity-30 rounded-2xl w-full h-full absolute"></div>
         {cameraEnabled ? (
-          <Video size="300px" stream={localStream} isLocalStream />
+          <Video size="" stream={localStream} isLocalStream />
         ) : (
           <div>
             <Video size="1px" stream={localStream} isLocalStream />
-            {/* <img
-              src={myImage}
-              className="rounded-full object-cover drop-shadow-xl border-4 border-white"
-              style={{ width: "150px", height: "150px" }}
-            /> */}
             <AvatarUserPreview id={userId} />
           </div>
         )}
@@ -143,7 +150,21 @@ const VideosContainer = ({
         </div>
       </div>
 
-      <RemoteStreams />
+      {remoteStreams.map((stream) => (
+        <div
+          onClick={() => handleOpen(stream.name)}
+          key={stream.remoteStream.id}
+          className="another-custom-class"
+        >
+          {renderRemoteStream(stream)}
+        </div>
+      ))}
+
+      <Modal open={openModal} onClose={handleClose}>
+        <Box sx={style}>
+          <AvatarCard scale={"150"} userDataDetail={userDetailCard} />
+        </Box>
+      </Modal>
     </div>
   );
 };

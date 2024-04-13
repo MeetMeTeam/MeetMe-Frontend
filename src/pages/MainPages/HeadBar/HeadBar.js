@@ -1,12 +1,14 @@
 import React from "react";
 import JoinRoomRandom from "./JoinRoomRandom";
-import CreateRoom from "./CreateRoom";
+import CreateRoom from "./CreateRoom/CreateRoom";
 import User from "./User";
 import Notification from "./NotificationButton";
 import { useParams, useHistory } from "react-router-dom";
 import Inventory from "../Inventory/InventoryButton";
 import { ShoppingBasket } from "lucide-react";
 import UserCoin from "../../payMentPages/ShopPage/UserCoin";
+import FriendsSideBar from "../FriendsSideBar/FriendsSideBar";
+import ShopPage from "../../../pages/payMentPages/shop-page";
 export default function HeadBar() {
   const history = useHistory();
 
@@ -21,14 +23,16 @@ export default function HeadBar() {
         <div className="flex flex-row items-center space-x-4">
           {/* <JoinRoomRandom/> */}
 
-          <Inventory />
-          <div
+          {/* <Inventory /> */}
+          {/* <div
             onClick={() => history.push("/shop")}
-            className=" bg-purple-70 text-white px-4 py-3 rounded-xl font-medium cursor-pointer"
+            className=" bg-[#8379FD] text-white flex gap-2 px-4 py-3 rounded-xl font-medium cursor-pointer"
           >
-            <ShoppingBasket  className="button-shop"/>
-          </div>
+            <ShoppingBasket className="button-shop" /> Shop
+          </div> */}
+          <ShopPage />
           <CreateRoom />
+          <FriendsSideBar />
           <Notification />
           <div className="bg-yellow-70 px-4 py-3  rounded-full">
             <UserCoin />

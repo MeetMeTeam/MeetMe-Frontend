@@ -16,12 +16,12 @@ const LoginPageInputs = ({ mail, setMail, password, setPassword }) => {
         data="data-email"
         value={mail}
         setValue={setMail}
-        label="E-mail address"
+        label="USERNAME or e-mail address"
         type="text"
         placeholder="Enter e-mail address"
       />
       <InputWithLabel
-      data="data-password"
+        data="data-password"
         value={password}
         setValue={setPassword}
         label="Password"

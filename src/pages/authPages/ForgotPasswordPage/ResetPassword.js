@@ -36,7 +36,9 @@ const ResetPassword = ({ sendMailToResetPassword }) => {
   return (
     <div className="select-none relative bg-purple-90 w-screen h-screen ">
       <img
-        src={process.env.PUBLIC_URL + "/loginPage/bgHpy.png"}
+        src={
+          "https://firebasestorage.googleapis.com/v0/b/meetme-1815f.appspot.com/o/web-image%2FSlide%2016_9%20-%2015.png?alt=media&token=8e6c25a9-ead0-446d-bb43-6594be75ee6f"
+        }
         className="absolute z-10 bottom-0 w-full object-contain"
       />
       <div className="absolute w-screen h-screen flex lg:flex-row flex-col justify-center">

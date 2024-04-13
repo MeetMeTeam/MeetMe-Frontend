@@ -77,7 +77,7 @@ const InviteList = () => {
               <div className="bg-blue-70 rounded-md w-full">
                 <div className="flex flex-row justify-between items-center space-x-4 p-2 ">
                   <div className="flex flex-row space-x-4">
-                    <img src={item.image} className="rounded-full w-[40px]" />
+                    <img src={item.image} className="rounded-lg w-[40px] h-[40px]" />
                     <div className="flex flex-col">
                       <div className="text-[1rem]"> {item.username} </div>
                       <div className="text-[12px]"> {item.email} </div>

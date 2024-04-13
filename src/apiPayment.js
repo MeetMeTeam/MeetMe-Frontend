@@ -43,7 +43,6 @@ apiClient.interceptors.response.use(
 
             if (userDetails) {
               const RefreshToken = JSON.parse(userDetails).refreshToken;
-              console.log(RefreshToken);
               config.headers.Authorization = `Bearer ${RefreshToken}`;
             }
 
@@ -53,7 +52,6 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
-        console.log("hello");
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           let userDetails = JSON.parse(localStorage.getItem("user"));
@@ -78,6 +76,39 @@ apiClient.interceptors.response.use(
 export const checkOut = async (data) => {
   try {
     return await apiClient.post("/payment/checkout", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getGiftList = async () => {
+  try {
+    return await apiClient.get("/payment/gift/list");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const sendGift = async (data) => {
+  try {
+    return await apiClient.post("/payment/gift/add", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getUserGift = async (data) => {
+  try {
+    return await apiClient.get(`/payment/gift/${data}`);
   } catch (exception) {
     return {
       error: true,

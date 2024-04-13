@@ -46,9 +46,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
     init();
   }, []);
 
-  useEffect(() => {
-    console.log(friends);
-  }, [friends]);
+  useEffect(() => {}, [friends]);
 
   useEffect(() => {}, [isFriendAlready]);
 
@@ -73,7 +71,7 @@ const FriendsList = ({ friends, onlineUsers }) => {
               : "text-[1rem] text-blue-70 mt-4 "
           }] font-bold	 select-none cursor-pointer`}
         >
-          Friends
+          Friend
         </div>
         <div className="mt-4 text-white">|</div>
         <div
@@ -94,7 +92,6 @@ const FriendsList = ({ friends, onlineUsers }) => {
       </span>
       <Accordion
         expanded={expanded === true}
-        onChange={handleChange()}
         sx={{
           backgroundColor: "#9EBCFA",
           borderRadius: "16px !important",

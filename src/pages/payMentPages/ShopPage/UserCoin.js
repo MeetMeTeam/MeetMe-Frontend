@@ -4,7 +4,7 @@ import * as api from "../../../api";
 import { Plus } from "lucide-react";
 import { useParams, useHistory } from "react-router-dom";
 
-const UserCoin = () => {
+const UserCoin = (props) => {
   const history = useHistory();
 
   const [coinUser, setCoinUser] = useState(0);
@@ -25,13 +25,20 @@ const UserCoin = () => {
         className={"mr-2 w-[20px]"}
         alt="coin"
       />
-      <span className="text-black font-bold text-[10px] mr-8"> {coinUser}</span>
-      <div className="absolute right-1 rounded-full bg-white w-[20px] h-[20px] items-center flex justify-center">
-        <Plus
-          onClick={() => history.push("/shop")}
-          className="text-gray-40  w-[15px] cursor-pointer"
-        />
-      </div>
+      <span className="text-black font-bold text-[10px] mr-8">
+        {" "}
+        {props.coin ? props.coin : coinUser}
+      </span>
+      {props.hidePlus ? (
+        <div></div>
+      ) : (
+        <div className="absolute right-1 rounded-full w-[20px] h-[20px] items-center flex justify-center">
+          {/* <Plus
+            onClick={() => history.push("/shop")}
+            className="text-gray-40  w-[15px] cursor-pointer"
+          /> */}
+        </div>
+      )}
     </div>
   );
 };

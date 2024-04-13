@@ -65,62 +65,65 @@ export default function InviteRoom() {
             <div className="w-full flex justify-end items-center space-x-1 pr-3">
               <div className="w-[10px] h-[10px] bg-green-50 rounded-full"></div>
               <span className="text-[12px] text-white">
-                online {`(${checkOnlineUsers(friends, onlineUsers).length})`}
+                Online {`(${checkOnlineUsers(friends, onlineUsers).length})`}
               </span>
             </div>
             <div className="overflow-auto h-[200px] px-2">
               {checkOnlineUsers(friends, onlineUsers).length === 0 && (
                 <div className="text-white h-full w-full flex justify-center items-center flex-col space-y-2">
-                  <Diversity3Icon/>
-                  <div> no friends online now  </div>
-                 
-                  </div>
+                  <Diversity3Icon />
+                  <div> No Friends Online Now </div>
+                </div>
               )}
-              {checkOnlineUsers(friends, onlineUsers).map((f) => (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "65px",
-                    marginBottom: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    textTransform: "none",
-                    color: "black",
-                    position: "relative",
-                  }}
-                  className="bg-purple-80 rounded-2xl px-3"
-                >
-                  <div className="relative">
-                    <img
-                      src={f.image}
-                      className="w-[50px] object-cover rounded-lg"
-                      alt="imageProfile"
-                    />
-                  </div>
-
-                  <div className="flex flex-row items-center justify-between w-full ml-1">
-                    <div className="text-white flex flex-col space-y-[-7px] font-bold ml-2">
-                      <div className="text-[18px]"> {f.username} </div>
-                      <div className="text-[14px]"> {f.email} </div>
+              {OtherUserInRoom?.length < 4 ? (
+                checkOnlineUsers(friends, onlineUsers).map((f) => (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "65px",
+                      marginBottom: "10px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      textTransform: "none",
+                      color: "black",
+                      position: "relative",
+                    }}
+                    className="bg-purple-80 rounded-2xl px-3"
+                  >
+                    <div className="relative">
+                      <img
+                        src={f.image}
+                        className="w-[50px] object-cover rounded-lg"
+                        alt="imageProfile"
+                      />
                     </div>
 
-                    {checkFriendInRoom(f.id) === true && (
-                      <div className="text-white rounded-2xl p-1 px-4 bg-gray-70">
-                        {" "}
-                        <div className="cursor-not-allowed">In Room</div>
+                    <div className="flex flex-row items-center justify-between w-full ml-1">
+                      <div className="text-white flex flex-col space-y-[-7px] font-bold ml-2">
+                        <div className="text-[18px]"> {f.username} </div>
+                        <div className="text-[14px]"> {f.email} </div>
                       </div>
-                    )}
-                    {!checkFriendInRoom(f.id) && (
-                      <div className="text-white rounded-2xl p-1 px-4  bg-purple-70">
-                        <div>
-                          <Invite id={f.id} />
-                        </div>{" "}
-                      </div>
-                    )}
+
+                      {checkFriendInRoom(f.id) === true && (
+                        <div className="text-white rounded-2xl p-1 px-4 bg-gray-70">
+                          {" "}
+                          <div className="cursor-not-allowed">In Room</div>
+                        </div>
+                      )}
+                      {!checkFriendInRoom(f.id) && (
+                        <div className="text-white rounded-2xl p-1 px-4  bg-purple-70">
+                          <div>
+                            <Invite id={f.id} />
+                          </div>{" "}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <div>คนในห้องเต็ม</div>
+              )}
             </div>
           </div>
         </Box>

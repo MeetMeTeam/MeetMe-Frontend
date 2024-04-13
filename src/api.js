@@ -57,7 +57,6 @@ apiClient.interceptors.response.use(
             return Promise.reject(err);
           }
         );
-        console.log("hello");
         const response = await apiClientRefresh.post(`/refresh`);
         if (response.status === 200) {
           let userDetails = JSON.parse(localStorage.getItem("user"));
@@ -93,6 +92,17 @@ export const login = async (data) => {
 export const register = async (data) => {
   try {
     return await apiClient.post("/register", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const verifyEmail = async (data) => {
+  try {
+    return await apiClient.post("/verify-mail", { email: data });
   } catch (exception) {
     return {
       error: true,
@@ -226,9 +236,9 @@ export const getCoin = async () => {
     };
   }
 };
-export const getInventory = async () => {
+export const getInventory = async (type) => {
   try {
-    return await apiClient.get(`/inventories`);
+    return await apiClient.get(`/inventories?item_type=${type}`);
   } catch (exception) {
     return {
       error: true,
@@ -296,6 +306,50 @@ export const addAvatarShop = async (data) => {
 export const getAvatarDefault = async (type) => {
   try {
     return await apiClient.get(`/avatars?type=${type}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getThemeShop = async (type) => {
+  try {
+    return await apiClient.get(`/themes`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const editUser = async (data) => {
+  try {
+    return await apiClient.put(`/users`, data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getCateCard = async (type) => {
+  try {
+    return await apiClient.get(`/questions/categories`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getQuestions = async (type) => {
+  try {
+    return await apiClient.get(`/questions`);
   } catch (exception) {
     return {
       error: true,

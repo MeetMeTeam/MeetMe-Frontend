@@ -9,26 +9,37 @@ import * as roomHandler from "../../../realtimeCommunication/roomHandler";
 import InviteRoom from "./InviteRoom/InviteRoom";
 import { useMediaQuery } from "react-responsive";
 import { clearChatList } from "../../../store/actions/allChatAction";
+import { removeAllOtherActionCam } from "../../../store/actions/roomActions";
+
 import { useDispatch } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function RoomHeadBar() {
+  const history = useHistory();
+
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 760px)" });
   const roomDetail = useSelector((state) => state.room.roomDetails);
   const activeRoom = useSelector((state) => state.room.activeRooms);
+  const other = useSelector((state) => state.room.otherUserActionCam);
+  const userId = useSelector((state) => state.auth?.userDetails?._id);
+
   const [countPerson, setCountPerson] = useState(0);
   const dispatch = useDispatch();
 
   const handleLeaveRoom = () => {
+    history.push("/");
     roomHandler.leaveRoom();
     dispatch(clearChatList());
+    dispatch(removeAllOtherActionCam([]));
   };
   const handleCount = () => {
     activeRoom.map((item) => {
       if (item?.roomId === roomDetail?.roomId) {
         setCountPerson(
-          item.participants[0].userId === "" && item.participants.length === 1
+          item.participants[0].userId === "default" &&
+            item.participants.length === 1
             ? 0
-            : item.participants[0].userId === ""
+            : item.participants[0].userId === "default"
             ? item.participants.length - 1
             : item.participants.length
         );
@@ -41,10 +52,22 @@ export default function RoomHeadBar() {
     handleCount();
   }, [activeRoom]);
 
+  useEffect(() => {
+    console.log(other);
+    // for (let index = 0; index < other.length; index++) {
+    //   console.log(other[index].userId);
+    //   if (other[index].userId === userId) {
+    //     console.log("ซ้ำ");
+    //     handleLeaveRoom();
+    //     dispatch(removeAllOtherActionCam([]));
+    //   }
+    // }
+  }, [other]);
+
   return (
     <div className="w-full flex flex-wrap h-[30px]  justify-start space-x-4">
       <div
-        onClick={handleLeaveRoom}
+        onClick={() => handleLeaveRoom()}
         className="md:text-[16px] text-[10px] cursor-pointer flex  items-center justify-center bg-purple-80 hover:bg-purple-70 text-purple-60 py-3 md:px-4 px-1 md:pr-5 rounded-2xl font-bold"
       >
         <ArrowBackIosNewIcon /> Lobby
@@ -66,7 +89,7 @@ export default function RoomHeadBar() {
         </div>
         {!isTabletOrMobile && <ChairIcon />}
       </div>
-      <InviteRoom />
+      {/* <InviteRoom /> */}
     </div>
   );
 }

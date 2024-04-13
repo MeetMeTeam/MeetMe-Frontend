@@ -8,6 +8,15 @@ module.exports = withMT({
     "../node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
+      xxl: "1550px",
+      xxxl: "1700px",
+      xxxxl: "1900px",
+    },
     extend: {
       keyframes: {
         "accordion-down": {

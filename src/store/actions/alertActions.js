@@ -2,9 +2,12 @@ const alertActions = {
   OPEN_ALERT_MESSAGE: "ALERT.OPEN_ALERT_MESSAGE",
   CLOSE_ALERT_MESSAGE: "ALERT.CLOSE_ALERT_MESSAGE",
   UPDATE_NOTIFICATION: "ALERT.UPDATE_NOTIFICATION",
-  REMOVE_NOTIFICATION : "ALERT.REMOVE_NOTIFICATION",
-  SET_LOADING_PAGE : "ALERT.SET_LOADING_PAGE",
-  SET_MODAL_SOCKET_ERROR : "ALERT.SET_MODAL_SOCKET_ERROR"
+  REMOVE_NOTIFICATION: "ALERT.REMOVE_NOTIFICATION",
+  SET_LOADING_PAGE: "ALERT.SET_LOADING_PAGE",
+  SET_MODAL_SOCKET_ERROR: "ALERT.SET_MODAL_SOCKET_ERROR",
+  SET_GIFT_NOTIFICATION: "ALERT.SET_GIFT_NOTIFICATION",
+  SET_CARD_TALK_LIST: "ALERT.SET_CARD_TALK_LIST",
+  SET_CLEAR_CARD_TALK: "ALERT.SET_CLEAR_CARD_TALK",
 };
 
 export const getActions = (dispatch) => {
@@ -13,8 +16,28 @@ export const getActions = (dispatch) => {
     closeAlertMessage: () => dispatch(closeAlertMessage()),
     setLoadingPage: (content) => dispatch(setLoadingPage(content)),
     setModalErrorSocket: (content) => dispatch(setModalErrorSocket(content)),
+    setGiftNotification: (content) => dispatch(setGiftNotification(content)),
+    setCardTalkList: (content) => dispatch(setCardTalkList(content)),
+    clearCardTalk: (content) => dispatch(clearCardTalk(content)),
+  };
+};
 
-
+export const clearCardTalk = (content) => {
+  return {
+    type: alertActions.SET_CLEAR_CARD_TALK,
+    content,
+  };
+};
+export const setCardTalkList = (content) => {
+  return {
+    type: alertActions.SET_CARD_TALK_LIST,
+    content,
+  };
+};
+export const setGiftNotification = (content) => {
+  return {
+    type: alertActions.SET_GIFT_NOTIFICATION,
+    content,
   };
 };
 export const setModalErrorSocket = (content) => {
@@ -40,7 +63,7 @@ export const setNotification = (content) => {
 export const removeNotification = (content) => {
   return {
     type: alertActions.REMOVE_NOTIFICATION,
-    content
+    content,
   };
 };
 

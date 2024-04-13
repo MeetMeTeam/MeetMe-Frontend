@@ -22,13 +22,14 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
       setTextError(response.exception.response.data.message);
     } else {
       setIsbuy(true);
-      dispatch(openAlertMessage("ซื้อสำเร็จ"));
+      dispatch(openAlertMessage("The product has been purchased."));
     }
     setIsLoading(false);
   }
 
   function selectAvatar() {
     if (!avatarUserShow?.isOwner) {
+      setTextError("");
       handleOpen();
     }
   }
@@ -44,7 +45,7 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
         }
       >
         {avatarUserShow?.isOwner || avatarUserShow?.isOwner === undefined
-          ? "Already exist"
+          ? "Already Exist"
           : "Buy"}
       </div>
       <Modal

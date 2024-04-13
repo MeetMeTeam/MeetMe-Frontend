@@ -10,12 +10,15 @@ import { setOtherActionCam, setErrorModal } from "../store/actions/roomActions";
 import {
   setNotification,
   setModalErrorSocket,
+  setGiftNotification,
+  setCardTalkList,
 } from "../store/actions/alertActions";
 
 import store from "../store/store";
 import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 import * as roomHandler from "./roomHandler";
 import * as webRTCHandler from "./webRTCHandler";
+import { useSelector } from "react-redux";
 
 let socket = null;
 
@@ -34,13 +37,12 @@ export const connectWithSocketServer = (userDetails) => {
 
   let retries = 0;
 
-  function checkError() {
-    retries++;
-    if (!socket.connected && retries % 3 === 0) {
-      store.dispatch(setModalErrorSocket(true));
-    }
-  }
-  setInterval(checkError, 1000);
+  // function checkError() {
+  //   retries++;
+  //   if (!socket.connected && retries % 3 === 0) {
+  //   }
+  // }
+  // setInterval(checkError, 1000);
 
   socket.on("error", (error) => {
     console.log("error");
@@ -48,7 +50,6 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("connect", () => {
-    console.log("suscess connect socket.io server");
     console.log(socket.id);
   });
 
@@ -73,16 +74,29 @@ export const connectWithSocketServer = (userDetails) => {
 
   socket.on("room-create", (data) => {
     roomHandler.newRoomCreated(data);
-    console.log("create room detail from server");
   });
 
   socket.on("active-rooms", (data) => {
     roomHandler.updateActiveRooms(data);
   });
 
+  socket.on("remove-from-room", (data) => {
+    if (data.userId === store.getState().auth.userDetails._id) {
+      console.log(socket.id);
+      console.log(data.socketId);
+      if (data.socketId !== socket.id) {
+        // window.location.reload();
+        console.log("โดนเตะ");
+
+        roomHandler.leaveRoom();
+        store.dispatch(setModalErrorSocket(true));
+      }
+    }
+  });
+
   socket.on("conn-prepare", (data) => {
+    console.log("มีคนขอเชื่อมต่อ");
     const { connUserSocketId, name, pic, id } = data;
-    console.log("prepare for connection");
     webRTCHandler.prepareNewPeerConnection(
       connUserSocketId,
       false,
@@ -91,9 +105,21 @@ export const connectWithSocketServer = (userDetails) => {
       id
     );
     //ส่งข้อมูลให้คนอื่นเห็นในห้อง
+
+    const userDetailsWithoutSensitiveData = {
+      ...store.getState().auth.userDetails,
+    };
+    delete userDetailsWithoutSensitiveData.token;
+    delete userDetailsWithoutSensitiveData.refreshToken;
+    delete userDetailsWithoutSensitiveData.mail;
+    delete userDetailsWithoutSensitiveData.coin;
+
+    // นำ object ใหม่ไปใส่ในตัวแปรใหม่
+    const modifiedUserDetails = userDetailsWithoutSensitiveData;
+
     socket.emit("conn-init", {
       connUserSocketId: connUserSocketId,
-      name: store.getState().auth.userDetails.username,
+      name: modifiedUserDetails,
       pic: "testpic",
       id: store.getState().auth.userDetails._id,
     });
@@ -120,10 +146,35 @@ export const connectWithSocketServer = (userDetails) => {
   });
 
   socket.on("chatter", (newChat) => {
-    store.dispatch(UpdateChatList(newChat));
+    console.log(newChat);
+    const isUserInRoom = store.getState().room.isUserInRoom;
+    const myUserId = store.getState().auth.userDetails._id;
+    const otherPeopleList = store.getState().room.otherUserActionCam;
+    const foundObject = otherPeopleList.find(
+      (person) => person.userId === newChat.id
+    );
+    console.log(foundObject);
+
+    if (newChat.isGift) {
+      store.dispatch(UpdateChatList(newChat));
+    }
+
+    if (isUserInRoom) {
+      if (foundObject) {
+        store.dispatch(UpdateChatList(newChat));
+      }
+
+      if (myUserId === newChat.id) {
+        store.dispatch(UpdateChatList(newChat));
+      }
+    } else {
+      store.dispatch(UpdateChatList(newChat));
+    }
   });
 
   socket.on("other-cam-change", (data) => {
+    console.log(data);
+    console.log("มีคนปิดกล้องโว้ยยยยยยยยยยยยยย");
     store.dispatch(setOtherActionCam(data));
   });
 
@@ -137,6 +188,14 @@ export const connectWithSocketServer = (userDetails) => {
   socket.on("notify-join", (data) => {
     store.dispatch(setErrorModal(null));
     store.dispatch(setErrorModal(!data));
+  });
+
+  socket.on("other-send-gift", (data) => {
+    store.dispatch(setGiftNotification(data));
+  });
+
+  socket.on("other-send-card-talk", (data) => {
+    store.dispatch(setCardTalkList(data));
   });
 };
 
@@ -160,8 +219,8 @@ export const sendDirectMessage = (data) => {
   socket.emit("direct-message", data);
 };
 
-export const createNewRoom = (name, type) => {
-  const data = { name: name, type: type };
+export const createNewRoom = (name, type, detail, password) => {
+  const data = { name: name, type: type, detail: detail, password: password };
   socket.emit("room-create", data);
 };
 
@@ -187,4 +246,16 @@ export const InviteFriendToJoinRoom = (data) => {
 
 export const checkNotifyJoin = (data) => {
   socket.emit("notify-join", data);
+};
+
+export const sendGiftToOther = (data) => {
+  socket.emit("send-gift-to-other", data);
+};
+
+export const sendCardTalk = (data) => {
+  socket.emit("send-card-talk", data);
+};
+
+export const checkUserInRoom = (data) => {
+  socket.emit("check-user-in-room", data);
 };

@@ -5,7 +5,9 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
+  useLocation,
 } from "react-router-dom";
+
 import "./App.css";
 import SuccessPaymentPage from "./pages/payMentPages/success-page";
 import ShopPage from "./pages/payMentPages/shop-page";
@@ -19,17 +21,26 @@ import AdminPage from "./pages/adminPages/admin-page";
 import "./index.css";
 import AlertNotification from "./shared/components/AlertNotification";
 import { clearChatList } from "./store/actions/allChatAction";
+
 import { useDispatch } from "react-redux";
 import LoadingPage from "./shared/components/LoadingPage";
 import { useSelector } from "react-redux";
 import ModalText from "./shared/components/ModalText";
 import CancelPaymentPage from "./pages/payMentPages/payment-cancel";
+import { useParams, useHistory } from "react-router-dom";
+import { checkUserInRoom } from "./realtimeCommunication/socketConnection";
 
 function App() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const isShowModalErrorSocket = useSelector(
     (state) => state.alert.isSocketErrorModal
   );
+
+  const isUserInRoom = useSelector((state) => state.room.isUserInRoom);
+  const userId = useSelector((state) => state.auth.userDetails?._id);
+  const activeRoom = useSelector((state) => state.room?.activeRooms);
+
   const isShowLoadingPage = useSelector((state) => state.alert.isLoadingPage);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -44,6 +55,33 @@ function App() {
       handleCloseModal();
     }
   }, [isShowModalErrorSocket]);
+
+  // useEffect(() => {
+  //   const userDetails = localStorage.getItem("user");
+
+  //   setTimeout(() => {
+  //     if (userDetails) {
+  //       checkUserInRoom({ isUserInRoom, userId });
+  //     }
+  //   }, 500);
+  // }, [isUserInRoom]);
+
+  // useEffect(() => {
+  //   if (activeRoom.length > 0) {
+  //     for (let index = 0; index < activeRoom.length; index++) {
+  //       for (
+  //         let index2 = 0;
+  //         index2 < activeRoom[index].participants.length;
+  //         index2++
+  //       ) {
+  //         if (activeRoom[index].participants[index2].userId === userId) {
+  //           checkUserInRoom({ isUserInRoom, userId });
+  //         }
+  //       }
+  //     }
+  //   }
+  // }, [activeRoom]);
+
   return (
     <div className="relative">
       {isShowLoadingPage && <LoadingPage />}
@@ -51,9 +89,9 @@ function App() {
         openModal={openModal}
         handleCloseModal={handleCloseModal}
         closeModal={handleCloseModal}
-        headText={"Failed connect to Server"}
-        textDetailOne={"socket server have problem, Sorry"}
-        textDetailTwo={`please try to connect again later.`}
+        headText={"There is a duplicate entry between the two browsers."}
+        textDetailOne={"Please use only one browser."}
+        textDetailTwo={``}
         bgColor="bg-purple-50"
       />
       <Router>
@@ -85,9 +123,9 @@ function App() {
           <Route exact path="/admin">
             <AdminPage />
           </Route>
-          <Route exact path="/shop">
+          {/* <Route exact path="/shop">
             <ShopPage />
-          </Route>
+          </Route> */}
           <Route path="/">
             <Redirect to="/home" />
           </Route>

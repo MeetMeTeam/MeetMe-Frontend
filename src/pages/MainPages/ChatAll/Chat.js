@@ -24,7 +24,7 @@ export default function Chat({
   return (
     <div className={styles.scrollbar}>
       <Accordion
-        expanded={expanded === true}
+        expanded={true}
         onChange={handleChange()}
         sx={{
           width: width,
@@ -34,7 +34,7 @@ export default function Chat({
         }}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon className="text-white" />}
+          // expandIcon={<ExpandMoreIcon className="text-white" />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -47,12 +47,14 @@ export default function Chat({
             className={`py-4 px-2 text-[14px] font-bold w-full h-[${height}px]  bg-red-90 rounded-2xl mt-[-20px] `}
           >
             <div className={`overflow-auto h-[${height - 30}px]`}>
-              {chat.map((item) => (
-                <div className="flex flex-row" key={item?.textId}>
+              {chat.map((item, index) => (
+                <div key={index} className="flex flex-row">
                   <div className={`text-${item?.color}-500 mr-2`}>
                     {item?.name + ":"}{" "}
                   </div>
-                  <div className="text-white">{item?.text}</div>
+                  <div className={item.isGift ? "text-blue-30 " : "text-white"}>
+                    {item?.text}
+                  </div>
                 </div>
               ))}
             </div>
