@@ -106,7 +106,31 @@ const User = () => {
   const handleCloseModal = () => setOpenModal(false);
 
   const classes = useStyles();
+  const [zoom, setZoom] = useState(1);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth;
+      if (newZoom < 700) {
+        setZoom(newZoom - 50);
+      } else {
+        setZoom(500);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(zoom);
+  }, [zoom]);
   return (
     <div>
       {isLoading && <LoadingPage />}
@@ -136,7 +160,7 @@ const User = () => {
         open={open}
         onClose={toggleDrawer(false)}
       >
-        <Box sx={{ width: 500, bgcolor: "" }} role="presentation">
+        <Box sx={{ width: zoom, bgcolor: "" }} role="presentation">
           <div className="items-center h-screen px-10 py-5 flex flex-col justify-between">
             <div className="w-full flex flex-col items-center justify-center">
               <AvatarCard userDataDetail={userDataDetail} />
@@ -160,7 +184,7 @@ const User = () => {
               </div>
               <div className="w-full">
                 <div className="text-blue-60 mb-1 font-bold text-[14px]">
-                  Bio
+                  About
                 </div>
                 <div></div>
                 <textarea

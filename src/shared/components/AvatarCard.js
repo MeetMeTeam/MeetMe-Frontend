@@ -57,7 +57,7 @@ const AvatarCard = (props) => {
             <Loading />
           </div>
         ) : (
-          <AvatarPreview height="300" width="420" avatarUser={avatarUserShow} />
+          <AvatarPreview width="420" avatarUser={avatarUserShow} />
         )}
       </div>
       <div className="absolute text-blue-20 flex flex-col px-4 py-2 top-[250px] bg-blue-90 w-[310px] rounded-xl h-[170px]  ring-white ring">

@@ -117,6 +117,32 @@ const ShopPage = () => {
     }
   }, []);
 
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth / 1900;
+      if (newZoom < 0.6) {
+        setZoom(0.8);
+      } else {
+        setZoom(newZoom);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(zoom);
+  }, [zoom]);
+
   return (
     <div>
       <div
@@ -132,7 +158,10 @@ const ShopPage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="relative justify-center   bg-purple-90 p-10 md:space-y-0 space-y-4   select-none flex md:flex-row flex-col">
+          <div
+            style={{ zoom: zoom }}
+            className="relative justify-center   bg-purple-90 p-10 md:space-y-0 space-y-4 items-center  select-none flex md:flex-row flex-col"
+          >
             <div
               onClick={handleClose}
               className="bg-white rounded-full p-2 w-[40px] h-[40px] flex justify-center items-center cursor-pointer"
@@ -181,7 +210,7 @@ const ShopPage = () => {
               />
             </div>
             <div className="flex flex-row items-center">
-              <div className="flex flex-row">
+              <div className="flex lg:flex-row flex-col">
                 <ShopMenu
                   menuList={menuList}
                   menuNow={menuNow}

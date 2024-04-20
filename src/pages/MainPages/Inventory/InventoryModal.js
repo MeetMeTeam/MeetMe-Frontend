@@ -84,9 +84,9 @@ const InventoryModal = () => {
   }, []);
 
   return (
-    <div className="select-none px-6 p-4  bg-purple-90 absolute w-[820px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg shadow-24 ">
+    <div className="select-none px-6 p-4  bg-purple-90 absolute w-[400px] md:w-[820px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-background-paper rounded-lg shadow-24 ">
       <div className="font-bold text-[26px] text-purple-10 mb-2">My Bags</div>
-      <div className="flex flex-row h-full space-x-6">
+      <div className="flex flex-col md:flex-row h-full space-x-6">
         <div
           className={
             "flex flex-col relative rounded-2xl " +
@@ -114,7 +114,6 @@ const InventoryModal = () => {
               >
                 Save
               </div>
-              
             </div>
           )}
         </div>
@@ -124,7 +123,7 @@ const InventoryModal = () => {
           </div>
         ) : (
           <div>
-            <div className="mb-4 flex gap-4 rounded-xl  ring-white ">
+            <div className="mb-4 mt-4 flex gap-4 rounded-xl  ring-white ">
               <div
                 onClick={() => setMenu("avatar")}
                 className={

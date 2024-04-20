@@ -20,7 +20,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
   return (
     <div className={scollBarRoom.scrollbar + " w-full"}>
       <div
-        className={`bg-purple-60 h-[570px] w-full rounded-2xl px-4 pb-4 min-w-[652px] ${
+        className={`bg-purple-60 h-[700px] md:w-[700px]  rounded-2xl px-4 pb-4  ${
           activeRooms.length === 0 ? " justify-between " : " justify-start "
         } flex flex-col  ${styles.container}`}
       >
@@ -29,7 +29,7 @@ const SideBar = ({ activeRooms, isUserInRoom }) => {
           className={`${
             activeRooms.length === 0
               ? ""
-              : " h-[450px] space-y-4 overflow-y-auto px-2  "
+              : " h-[650px] space-y-4 overflow-y-auto px-2  "
           }`}
         >
           {activeRooms &&

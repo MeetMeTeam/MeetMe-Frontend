@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AvatarItem(props) {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid md:grid-cols-3 max-h-[420px] overflow-auto overflow-x-hidden grid-cols-2 gap-4">
       {props.avatarList.map((item, index) => (
         <div
           key={index}
@@ -11,7 +11,7 @@ export default function AvatarItem(props) {
         >
           <div
             className={
-              "p-4 w-[150px] rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-purple-70 " +
+              "p-4 md:w-[150px] w-[150px] rounded-xl flex flex-col items-center justify-center cursor-pointer hover:bg-purple-70 " +
               (item.name ? "bg-purple-80" : "bg-purple-80/30")
             }
           >

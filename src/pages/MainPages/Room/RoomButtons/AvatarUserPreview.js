@@ -17,6 +17,28 @@ export default function AvatarUserPreview({ id }) {
     getAvatar();
   }, []);
 
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth;
+
+      setZoom(newZoom);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(zoom);
+  }, [zoom]);
   return (
     <div>
       {" "}
@@ -30,7 +52,11 @@ export default function AvatarUserPreview({ id }) {
             <Loading />
           </div>
         ) : (
-          <AvatarPreview height="280" width="300" avatarUser={avatarUserShow} />
+          <AvatarPreview
+            height="280"
+            width={zoom < 850 ? "250" : "400"}
+            avatarUser={avatarUserShow}
+          />
         )}
       </div>
     </div>

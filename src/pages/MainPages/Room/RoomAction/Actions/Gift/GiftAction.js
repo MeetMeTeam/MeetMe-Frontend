@@ -166,7 +166,31 @@ export default function GiftAction() {
   }, []);
 
   const classes = useStyles();
+  const [zoom, setZoom] = useState(1);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth;
+      if (newZoom < 700) {
+        setZoom(newZoom - 70);
+      } else {
+        setZoom(500);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log(zoom);
+  }, [zoom]);
   return (
     <div>
       {isShowGift && (
@@ -186,7 +210,7 @@ export default function GiftAction() {
         onClose={toggleDrawer(false)}
       >
         <Box
-          sx={{ backgroundColor: "#E5D6F5", width: 700 }}
+          sx={{ backgroundColor: "#E5D6F5", width: zoom }}
           role="presentation"
         >
           <div className="gap-4 xxl:h-screen h-full px-10 py-5 items-center flex flex-col">

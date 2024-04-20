@@ -157,6 +157,27 @@ export default function CardTalkAction() {
   }, []);
 
   const classes = useStyles();
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth;
+      if (newZoom < 700) {
+        setZoom(newZoom - 70);
+      } else {
+        setZoom(500);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div>
@@ -174,7 +195,7 @@ export default function CardTalkAction() {
         onClose={toggleDrawer(false)}
       >
         <Box
-          sx={{ width: 500, backgroundColor: "#FCF7CF" }}
+          sx={{ width: zoom, backgroundColor: "#FCF7CF" }}
           role="presentation"
         >
           <div className=" w-full h-full xxxl:h-screen  px-10 py-5 justify-center items-center flex flex-col">

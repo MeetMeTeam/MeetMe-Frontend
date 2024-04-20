@@ -17,9 +17,10 @@ const AvatarPreview = (prop) => {
 
   return (
     <div
-      className={`flex relative h-[${prop.height || "500"}px] w-[${
-        prop.width
-      }px] flex-col items-center justify-center bg-white p-2 rounded-2xl`}
+      className={
+        (prop.height ? "md:h-[570px]" : "md:h-[300px]") +
+        ` flex relative  h-[300px]  w-[${prop.width}px] flex-col items-center justify-center bg-white p-2 rounded-2xl`
+      }
     >
       <img
         src={process.env.PUBLIC_URL + "/shopPage/bgShop.png"}
