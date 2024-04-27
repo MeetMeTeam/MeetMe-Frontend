@@ -28,6 +28,27 @@ const Room = () => {
     backgroundSize: "cover",
   };
 
+  const [zoom, setZoom] = useState(1);
+  const handleResize = () => {
+    const windowWidth = window.innerWidth;
+    const newZoom = windowWidth / 2500;
+
+    if (newZoom > 0.6) {
+      setZoom(newZoom);
+    } else {
+      setZoom(0.8);
+    }
+  };
+  useEffect(() => {
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       style={divStyle}
@@ -57,7 +78,7 @@ const Room = () => {
         />
       )}
       <div
-        style={{ zoom: 0.9 }}
+        style={{ zoom: zoom }}
         className="absolute right-2 bottom-6 flex flex-row gap-4 justify-end items-center w-[1000px]"
       >
         <RoomAction />

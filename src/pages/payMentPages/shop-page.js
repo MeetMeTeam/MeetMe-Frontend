@@ -13,6 +13,7 @@ import { logout } from "../../shared/utils/auth";
 import { setUserDetails } from "../../store/actions/authActions";
 import store from "../../store/store";
 import AvatarShop from "./ShopPage/AvatarShop/AvatarShop";
+import BackgroundAvatarShop from "./ShopPage/BackgroundAvatarShop/BackgroundAvatarShop";
 import Inventory from "../MainPages//Inventory/InventoryButton";
 import ItemBuy from "./ShopPage/ItemBuy";
 import ThemeShop from "./ShopPage/ThemeShop/ThemeShop";
@@ -34,12 +35,23 @@ const ShopPage = () => {
   const history = useHistory();
   const [coinUser, setCoinUser] = useState(0);
   const [avatarUser, setAvatarUser] = useState({});
+  const [backgroundAvatarUser, setBackgroundAvatarUser] = useState({});
+
   const [avatarUserNew, setAvatarUserNew] = useState(null);
   const [avatarList, setAvatarList] = useState([]);
+  const [backgroundAvatarList, setBackgroundAvatarList] = useState([]);
+
   const [themeList, setThemeList] = useState([]);
   const [avatarUserShow, setAvatarUserShow] = useState({});
+  const [backgroundAvatarUserShow, setBackgroundAvatarUserShow] = useState({});
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
+  const [isLoadingBackgroundAvatar, setIsloadingBackgroundAvatar] =
+    useState(true);
+
   const [isLoadingAvatarShop, setIsloadingAvatarShop] = useState(true);
+  const [isLoadingBackgroundAvatarShop, setIsloadingBackgroundAvatarShop] =
+    useState(true);
+
   const [isLoadingThemeShop, setIsloadingThemeShop] = useState(true);
 
   const [open, setOpen] = React.useState(false);
@@ -50,6 +62,7 @@ const ShopPage = () => {
   const menuList = [
     { name: "Flower", menu: "ADD_COIN" },
     { name: "Character", menu: "AVATAR" },
+    { name: "Background", menu: "BACKGROUND" },
     { name: "Theme Room", menu: "THEME" },
   ];
   const [menuNow, setMenuNow] = useState("ADD_COIN");
@@ -67,7 +80,15 @@ const ShopPage = () => {
       setIsloadingAvatar(false);
     }
   }
-
+  async function getBackgroundAvatar(id) {
+    const inventoryUser = await api.getBackgroundAvatar(id);
+    if (inventoryUser) {
+      console.log(inventoryUser);
+      await setBackgroundAvatarUser(inventoryUser?.data?.data.preview);
+      await setBackgroundAvatarUserShow(inventoryUser?.data?.data.preview);
+      setIsloadingBackgroundAvatar(false);
+    }
+  }
   async function getAvatarShop() {
     setIsloadingAvatarShop(true);
     const AvatarShop = await api.getAvatarShop();
@@ -75,6 +96,16 @@ const ShopPage = () => {
     if (AvatarShop) {
       await setAvatarList(AvatarShop?.data?.data);
       setIsloadingAvatarShop(false);
+    }
+  }
+
+  async function getBackgroundAvatarShop() {
+    setIsloadingBackgroundAvatarShop(true);
+    const AvatarShop = await api.getBackgroundAvatarShop();
+
+    if (AvatarShop) {
+      await setBackgroundAvatarList(AvatarShop?.data?.data);
+      setIsloadingBackgroundAvatarShop(false);
     }
   }
 
@@ -87,19 +118,40 @@ const ShopPage = () => {
   }
 
   async function buyAvatar() {
-    const data = {
-      item_id: avatarUserShow.id,
-      item_type: "avatar",
-    };
-    const response = await api.buyAvatar(data);
+    if (avatarUserShow) {
+      const data = {
+        item_id: avatarUserShow.id,
+        item_type: "avatar",
+      };
+      const response = await api.buyAvatar(data);
 
-    if (response.status === 200) {
-      getAvatarShop();
-      getCoin();
+      if (response.status === 200) {
+        getAvatarShop();
+        getCoin();
 
-      return response;
-    } else {
-      return response;
+        return response;
+      } else {
+        return response;
+      }
+    }
+  }
+
+  async function buyBackgroundAvatar() {
+    if (backgroundAvatarUserShow) {
+      const data = {
+        item_id: backgroundAvatarUserShow.id,
+        item_type: "bg",
+      };
+      const response = await api.buyAvatar(data);
+
+      if (response.status === 200) {
+        getBackgroundAvatarShop();
+        getCoin();
+
+        return response;
+      } else {
+        return response;
+      }
     }
   }
 
@@ -113,7 +165,9 @@ const ShopPage = () => {
       getCoin();
       getAvatarShop();
       getAvatar(JSON.parse(userDetails)._id);
+      getBackgroundAvatar(JSON.parse(userDetails)._id);
       getThemeShop();
+      getBackgroundAvatarShop(JSON.parse(userDetails)._id);
     }
   }, []);
 
@@ -180,7 +234,14 @@ const ShopPage = () => {
                     <Loading />
                   </div>
                 ) : (
-                  <AvatarPreview height="500" avatarUser={avatarUserShow} />
+                  <AvatarPreview
+                    height="500"
+                    avatarUser={avatarUserShow}
+                    backgroundAvatarUser={
+                      backgroundAvatarUserShow?.preview ||
+                      backgroundAvatarUserShow
+                    }
+                  />
                 )}
               </div>
               <div className="flex w-full font-bold flex-row space-x-2">
@@ -207,6 +268,8 @@ const ShopPage = () => {
                 getAvatarShop={getAvatarShop}
                 avatarUserShow={avatarUserShow}
                 buyAvatar={buyAvatar}
+                buyBackgroundAvatar={buyBackgroundAvatar}
+                backgroundAvatarUser={backgroundAvatarUserShow}
               />
             </div>
             <div className="flex flex-row items-center">
@@ -224,6 +287,14 @@ const ShopPage = () => {
                     setIsloadingAvatarShop={setIsloadingAvatarShop}
                     avatarList={avatarList}
                     setAvatarUserShow={setAvatarUserShow}
+                  />
+                )}
+                {menuNow === "BACKGROUND" && (
+                  <BackgroundAvatarShop
+                    isLoadingAvatarShop={isLoadingBackgroundAvatarShop}
+                    setIsloadingAvatarShop={setIsloadingBackgroundAvatarShop}
+                    avatarList={backgroundAvatarList}
+                    setAvatarUserShow={setBackgroundAvatarUserShow}
                   />
                 )}
                 {menuNow === "THEME" && (

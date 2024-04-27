@@ -65,7 +65,15 @@ const reducer = (state = initState, action) => {
       };
     case roomActions.SET_ACTIVE_ROOMS:
       const sortedActiveRooms = action.activeRooms.slice().sort((a, b) => {
-        return b.participants.length - a.participants.length;
+        const participantsA =
+          a.roomCreator.userId === "default"
+            ? a.participants.length - 1
+            : a.participants.length;
+        const participantsB =
+          b.roomCreator.userId === "default"
+            ? b.participants.length - 1
+            : b.participants.length;
+        return participantsB - participantsA;
       });
 
       return {

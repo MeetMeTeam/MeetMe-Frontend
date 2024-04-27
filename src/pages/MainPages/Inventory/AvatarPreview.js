@@ -23,7 +23,7 @@ const AvatarPreview = (prop) => {
       }
     >
       <img
-        src={process.env.PUBLIC_URL + "/shopPage/bgShop.png"}
+        src={prop.backgroundAvatarUser}
         className="w-full h-full object-cover rounded-2xl"
         alt="background"
       />

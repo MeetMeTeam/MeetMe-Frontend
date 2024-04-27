@@ -57,6 +57,7 @@ const CreateRoom = () => {
   const [selectCategories, setSelectCategories] = useState([]);
   const [themeList, setThemeList] = useState(initialThemeList);
   const [errorText, setErrorText] = useState("");
+  const userDetail = useSelector((state) => state.auth.userDetails);
 
   async function getInventoryTheme() {
     const inventoryUser = await api.getInventory("theme");
@@ -77,6 +78,7 @@ const CreateRoom = () => {
     const detail = {
       theme: theme,
       cate: selectCategories,
+      userNameCreate: userDetail.displayName,
     };
     const password = "test";
     if (!isUserInRoom && roomName !== "") {

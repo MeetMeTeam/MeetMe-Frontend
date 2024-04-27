@@ -258,6 +258,17 @@ export const getAvatar = async (id) => {
   }
 };
 
+export const getBackgroundAvatar = async (id) => {
+  try {
+    return await apiClient.get(`/users/backgrounds/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
 export const changeAvatar = async (id) => {
   try {
     return await apiClient.put(`/users/avatars/${id}`);
@@ -268,7 +279,16 @@ export const changeAvatar = async (id) => {
     };
   }
 };
-
+export const changeBackground = async (id) => {
+  try {
+    return await apiClient.put(`/users/backgrounds/${id}`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
 export const getAvatarShop = async (id) => {
   try {
     return await apiClient.get(`/avatars`);
@@ -350,6 +370,17 @@ export const getCateCard = async (type) => {
 export const getQuestions = async (type) => {
   try {
     return await apiClient.get(`/questions`);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
+export const getBackgroundAvatarShop = async (data) => {
+  try {
+    return await apiClient.get(`/backgrounds`);
   } catch (exception) {
     return {
       error: true,

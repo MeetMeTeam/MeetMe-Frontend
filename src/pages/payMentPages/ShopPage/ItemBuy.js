@@ -4,12 +4,28 @@ import Modal from "@mui/material/Modal";
 import Loading from "../../../shared/components/Loading";
 import { useDispatch } from "react-redux";
 import { openAlertMessage } from "../../../store/actions/alertActions";
-export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+
+export default function ItemBuy({
+  buyAvatar,
+  getAvatarShop,
+  avatarUserShow,
+  backgroundAvatarUser,
+  buyBackgroundAvatar,
+}) {
   const [open, setOpen] = React.useState(false);
   const [isBuy, setIsbuy] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [selectAvatarBuy, setSelectAvatarBuy] = React.useState(null);
+  const [selectBackground, setSelectBackground] = React.useState(null);
   const dispatch = useDispatch();
   const handleOpen = () => setOpen(true);
+
+  useEffect(() => {
+    setSelectAvatarBuy(avatarUserShow);
+    setSelectBackground(backgroundAvatarUser);
+  }, [open]);
   function handleClose() {
     setOpen(false);
     setIsbuy(false);
@@ -18,35 +34,74 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
   async function enterAvatar() {
     setIsLoading(true);
     const response = await buyAvatar();
+    const response2 = await buyBackgroundAvatar();
+    let check = false;
     if (response.error) {
       setTextError(response.exception.response.data.message);
     } else {
       setIsbuy(true);
       dispatch(openAlertMessage("The product has been purchased."));
+      check = true;
     }
+
+    if (response2.error) {
+      setTextError(response2.exception.response.data.message);
+    } else {
+      setIsbuy(true);
+      if (!check) {
+        dispatch(openAlertMessage("The product has been purchased."));
+      }
+    }
+
     setIsLoading(false);
   }
 
   function selectAvatar() {
-    if (!avatarUserShow?.isOwner) {
-      setTextError("");
-      handleOpen();
-    }
+    setTextError("");
+    handleOpen();
   }
+
+  function calPrice() {
+    return (
+      (selectAvatarBuy?.price ? selectAvatarBuy?.price : 0) +
+      (selectBackground?.price ? selectBackground?.price : 0)
+    );
+  }
+
+  function checkIsOwner() {
+    let text = "";
+    if (selectAvatarBuy?.isOwner) {
+      text = "Avatar Already Exist";
+      return text;
+    }
+    if (selectBackground?.isOwner) {
+      text = "background Already Exist";
+      return text;
+    }
+    if (selectAvatarBuy?.isOwner === undefined && selectAvatarBuy !== null) {
+      text = "Avatar Already Exist";
+      return text;
+    }
+
+    if (selectBackground?.isOwner === undefined && selectBackground !== null) {
+      text = "background Already Exist";
+      return text;
+    }
+    return "";
+  }
+
   return (
     <div>
       <div
         onClick={selectAvatar}
         className={
           "font-bold  py-2 rounded-full w-full text-white flex justify-center " +
-          (avatarUserShow?.isOwner || avatarUserShow?.isOwner === undefined
+          (false
             ? "bg-purple-80 cursor-not-allowed"
             : "bg-purple-50 cursor-pointer")
         }
       >
-        {avatarUserShow?.isOwner || avatarUserShow?.isOwner === undefined
-          ? "Already Exist"
-          : "Buy"}
+        {false ? "Already Exist" : "Buy"}
       </div>
       <Modal
         aria-labelledby="modal-modal-title"
@@ -72,13 +127,52 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
               <div className="text-white font-medium text-[20px]">
                 Do you want to buy this?
               </div>
-              <div className="bg-white/50 rounded-lg p-2">
-                <img
-                  src={avatarUserShow.preview}
-                  className="w-[150px]"
-                  alt="imagePreview"
-                />
+              <div className="flex gap-2">
+                <div
+                  onClick={() =>
+                    selectAvatarBuy
+                      ? setSelectAvatarBuy(null)
+                      : setSelectAvatarBuy(avatarUserShow)
+                  }
+                  className="bg-white/50 relative flex items-center rounded-lg p-2"
+                >
+                  <img
+                    src={avatarUserShow.preview}
+                    className="w-[150px]"
+                    alt="imagePreview"
+                  />
+
+                  <div className="absolute top-2 right-2">
+                    {avatarUserShow === selectAvatarBuy ? (
+                      <CheckCircleOutlineIcon />
+                    ) : (
+                      <RadioButtonUncheckedIcon />
+                    )}
+                  </div>
+                </div>
+                <div
+                  onClick={() =>
+                    selectBackground
+                      ? setSelectBackground(null)
+                      : setSelectBackground(backgroundAvatarUser)
+                  }
+                  className="bg-white/50 relative flex items-center rounded-lg p-2"
+                >
+                  <img
+                    src={backgroundAvatarUser.preview || backgroundAvatarUser}
+                    className="w-[150px]"
+                    alt="imagePreview"
+                  />
+                  <div className="absolute top-2 right-2">
+                    {backgroundAvatarUser === selectBackground ? (
+                      <CheckCircleOutlineIcon />
+                    ) : (
+                      <RadioButtonUncheckedIcon />
+                    )}
+                  </div>
+                </div>
               </div>
+
               <div className="text-[25px] items-center text-white drop-shadow-md bg-purple-80/40 rounded-2xl px-4 py-1 font-extrabold flex">
                 <img
                   src={
@@ -87,8 +181,10 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
                   className={"mr-2 w-[25px] "}
                   alt="coin"
                 />
-                {avatarUserShow?.price}
+                {calPrice()}
               </div>
+
+              <div className="text-red-300 font-bold"> {checkIsOwner()} </div>
               <div className="text-red-500"> {textError} </div>
               {isLoading ? (
                 <Loading />
@@ -101,12 +197,18 @@ export default function ItemBuy({ buyAvatar, avatarUserShow, getAvatarShop }) {
                     Cancel
                   </div>
 
-                  <div
-                    onClick={enterAvatar}
-                    className="w-full  flex justify-center rounded-full bg-yellow-60 hover:bg-yellow-40 font-bold py-2 cursor-pointer"
-                  >
-                    Yes
-                  </div>
+                  {checkIsOwner() === "" && calPrice() !== 0 ? (
+                    <div
+                      onClick={enterAvatar}
+                      className="w-full flex justify-center rounded-full bg-yellow-60 hover:bg-yellow-40 font-bold py-2 cursor-pointer"
+                    >
+                      Yes
+                    </div>
+                  ) : (
+                    <div className="w-full flex justify-center rounded-full opacity-50 bg-yellow-80 font-bold py-2 cursor-not-allowed">
+                      Yes
+                    </div>
+                  )}
                 </div>
               )}
             </div>

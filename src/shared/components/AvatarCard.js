@@ -13,6 +13,20 @@ const AvatarCard = (props) => {
   const [isLoadingAvatar, setIsloadingAvatar] = useState(true);
   const [avatarUserShow, setAvatarUserShow] = useState({});
   const [giftList, setGiftList] = useState([]);
+  const [backgroundAvatarUser, setBackgroundAvatarUser] = useState({});
+  const [backgroundAvatarUserShow, setBackgroundAvatarUserShow] = useState({});
+  async function getBackgroundAvatar(id) {
+    if (props.userDataDetail?._id) {
+      const inventoryUser = await api.getBackgroundAvatar(
+        props.userDataDetail?._id
+      );
+      if (inventoryUser) {
+        console.log(inventoryUser);
+        await setBackgroundAvatarUser(inventoryUser?.data?.data.preview);
+        await setBackgroundAvatarUserShow(inventoryUser?.data?.data.preview);
+      }
+    }
+  }
 
   async function getAvatar() {
     if (props.userDataDetail?._id) {
@@ -31,9 +45,11 @@ const AvatarCard = (props) => {
 
   useEffect(() => {
     getAvatar();
+    getBackgroundAvatar();
   }, [avatarFetchCount]);
   useEffect(() => {
     getAvatar();
+    getBackgroundAvatar();
   }, [props.userDataDetail]);
 
   useEffect(() => {
@@ -57,7 +73,13 @@ const AvatarCard = (props) => {
             <Loading />
           </div>
         ) : (
-          <AvatarPreview width="420" avatarUser={avatarUserShow} />
+          <AvatarPreview
+            width="420"
+            avatarUser={avatarUserShow}
+            backgroundAvatarUser={
+              backgroundAvatarUserShow?.preview || backgroundAvatarUserShow
+            }
+          />
         )}
       </div>
       <div className="absolute text-blue-20 flex flex-col px-4 py-2 top-[250px] bg-blue-90 w-[310px] rounded-xl h-[170px]  ring-white ring">
