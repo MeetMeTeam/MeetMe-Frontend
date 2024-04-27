@@ -23,6 +23,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { ShoppingBasket } from "lucide-react";
 import CloseIcon from "@mui/icons-material/Close";
+import { useDispatch } from "react-redux";
+import { setCoinFetchCount } from "../../store/actions/authActions";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,6 +39,7 @@ const ShopPage = () => {
   const [coinUser, setCoinUser] = useState(0);
   const [avatarUser, setAvatarUser] = useState({});
   const [backgroundAvatarUser, setBackgroundAvatarUser] = useState({});
+  const dispatch = useDispatch();
 
   const [avatarUserNew, setAvatarUserNew] = useState(null);
   const [avatarList, setAvatarList] = useState([]);
@@ -70,6 +74,7 @@ const ShopPage = () => {
   async function getCoin() {
     const coinUser = await api.getCoin();
     setCoinUser(coinUser.data.data.coin);
+    dispatch(setCoinFetchCount(1));
   }
 
   async function getAvatar(id) {

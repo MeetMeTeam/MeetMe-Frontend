@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 import * as api from "../../../api";
 import { Plus } from "lucide-react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserCoin = (props) => {
   const history = useHistory();
+  const countCoin = useSelector((state) => state.auth.coinFetchCount);
 
   const [coinUser, setCoinUser] = useState(0);
   async function getCoin() {
@@ -15,6 +17,10 @@ const UserCoin = (props) => {
   useEffect(() => {
     getCoin();
   }, []);
+
+  useEffect(() => {
+    getCoin();
+  }, [countCoin]);
   return (
     <div className="relative flex flex-row items-center rounded-full   min-w-[70px]">
       {" "}
