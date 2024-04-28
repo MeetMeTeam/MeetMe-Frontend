@@ -32,24 +32,27 @@ export default function ItemBuy({
   }
   const [textError, setTextError] = React.useState("");
   async function enterAvatar() {
-    setIsLoading(true);
-    const response = await buyAvatar();
-    const response2 = await buyBackgroundAvatar();
     let check = false;
-    if (response.error) {
-      setTextError(response.exception.response.data.message);
-    } else {
-      setIsbuy(true);
-      dispatch(openAlertMessage("The product has been purchased."));
-      check = true;
-    }
-
-    if (response2.error) {
-      setTextError(response2.exception.response.data.message);
-    } else {
-      setIsbuy(true);
-      if (!check) {
+    setIsLoading(true);
+    if (selectAvatarBuy) {
+      const response = await buyAvatar();
+      if (response.error) {
+        setTextError(response.exception.response.data.message);
+      } else {
+        setIsbuy(true);
         dispatch(openAlertMessage("The product has been purchased."));
+        check = true;
+      }
+    }
+    if (selectBackground) {
+      const response2 = await buyBackgroundAvatar();
+      if (response2.error) {
+        setTextError(response2.exception.response.data.message);
+      } else {
+        setIsbuy(true);
+        if (!check) {
+          dispatch(openAlertMessage("The product has been purchased."));
+        }
       }
     }
 
