@@ -9,7 +9,7 @@ const ThemeShop = (props) => {
       {props.isLoadingAvatarShop ? (
         <Loading />
       ) : (
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           {props.themeList.map((item, index) => (
             <ThemeItem
               ley={index}
