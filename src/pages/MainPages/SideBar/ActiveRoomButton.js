@@ -17,6 +17,7 @@ const ActiveRoomButton = ({
   roomName,
   type,
   data,
+  theme,
 }) => {
   const handleJoinActiveRoom = () => {
     if (amountOfParticipants < 4) {
@@ -62,8 +63,9 @@ const ActiveRoomButton = ({
         <div className="flex flex-row justify-between">
           <div className="flex flex-wrap items-center space-x-2">
             <img
-              className="w-[40px]"
-              src={process.env.PUBLIC_URL + "/friend-pic.png"}
+              className="w-[40px] h-[40px] rounded-lg"
+              alt="roomImage"
+              src={theme.link}
             />
             <div className="text-purple-60 font-bold">
               <div> {roomName}</div>

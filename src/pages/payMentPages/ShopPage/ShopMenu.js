@@ -10,7 +10,7 @@ const ShopMenu = (props) => {
           key={index}
           onClick={() => props.setMenuNow(item.menu)}
           className={
-            "rounded-l-full px-4 font-medium py-2 truncate cursor-pointer " +
+            "lg:rounded-l-full rounded-lg px-4 font-medium py-2 truncate cursor-pointer " +
             (item.menu === props.menuNow
               ? "text-purple-40 bg-purple-80"
               : "text-purple-90 bg-purple-70")

@@ -27,7 +27,7 @@ export default function Chat({
         expanded={true}
         onChange={handleChange()}
         sx={{
-          width: width,
+          width: width ? width : "100%",
           backgroundColor: "#FF9999",
           borderRadius: "16px !important",
           boxShadow: "none !important",

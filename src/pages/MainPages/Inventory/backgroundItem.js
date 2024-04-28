@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AvatarItem(props) {
+export default function BackgroundItem(props) {
   return (
     <div className="grid md:grid-cols-3 max-h-[420px] overflow-auto overflow-x-hidden grid-cols-2 gap-4">
       {props.avatarList.map((item, index) => (

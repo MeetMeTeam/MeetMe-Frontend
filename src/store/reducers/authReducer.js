@@ -3,6 +3,7 @@ import { authActions } from "../actions/authActions";
 const initState = {
   userDetails: null,
   avatarFetchCount: 0,
+  coinFetchCount: 0,
 };
 
 const reducer = (state = initState, action) => {
@@ -16,6 +17,11 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         avatarFetchCount: state.avatarFetchCount + 1,
+      };
+    case authActions.SET_COIN_FETCH_COUNT:
+      return {
+        ...state,
+        coinFetchCount: state.coinFetchCount + 1,
       };
     default:
       return state;

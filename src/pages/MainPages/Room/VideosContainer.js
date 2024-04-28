@@ -128,8 +128,34 @@ const VideosContainer = ({
     );
   };
 
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      const newZoom = windowWidth / 3000;
+
+      if (newZoom > 0.6) {
+        setZoom(newZoom);
+      } else {
+        setZoom(0.8);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div className="absolute top-[20%] gap-4 w-full grid grid-cols-4  sm:px-12">
+    <div
+      style={{ zoom: zoom }}
+      className="absolute top-[15%] gap-4 w-full grid lg:grid-cols-4 grid-cols-2  sm:px-12"
+    >
       <div
         style={{ zoom: 0.8 }}
         className="flex flex-col  justify-center items-center relative p-10"

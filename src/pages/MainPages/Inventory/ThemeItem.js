@@ -24,7 +24,7 @@ export default function ThemeItem(props) {
   const [modalImageShow, setModalImageShow] = useState("");
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid md:grid-cols-3 max-h-[420px] overflow-auto overflow-x-hidden grid-cols-2 gap-4">
       {props.avatarList.map((item, index) => (
         <div
           key={index}
