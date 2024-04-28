@@ -31,7 +31,7 @@ export const categoryiesList = [
   },
   {
     id: 7,
-    name: "💬 consult",
+    name: "💬 Consult",
     color: "bg-blue-60",
   },
   {
@@ -81,7 +81,7 @@ export const categoryiesList = [
   },
   {
     id: 17,
-    name: "👦 teenager",
+    name: "👦 Teenager",
     color: "bg-pink-400",
   },
   {
