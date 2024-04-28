@@ -67,7 +67,7 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
     } else {
       setUserDetails(JSON.parse(userDetails));
       connectWithSocketServer(JSON.parse(userDetails));
-      getGift();
+      getGift(JSON.parse(userDetails));
     }
   }, []);
 
@@ -113,8 +113,8 @@ const HomePage = ({ setUserDetails, isUserInRoom }) => {
 
   const [giftList, setGiftList] = useState([]);
 
-  async function getGift() {
-    const response = await apiPayment.getUserGift(userDetail?._id);
+  async function getGift(data) {
+    const response = await apiPayment.getUserGift(data?._id);
     if (response.status === 200) {
       setGiftList(response?.data?.data);
     }
