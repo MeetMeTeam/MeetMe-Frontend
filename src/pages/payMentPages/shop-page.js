@@ -65,7 +65,7 @@ const ShopPage = () => {
   const userDetail = useSelector((state) => state.auth.userDetails);
   const menuList = [
     { name: "Flower", menu: "ADD_COIN" },
-    { name: "Character", menu: "AVATAR" },
+    { name: "Avatar", menu: "AVATAR" },
     { name: "Background", menu: "BACKGROUND" },
     { name: "Theme Room", menu: "THEME" },
   ];

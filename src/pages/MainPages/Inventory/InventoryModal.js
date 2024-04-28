@@ -228,7 +228,7 @@ const InventoryModal = () => {
                     : " bg-purple-80/40 text-purple-30 ")
                 }
               >
-                background
+                Background
               </div>
               <div
                 onClick={() => setMenu("theme")}
