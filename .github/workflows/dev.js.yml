@@ -38,7 +38,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: winnerkypt/meetme-frontend-dev:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/meetme-frontend-dev:latest
 
   deploy-dev:
     runs-on: gh-runner-2
@@ -55,7 +55,7 @@ jobs:
             docker system prune -a -f
             docker volume prune -a -f
             cd MeetMe-Frontend/
-            docker pull winnerkypt/meetme-frontend-dev:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/meetme-frontend-dev:latest
             docker rm -f react-docker
             docker compose -f docker-compose.yml up -d
             echo finish
