@@ -9,7 +9,7 @@ const LoginPageHeader = () => {
         className="w-[50px]"
       />
       <div className="text-[30px] font-bold">
-        MeetMe
+        MeetMeee
       </div>
       
     </div>
