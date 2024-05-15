@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   fe:
-      image: winnerkypt/meetme-frontend:latest
+      image: ${DOCKER_IMAGE}
       # build: .
       container_name: react-docker
       networks:  
