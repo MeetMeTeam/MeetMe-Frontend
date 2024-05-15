@@ -2,15 +2,15 @@ version: "3.9"
 
 services:
   fe:
-      image: ${DOCKER_IMAGE}
-      # build: .
-      container_name: react-docker
-      networks:  
-        - meetme
-      environment:
-        REACT_APP_BASE_API: ${REACT_APP_BASE_API}
-        REACT_APP_BASE_API_SOCKET: ${REACT_APP_BASE_API_SOCKET}
-        REACT_APP_BASE_API_PAYMENT: ${REACT_APP_BASE_API_PAYMENT}
+    image: ${DOCKER_IMAGE}
+    # build: .
+    container_name: react-docker
+    networks:
+      - meetme
+    environment:
+      REACT_APP_BASE_API: ${REACT_APP_BASE_API}
+      REACT_APP_BASE_API_SOCKET: ${REACT_APP_BASE_API_SOCKET}
+      REACT_APP_BASE_API_PAYMENT: ${REACT_APP_BASE_API_PAYMENT}
 networks:
-  meetme:  
+  meetme:
     external: true
