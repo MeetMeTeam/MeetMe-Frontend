@@ -8,7 +8,7 @@ const LoginPageHeader = () => {
           src={process.env.PUBLIC_URL + "meetme_logo.svg"}
           className="w-[50px]"
         />
-        <div className="text-[30px] font-bold">MeetMe</div>
+        <div className="text-[30px] font-bold">MeetMeEiei</div>
       </div>
 
       <div className="text-[64px] font-extrabold">Sign In</div>
