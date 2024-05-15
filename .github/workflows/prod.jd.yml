@@ -3,12 +3,14 @@
 
 name: Node.js CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
-    runs-on: 
-      - self-hosted
+  build-prod:
+    runs-on: gh-runner-1
 
     strategy:
       matrix:
@@ -37,10 +39,9 @@ jobs:
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
-  deploy:
-    runs-on:
-      - self-hosted
-    needs: build
+  deploy-dev:
+    runs-on: gh-runner-2
+    needs: build-prod
 
     steps:
       - name: SSH and Deploy
