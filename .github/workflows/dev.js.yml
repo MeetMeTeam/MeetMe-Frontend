@@ -38,7 +38,7 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/meetme-frontend-dev:latest
+          tags: winnerkypt/meetme-frontend-dev:latest
 
   deploy-dev:
     runs-on: gh-runner-2
