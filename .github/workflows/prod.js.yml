@@ -34,7 +34,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/meetme-frontend:latest
-  deploy-dev:
+  deploy-prod:
     runs-on: gh-runner-2
     needs: build-prod
 
